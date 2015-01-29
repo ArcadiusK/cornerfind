@@ -2,8 +2,7 @@
 
 angular.module('cornerfindApp')
   .controller('MainCtrl', function ($scope, $http, socket, products) {
-    $scope.productList = [{name: 'test prod', description: 'this is a test', price: 50},
-                          {name: 'test prod', description: 'this is a test', price: 30}];
+    $scope.productList = products;
 
     $http.get('/api/things').success(function(awesomeThings) {
       $scope.awesomeThings = awesomeThings;
