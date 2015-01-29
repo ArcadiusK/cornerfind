@@ -1,4 +1,8 @@
 #  Track progress at CornerFind.com
+- Where did you find it?
+- I found it on CornerFind.com
+
+# Marketplace for baby products (e.g. clothes, toys, strollers etc.)
 
 ##Reference for collaborators: Git Team Workflow:
 ####On `master` branch
