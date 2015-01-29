@@ -12,7 +12,8 @@ var OrderSchema = new Schema({
              }],
   sellerId: {type: Schema.Types.ObjectId, ref: 'User'},
   buyerId: {type: Schema.Types.ObjectId, ref: 'User'},
-  price: {type: Number, min: 0},
+  orderShippingHandling: {type: Number},
+  orderTotal: {type: Number, min: 0},
   status: {type:String, enum: ['offer','accepted','shipped','received','issues']}
 });
 
