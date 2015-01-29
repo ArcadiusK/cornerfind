@@ -1,3 +1,1 @@
-# cornerfind
-cornerfind fullstack mean
-Work in progress at CornerFind.com
+#  Track progress at CornerFind.com
