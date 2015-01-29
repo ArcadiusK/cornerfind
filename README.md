@@ -1,6 +1,6 @@
 #  Track progress at CornerFind.com
 - Where did you find it?
-- I found it on CornerFind.com
+- I found it on CornerFind.com, baby!
 
 # Marketplace for baby products (e.g. clothes, toys, strollers etc.)
 
