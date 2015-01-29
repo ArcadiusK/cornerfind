@@ -23,7 +23,7 @@ var UserSchema = new Schema({
   location: String,
   username: {type: string, required: true},
   shipAddy: String,
-  billAddy; String,
+  billAddy: String,
   settings: {}, //will need to define later. Nice to have. 
   following: [{ type: Schema.Types.ObjectId, ref: 'UserSchema'}]
 });
