@@ -21,7 +21,7 @@ var UserSchema = new Schema({
   github: {},
   listedProducts: [{ type: Schema.Types.ObjectId, ref: 'Product', index: true}],
   location: String,
-  username: {type: string, required: true},
+  username: {type: String, required: true},
   shipAddy: String,
   billAddy: String,
   settings: {}, //will need to define later. Nice to have. 
