@@ -18,7 +18,14 @@ var UserSchema = new Schema({
   facebook: {},
   twitter: {},
   google: {},
-  github: {}
+  github: {},
+  listedProducts: [{ type: Schema.Types.ObjectId, ref: 'Product', index: true}]
+  location: String,
+  username: {type: string, required: true},
+  shipAddy: String,
+  billAddy; String,
+  settings: {}, //will need to define later. Nice to have. 
+  following: [{ type: Schema.Types.ObjectId, ref: 'UserSchema'}]
 });
 
 /**
