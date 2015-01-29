@@ -1,6 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
+    Product = require('../product/product.model'),
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
@@ -18,7 +19,15 @@ var UserSchema = new Schema({
   facebook: {},
   twitter: {},
   google: {},
-  github: {}
+  github: {},
+  listedProducts: [{ type: Schema.Types.ObjectId, ref: 'Product', index: true}]
+  location: String,
+  username: {type: string, required: true},
+  shipAddy: String,
+  billAddy; String,
+  settings: {}, //will need to define later. Nice to have. 
+  following: [{ type: Schema.Types.ObjectId, ref: 'UserSchema'}],
+  purchaseHistory: [{ type: Schema.Types.ObjectId, ref: 'Product}]
 });
 
 /**
