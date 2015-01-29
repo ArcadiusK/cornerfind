@@ -19,7 +19,7 @@ var UserSchema = new Schema({
   twitter: {},
   google: {},
   github: {},
-  listedProducts: [{ type: Schema.Types.ObjectId, ref: 'Product', index: true}]
+  listedProducts: [{ type: Schema.Types.ObjectId, ref: 'Product', index: true}],
   location: String,
   username: {type: string, required: true},
   shipAddy: String,
