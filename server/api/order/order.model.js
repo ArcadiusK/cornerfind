@@ -4,7 +4,12 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var OrderSchema = new Schema({
-  productId: [{type: Schema.Types.ObjectId, ref: 'Product'}],
+  lineItems: [{ productId: {type: Schema.Types.ObjectId, ref: 'Product'},
+                name: {type: String},
+                purchasePrice: {type: Number, min: 0},
+                qty: {type: Number, min: 1},
+                shippingHandling: {type: Number}
+             }],
   sellerId: {type: Schema.Types.ObjectId, ref: 'User'},
   buyerId: {type: Schema.Types.ObjectId, ref: 'User'},
   price: {type: Number, min: 0},
