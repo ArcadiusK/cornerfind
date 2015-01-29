@@ -1,0 +1,12 @@
+<li class="thumbnail product-box" ng-controller='ProductsCtrl'>
+	<a href="/products/{{product._id}}">
+		<div>
+			<img src="http://www.project-octo.com/wp-content/uploads/2013/11/Out-of-Stock.jpg" ng-init="outOfStock=false" class="width-100" />
+			<img ng-src="{{product.images[0]}}">
+			<div class='caption'>
+			<h4><b>{{product.name}}</b></h4>
+			<p>{{product.description}}</p>
+			<p class='price'>{{product.price | currency}}/min</p>
+		</div>
+	</a> 
+</li>
