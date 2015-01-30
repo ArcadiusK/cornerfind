@@ -33,9 +33,9 @@
   },{
     name : 'Deployment Ready',
     info : 'Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators'
-  }), function() {
-  console.log('finished seeding things');
-};
+  }, function() {
+    console.log('finished seeding things');
+  });
 });
 
 Brand.find({}).remove(function() {
@@ -45,7 +45,9 @@ Brand.find({}).remove(function() {
    {name: "Gap"}, 
    {name: "Uniqlo"}, 
    {name: "Ralph Lauren"},
-   {name: "Prada"}
+   {name: "Prada"},
+   {name: "Espresso"},
+   {name: "Other"}
    );
 });
 
@@ -120,21 +122,28 @@ User.find({}).remove(function() {
 }, function() {
   console.log('finished seeding users');
 
-  
-  var queryUser  = User.where({ name: 'Test User' });
 
+
+
+  var queryUser  = User.where({ name: 'Test User' });
   queryUser.findOne(function (err, user_parameter) {
     if (err) {
-      console.log("seeding error user")
+      console.log("seed.js - could not find user1")
       return handleError(err);
     }
-
     console.log("user_parameter: "+user_parameter)
 
+    var queryUser2  = User.where({ name: 'Admin Arcadius' });
+    queryUser2.findOne(function (err, user_parameter2) {
+      if (err) {
+        console.log("seed.js - could not find user2")
+        return handleError(err);
+      }
+      console.log("user_parameter2: "+user_parameter2)
 
-    Product.find({}).remove(function() {
-      Product.create({
-        userId: user_parameter._id,
+      Product.find({}).remove(function() {
+        Product.create({
+          userId: user_parameter._id,
     category: ["Clothing"], //from categories collection
     qty: 1,
     name: "Juicy Couture baby bib, pink",
@@ -160,34 +169,89 @@ User.find({}).remove(function() {
     brand: "CTRCO",
     retailPrice: 42.00,
     likes: [user_parameter._id]
-  }, function() {
+  },
+  {
+    userId: user_parameter._id,
+    category: ["Clothing"], //from categories collection
+    qty: 1,
+    name: "Boy Jacket",
+    desc: "Description of Boy Jacket",
+    photoUrls: ["http://childrensfashionup.com/wp-content/uploads/2014/04/baby-boy-clothes-newborn-boutique-fashion-clothes-for-boys.jpg"],
+    condition: "Like New", //from conditions collection
+    available: true,
+    price: 34.00,
+    brand: "Prada",
+    retailPrice: 60.00,
+    likes: [user_parameter._id]
+  },
+  {
+    userId: user_parameter2._id,
+    category: ["Toys"], //from categories collection
+    qty: 1,
+    name: "Two Dolls",
+    desc: "Two Dolls white together",
+    photoUrls: ["http://babyurprecious.com/wp-content/uploads/2014/06/Baby-UR-Precious-BURP-Doll-portfolio.jpg"],
+    condition: "Average", //from conditions collection
+    available: true,
+    price: 61.00,
+    brand: "Uniqlo",
+    retailPrice: 97.00,
+    likes: [user_parameter2._id]
+  },
+  {
+    userId: user_parameter2._id,
+    category: ["Cribs"], //from categories collection
+    qty: 1,
+    name: "Crib Sorelle Verona",
+    desc: "Sorelle Verona 4-in-1 Lifetime Convertible Crib and Changer",
+    photoUrls: ["http://www.toysrus.com/graphics/product_images/pTRU1-16411896enh-z6.jpg"],
+    condition: "Acceptable", //from conditions collection
+    available: true,
+    price: 45.00,
+    brand: "Espresso",
+    retailPrice: 108.00,
+    likes: [user_parameter2._id]
+  },
+  function() {
     console.log('finished seeding products');
 
 
-
-    var queryProduct  = User.where({ desc: 'Gold Booties' });
-
+    var queryProduct  = User.where({ desc: 'Juicy Couture baby bib, pink' });
     queryUser.findOne(function (err, product_parameter) {
       if (err) {
         console.log("seeding error product")
         return handleError(err);
       }
-
       console.log("product_parameter: "+user_parameter)
 
-      Like.find({}).remove(function() {
-        Like.create({
-         productId: product_parameter._id,
-         userId: user_parameter._id
-       }, function() {
-         console.log('finished seeding likes');
-       });
+      var queryProduct2  = User.where({ desc: 'Gold Booties' });
+      queryUser2.findOne(function (err, product_parameter2) {
+        if (err) {
+          console.log("seeding error product2")
+          return handleError(err);
+        }
+        console.log("product_parameter2: "+user_parameter2)
+
+
+        Like.find({}).remove(function() {
+          Like.create({
+           productId: product_parameter._id,
+           userId: user_parameter._id
+         }, 
+         {
+           productId: product_parameter2._id,
+           userId: user_parameter2._id
+         }, function() {
+           console.log('finished seeding likes');
+         });
+        });
       });
+
+
+
     });
-
-  
-
   });
+});
 });
 });
 });
