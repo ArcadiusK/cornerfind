@@ -3,9 +3,9 @@
 var User = require('./user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
-var jwt = require('jsonwebtoken');
-var Product = require('../product/product.model')
-var Review = require('../review/review.model');
+// var jwt = require('jsonwebtoken');
+// var Product = require('../product/product.model')
+// var Review = require('../review/review.model');
 
 var validationError = function(res, err) {
     return res.json(422, err);
