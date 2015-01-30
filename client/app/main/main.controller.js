@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('MainCtrl', function ($scope, $http, socket, products) {
+  .controller('MainCtrl', function ($scope, $http, socket, products, $mdSidenav) {
     $scope.productList = products;
+
+
 
     $http.get('/api/things').success(function(awesomeThings) {
       $scope.awesomeThings = awesomeThings;
@@ -24,4 +26,11 @@ angular.module('cornerfindApp')
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('thing');
     });
+
+    //Testing sidenav
+    $scope.openLeftMenu = function() {
+    $mdSidenav('left').toggle();
+  };
+
+
   });
