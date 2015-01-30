@@ -1,62 +1,59 @@
 <!-- <div ng-include="'components/navbar/navbar.html'"></div> -->
-
-<div layout='column' layout-fill>
-  <md-toolbar>
-    <div class="md-toolbar-tools md-hue-2">
-      <md-button ng-click="openLeftMenu()">
-        Left Bar Button
-      </md-button>
-      <!-- fill up the space between left and right area -->
-      <span flex></span>
-      <md-button>
-        Right Bar Button
-      </md-button>
-    </div>
-  </md-toolbar>
-  <md-content>
-    Hello!
-  </md-content>
-
-</div>
-
-<header class="hero-unit" id="banner">
-  <div  class="container">
-    <h1>Welcome to CornerFind.com</h1>
-    <p class="lead">Marketplace for all baby products (e.g. clothes, toys, strollers etc.)</p>
-   <!-- <img src="assets/images/yeoman.png" alt="I'm Yeoman"> -->
+<div id='all-content'>
+  <div layout='column' layout-fill>
+    <md-toolbar>
+      <div class="md-toolbar-tools md-hue-2">
+        <md-button ng-click="openLeftMenu()">
+          Left Bar Button
+        </md-button>
+        <!-- fill up the space between left and right area -->
+        <span flex></span>
+        <md-button>
+          Right Bar Button
+        </md-button>
+      </div>
+    </md-toolbar>
   </div>
-</header>
 
-<div layout='column'>
-    <md-sidenav md-is-open ='true' md-component-id="left" class="md-sidenav-left">
-      <md-toolbar class="md-theme-deep-purple">
-          <h1 class="md-toolbar-tools">Sidenav Left</h1>
-      </md-toolbar>
-      <md-content layout='column'>  
-          <md-list ng-repeat = "product in productList">
-            <md-item flex class='list-unstyled md-button md-default-theme'>{{product.name}}</md-item>
-          </md-list>
-      </md-content>
-    </md-sidenav>
-</div>
+  <header class="hero-unit"  id="banner" >
+    <div  class="container">
+      <h1>Welcome to CornerFind.com</h1>
+      <p class="lead">Marketplace for all baby products (e.g. clothes, toys, strollers etc.)</p>
+     <!-- <img src="assets/images/yeoman.png" alt="I'm Yeoman"> -->
+    </div>
+  </header>
 
-<div class="container">
-  <div class="row rm-margin-l rm-margin-r">
-    <div class="col-lg-12 page-header rm-padding-l rm-padding-r">
-      <div class="col-lg-12 rm-padding-l">
-        <h2>TOP SELLERS</h2>
+  <div layout='column'>
+      <md-sidenav md-is-open ='false' md-component-id="left" class="md-sidenav-left">
+        <md-toolbar>
+            <h1 class=" md-toolbar-tools">Sidenav Left</h1>
+        </md-toolbar>
+        <md-content layout='column'>  
+            <md-list ng-repeat = "product in productList">
+              <div flex class='list-unstyled md-button md-default-theme'>{{product.name}}</div>
+            </md-list>
+        </md-content>
+      </md-sidenav>
+  </div>
+
+  <div class="container">
+    <div class="row rm-margin-l rm-margin-r">
+      <div class="col-lg-12 page-header rm-padding-l rm-padding-r">
+        <div class="col-lg-12 rm-padding-l">
+          <h2>TOP SELLERS</h2>
+        </div>
       </div>
     </div>
+    <div layout="row" layout-sm='column'>
+      <ul  flex ng-repeat="product in productList">
+        <product-card-view info="product"></product-card-view>
+      </ul>
+    </div>
   </div>
-  <div layout="row" layout-sm='column'>
-    <ul  flex ng-repeat="product in productList">
-      <product-card-view info="product"></product-card-view>
-    </ul>
-  </div>
-</div>
 
-<footer class="footer">
-  <div class="container">
-      <p>(C) CornerFind.com 2015 </p>
-  </div>
-</footer>
+  <footer class="footer">
+    <div class="container">
+        <p>(C) CornerFind.com 2015 </p>
+    </div>
+  </footer>
+</div>
