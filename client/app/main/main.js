@@ -7,5 +7,7 @@ angular.module('cornerfindApp')
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
-      });
+      }) 
+
+
   });
