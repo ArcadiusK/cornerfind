@@ -222,17 +222,17 @@ exports.updateCart = function(req, res) {
 };
 
 //Populate products in user cart
-exports.populate = function(req, res) {
-    User.findById(req.params.id).populate(path: 'listedProducts', model:'Product')
-        .exec(function(err, user) {
-            if (err) {
-                console.log('error')
-                return handleError(res, err);
-            }
-            if (!user) {
-                console.log('no user')
-                return res.send(404);
-            }
-            return res.json(user);
-        })
+// exports.populate = function(req, res) {
+//     User.findById(req.params.id).populate(path: 'listedProducts', model:'Product')
+//         .exec(function(err, user) {
+//             if (err) {
+//                 console.log('error')
+//                 return handleError(res, err);
+//             }
+//             if (!user) {
+//                 console.log('no user')
+//                 return res.send(404);
+//             }
+//             return res.json(user);
+//         })
 }
