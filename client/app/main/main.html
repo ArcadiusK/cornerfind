@@ -3,14 +3,16 @@
   <div layout='column' layout-fill>
     <md-toolbar>
       <div class="md-toolbar-tools md-hue-2">
-        <md-button ng-click="openLeftMenu()">
-          Left Bar Button
-        </md-button>
+        <md-list class ='dropdowns' ng-click="openLeftMenu()">
+          Sidebar
+        </md-list>
+        <md-list class ='dropdowns'>Stuff
+        </md-list>
         <!-- fill up the space between left and right area -->
         <span flex></span>
-        <md-button>
+        <md-list>
           Right Bar Button
-        </md-button>
+        </md-list>
       </div>
     </md-toolbar>
   </div>
@@ -41,6 +43,8 @@
       <div class="col-lg-12 page-header rm-padding-l rm-padding-r">
         <div class="col-lg-12 rm-padding-l">
           <h2>TOP SELLERS</h2>
+          <p>Brands: {{brandList}}<p>
+          <p>categorys: {{categoryList}}<p>
         </div>
       </div>
     </div>

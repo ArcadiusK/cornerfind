@@ -1,33 +1,22 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('MainCtrl', function ($scope, $http, socket, products, $mdSidenav) {
-    $scope.productList = products;
+  .controller('MainCtrl', function ($scope, $http, socket, product, brand, category, $mdSidenav) {
+    $scope.productList = product;
 
+    $scope.brandList = brand.query();
+    $scope.categoryList = category.query();
 
+    //Leaving for socket references
+    // $http.get('/api/things').success(function(awesomeThings) {
+    //   $scope.awesomeThings = awesomeThings;
+    //   socket.syncUpdates('thing', $scope.awesomeThings);
+    // });
+    // $scope.$on('$destroy', function () {
+    //   socket.unsyncUpdates('thing');
+    // });
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-      socket.syncUpdates('thing', $scope.awesomeThings);
-    });
-
-    $scope.addThing = function() {
-      if($scope.newThing === '') {
-        return;
-      }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
-    };
-
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
-    };
-
-    $scope.$on('$destroy', function () {
-      socket.unsyncUpdates('thing');
-    });
-
-    //Testing sidenav
+    //Sidenav
     $scope.openLeftMenu = function() {
     $mdSidenav('left').toggle();
   };
