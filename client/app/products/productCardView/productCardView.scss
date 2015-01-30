@@ -1,0 +1,41 @@
+.thumbnail {
+	padding: 0px;
+	a {
+		img {
+			height: 212px;
+		}
+	}
+}
+
+.caption {
+	padding-left: 15px !important;
+}
+
+.price {
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.product-card-view {
+	height: 350px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	color: blue;
+	border: solid 4px $gray;
+	box-shadow: 0px 4px 8px #A19F9F;
+	:hover {
+		background-color: $gray;
+		opacity: 0.75;
+		a {
+			text-decoration: none;
+		}
+		a, div, img, h4, b, p {
+			border: 0px;
+		}
+	}
+}
+
+
+.thumbnail {
+	border-color: DarkGray;
+}
