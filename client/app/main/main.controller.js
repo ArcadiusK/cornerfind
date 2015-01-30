@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('MainCtrl', function ($scope, $http, socket, product, brand, category, $mdSidenav) {
-    $scope.productList = product;
-
+  .controller('MainCtrl', function ($scope, $http, socket, product, brand, category, $mdSidenav, User, Auth) {
+    $scope.productList = product.query();
     $scope.brandList = brand.query();
     $scope.categoryList = category.query();
+    $scope.isLoggedIn=function(){
+      return Auth.isLoggedIn();
+    }
 
     //Leaving for socket references
     // $http.get('/api/things').success(function(awesomeThings) {

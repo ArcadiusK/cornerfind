@@ -2,17 +2,30 @@
 <div id='all-content'>
   <div layout='column' layout-fill>
     <md-toolbar>
-      <div class="md-toolbar-tools md-hue-2">
-        <md-list class ='dropdowns' ng-click="openLeftMenu()">
-          Sidebar
+      <div class="md-toolbar-tools md-hue-2">    
+        
+          <md-list class ='dropdowns' ng-click="openLeftMenu()">
+            Test Sidebar
+          </md-list>
+        
+        
+          <md-list layout="column" class ='dropdown-title category-dropdown'>Categories
+              <md-item ng-repeat='category in categoryList' class='dropdown-item'>{{category.name}}</md-item>
+          </md-list>
+        
+        
+        <md-list layout='column' class ='dropdown-title brand-dropdown'>Brands
+          <div ng-repeat='brand in brandList' class='dropdown-item'>{{brand.name}}
+          </div>
         </md-list>
-        <md-list class ='dropdowns'>Stuff
-        </md-list>
-        <!-- fill up the space between left and right area -->
-        <span flex></span>
-        <md-list>
-          Right Bar Button
-        </md-list>
+      
+        <span flex></span> <!-- fills blank navbar space in middle -->
+        <md-button href='/login' ng-hide='isLoggedIn()'>
+          Login
+        </md-button>
+        <md-button href='/login' ng-show='isLoggedIn()'>
+          Profile
+        </md-button>
       </div>
     </md-toolbar>
   </div>
@@ -28,7 +41,7 @@
   <div layout='column'>
       <md-sidenav md-is-open ='false' md-component-id="left" class="md-sidenav-left">
         <md-toolbar>
-            <h1 class=" md-toolbar-tools">Sidenav Left</h1>
+            <h1 class=" md-toolbar-tools">Left Navbar</h1>
         </md-toolbar>
         <md-content layout='column'>  
             <md-list ng-repeat = "product in productList">
@@ -40,11 +53,10 @@
 
   <div class="container">
     <div class="row rm-margin-l rm-margin-r">
-      <div class="col-lg-12 page-header rm-padding-l rm-padding-r">
+      <!-- <div class="col-lg-12 page-header rm-padding-l rm-padding-r"> -->
+      <div flex>
         <div class="col-lg-12 rm-padding-l">
           <h2>TOP SELLERS</h2>
-          <p>Brands: {{brandList}}<p>
-          <p>categorys: {{categoryList}}<p>
         </div>
       </div>
     </div>
