@@ -2,7 +2,7 @@
 - Where did you find it?
 - I found it on CornerFind.com, baby!
 
-# Marketplace for baby products (e.g. clothes, toys, strollers etc.)
+# Marketplace for all baby products (e.g. clothes, toys, cribs, strollers etc.)
 
 ##Reference for collaborators: Git Team Workflow:
 ####On `master` branch
