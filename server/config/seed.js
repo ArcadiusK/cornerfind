@@ -12,7 +12,7 @@
  var Category = require('../api/category/category.model');
  var Condition = require('../api/condition/condition.model');
  var Like = require('../api/like/like.model');
-
+ var Address = require('../api/address/address.model');
 
  Thing.find({}).remove(function() {
   Thing.create({
@@ -119,7 +119,8 @@ User.find({}).remove(function() {
   billAddy: 'billing address',
   settings: {}, //will need to define later. Nice to have. 
   following: []
-}, function() {
+}, 
+function() {
   console.log('finished seeding users');
 
 
@@ -141,9 +142,12 @@ User.find({}).remove(function() {
       }
       console.log("user_parameter2: "+user_parameter2)
 
-      Product.find({}).remove(function() {
-        Product.create({
-          userId: user_parameter._id,
+
+
+
+  Product.find({}).remove(function() {
+    Product.create({
+    userId: user_parameter._id,
     category: ["Clothing"], //from categories collection
     qty: 1,
     name: "Juicy Couture baby bib, pink",
@@ -241,10 +245,65 @@ User.find({}).remove(function() {
          {
            productId: product_parameter2._id,
            userId: user_parameter2._id
-         }, function() {
+         }, 
+         function() {
            console.log('finished seeding likes');
          });
         });
+
+
+
+
+
+    Address.find({}).remove(function() {
+          Address.create({
+            userId: user_parameter._id,
+            billingTrueOrShippingFalse: true,
+            streetAddresLine1: "123 East 56th Street",
+            streetAddresLine2: "Apt 5G",
+            city: "New York",
+            stateOrRegion: "NY",
+            zipCodeOrPostalCode: "10025",
+            country: "USA"
+         }, 
+         {
+            userId: user_parameter._id,
+            billingTrueOrShippingFalse: false,
+            streetAddresLine1: "55 Forest Rd",
+            streetAddresLine2: "",
+            city: "Ronkonkoma",
+            stateOrRegion: "WA",
+            zipCodeOrPostalCode: "54367",
+            country: "USA"
+         }, 
+         {
+            userId: user_parameter2._id,
+            billingTrueOrShippingFalse: true,
+            streetAddresLine1: "675 W 13th Street",
+            streetAddresLine2: "Apt 4B",
+            city: "New York",
+            stateOrRegion: "NY",
+            zipCodeOrPostalCode: "10010",
+            country: "USA"
+         }, 
+         {
+            userId: user_parameter2._id,
+            billingTrueOrShippingFalse: false,
+            streetAddresLine1: "60 ABC Place",
+            streetAddresLine2: "cul-de-sac",
+            city: "San Francisco",
+            stateOrRegion: "CA",
+            zipCodeOrPostalCode: "99888",
+            country: "USA"
+         },
+         function() {
+           console.log('finished seeding addresses');
+         });
+        });
+
+
+
+
       });
 
 
