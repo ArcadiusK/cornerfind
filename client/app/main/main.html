@@ -1,34 +1,42 @@
 <!-- <div ng-include="'components/navbar/navbar.html'"></div> -->
 <div id='all-content'>
-  <div layout='column' layout-fill>
-    <md-toolbar>
+  
+    <md-toolbar layout='column' layout-fill >
       <div class="md-toolbar-tools md-hue-2">    
+
+          <md-button  ng-click="openLeftMenu()">
+            Click For Sidebar
+          </md-button>
+        <div class= "dropdown" id ='testing'>
+            <ul class ='dropdown-menu category-dropdown navbar-toggle' id='testing' role='menu'>Categories
+                <li ng-repeat='category in categoryList' class='dropdown-item'>{{category.name}}</li>
+            </ul>
+        </div>
+        <!-- <md-list layout="column" class ='dropdown-title category-dropdown'>Categories
+            <md-item ng-repeat='category in categoryList' class='dropdown-item'>{{category.name}}</md-item>
+        </md-list> -->
         
-          <md-list class ='dropdowns' ng-click="openLeftMenu()">
-            Test Sidebar
-          </md-list>
-        
-        
-          <md-list layout="column" class ='dropdown-title category-dropdown'>Categories
-              <md-item ng-repeat='category in categoryList' class='dropdown-item'>{{category.name}}</md-item>
-          </md-list>
-        
-        
-        <md-list layout='column' class ='dropdown-title brand-dropdown'>Brands
+       <!--  <div layout='column' class ='dropdown-title category-dropdown'>Category
+          <div ng-repeat='category in categoryList' class='dropdown-item'>{{category.name}}
+          </div>
+        </div> -->
+
+        <div layout='column' class ='dropdown-title brand-dropdown'>Brands
           <div ng-repeat='brand in brandList' class='dropdown-item'>{{brand.name}}
           </div>
-        </md-list>
+        </div>
       
         <span flex></span> <!-- fills blank navbar space in middle -->
         <md-button href='/login' ng-hide='isLoggedIn()'>
           Login
         </md-button>
-        <md-button href='/login' ng-show='isLoggedIn()'>
+        <md-button href='/profile/{{currentUser._id}}' ng-show='isLoggedIn()'>
           Profile
         </md-button>
+
       </div>
-    </md-toolbar>
-  </div>
+    </md-toolbar >
+
 
   <header class="hero-unit"  id="banner" >
     <div  class="container">

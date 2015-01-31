@@ -32,28 +32,22 @@
 }
 
 
+
 .dropdown-title{
     padding-left: 10px;
     /*position: fixed;*/
-    /*width:300px;*/
+    
 }
 
 .dropdown-item{
     display:none;
     float:left;
-    padding-top: 0;
-    /*position: relative;*/
+    padding: 0;
+    position: relative;
 }
 
 .dropdown-title:hover .dropdown-item{
     display:block;
 }
-
-
-
-
-
-
-
 
 
