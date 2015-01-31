@@ -61,25 +61,28 @@
         </div>
       </div>
     </div>
-    <div layout="row" layout-sm='column'>
+    <!-- <div layout="row" layout-sm='column'> -->
 
-      <ul flex ng-repeat="product in productList">{{!($index % 3) && ($index!==0)}}
+      <div layout='{{layout($index)}}' flex='33'ng-repeat="product in productList">{{!($index % 3) && ($index!==0)}} {{layout($index)}}
+        
+        <!-- it's all in the column vs row layouts
+          make them alternate based on index -->
+        <!--if index, insert new div that wraps product card with the correct layout-->
+
         <product-card-view info="product"></product-card-view>
+        <div>Test {{$index}}</div>
+        <h1 ng-if="(!($index %3)&&($index!==0))">TRUE</h1>
 
-      <h1 ng-if="(!($index %3)&&($index!==0))">TRUF</h1>
-      <br ng-if="(!($index %3)&&($index!==0))"/>
-
-      <hr ng-if="(!($index %3)&&($index!==0))"/>
-      
-      </ul >
+      <!-- </div> -->
     </div>
 
-      <p>sayhello@CornerFind.com</p>
+      
 
   </div>
 
   <footer class="footer">
     <div class="container">
+        <p>sayhello@CornerFind.com</p>
         <p>(C) CornerFind.com 2015 </p>
     </div>
   </footer>

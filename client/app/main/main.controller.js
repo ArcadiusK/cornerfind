@@ -7,6 +7,12 @@ angular.module('cornerfindApp')
     $scope.categoryList = category.query();
     $scope.isLoggedIn=function(){
       return Auth.isLoggedIn();
+    };
+
+    $scope.layout = function(ngRepeatIndex){
+      if(ngRepeatIndex > 0 && ngRepeatIndex%3 ===0){
+        return "column";
+      } return "row";
     }
 
     //Leaving for socket references
