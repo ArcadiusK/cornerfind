@@ -21,10 +21,9 @@
 ####On `my_feature` branch
 8. `git merge master`
 9. RESOLVE ALL CONFLICTS <<< IMPORTANT!
-10. `git add -A` and `git commit -m "merged master into my_feature"
-11. grunt serve to make sure your code hasn't broken the release
-12. after you double check that it works with master and your feature merged: 
-13. `git push origin my_feature`
+10. `git add -A` and `git commit -m "merged master into my_feature"`
+11. `grunt serve` to make sure your code hasn't broken the current master head
+12. `git push origin my_feature`
 
 ####On Github
 14. Create a pull request
