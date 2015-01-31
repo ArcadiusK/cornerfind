@@ -3,7 +3,6 @@
   
     <md-toolbar layout='column' layout-fill >
       <div class="md-toolbar-tools md-hue-2">    
-
           <md-button  ng-click="openLeftMenu()">
             Click For Sidebar
           </md-button>
@@ -20,6 +19,15 @@
           <div ng-repeat='category in categoryList' class='dropdown-item'>{{category.name}}
           </div>
         </div> -->
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Welcome to CornerFind.com</h1>
+    <p class="lead">Marketplace for all baby products (e.g. clothes, toys, cribs, strollers etc.)</p>
+   <!-- <img src="assets/images/yeoman.png" alt="I'm Yeoman"> -->
+  </div>
+</header>
+
 
         <div layout='column' class ='dropdown-title brand-dropdown'>Brands
           <div ng-repeat='brand in brandList' class='dropdown-item'>{{brand.name}}
@@ -60,6 +68,7 @@
   </div>
 
   <div class="container">
+
     <div class="row rm-margin-l rm-margin-r">
       <!-- <div class="col-lg-12 page-header rm-padding-l rm-padding-r"> -->
       <div flex>
@@ -73,6 +82,9 @@
         <product-card-view info="product"></product-card-view>
       </ul>
     </div>
+
+      <p>sayhello@CornerFind.com</p>
+
   </div>
 
   <footer class="footer">

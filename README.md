@@ -22,18 +22,20 @@
 8. `git merge master`
 9. RESOLVE ALL CONFLICTS <<< IMPORTANT!
 10. `git add -A` and `git commit -m "merged master into my_feature"
-11. `git push origin my_feature`
+11. grunt serve to make sure your code hasn't broken the release
+12. after you double check that it works with master and your feature merged: 
+13. `git push origin my_feature`
 
 ####On Github
-12. Create a pull request
-13. Notify someone that you have created a pull request
-14. Don't branch or work on another feature until the request has been merged into master.
+14. Create a pull request
+15. Notify someone that you have created a pull request
+16. Don't branch or work on another feature until the request has been merged into master.
 
 ####On your local computer
-15. `git checkout master`
+17. `git checkout master`
 
 ####On `master`
-16. `git pull`
-17. Repeat the steps
+18. `git pull`
+19. Repeat the steps
 
-####Please keep this workflow here for reference.
+####Please keep this workflow here for reference
