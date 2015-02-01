@@ -34,7 +34,7 @@
     name : 'Deployment Ready',
     info : 'Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators'
   }, function() {
-    console.log('finished seeding things');
+    // console.log('finished seeding things');
   });
 });
 
@@ -120,7 +120,7 @@ User.find({}).remove(function() {
   settings: {}, //will need to define later. Nice to have. 
   following: []
 }, function() {
-  console.log('finished seeding users');
+  // console.log('finished seeding users');
 
 
 
@@ -131,7 +131,7 @@ User.find({}).remove(function() {
       console.log("seed.js - could not find user1")
       return handleError(err);
     }
-    console.log("user_parameter: "+user_parameter)
+    // console.log("user_parameter: "+user_parameter)
 
     var queryUser2  = User.where({ name: 'Admin Arcadius' });
     queryUser2.findOne(function (err, user_parameter2) {
@@ -139,7 +139,7 @@ User.find({}).remove(function() {
         console.log("seed.js - could not find user2")
         return handleError(err);
       }
-      console.log("user_parameter2: "+user_parameter2)
+      // console.log("user_parameter2: "+user_parameter2)
 
       Product.find({}).remove(function() {
         Product.create({
@@ -213,7 +213,7 @@ User.find({}).remove(function() {
     likes: [user_parameter2._id]
   },
   function() {
-    console.log('finished seeding products');
+    // console.log('finished seeding products');
 
 
     var queryProduct  = User.where({ desc: 'Juicy Couture baby bib, pink' });
@@ -222,7 +222,7 @@ User.find({}).remove(function() {
         console.log("seeding error product")
         return handleError(err);
       }
-      console.log("product_parameter: "+user_parameter)
+      // console.log("product_parameter: "+user_parameter)
 
       var queryProduct2  = User.where({ desc: 'Gold Booties' });
       queryUser2.findOne(function (err, product_parameter2) {
@@ -230,7 +230,7 @@ User.find({}).remove(function() {
           console.log("seeding error product2")
           return handleError(err);
         }
-        console.log("product_parameter2: "+user_parameter2)
+        // console.log("product_parameter2: "+user_parameter2)
 
 
         Like.find({}).remove(function() {
@@ -242,7 +242,7 @@ User.find({}).remove(function() {
            productId: product_parameter2._id,
            userId: user_parameter2._id
          }, function() {
-           console.log('finished seeding likes');
+           // console.log('finished seeding likes');
          });
         });
       });
