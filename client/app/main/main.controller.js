@@ -11,8 +11,8 @@ angular.module('cornerfindApp')
 
     $scope.layout = function(ngRepeatIndex){
       if(ngRepeatIndex > 0 && ngRepeatIndex%3 ===0){
-        return "column";
-      } return "row";
+        return "row";
+      } return "column";
     }
 
     //Leaving for socket references

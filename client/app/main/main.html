@@ -1,6 +1,6 @@
-<!-- <div ng-include="'components/navbar/navbar.html'"></div> -->
-<div id='all-content'>
-  
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+  <!-- work on getting ng-material components into the navbar, check controller scopes-->
     <md-toolbar layout='column' layout-fill >
       <div class="md-toolbar-tools md-hue-2">    
           <md-button  ng-click="openLeftMenu()">
@@ -52,30 +52,19 @@
   </div>
 
   <div class="container">
+      
+    <div class="col-lg-12 rm-padding-l">
+      <h2>TOP SELLERS</h2>
+    </div>
+    
 
-    <div class="row rm-margin-l rm-margin-r">
-      <!-- <div class="col-lg-12 page-header rm-padding-l rm-padding-r"> -->
-      <div flex>
-        <div class="col-lg-12 rm-padding-l">
-          <h2>TOP SELLERS</h2>
-        </div>
+    <!-- Cards -->
+    <div class='row'>
+      <div class ='col-lg-4 col-md-6 col-sm-12' ng-repeat="product in productList">
+          <product-card-view info="product"></product-card-view>
       </div>
     </div>
-    <!-- <div layout="row" layout-sm='column'> -->
-
-      <div layout='{{layout($index)}}' flex='33'ng-repeat="product in productList">{{!($index % 3) && ($index!==0)}} {{layout($index)}}
-        
-        <!-- it's all in the column vs row layouts
-          make them alternate based on index -->
-        <!--if index, insert new div that wraps product card with the correct layout-->
-
-        <product-card-view info="product"></product-card-view>
-        <div>Test {{$index}}</div>
-        <h1 ng-if="(!($index %3)&&($index!==0))">TRUE</h1>
-
-      <!-- </div> -->
-    </div>
-
+    <!--end cards-->
       
 
   </div>
@@ -83,7 +72,7 @@
   <footer class="footer">
     <div class="container">
         <p>sayhello@CornerFind.com</p>
-        <p>(C) CornerFind.com 2015 </p>
+        <p>&copy; CornerFind.com 2015 </p>
     </div>
   </footer>
-</div>
+
