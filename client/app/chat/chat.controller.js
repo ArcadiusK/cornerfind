@@ -1,18 +1,19 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('ChatCtrl', function ($scope, chat) {
-    $scope.chatlist = chat.getChatList();
-   
+  .controller('ChatCtrl', function ($scope, $http, chat) {
+    $scope.chatlist = [];
+
+    chat.getChatList().then(function(data){
+      $scope.chatlist = data;
+    });
 
     $scope.addChat = function(newChat){
       $scope.chatlist.push(newChat);
+      newChat = {};
     }
 
-    // $http.get('/api/chat').success(function(awesomeThings) {
-    //   $scope.awesomeThings = awesomeThings;
-    //   socket.syncUpdates('thing', $scope.awesomeThings);
-    // });
+    
 
     // $scope.addThing = function() {
     //   if($scope.newThing === '') {

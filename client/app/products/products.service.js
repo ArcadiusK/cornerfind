@@ -6,18 +6,18 @@ angular.module('cornerfindApp')
                   {name: 'test prod2', description: 'this is a test', price: 30}];
 
     var products = $resource('/api/products/:id', { id: '@_id'}, {
-      update: {
-        method: 'PUT'
-      },
-      search : {
-        url: '/api/products/search/:query',
-        isArray: true,
-        method: 'GET'
-      },
-      updateQuantity : {
-        url: '/api/products/qty/:id',
-        method: 'PUT'
-      }
+      // update: {
+      //   method: 'PUT'
+      // },
+      // search : {
+      //   url: '/api/products/search/:query',
+      //   isArray: true,
+      //   method: 'GET'
+      // },
+      // updateQuantity : {
+      //   url: '/api/products/qty/:id',
+      //   method: 'PUT'
+      // }
     });
 
     return productList;
