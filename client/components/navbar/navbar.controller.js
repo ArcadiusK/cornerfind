@@ -16,6 +16,9 @@ angular.module('cornerfindApp')
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
 
+    $scope.smallerThan768 = function(){ //768 is the twitter navbar breakpoint
+      return $scope.windowWidth < 768 ? true:false;
+    }
 
     $scope.logout = function() {
       Auth.logout();

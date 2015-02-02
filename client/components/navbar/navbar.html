@@ -18,22 +18,41 @@
 
         <!--dropdowns-->
         <li ng-controller='DropdownCtrl'>
-          <div class="btn-group" dropdown is-open="status.isopen">
-            <a  class ="whiten" id='custom-dropdown' ng-mouseover='toggleDropdown($event)' ng-mouseleave='toggleDropdown($event)' dropdown-toggle ng-disabled="disabled"> 
-              Categories <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" role="menu"  ng-mouseleave='toggleDropdown($event)'>
-              <li  ng-repeat='category in categoryList'><a>{{category.name}}</a></li>
-            </ul>
-          </div>
+          <div ng-if="!smallerThan768()" class="btn-group" dropdown is-open="status.openCategories">
+              <a  class ="whiten" id='custom-dropdown' ng-mouseover='toggleCategories($event)' ng-mouseleave='toggleCategories($event)' dropdown-toggle ng-disabled="disabled"> 
+                Categories <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu"  ng-mouseleave='toggleCategories($event)'>
+                <li  ng-repeat='category in categoryList'><a>{{category.name}}</a></li>
+              </ul>
+            </div>
+
+            <div ng-if="smallerThan768()" class="btn-group" ng-click='toggleCategories()' dropdown is-open="status.openCategories">
+              <a  class ="whiten" id='custom-dropdown'  dropdown-toggle ng-disabled="disabled"> 
+                Categories <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li  ng-repeat='category in categoryList'><a id='whiten'>{{category.name}}</a></li>
+              </ul>
+            </div>
+
         </li>
         <li ng-controller='DropdownCtrl'>
-          <div class="btn-group" dropdown is-open="status.isopen">
-            <a  class='whiten' id='custom-dropdown' ng-mouseover='toggleDropdown($event)' ng-mouseleave='toggleDropdown($event)' dropdown-toggle ng-disabled="disabled"> 
+          <div ng-if='!smallerThan768()' class="btn-group" dropdown is-open="status.openBrands">
+            <a  class='whiten' id='custom-dropdown' ng-mouseover='toggleBrands($event)' ng-mouseleave='toggleBrands($event)' dropdown-toggle ng-disabled="disabled"> 
               Brands <span class="caret"></span>
             </a>
-            <ul class="dropdown-menu" role="menu" ng-mouseleave='toggleDropdown($event)'>
+            <ul class="dropdown-menu" role="menu" ng-mouseleave='toggleBrands($event)'>
               <li ng-repeat='brand in brandList'><a>{{brand.name}}</a></li>
+            </ul>
+          </div>
+        
+          <div ng-if="smallerThan768()" class="btn-group" ng-click='toggleCategories()' dropdown is-open="status.openBrands">
+            <a  class ="whiten" id='custom-dropdown'  dropdown-toggle ng-disabled="disabled"> 
+              Brands <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li  ng-repeat='brand in brandList'><a id='whiten'>{{brand.name}}</a></li>
             </ul>
           </div>
         </li>
