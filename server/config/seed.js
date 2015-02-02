@@ -76,7 +76,7 @@ Condition.find({}).remove(function() {
 
 User.find({}).remove(function() {
   User.create({
-    name: 'TestUser', //we have to validate no spaces on front end
+    name: 'Mr User',
     email: 'test@test.com',
     password: 'test',
     role: {
@@ -92,13 +92,13 @@ User.find({}).remove(function() {
     github: {},
     listedProducts: [],
     location: 'New York',
-    username: 'test username',
+    username: 'testusername',  //we have to validate no spaces on front end
     shipAddy: 'shipping address',
     billAddy: 'billing address',
   settings: {}, //will need to define later. Nice to have.
   following: []
 }, {
-  name: 'AdminArcadius', //we have to validate no spaces on front end
+  name: 'Admin Arcadius', 
   email: 'admin@admin.com',
   password: 'admin',
   role: {
@@ -114,7 +114,7 @@ User.find({}).remove(function() {
   github: {},
   listedProducts: [],
   location: 'New York',
-  username: 'Arcadius Kazimierski',
+  username: 'admin',  //we have to validate no spaces on front end
   shipAddy: 'shipping address',
   billAddy: 'billing address',
   settings: {}, //will need to define later. Nice to have.
@@ -123,7 +123,7 @@ User.find({}).remove(function() {
 function() {
 
 
-  var queryUser  = User.where({ name: 'TestUser' });
+  var queryUser  = User.where({ username: 'testusername' });
   queryUser.findOne(function (err, user_parameter) {
     if (err) {
       console.log("seed.js - could not find user1")
@@ -131,7 +131,7 @@ function() {
     }
     // console.log("user_parameter: "+user_parameter)
 
-    var queryUser2  = User.where({ name: 'AdminArcadius' });
+    var queryUser2  = User.where({ username: 'admin' });
     queryUser2.findOne(function (err, user_parameter2) {
       if (err) {
         console.log("seed.js - could not find user2")
@@ -251,7 +251,7 @@ function() {
             sender: user_parameter._id
           },
           {product: product_parameter._id,
-            textLine: "@adminArcadius are you there?",
+            textLine: "@adminarcadius are you there?",
             sender: user_parameter._id
           },
           {product: product_parameter._id,
