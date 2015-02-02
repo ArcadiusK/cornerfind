@@ -34,7 +34,6 @@
     name : 'Deployment Ready',
     info : 'Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators'
   }, function() {
-    console.log('finished seeding things');
   });
 });
 
@@ -121,10 +120,7 @@ User.find({}).remove(function() {
   following: []
 }, 
 function() {
-  console.log('finished seeding users');
-
-
-
+  
 
   var queryUser  = User.where({ name: 'Test User' });
   queryUser.findOne(function (err, user_parameter) {
@@ -140,7 +136,7 @@ function() {
         console.log("seed.js - could not find user2")
         return handleError(err);
       }
-      console.log("user_parameter2: "+user_parameter2)
+      // console.log("user_parameter2: "+user_parameter2)
 
 
 
@@ -217,9 +213,6 @@ function() {
     likes: [user_parameter2._id]
   },
   function() {
-    console.log('finished seeding products');
-
-
     var queryProduct  = User.where({ desc: 'Juicy Couture baby bib, pink' });
     queryUser.findOne(function (err, product_parameter) {
       if (err) {
@@ -234,7 +227,7 @@ function() {
           console.log("seeding error product2")
           return handleError(err);
         }
-        console.log("product_parameter2: "+user_parameter2)
+        // console.log("product_parameter2: "+user_parameter2)
 
 
         Like.find({}).remove(function() {
@@ -247,7 +240,7 @@ function() {
            userId: user_parameter2._id
          }, 
          function() {
-           console.log('finished seeding likes');
+           
          });
         });
 
@@ -297,7 +290,7 @@ function() {
             country: "USA"
          },
          function() {
-           console.log('finished seeding addresses');
+           
          });
         });
 
