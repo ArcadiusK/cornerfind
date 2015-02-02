@@ -12,33 +12,28 @@
   
 
   <!-- Dropdown from docs -->
-  <div ng-controller='DropdownCtrl'>
-    <!-- Simple dropdown -->
-    <span class='dropdown' on-toggle="toggled(open)">
-      <a href class="dropdown-toggle" dropdown-toggle>
-        Click me for a dropdown, yo!
-      </a>
-      <ul class="dropdown-menu">
-        <li ng-repeat="choice in items">
-          <a href>{{choice}}</a>
-        </li>
-      </ul>
-    </span>
-    {{status}}
-    <!-- Single button -->
-    <div class="btn-group" dropdown is-open="status.isopen">
-      <button type="button" class="btn btn-primary dropdown-toggle" ng-mouseover='toggleDropdown($event)' dropdown-toggle ng-disabled="disabled">
-        Button dropdown <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-      </ul>
-    </div>
-  </div>
+  <span>
+      <div ng-controller='DropdownCtrl'>
+        <div class="btn-group" dropdown is-open="status.isopen">
+          <p ng-mouseover='toggleDropdown($event)' dropdown-toggle ng-disabled="disabled">
+            Categories <span class="caret"></span>
+          </p>
+          <ul class="dropdown-menu" role="menu" ng-mouseleave='toggleDropdown($event)'>
+            <li ng-repeat='category in categoryList'><a>{{category.name}}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div ng-controller='DropdownCtrl'>
+        <div class="btn-group" dropdown is-open="status.isopen">
+          <p ng-mouseover='toggleDropdown($event)' dropdown-toggle ng-disabled="disabled">
+            Brands <span class="caret"></span>
+          </p>
+          <ul class="dropdown-menu" role="menu" ng-mouseleave='toggleDropdown($event)'>
+            <li ng-repeat='brand in brandList'><a>{{brand.name}}</a></li>
+          </ul>
+        </div>
+      </div>
+  </span>
 
   <!-- END Dropdown from docs -->
 
