@@ -6,6 +6,7 @@ angular.module('cornerfindApp')
     $scope.brandList = brand.query();
     $scope.categoryList = category.query();
 
+
     $scope.searchSubmit = function (searchText) {
         products.search({searchtext: searchText}).$promise
             .then(function(results) {
@@ -22,6 +23,7 @@ angular.module('cornerfindApp')
                 console.log('There was an error in search', err);
             })
     }
+
 
 
     //Leaving for sockets reference

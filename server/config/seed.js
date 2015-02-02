@@ -13,6 +13,7 @@
  var Condition = require('../api/condition/condition.model');
  var Like = require('../api/like/like.model');
  var Address = require('../api/address/address.model');
+ var Chat = require('../api/chat/chat.model');
 
  Thing.find({}).remove(function() {
   Thing.create({
@@ -39,10 +40,10 @@
 
 Brand.find({}).remove(function() {
  Brand.create(
-   {name: "Gucci"}, 
+   {name: "Gucci"},
    {name: "Juicy Coulture"},
-   {name: "Gap"}, 
-   {name: "Uniqlo"}, 
+   {name: "Gap"},
+   {name: "Uniqlo"},
    {name: "Ralph Lauren"},
    {name: "Prada"},
    {name: "Espresso"},
@@ -63,8 +64,8 @@ Category.find({}).remove(function() {
 
 Condition.find({}).remove(function() {
  Condition.create(
-  {name: "New"}, 
-  {name: "Used - Like New"}, 
+  {name: "New"},
+  {name: "Used - Like New"},
   {name: "Very Good"},
   {name: "Good"},
   {name: "Average"},
@@ -75,7 +76,7 @@ Condition.find({}).remove(function() {
 
 User.find({}).remove(function() {
   User.create({
-    name: 'Test User',
+    name: 'TestUser', //we have to validate no spaces on front end
     email: 'test@test.com',
     password: 'test',
     role: {
@@ -94,10 +95,10 @@ User.find({}).remove(function() {
     username: 'test username',
     shipAddy: 'shipping address',
     billAddy: 'billing address',
-  settings: {}, //will need to define later. Nice to have. 
+  settings: {}, //will need to define later. Nice to have.
   following: []
 }, {
-  name: 'Admin Arcadius',
+  name: 'AdminArcadius', //we have to validate no spaces on front end
   email: 'admin@admin.com',
   password: 'admin',
   role: {
@@ -116,13 +117,13 @@ User.find({}).remove(function() {
   username: 'Arcadius Kazimierski',
   shipAddy: 'shipping address',
   billAddy: 'billing address',
-  settings: {}, //will need to define later. Nice to have. 
+  settings: {}, //will need to define later. Nice to have.
   following: []
-}, 
+},
 function() {
-  
 
-  var queryUser  = User.where({ name: 'Test User' });
+
+  var queryUser  = User.where({ name: 'TestUser' });
   queryUser.findOne(function (err, user_parameter) {
     if (err) {
       console.log("seed.js - could not find user1")
@@ -130,7 +131,7 @@ function() {
     }
     // console.log("user_parameter: "+user_parameter)
 
-    var queryUser2  = User.where({ name: 'Admin Arcadius' });
+    var queryUser2  = User.where({ name: 'AdminArcadius' });
     queryUser2.findOne(function (err, user_parameter2) {
       if (err) {
         console.log("seed.js - could not find user2")
@@ -230,17 +231,51 @@ function() {
         // console.log("product_parameter2: "+user_parameter2)
 
 
+        Chat.find({}).remove(function() {
+          Chat.create({
+            product: product_parameter._id,
+            textLine: "how old is this?",
+            sender: user_parameter._id
+          },
+          {
+            product: product_parameter._id,
+            textLine: "how long have used it?",
+            sender: user_parameter._id
+          },
+          {product: product_parameter._id,
+            textLine: "i'll give you 10 dollars",
+            sender: user_parameter2._id
+          },
+          {product: product_parameter._id,
+            textLine: "can you ship to canada?",
+            sender: user_parameter._id
+          },
+          {product: product_parameter._id,
+            textLine: "@adminArcadius are you there?",
+            sender: user_parameter._id
+          },
+          {product: product_parameter._id,
+            textLine: "@testuser check this product out",
+            sender: user_parameter2._id
+          },
+          function () {
+          console.log("finished seeding chats")
+          });
+          });
+
+
+
         Like.find({}).remove(function() {
           Like.create({
            productId: product_parameter._id,
            userId: user_parameter._id
-         }, 
+         },
          {
            productId: product_parameter2._id,
            userId: user_parameter2._id
-         }, 
+         },
          function() {
-           
+
          });
         });
 
@@ -258,7 +293,7 @@ function() {
             stateOrRegion: "NY",
             zipCodeOrPostalCode: "10025",
             country: "USA"
-         }, 
+         },
          {
             userId: user_parameter._id,
             billingTrueOrShippingFalse: false,
@@ -268,7 +303,7 @@ function() {
             stateOrRegion: "WA",
             zipCodeOrPostalCode: "54367",
             country: "USA"
-         }, 
+         },
          {
             userId: user_parameter2._id,
             billingTrueOrShippingFalse: true,
@@ -278,7 +313,7 @@ function() {
             stateOrRegion: "NY",
             zipCodeOrPostalCode: "10010",
             country: "USA"
-         }, 
+         },
          {
             userId: user_parameter2._id,
             billingTrueOrShippingFalse: false,
@@ -290,7 +325,7 @@ function() {
             country: "USA"
          },
          function() {
-           
+
          });
         });
 
