@@ -6,7 +6,7 @@ angular.module('cornerfindApp')
     $scope.brandList = brand.query();
     $scope.categoryList = category.query();
 
-
+    
     //Leaving for sockets reference
     // $http.get('/api/things').success(function(awesomeThings) {
     //   $scope.awesomeThings = awesomeThings;
