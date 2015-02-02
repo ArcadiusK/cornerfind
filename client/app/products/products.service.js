@@ -12,24 +12,20 @@ angular.module('cornerfindApp')
             price: 30
         }];
 
-        var products = $resource('/api/products/:id/:controller', {
-            id: '@_id'
-        }, {
-            update: {
-                method: 'PUT'
-            },
-            search: {
-                // isArray: true,
-                method: 'POST',
-                params: {
-                    controller: 'search'
-                }
-            },
-            updateQuantity: {
-                url: '/api/products/qty/:id',
-                method: 'PUT'
-            }
-        });
+    var products = $resource('/api/products/:id', { id: '@_id'}, {
+      // update: {
+      //   method: 'PUT'
+      // },
+      // search : {
+      //   url: '/api/products/search/:query',
+      //   isArray: true,
+      //   method: 'GET'
+      // },
+      // updateQuantity : {
+      //   url: '/api/products/qty/:id',
+      //   method: 'PUT'
+      // }
+    });
 
         return products;
 

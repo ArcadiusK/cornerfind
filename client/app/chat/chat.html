@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Chat</h1>
+      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="chat in chatlist">
+        <li><a href="#">{{chat.username}}</a></li>
+        <li><a href="#">{{chat.textLine}}</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <form class="chat-form">
+      <label>Comment</label>
+      <p class="input-group">
+        <input type="text" class="form-control" placeholder="Your Name:" ng-model="newChat.name">
+        <input type="text" class="form-control" placeholder="Comment here..." ng-model="newChat.text">
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary" ng-click="addchat({newChat:newChat})">Add New</button>
+        </span>
+
+      </p>
+  </form>
+
+</div>

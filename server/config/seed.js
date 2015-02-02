@@ -228,6 +228,9 @@ function() {
           console.log("seeding error product2")
           return handleError(err);
         }
+
+        console.log("product_parameter2: "+user_parameter2)
+
         // console.log("product_parameter2: "+user_parameter2)
 
 
@@ -235,28 +238,33 @@ function() {
           Chat.create({
             product: product_parameter._id,
             textLine: "how old is this?",
-            sender: user_parameter._id
+            sender: user_parameter._id,
+            username: user_parameter.username
           },
-          {
-            product: product_parameter._id,
+          { product: product_parameter._id,
             textLine: "how long have used it?",
-            sender: user_parameter._id
+            sender: user_parameter._id,
+            username: user_parameter.username
           },
           {product: product_parameter._id,
             textLine: "i'll give you 10 dollars",
-            sender: user_parameter2._id
+            sender: user_parameter2._id,
+            username: user_parameter2.username
           },
           {product: product_parameter._id,
             textLine: "can you ship to canada?",
-            sender: user_parameter._id
+            sender: user_parameter._id,
+            username: user_parameter.username
           },
           {product: product_parameter._id,
-            textLine: "@adminarcadius are you there?",
-            sender: user_parameter._id
+            textLine: "@adminArcadius are you there?",
+            sender: user_parameter._id,
+            username: user_parameter.username
           },
           {product: product_parameter._id,
             textLine: "@testuser check this product out",
-            sender: user_parameter2._id
+            sender: user_parameter2._id,
+            username: user_parameter2.username
           },
           function () {
           console.log("finished seeding chats")
