@@ -1,0 +1,26 @@
+#custom-dropdown{
+    display: inline-block;
+    padding: 15px 15px;
+    position: relative;
+    text-decoration: none;
+}
+.navbar-brand{
+	color:#fff;
+}
+
+
+.whiten{
+	color:#fff;
+	font-size: 17px;
+	&:hover,&:focus{
+		color:#fff;
+	};
+
+}
+
+#whiten{
+	color:#fff;
+	&:hover,&:focus{
+		color:#fff;
+	}
+}
