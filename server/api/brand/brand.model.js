@@ -7,6 +7,6 @@ var BrandSchema = new Schema({
   name: String
 });
 
-BrandSchema.index({name: 'text'});
+
 
 module.exports = mongoose.model('Brand', BrandSchema);

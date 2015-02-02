@@ -76,34 +76,7 @@ exports.destroy = function(req, res) {
     });
 };
 
-// Searches for a specific brand from the DB
-exports.search = function(req, res) {
-    var searchtext = req.body.searchtext;
-    console.log('.......Backend searchtext is', searchtext)
 
-    Brand.find({
-            $text: {
-                $search: searchtext
-            }
-        }, {
-            score: {
-                $meta: "textScore"
-            }
-        })
-        .sort({
-            score: {
-                $meta: 'textScore'
-            }
-        })
-        .exec(function(err, results) {
-            if (err) console.log(err);
-            if (!results) return res.send(440);
-            console.log('AAAAAAAAAAAAAAA', results)
-            var obj = {};
-            obj.data = results;
-            res.json(obj);
-        })
-}
 
 function handleError(res, err) {
     return res.send(500, err);
