@@ -1,17 +1,21 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth,brand, category) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
     }];
 
+
+    $scope.brandList = brand.query();
+    $scope.categoryList=category.query();
+
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
-    
+
 
     $scope.logout = function() {
       Auth.logout();

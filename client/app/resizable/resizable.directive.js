@@ -3,14 +3,14 @@
 angular.module('cornerfindApp')
   .directive('resizable', function ($window) {
     return function($scope) {
-    $scope.initializeWindowSize = function() {
-      $scope.windowHeight = $window.innerHeight;
-      return $scope.windowWidth = $window.innerWidth;
-    };
-    $scope.initializeWindowSize();
-    return angular.element($window).bind('resize', function() {
+      $scope.initializeWindowSize = function() {
+        $scope.windowHeight = $window.innerHeight;
+        $scope.windowWidth = $window.innerWidth;
+      };
       $scope.initializeWindowSize();
-      return $scope.$apply();
-    });
-  };
-});
+       angular.element($window).bind('resize', function() {
+        $scope.initializeWindowSize();
+        $scope.$apply();
+      });
+    };
+  });
