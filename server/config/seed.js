@@ -128,7 +128,7 @@ function() {
       console.log("seed.js - could not find user1")
       return handleError(err);
     }
-    console.log("user_parameter: "+user_parameter)
+    // console.log("user_parameter: "+user_parameter)
 
     var queryUser2  = User.where({ name: 'Admin Arcadius' });
     queryUser2.findOne(function (err, user_parameter2) {
@@ -219,7 +219,7 @@ function() {
         console.log("seeding error product")
         return handleError(err);
       }
-      console.log("product_parameter: "+user_parameter)
+      // console.log("product_parameter: "+user_parameter)
 
       var queryProduct2  = User.where({ desc: 'Gold Booties' });
       queryUser2.findOne(function (err, product_parameter2) {
