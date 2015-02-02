@@ -20,6 +20,6 @@ angular.module('cornerfindApp')
       }
     });
 
-    return productList;
+    return products;
 
   });
