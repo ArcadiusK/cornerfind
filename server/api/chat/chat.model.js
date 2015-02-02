@@ -10,7 +10,5 @@ var ChatSchema = new Schema({
   username: {type: String}
 });
 
-ChatSchema.statics.get
-
 
 module.exports = mongoose.model('Chat', ChatSchema);

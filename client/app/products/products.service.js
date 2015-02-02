@@ -1,9 +1,16 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .factory('products', function ($http, $location, $resource) {
-    var productList = [{name: 'test prod1', description: 'this is a test', price: 50},
-                  {name: 'test prod2', description: 'this is a test', price: 30}];
+    .factory('products', function($http, $location, $resource) {
+        var productList = [{
+            name: 'test prod1',
+            description: 'this is a test',
+            price: 50
+        }, {
+            name: 'test prod2',
+            description: 'this is a test',
+            price: 30
+        }];
 
     var products = $resource('/api/products/:id', { id: '@_id'}, {
       // update: {
@@ -20,6 +27,6 @@ angular.module('cornerfindApp')
       // }
     });
 
-    return productList;
+        return products;
 
-  });
+    });

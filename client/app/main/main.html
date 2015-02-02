@@ -1,14 +1,33 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <header class="hero-unit" id="banner">
+
   <div class="container">
     <h1>Welcome to CornerFind.com</h1>
     <p class="lead">Marketplace for all baby products (e.g. clothes, toys, cribs, strollers etc.)</p>
-   <!-- <img src="assets/images/yeoman.png" alt="I'm Yeoman"> -->
+   
   </div>
+
 </header>
 
+
+<h3>Search:</h3>
+<form class="form" role="form" ng-submit='searchSubmit(searchText)'>
+    <div class="form-group">
+        <input type="text" ng-model="searchText" class="form-control btn-block" id="searchbox" placeholder="Enter term">
+    </div>
+</form>
+<h2> Search Results: </h1>
+   <div class="row">
+        <ul class="col-md-3 col-lg-3 col-sm-4 col-xs-6 list-unstyled" ng-repeat="product in results.data">
+            <product-card-view info="product"></product-card-view>
+        </ul>
+    </div>
+<!-- {{results}} -->
+
 <div class="container">
+
+  
   <div class="row rm-margin-l rm-margin-r">
     <div class="col-lg-12 page-header rm-padding-l rm-padding-r">
       <div class="col-lg-12 rm-padding-l">
@@ -17,7 +36,7 @@
     </div>
   </div>
   <div class="row">
-    <ul class="col-md-3 col-lg-3 col-sm-4 col-xs-6 list-unstyled" ng-repeat="product in productList">
+    <ul class="col l4 m6 s12 list-unstyled" ng-repeat="product in productList">
       <product-card-view info="product"></product-card-view>
     </ul>
   </div>
@@ -27,10 +46,6 @@
 <chat chatlist='chatlist' addchat='addChat(newChat)'></chat>
 </div>
 
-<<<<<<< #30CHAT
-
-<div class="container">
-=======
 <!-- <div class="container">
 >>>>>>> local
   <div class="row">
@@ -54,7 +69,7 @@
 </div> -->
 
 <footer class="footer">
-  <div class="container">
-      <p>sayhello@CornerFind.com</p>
-  </div>
+    <div class="container">
+        <p>sayhello@CornerFind.com</p>
+    </div>
 </footer>

@@ -10,7 +10,6 @@ exports.index = function(req, res) {
   Chat.find({product: new ObjectId(req.params.productid)}, function (err, chats) {
     if(err) { return handleError(res, err); }
     console.log(chats);
-    return res.json(200, chats);
   });
 };
 

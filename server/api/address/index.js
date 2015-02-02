@@ -1,7 +1,7 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./product.controller');
+var controller = require('./address.controller');
 
 var router = express.Router();
 
@@ -11,6 +11,5 @@ router.post('/', controller.create);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
-router.post('/search', controller.search);
 
 module.exports = router;
