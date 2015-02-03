@@ -19,6 +19,7 @@ angular.module('cornerfindApp')
       }
     });
 
+
         return products;
 
     });
