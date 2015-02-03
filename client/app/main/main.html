@@ -11,6 +11,8 @@
 </header>
 
 
+
+
 <h3>Search:</h3>
 <form class="form" role="form" ng-submit='searchSubmit(searchText)'>
     <div class="form-group">
@@ -24,6 +26,11 @@
         </ul>
     </div>
 <!-- {{results}} -->
+
+<div ng-show="loggedin"> 
+<h4> Currently logged in as {{currentUser.username}}</h4>
+    <button  class="btn btn-primary" ng-click="addProduct()">Make a Listing!</button>
+</div>
 
 <div class="container">
 
