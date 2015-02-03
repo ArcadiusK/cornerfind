@@ -5,6 +5,10 @@
 #banner {
     border-bottom: none;
     margin-top: -20px;
+    height:600px;
+    background-image: url("http://static.panoramio.com/photos/large/45135876.jpg");
+    background-attachment: fixed;
+    background-repeat: repeat;
 }
 
 #banner h1 {
@@ -19,7 +23,7 @@
     color: #F5F5F5;
     text-align: center;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    background: #4393B9;
+    background: #fff;
 }
 
 .footer {
@@ -29,9 +33,3 @@
     border-top: 1px solid #E5E5E5;
 }
 
-#custom-dropdown{
-    display: inline-block;
-    padding: 15px 15px;
-    position: relative;
-    text-decoration: none;
-}

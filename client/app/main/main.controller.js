@@ -1,11 +1,10 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('MainCtrl', function ($scope, $http, socket, products, brand, category) {
+  .controller('MainCtrl', function ($scope, $http, socket, products, brand, category, $window) {
     $scope.productList = products.query();
     $scope.brandList = brand.query();
     $scope.categoryList = category.query();
-
 
     $scope.searchSubmit = function (searchText) {
         products.search({searchtext: searchText}).$promise
@@ -24,15 +23,4 @@ angular.module('cornerfindApp')
             })
     }
 
-
-
-    //Leaving for sockets reference
-    // $http.get('/api/things').success(function(awesomeThings) {
-    //   $scope.awesomeThings = awesomeThings;
-    //   socket.syncUpdates('thing', $scope.awesomeThings);
-    // });
-
-    // $scope.$on('$destroy', function () {
-    //   socket.unsyncUpdates('thing');
-    // });
   });
