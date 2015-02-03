@@ -9,17 +9,24 @@ angular.module('cornerfindApp')
   	];
 
   $scope.status = {
-    isopen: false
+    openBrands: false,
+    openCategories:false,
   };
 
   $scope.toggled = function(open) {
     $log.log('Dropdown is now: ', open);
   };
 
-  $scope.toggleDropdown = function($event) {
+  $scope.toggleBrands = function($event) {
+    console.log($event)
+    // $event.preventDefault();
+    // $event.stopPropagation();
+    $scope.status.openBrands= !$scope.status.openBrands;
+    console.log($scope.status)
+  };
+  $scope.toggleCategories = function($event) {
     $event.preventDefault();
     $event.stopPropagation();
-    $scope.status.isopen = !$scope.status.isopen;
+    $scope.status.openCategories= !$scope.status.openCategories;
   };
-
 })

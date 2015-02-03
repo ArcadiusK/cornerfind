@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .controller('MainCtrl', function($scope, Auth, $location, $http, socket, products, brand, category) {
+<<<<<<< HEAD
+    .controller('MainCtrl', function($scope, Auth, $location, $http, socket, products, brand, category, $window) {
         $scope.productList = products.query();
         $scope.brandList = brand.query();
         $scope.categoryList = category.query();
@@ -44,3 +45,4 @@ angular.module('cornerfindApp')
         //   socket.unsyncUpdates('thing');
         // });
     });
+
