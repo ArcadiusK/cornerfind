@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 var ProductSchema = new Schema({
 userId: {type: Schema.Types.ObjectId, ref: 'User'},
 category: [{type: String, index: true}], //from categories collection
+gender: {type: String, enum : ["Boy", "Girl", "Neutral"], default: "Neutral"},
 qty: {type: Number},
 name: {type: String},
 desc: {type: String},

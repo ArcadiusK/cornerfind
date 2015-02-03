@@ -95,10 +95,10 @@ User.find({}).remove(function() {
     username: 'testusername',  //we have to validate no spaces on front end
     shipAddy: 'shipping address',
     billAddy: 'billing address',
-  settings: {}, //will need to define later. Nice to have.
-  following: []
+    settings: {}, //will need to define later. Nice to have.
+    following: []
 }, {
-  name: 'Admin Arcadius', 
+  name: 'Admin Arcadius',
   email: 'admin@admin.com',
   password: 'admin',
   role: {
@@ -146,10 +146,15 @@ function() {
     Product.create({
     userId: user_parameter._id,
     category: ["Clothing"], //from categories collection
+    gender: "Girl",
     qty: 1,
     name: "Juicy Couture baby bib, pink",
     desc: "Heavily used but clean Juicy Couture baby bib, must have!!!",
-    photoUrls: ["http://media-cache-ec0.pinimg.com/736x/b8/e3/9c/b8e39c4f517f8c1bb9d6e31b5e5c75dd.jpg"],
+    photoUrls: ["http://media-cache-ec0.pinimg.com/736x/b8/e3/9c/b8e39c4f517f8c1bb9d6e31b5e5c75dd.jpg",
+                "http://1.bp.blogspot.com/-Dv6PvxySNIk/UIFzzqkLJaI/AAAAAAAAEeo/F1kWbvrtJ3E/s1600/nomeatathelete.jpg",
+                "http://1.bp.blogspot.com/-nEumTcQ6EhM/TosdIY4Q1XI/AAAAAAAAAGc/uqnUfA-izeI/s1600/joestanner.bmp",
+                "http://1.bp.blogspot.com/-9HY46ASFkvA/UhwUGfu559I/AAAAAAAAb9g/nyv0XcXvl_s/s640/082203.jpg"
+                ],
     condition: "Like New", //from conditions collection
     available: true,
     price: 12.00,
@@ -160,6 +165,7 @@ function() {
   {
     userId: user_parameter._id,
     category: ["Shoes"], //from categories collection
+    gender: "Boy",
     qty: 1,
     name: "Gold Booties",
     desc: "Little, cute, barely used Gold Booties!!!",
@@ -174,6 +180,7 @@ function() {
   {
     userId: user_parameter._id,
     category: ["Clothing"], //from categories collection
+    gender: "Boy",
     qty: 1,
     name: "Boy Jacket",
     desc: "Description of Boy Jacket",
@@ -188,6 +195,7 @@ function() {
   {
     userId: user_parameter2._id,
     category: ["Toys"], //from categories collection
+    gender: "Girl",
     qty: 1,
     name: "Two Dolls",
     desc: "Two Dolls white together",
@@ -202,6 +210,7 @@ function() {
   {
     userId: user_parameter2._id,
     category: ["Cribs"], //from categories collection
+    gender: "Neutral",
     qty: 1,
     name: "Crib Sorelle Verona",
     desc: "Sorelle Verona 4-in-1 Lifetime Convertible Crib and Changer",
