@@ -5,7 +5,7 @@ angular.module('cornerfindApp')
         return {
             templateUrl: 'app/sidenav/sidenav.html',
             restrict: 'EA',
-            scope: {brands:'=',
+            scope: {selection:'=',
         			onItemClick: "&",
         			buttonText :'@',
         			},
