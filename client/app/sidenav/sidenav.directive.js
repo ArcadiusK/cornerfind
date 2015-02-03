@@ -8,10 +8,14 @@ angular.module('cornerfindApp')
             scope: {selection:'=',
         			onItemClick: "&",
         			buttonText :'@',
+                    sidebarid: '@'
         			},
             link: function(scope, element, attrs) {
+                  scope.id = scope.sidebarid;
             	  scope.openLeftMenu = function() {
-                    $mdSidenav('left').toggle();
+                   console.log('AAAA',scope.sidebarid);
+                     console.log($mdSidenav())
+                    $mdSidenav(scope.sidebarid).toggle();
                     
                 };
 
