@@ -1,16 +1,27 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-12">
+        <div class="col l6 s12 offset-l5" >
+            <div class="card-panel teal"  ng-repeat="chat in chatlist">
+              <p>{{chat.username}}</p>
+              <p>{{chat.textLine}}</p>
+          </div>
+        </div>
+  </div>
+</div>
+<!--
+<div class="container">
+  <div class="row">
+    <div class="col l12">
       <h1 class="page-header">Chat</h1>
       <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="chat in chatlist">
         <li><a href="#">{{chat.username}}</a></li>
         <li><a href="#">{{chat.textLine}}</a></li>
       </ul>
     </div>
-  </div>
+  </div> -->
 
 
-  <form class="chat-form">
+ <!--  <form class="chat-form">
       <label>Comment</label>
       <p class="input-group">
         <input type="text" class="form-control" placeholder="Your Name:" ng-model="newChat.name">
@@ -22,4 +33,4 @@
       </p>
   </form>
 
-</div>
+</div> -->
