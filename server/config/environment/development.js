@@ -8,5 +8,5 @@ module.exports = {
     uri: 'mongodb://localhost/cornerfind-dev'
   },
 
-  seedDB: false
+  seedDB: true
 };
