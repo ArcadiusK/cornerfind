@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-<<<<<<< HEAD
+
     .controller('MainCtrl', function($scope, Auth, $location, $http, socket, products, brand, category, $window) {
         $scope.productList = products.query();
         $scope.brandList = brand.query();
