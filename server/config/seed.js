@@ -223,24 +223,24 @@ function() {
     likes: [user_parameter2._id]
   },
   function() {
-    var queryProduct  = User.where({ desc: 'Juicy Couture baby bib, pink' });
-    queryUser.findOne(function (err, product_parameter) {
+    var queryProduct  = Product.where({ name: 'Juicy Couture baby bib, pink' });
+    queryProduct.findOne(function (err, product_parameter) {
       if (err) {
         console.log("seeding error product")
         return handleError(err);
       }
-      // console.log("product_parameter: "+user_parameter)
+       console.log("product_parameter: "+product_parameter)
 
-      var queryProduct2  = User.where({ desc: 'Gold Booties' });
-      queryUser2.findOne(function (err, product_parameter2) {
+      var queryProduct2  = Product.where({ name: 'Gold Booties' });
+      queryProduct2.findOne(function (err, product_parameter2) {
         if (err) {
           console.log("seeding error product2")
           return handleError(err);
         }
 
-        console.log("product_parameter2: "+user_parameter2)
+        console.log("product_parameter2: "+product_parameter2)
 
-        // console.log("product_parameter2: "+user_parameter2)
+
 
 
         Chat.find({}).remove(function() {

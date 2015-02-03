@@ -2,14 +2,16 @@
 
 var _ = require('lodash');
 var Chat = require('./chat.model');
-var ObjectId = require('mongoose').Types.ObjectId; 
+var ObjectId = require('mongoose').Types.ObjectId;
 
 
 // Get list of chats
 exports.index = function(req, res) {
+  console.log('req.params.product: ',req.params.productid)
   Chat.find({product: new ObjectId(req.params.productid)}, function (err, chats) {
     if(err) { return handleError(res, err); }
-    console.log(chats);
+    console.log('chat results backend',chats, req.params.productid);
+    return res.json(201, chats);
   });
 };
 

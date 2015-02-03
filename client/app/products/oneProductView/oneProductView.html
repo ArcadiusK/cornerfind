@@ -1,18 +1,14 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="col-md-12">
-
-</div>
-
 
 <div class="container" ng-controller= "OneProductViewCtrl">
 
   <div class="row">
 
-    <div class="col s12 l4 offset-l1 pin-top">
+    <div class="col s12 l4 offset-l1">
 
 
-      <div class="card pink lighten-3">
+      <div class="card pink lighten-3 ">
         <div class="card-content white-text" >
 
          <span class="card-title grey-text text-darken-4"  > {{product.name}} </span>
@@ -20,48 +16,37 @@
          <p>Quantity: {{product.qty}} </p>
          <!-- <div class="card-action"> -->
          <div class='row'>
-          <div class='col l5'>
-           <a class="waves-effect btn"><i class="mdi-action-shopping-cart left"></i>Offer</a>
-           </div>
+            <div class='col l5'>
+            <a class="waves-effect btn"><i class="mdi-action-shopping-cart left"></i>Offer</a>
+            </div>
 
-          <div class='col l7'>
-          <a class="waves-effect waves-purple btn"><i class="mdi-action-shopping-cart left"></i>Buy {{product.price | currency}} </a>
+            <div class='col l7'>
+            <a class="waves-effect waves-purple btn"><i class="mdi-action-shopping-cart left"></i>Buy {{product.price | currency}} </a>
+            </div>
+
           </div>
-
         </div>
+      </div>
+
+    <div class="card blue-grey">
+      <div class="card-content white-text" >
+        <span class="card-title"> More from this seller</span>
       </div>
     </div>
 
- <div class="card blue-grey">
-        <div class="card-content white-text" >
+    </div>
 
-         <span class="card-title"> More from this seller</span>
-
+    <div class="col l6 s12 ">
+      <div ng-repeat="onePhotoUrl in product.photoUrls">
+        <img class="responsive-img" src="{{onePhotoUrl}}">
       </div>
-</div>
+    </div>
 
 
+    <div ng-controller='OneProductViewCtrl'>
+      <chat chatlist='chatlist' addchat='addChat(newChat)'></chat>
+    </div>
 
   </div>
 
-
-
-
-
-
-
-
-  <div class="col l6 s12 ">
-   <div ng-repeat="onePhotoUrl in product.photoUrls">
-    <img class="responsive-img" src="{{onePhotoUrl}}">
-  </div>
-</div>
-
-</div>
-
-<div ng-controller='ChatCtrl'>
-<chat chatlist='chatlist' addchat='addChat(newChat)'></chat>
-</div>
-
-</div>
 </div>
