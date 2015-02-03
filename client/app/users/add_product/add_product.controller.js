@@ -23,7 +23,11 @@ angular.module('cornerfindApp')
         }
 
         $scope.selectedCategory = function(selected) {
-            if ($scope.newProduct.category.indexOf(selected._id) !== -1) return;
+            if ($scope.newProduct.category.indexOf(selected._id) !== -1){
+                console.log('HERE')
+                return;
+
+            }
             $scope.newProduct.category.push(selected._id);
         }
 
