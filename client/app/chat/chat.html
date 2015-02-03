@@ -13,10 +13,9 @@
   <form class="chat-form">
       <label>Comment</label>
       <p class="input-group">
-        <input type="text" class="form-control" placeholder="Your Name:" ng-model="newChat.name">
-        <input type="text" class="form-control" placeholder="Comment here..." ng-model="newChat.text">
+        <input type="text" class="form-control" placeholder="Comment here..." ng-model="value.text">
         <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary" ng-click="addchat({newChat:newChat})">Add New</button>
+          <button type="submit" class="btn btn-primary" ng-click="addchat({newChat:value})">Add New</button>
         </span>
 
       </p>
