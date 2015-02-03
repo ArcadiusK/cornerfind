@@ -18,4 +18,6 @@ retailPrice: {type: Number},
 likes: [{type: Schema.Types.ObjectId, ref: 'User'}]
 });
 
+ProductSchema.index({name: 'text', brand: 'text', category:'text', desc: 'text' });
+
 module.exports = mongoose.model('Product', ProductSchema);

@@ -1,16 +1,17 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./product.controller');
+var controller = require('./chat.controller');
 
 var router = express.Router();
 
+router.get('/:productid', controller.index); //shows all chats for a producctID
+// router.get('/:id', controller.show);
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
-router.post('/search', controller.search);
 
 module.exports = router;
