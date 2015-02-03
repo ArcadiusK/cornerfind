@@ -13,6 +13,10 @@ angular.module('cornerfindApp')
             category: []
         };
 
+        $scope.newProductDisplay ={
+              category: []
+        };
+
         
 
         $scope.showBrands = false;
@@ -20,19 +24,24 @@ angular.module('cornerfindApp')
 
         $scope.selectedBrand = function(selected) {
             $scope.newProduct.brand = selected._id;
+            $scope.newProductDisplay.brand = selected.name;
         }
 
         $scope.selectedCategory = function(selected) {
             if ($scope.newProduct.category.indexOf(selected._id) !== -1){
-                console.log('HERE')
+                var index =$scope.newProduct.category.indexOf(selected._id);
+                $scope.newProduct.category.splice(index,1);
+                var displayIndex = $scope.newProductDisplay.category.indexOf(selected.name);
+                $scope.newProductDisplay.category.splice(displayIndex,1);
                 return;
-
             }
             $scope.newProduct.category.push(selected._id);
+            $scope.newProductDisplay.category.push(selected.name);
         }
 
         $scope.selectedCondition = function(selected) {
             $scope.newProduct.condition = selected._id;
+            $scope.newProductDisplay.condition=selected.name;
         }
      
 
