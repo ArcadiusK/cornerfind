@@ -8,18 +8,21 @@ angular.module('cornerfindApp')
 
     // Public API here
     return {
-      getChatList: function () {
+      getChatList: function (productID) {
+        console.log('productID:', productID);
         var deferred = $q.defer();
-        $http.get('/api/chats/' + '54cffa234d3feb28f948c864')
+
+        $http.get('/api/chats/' + productID)
         .success(function(results) {
-          deferred.resolve(results)
+            deferred.resolve(results);
         }).error(function() {
-          console.log('Chat Get Failed');
-       });
-      return deferred.promise;
+            console.log('Chat Get Failed');
+        });
+
+        return deferred.promise;
       // socket.syncUpdates('chat', $scope.chatlist);
       },
-      
+
       addChat: function(newChat) {
         chatList = chatList.push(newChat);
         console.log(chatList);
