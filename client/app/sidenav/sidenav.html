@@ -1,0 +1,14 @@
+<div layout="row">
+  <md-sidenav md-component-id="left" class="md-sidenav-left">
+    Left Nav!
+  <md-content>
+  <ul>
+  	<li ng-click="onItemClick({brand: brand})" ng-repeat='brand in brands'>{{brand.name}}</li>
+  </ul>
+    Center Content
+  </md-sidenav>
+    <md-button ng-click="openLeftMenu()">
+      Open Left Menu
+    </md-button>
+  </md-content>
+</div>

@@ -1,66 +1,73 @@
-<div class="form-panel">
-    <h4 class="mb"><i class="fa fa-angle-right"></i> Add a Product</h4>
-    <form class="form-horizontal style-form" method="get" ng-submit='addProduct()'>
-        <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label">Upload File</label>
-            <div class="col-sm-10">
-                <input id="file-upload" type="file" class="form-control" onchange="angular.element(this).scope().upload()"></input>
+
+<div class="container">
+    <div class="form-panel">
+        <h4 class="mb"><i class="fa fa-angle-right"></i> Add a Product</h4>
+        <form class="form-horizontal style-form" method="get" ng-submit='addProduct()'>
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-2 control-label">Upload File</label>
+                <div class="col-sm-10">
+                    <input id="file-upload" type="file" class="form-control" onchange="angular.element(this).scope().upload()"></input>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label">What are you selling?(required)</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="name">
+
+            <!-- <button class='btn btn-large' ng-click="openLeftMenu()">SIDENAV</button> -->
+            <sidenav brands='availableBrands' on-item-click="selected(brand)">test</sidenav>
+
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-2 control-label">What are you selling?(required)</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="name">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label">Describe it!(required)</label>
-            <div class="col-sm-10">
-                <textarea class="form-control" ng-model="description"></textarea>
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-2 control-label">Describe it!(required)</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" ng-model="description"></textarea>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label">Category(required)</label>
-            <div class="col-sm-10">
-                <button ng-click="showCategories()">Select a category</button>
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-2 control-label">Category(required)</label>
+                <div class="col-sm-10">
+                    <button ng-click="showCategories()">Select a category</button>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label">Brand(optional)</label>
-            <div class="col-sm-10">
-                <button ng-click="showBrands()">Select a brand</button>
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-2 control-label">Brand(optional)</label>
+                <div class="col-sm-10">
+                    <button ng-click="showBrands()">Select a brand</button>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label">Select the condition of the product(required)</label>
-            <div class="col-sm-10">
-                <button ng-click="showBrands()">Select condition</button>
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-2 control-label">Select the condition of the product(required)</label>
+                <div class="col-sm-10">
+                    <button ng-click="showBrands()">Select condition</button>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label">Original Price</label>
-            <div class="col-sm-10">
-                <input class="form-control" type="number" placeholder="$100" ng-model="price">
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-2 control-label">Original Price</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="number" placeholder="$100" ng-model="price">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label">Listing Price</label>
-            <div class="col-sm-10">
-                <input class="form-control" type="number" placeholder="$100" ng-model="price">
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-2 control-label">Listing Price</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="number" placeholder="$100" ng-model="price">
+                </div>
             </div>
-        </div>
-         <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label">Your earnings (when sold)</label>
-            <div class="col-sm-10">
-               
+             <div class="form-group">
+                <label class="col-sm-2 col-sm-2 control-label">Your earnings (when sold)</label>
+                <div class="col-sm-10">
+                   
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 col-sm-2 control-label"></label>
-            <div class="col-sm-10">
-                <button type='submit' class='btn btn-primary'>Add Product</button>
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-2 control-label"></label>
+                <div class="col-sm-10">
+                    <button type='submit' class='btn btn-primary'>Add Product</button>
+                </div>
             </div>
-        </div>
-    </form>
-    {{product}}
+        </form>
+        {{product}}
+    </div>
 </div>

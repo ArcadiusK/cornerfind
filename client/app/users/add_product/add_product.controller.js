@@ -1,28 +1,49 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('AddProductCtrl', function ($scope, products) {
-   
+  .controller('AddProductCtrl', function ($scope, brand,category, $q, products,$mdSidenav,Auth) {
+   $scope.availableBrands = brand.query();
     //Add a new product
+    
+
+    $scope.selected = function(x){
+        console.log('Selected ',x)
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     $scope.addProduct = function() {
 
-        $scope.currentUser = Auth.getCurrentUser();
 
+        $scope.openLeftMenu = function() {
+                    $mdSidenav('left').toggle();
+                };
+
+        $scope.currentUser = Auth.getCurrentUser();
         $scope.tagObjects = [];
         $scope.products = [];
+        $scope.availableCategories = category.query();
+        
 
-        if ($scope.name === '') {
-            return;
-        }
-        if ($scope.price === '') {
-            return;
-        }
-        if ($scope.description === '') {
-            return;
-        }
+        // brand.query();
 
-
-
+        if ($scope.name === '') return;
+        if ($scope.price === '') return;
+        if ($scope.description === '') return;
+        
         //CREATING NEW TAG OBJECTS
 
         //For each tag in scope, call Tags.save and create an array of $q promises.
@@ -52,7 +73,7 @@ angular.module('cornerfindApp')
                 media: $scope.product_images,
             }, function(err, product) {
                 if (err) {
-                    console.log(err)
+                    // console.log(err)
                 };
 
                 $scope.product = product;
@@ -67,8 +88,6 @@ angular.module('cornerfindApp')
 
 
      $scope.upload = function(thing) {
-       
-
              
     }
 
