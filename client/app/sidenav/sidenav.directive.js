@@ -6,7 +6,8 @@ angular.module('cornerfindApp')
             templateUrl: 'app/sidenav/sidenav.html',
             restrict: 'EA',
             scope: {brands:'=',
-        			onItemClick: "&"
+        			onItemClick: "&",
+        			buttonText :'@',
         			},
             link: function(scope, element, attrs) {
             	  scope.openLeftMenu = function() {

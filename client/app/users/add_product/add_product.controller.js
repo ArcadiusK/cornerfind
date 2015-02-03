@@ -4,12 +4,17 @@ angular.module('cornerfindApp')
   .controller('AddProductCtrl', function ($scope, brand,category, $q, products,$mdSidenav,Auth) {
    $scope.availableBrands = brand.query();
     //Add a new product
-    
+    $scope.newProduct={};
 
-    $scope.selected = function(x){
-        console.log('Selected ',x)
+    $scope.selected = function(selected){
+        $scope.newProduct[key]=value;
+        console.log('Selected ',selected)
     };
 
+    $scope.selectedBrand = function(selected){
+        $scope.newProduct["brand"] = selected.name;
+        console.log('SELECTED ',selected)
+    }
 
 
 
