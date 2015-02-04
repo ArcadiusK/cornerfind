@@ -8,18 +8,69 @@
       </div>
 </div>
 
-  <div class="card-panel blue lighten-4"
-    <form class="col s12">
+  <div class="card-panel blue lighten-4">
+    <form class="col s12" ng-submit="addChat()">
       <div class="row">
         <div class="input-field">
           <i class="mdi-editor-mode-edit prefix"></i>
-          <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+          <textarea id="icon_prefix2" class="materialize-textarea" ng-model="newChat.textLine"></textarea>
           <label for="icon_prefix2">New Message</label>
         </div>
+
+
       </div>
+        <button type="submit" class="btn btn-primary">Add New</button>
     </form>
   </div>
 </div>
+
+<div ng-controller="ChatCtrl">
+this is chatlist
+{{chatListt}}
+
+<form ng-submit="addChatFire(newChatText)">
+<input ng-model="newChatText" />
+<button type="submit" > add chat</button>
+</form>
+
+</div>
+<!--
+ <input type='text' id='nameInput' placeholder='Name' >
+    <input type='text' id='messageInput' placeholder='Message'>
+
+    <script>
+    var myDataRef = new Firebase('https://cornerfind.firebaseio.com/');
+      $('#messageInput').keypress(function (e) {
+        if (e.keyCode == 13) {
+          var name = $('#nameInput').val();
+          var text = $('#messageInput').val();
+          console.log("name: ", name)
+          myDataRef.set('User ' + name + ' says ' + text);
+          $('#messageInput').val('');
+        }
+      });
+
+      myDataRef.on('child_added', function(snapshot) {
+        var message = snapshot.val();
+        displayChatMessage(message.name, message.text);
+      });
+
+ function displayChatMessage(name, text) {
+        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
+        $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+      };
+    </script>
+
+<div id="#messagesDiv" >
+</div>
+ -->
+
+
+
+
+
+
+
 
 <!--
 <div class="container">
