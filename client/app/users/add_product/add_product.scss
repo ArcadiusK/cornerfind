@@ -1,7 +1,12 @@
-label {
+form > div > label {
 	font-size: 2rem;
+	/*Why won't text align take effect? anything else works A: _forms.scss*/
 }
 
 #text-input {
 	font-size: 2rem;
+}
+
+#labels {
+	text-align: left;
 }
