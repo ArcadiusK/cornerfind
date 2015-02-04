@@ -39,7 +39,7 @@ angular.module('cornerfindApp')
      
 
         $scope.addProduct=function(newProduct){
-            products.save(newProduct,function(){
+            products.resource.save(newProduct,function(){
                 console.log('Save Callback ',arguments)
             });
         }
