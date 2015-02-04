@@ -1,4 +1,4 @@
-
+<div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container">
     <div class="form-panel">
         <h4 class="mb"><i class="fa fa-angle-right"></i> Add a Product</h4>
@@ -14,13 +14,13 @@
             <div class="form-group row">
                 <label class="col s2 m2 l2 control-label">What are you selling?(required)</label>
                 <div class="col s10 m10 l10">
-                    <input type="text" class="form-control" ng-model="newProduct.name">
+                    <input id='text-input' type="text" class="form-control" ng-model="newProduct.name">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col s2 m2 l2">Describe it!(required)</label>
                 <div class="col s10 m10 l10">
-                    <textarea class="form-control" ng-model="newProduct.description"></textarea>
+                    <textarea id='text-input' class="form-control" ng-model="newProduct.description"></textarea>
                 </div>
             </div>
             
