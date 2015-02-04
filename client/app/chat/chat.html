@@ -1,13 +1,26 @@
-<div class="container">
-  <div class="row">
-        <div class="col l6 s12 offset-l5" >
-            <div class="card-panel teal"  ng-repeat="chat in chatlist">
-              <p>{{chat.username}}</p>
-              <p>{{chat.textLine}}</p>
-          </div>
+
+<div class="row section">
+      <div class="col l12 s12" >
+          <div class="card-panel pink lighten-5"  ng-repeat="chat in chatlist">
+            <h3>{{chat.username}}</h3>
+            <h4 class="flow-text">{{chat.textLine}}</h4>
         </div>
+      </div>
+</div>
+
+  <div class="card-panel blue lighten-4"
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field">
+          <i class="mdi-editor-mode-edit prefix"></i>
+          <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+          <label for="icon_prefix2">New Message</label>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
+
 <!--
 <div class="container">
   <div class="row">
