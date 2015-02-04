@@ -6,7 +6,7 @@ angular.module('cornerfindApp')
 
     $scope.productID = $stateParams.id;
 
-    products.get({id: $stateParams.id}, function (product) {
+    products.resource.get({id: $stateParams.id}, function (product) {
       $scope.product = product;
     });
 
