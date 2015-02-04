@@ -5,21 +5,30 @@
   <div class="row">
     <div class="col s12 l3" ng-class='isMobile(windowWidth)'>
       <div class="card pink lighten-3 ">
-        <div class="card-content white-text" >
+        
 
-         <span class="card-title grey-text text-darken-4"> {{product.name}} </span>
-         <p>{{product.desc}} </p>
-         <p>Quantity: {{product.qty}} </p>
 
-         <div class="section">
+      <div class="card-content white-text" >
 
-            <a class="waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Offer</a>
-            </div>
-           
-            <a class="waves-effect waves-purple btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Buy Now {{product.price | currency}} </a>
+        <span class="card-title grey-text text-darken-4"> {{product.name}} </span>
+        <p>{{product.desc}} </p>
+        <p>Quantity: {{product.qty}} </p>
+        <p>offer Price {{offerPrice}}</p>
 
+        <div class='col s6'>
+          <button  ng-click="submitOffer(offerPrice)" class=" waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Offer</button>
+          <input type='number' id="text-input" placeholder='1234' ng-model='offerPrice'/>
+        </div>
+        <div ng-hide="isOffering" class="section"> 
+          <a class="waves-effect waves-purple btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Buy Now {{product.price | currency}} </a>
+        </div>
+
+        <div ng-show='isOffering' class='section'>
+          
         </div>
       </div>
+
+
 
       <div class="card pink lighten-3 hide-on-med-and-down">
         <div class="card-content white-text" >

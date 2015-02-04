@@ -6,9 +6,9 @@ var mongoose = require('mongoose'),
 var OrderSchema = new Schema({
   lineItems: [{ productId: {type: Schema.Types.ObjectId, ref: 'Product'},
                 name: {type: String},
-                purchasePrice: {type: Number, min: 0},
-                qty: {type: Number, min: 1},
-                shippingHandling: {type: Number}
+                purchasePrice: {type: Number, required: true,min: 0},
+                qty: {type: Number, min: 1, default:1},
+                shippingHandling: {type: Number, default:499}
              }],
   sellerId: {type: Schema.Types.ObjectId, ref: 'User'},
   buyerId: {type: Schema.Types.ObjectId, ref: 'User'},
@@ -18,3 +18,12 @@ var OrderSchema = new Schema({
 });
 
 module.exports = mongoose.model('Order', OrderSchema);
+
+OrderSchema.pre('save',function(next){
+  var total=0;
+  this.lineItems.forEach(function(item){  //Async here?     question
+    total+= item.purchasePrice*item.qty
+  });
+  this.orderTotal = total;
+  next();
+})

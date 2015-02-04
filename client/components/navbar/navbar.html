@@ -66,7 +66,8 @@
         
         <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}"><a href="/signup" id='whiten'>Sign up</a></li>
         <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login" id='whiten'>Login</a></li>
-        <li ng-show="isLoggedIn()"><p id='whiten' class="navbar-text">Add New Product</p> </li>
+        <li ng-show="isLoggedIn()"><p id='whiten' class="navbar-text">Add New Listing</p> </li>
+        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}"><a class='whiten' id='whiten' href="/{{currentUser._id}}/cart"><i class='mdi-action-shopping-cart'/></a></li>
         <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog whiten"></span></a></li>
         <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}"><a class='whiten' id='whiten' href="" ng-click="logout()">Logout</a></li>
       </ul>
