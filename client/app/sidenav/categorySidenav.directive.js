@@ -17,6 +17,7 @@ angular.module('cornerfindApp')
                 };
                 scope.toggleActive =function(category){
                 if(scope.activeCategories.indexOf(category)!==-1){
+                    console.log("FIRED")
                     return 'purple accent-1';
                 }
               }

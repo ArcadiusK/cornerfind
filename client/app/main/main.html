@@ -28,7 +28,7 @@
 <!-- {{results}} -->
 
 <div ng-show="loggedin">
-<h4> Currently logged in as {{currentUser.username}}</h4>
+<h4> Currently logged in as {{currentUser.name}}</h4>
     <button  class="btn btn-primary" ng-click="addProduct()">Make a Listing!</button>
 </div>
 
@@ -41,6 +41,7 @@
 
       <div class="col-lg-12 rm-padding-l">
         <h2>TOP SELLERS</h2>
+        {{currentUser}}
       </div>
     </div>
 

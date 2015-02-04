@@ -2,9 +2,9 @@
 
 angular.module('cornerfindApp')
     .factory('products', function($http, $location, $resource) {
+      return{
 
-
-    var products = $resource('/api/products/:id', { id: '@_id'}, {
+    resource: $resource('/api/products/:id', { id: '@_id'}, {
       update: {
         method: 'PUT'
       },
@@ -17,9 +17,14 @@ angular.module('cornerfindApp')
         url: '/api/products/qty/:id',
         method: 'PUT'
       }
-    });
+    }),
+    productRoute: function(userId){
+      console.log('USERID ',userId)
+      $location.path('/users'+userId+'/add');
+      //check why this isnt working, want to add to navbar
+    }
 
-
-        return products;
+  }
+   
 
     });
