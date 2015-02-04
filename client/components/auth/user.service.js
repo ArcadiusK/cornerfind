@@ -46,7 +46,7 @@ angular.module('cornerfindApp')
         }
       },
       getUserByName: {
-        method: 'GET',
+        method: 'POST',
         params: {
           controller: 'profile'
         }
