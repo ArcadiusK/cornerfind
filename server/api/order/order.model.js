@@ -26,4 +26,8 @@ OrderSchema.pre('save',function(next){
   });
   this.orderTotal = total;
   next();
-})
+});
+
+
+//hook to send offer to the list of user offers in user schema
+//also need a setter for the status enum

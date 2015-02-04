@@ -9,7 +9,6 @@ angular.module('cornerfindApp')
     });
 
     chat.getChatList($stateParams.id).then(function(data){
-      // console.log('chats in ProductViewCTRL:', data);
       $scope.chatlist = data;
     });
 
@@ -21,14 +20,15 @@ angular.module('cornerfindApp')
 
     //need to clear the form after the offer is submitted
     //and put in a confirmation 'Successfully Submitted Offer!'
-    
+
     $scope.submitOffer = function(offerPrice){
       // $scope.isOffering=false;
       var prod = $scope.product;
       $scope.isOffering = !$scope.isOffering;
 
       var orderForCreation ={
-        lineItems: [{  //dont forget to add quantity
+        lineItems: [{  
+        //This ONLY handles single items as is, will need to be modified for bundling
           productId: prod._id,
           name: prod.name,
           purchasePrice: offerPrice,
@@ -38,7 +38,6 @@ angular.module('cornerfindApp')
         status: 'offer'
       }
       cart.save(orderForCreation,function(result){
-        $cookieStore.put('cartId',result._id);
       },function(err){
         if(err){console.log('Error ',err)};
       })
