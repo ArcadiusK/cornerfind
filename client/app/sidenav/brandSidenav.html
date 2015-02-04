@@ -1,8 +1,8 @@
 <div layout="row">
   <md-sidenav class='col l4 m6 s8' md-component-id='brands' class="md-sidenav-left">
-    <h2>Brands</h2>
+    <h1>Brands</h1>
   <ul >
-    <li class='side-nav' ng-click="onItemClick({selection: item})" ng-repeat='item in selection'>{{item.name}}</li>
+    <li ng-click="onItemClick({selection: item})" ng-repeat='item in selection'>{{item.name}}</li>
   </ul>
   </md-sidenav>
   <md-content>
