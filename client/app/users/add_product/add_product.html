@@ -1,4 +1,6 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
+<!-- <div ng-include="'components/navbar/navbar.html'"></div> -->
+<!-- need to workout conflicts with this and sidenavs -->
+
 <div class="container">
     <div class="form-panel">
         <div class='row'>
@@ -12,7 +14,7 @@
             </div>
             <form class="form-horizontal style-form" method="get" ng-submit='addProduct(newProduct)'>
                 <div class="form-group">
-                    <label class="col s2 m2 l2 control-label">Upload Pictures<i class='mdi-action-star-rate'/></label>
+                    <label id='labels' class="col s2 m2 l2 control-label">Upload Pictures<i class='mdi-action-star-rate'/></label>
                     <div class="col s4 m4 l4">
                         <input id="file-upload" type="file" class="form-control flow-text" onchange="angular.element(this).scope().upload()"></input>
                     </div>
@@ -22,13 +24,13 @@
 
 
                 <div class="form-group row">
-                    <label class="col s2 m2 l2 control-label">Product Name<i class='mdi-action-star-rate'/></label>
+                    <label id='labels' class="col s2 m2 l2 control-label">Product Name<i class='mdi-action-star-rate'/></label>
                     <div class="col s10 m10 l10">
                         <input id='text-input' type="text" class="form-control" ng-model="newProduct.name">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col s2 m2 l2 control-label">Describe it!<i class='mdi-action-star-rate'/></label>
+                    <label id='labels' class="col s2 m2 l2 control-label">Describe it!<i class='mdi-action-star-rate'/></label>
                     <div class="col s10 m10 l10">
                         <textarea id='text-input' class="form-control" ng-model="newProduct.description"></textarea>
                     </div>
@@ -37,7 +39,7 @@
 
                 <!--             SIDENAVS                 -->
                 <div class="row form-group">
-                        <label class=" col s4 m2 l2 control-label">Brand</label>
+                        <label id='labels' class=" col s4 m2 l2 control-label">Brand</label>
                     <brandsidenav class='col s4 m4 l4' selection='availableBrands' sidebarid='brands' on-item-click="selectedBrand(selection)" button-text='Brands'></brandsidenav> <!--maybe make the buttons go all the way across, could look better? -->
                     <div class='col s4 m4 l6'>{{newProductDisplay.brand}}
                     </div>
@@ -47,7 +49,7 @@
                 
                 
                 <div class="row form-group">
-                    <label class="col s4 m2 l2 control-label">Category<i class='mdi-action-star-rate'/></label>
+                    <label id='labels' class="col s4 m2 l2 control-label">Category<i class='mdi-action-star-rate'/></label>
                    <categorysidenav class='col s4 m4 l4' selection='availableCategories' active-categories='newProductDisplay.category' sidebarid='categories' on-item-click="selectedCategory(selection)" button-text='Categories'></categorysidenav>
                    <div class='col s4 m4 l6 pull-left'>{{newProductDisplay.category}}
                    </div>
@@ -57,9 +59,9 @@
 
                 
                 <div class="row form-group">
-                    <div>
-                        <label class="col s4 m2 l2 control-label">Condition<i class='mdi-action-star-rate'/></label>
-                    </div>
+                    
+                        <label id='labels' class="col s4 m2 l2 control-label">Condition<i class='mdi-action-star-rate'/></label>
+                    
                     <conditionsidenav class='col s4 m4 l4' selection='availableConditions' sidebarid='conditions' on-item-click="selectedCondition(selection)" button-text='Conditions'></conditionsidenav>
                     <div class='col s4 m4 l6'>{{newProductDisplay.condition}}
                     </div>
@@ -71,7 +73,7 @@
 
 
                 <div class="form-group">
-                    <label class="col s2 control-label">Retail Price</label>
+                    <label id='labels' class="col s2 control-label">Retail Price</label>
                     <div class="col s2">
                         <input id='text-input' class="form-control" type="number" placeholder="$100" ng-model="newProduct.retailPrice">
                     </div class='col s8'>
@@ -79,7 +81,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col s2 control-label">Listing Price<i class='mdi-action-star-rate'/></label>
+                    <label id='labels' class="col s2 control-label">Listing Price<i class='mdi-action-star-rate'/></label>
                     <div class="col s2">
                         <input id='text-input' class="form-control" type="number" placeholder="$100" ng-model="newProduct.price">
                     </div class='col s8'>
@@ -92,7 +94,7 @@
                     </div>
                 </div>-->
                 <div class="form-group">
-                    <label class="col-sm-2 col-sm-2 control-label"></label>
+                    <label id='labels' class="col-sm-2 col-sm-2 control-label"></label>
                     <div class="col-sm-10">
                         <button type='submit' class='btn btn-primary'>Add Product</button>
                     </div>
