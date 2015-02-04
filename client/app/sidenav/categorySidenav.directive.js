@@ -7,14 +7,21 @@ angular.module('cornerfindApp')
             restrict: 'EA',
             scope: {selection:'=',
         			onItemClick: "&",
-        			buttonText :'@'
+        			buttonText :'@',
+                    activeCategories: '='
         			},
             link: function(scope, element, attrs) {
                   scope.id = scope.sidebarid;
             	  scope.openLeftMenu = function() {
                     $mdSidenav("categories").toggle();
-                    
                 };
+                scope.toggleActive =function(category){
+                if(scope.activeCategories.indexOf(category)!==-1){
+                    return 'purple accent-1';
+                }
+              }
+
+
 
 
             },
