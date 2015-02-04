@@ -15,4 +15,14 @@ angular.module('cornerfindApp')
       $scope.chatlist = data;
     });
 
+   $scope.isMobile = function(width){
+    if (width <= 992){
+      return
+    }
+    else{
+      return 'pinned';
+    }
+
+   }
+
   });
