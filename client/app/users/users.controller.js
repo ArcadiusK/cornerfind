@@ -8,8 +8,10 @@ angular.module('cornerfindApp')
         }, function(user) {
             $scope.user = user;
             console.log('populated user is', $scope.user);
+             console.log('productssssss' ,$scope.user.listedProducts);
         })
 
+        
 
 
 
