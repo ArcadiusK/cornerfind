@@ -12,8 +12,6 @@ angular.module('cornerfindApp')
             username: $stateParams.name
         }, function(user) {
             $scope.user = user;
-            console.log('You are LOGGED IN AS : ', $scope.currentUser.name);
-            console.log('You are on ',$scope.user.name,'s Page!');
             if ($scope.currentUser.following.indexOf($scope.user._id) !== -1) {
                 $scope.followed = true;
                       console.log('You are already following him!');
