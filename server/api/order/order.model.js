@@ -19,7 +19,7 @@ var OrderSchema = new Schema({
   status: {type:String, enum: ['offer','accepted','shipped','received','issues']}
 });
 
-module.exports = mongoose.model('Order', OrderSchema);
+
 
 OrderSchema.pre('save',function(next){
   var total=0;
@@ -31,3 +31,11 @@ OrderSchema.pre('save',function(next){
 });
 
 //need a setter for the status enum
+
+//need a static to find all of a given users orders with status offer
+
+OrderSchema.statics.getBuyersOffers =function(buyerId){
+  return this.find({buyerId:buyerId}).exec();
+};
+
+module.exports = mongoose.model('Order', OrderSchema);

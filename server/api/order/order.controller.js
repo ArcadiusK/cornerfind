@@ -5,6 +5,7 @@ var Order = require('./order.model');
 
 // Get list of orders
 exports.index = function(req, res) {
+  console.log('INDEX')
   Order.find(function (err, orders) {
     if(err) { return handleError(res, err); }
     return res.json(200, orders);
@@ -13,6 +14,7 @@ exports.index = function(req, res) {
 
 // Get a single order
 exports.show = function(req, res) {
+  console.log("SHOW")
   Order.findById(req.params.id, function (err, order) {
     if(err) { return handleError(res, err); }
     if(!order) { return res.send(404); }
@@ -53,6 +55,17 @@ exports.destroy = function(req, res) {
     });
   });
 };
+
+//Get all of a user's orders
+exports.getOffers = function(req,res){
+  console.log('getOffers params ',req.params)
+  Order.getBuyersOffers(req.params.id).then(function(offers){
+    console.log('OFFERS ',offers)
+    res.json(offers);
+  }).then(null,function(err){
+    console.log('Error ',err)
+  })
+}
 
 function handleError(res, err) {
   return res.send(500, err);

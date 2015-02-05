@@ -7,7 +7,7 @@ var router = express.Router();
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);
-// router.get('/user/:userId',controller.getOffers)	
+router.get('/:id/offers',controller.getOffers)	
 //Create this handler for populating a user's offer page
 
 router.post('/', controller.create);
