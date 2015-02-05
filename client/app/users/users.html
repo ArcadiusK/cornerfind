@@ -7,10 +7,10 @@
             <div class="card pink lighten-3 ">
                 <div class="card-content white-text">
 
-                    <span class="card-title grey-text text-darken-4"> {{user.username}} </span> User About me will show up here when seed data includes it:
+                    <span class="card-title grey-text text-darken-4">{{user.username}} </span> About me:
                     <p>{{user.description}} </p>
-                    Following users will show up here when seed data includes it:
-                    <p>{{user.following}} </p>
+
+                    <p>Following {{user.following.length}} users </p>
 
                     <div class="section">
 
@@ -21,13 +21,14 @@
 
                 </div>
             </div>
+             </div>
 
             <div class="row">
-                <ul class="col l4 m6 s12 list-unstyled" ng-repeat="product in user.listedProducts">
-                    <product-card-view info="product"></product-card-view>
-                </ul>
+                <ul class="col l12 m6 s12 list-unstyled" >
+                    <product-card-view class="col l4 m6 s12" ng-repeat="product in user.listedProducts" info="product"></product-card-view>
+               </ul>
             </div>
-        </div>
+       
     </div>
 
 

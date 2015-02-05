@@ -108,15 +108,45 @@ exports.profile = function(req, res, next) {
     User.findOne({
             username: username
         }, '-salt -hashedPassword')
-        .populate({path:'listedProducts', model:'Product'})
-         .exec(function(err,user){
-           console.log('this should still be user',user)
-           // User.populate(product,{path:'comments.owner',model:'User'},function(err,results){
-             if (err) console.log(err);
-              res.json(200,user);
+        .populate({
+            path: 'listedProducts',
+            model: 'Product'
+        })
+        .exec(function(err, user) {
 
-           })
-        
+            User.populate(user, {
+                path: 'following',
+                model: 'User'
+            }, function(err, user) {
+                if (err) console.log(err);
+               
+                res.json(200, user);
+            })
+        })
+
+};
+
+// Updates an existing User in the DB.
+exports.update = function(req, res) {
+    console.log('is this even hitting?', req.paramns._id);
+    if (req.body._id) {
+        delete req.body._id;
+    }
+    User.findById(req.params.id, function(err, user) {
+        if (err) console.log(err);
+        if (!user) {
+            return res.send(404);
+        }
+        var updated = _.merge(user, req.body);
+
+        console.log('updated user is!!!!!', updated);
+        updated.save(function(err) {
+            if (err) {
+                 if (err) console.log(err);
+            }
+            return res.json(200, user);
+        });
+    });
 };
 
 /**

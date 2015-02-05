@@ -50,6 +50,12 @@ angular.module('cornerfindApp')
         params: {
           controller: 'profile'
         }
+      },
+      update: {
+        method: 'PUT',
+         params: {
+          controller:'update'
+        }
       }
     });
   });
