@@ -7,16 +7,18 @@ angular.module('cornerfindApp')
         $scope.availableBrands = brand.query();
         $scope.availableCategories = category.query();
         $scope.availableConditions = condition.query();
+        $scope.userId = Auth.getCurrentUser()._id;
+
 
         //Add a new product
-        $scope.newProduct = {category: []};
+        $scope.newProduct = {userId: $scope.userId, category: []};
         $scope.newProductDisplay ={category: []};
 
         $scope.showBrands = false;
         $scope.showCategories = false;
 
         $scope.selectedBrand = function(selected) {
-            $scope.newProduct.brand = selected._id;
+            $scope.newProduct.brand = selected.name;
             $scope.newProductDisplay.brand = selected.name;
         }
 
@@ -28,12 +30,12 @@ angular.module('cornerfindApp')
                 $scope.newProductDisplay.category.splice(displayIndex,1);
                 return;
             }
-            $scope.newProduct.category.push(selected._id);
+            $scope.newProduct.category.push(selected.name);
             $scope.newProductDisplay.category.push(selected.name);
         }
 
         $scope.selectedCondition = function(selected) {
-            $scope.newProduct.condition = selected._id;
+            $scope.newProduct.condition = selected.name;
             $scope.newProductDisplay.condition=selected.name;
         }
      

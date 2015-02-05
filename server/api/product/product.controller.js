@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Product = require('./product.model');
+var User = require('../user/user.model');
 
 // Get list of products
 exports.index = function(req, res) {
@@ -24,6 +25,13 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Product.create(req.body, function(err, product) {
     if(err) { return handleError(res, err); }
+    User.findById(product.userId, function(err, user) {
+            if (err) {
+                return handleError(res, err);
+            }
+            user.listedProducts.push(product._id)
+            user.save(function(err, user) {})
+        });
     return res.json(201, product);
   });
 };

@@ -14,6 +14,7 @@
  var Like = require('../api/like/like.model');
  var Address = require('../api/address/address.model');
  var Chat = require('../api/chat/chat.model');
+ var auth = require('../auth/auth.service');
 
  Thing.find({}).remove(function() {
   Thing.create({
@@ -141,7 +142,6 @@ function() {
 
 
 
-
   Product.find({}).remove(function() {
     Product.create({
     userId: user_parameter._id,
@@ -241,6 +241,21 @@ function() {
         console.log("product_parameter2: "+product_parameter2)
 
 
+User.findOne({_id: user_parameter._id}, function(err, user) { 
+  user.following.push(user_parameter2._id);
+  user.listedProducts.push(product_parameter2._id);
+    user.description = 'My name is Arcadius and Im good at stopping bank robberies';
+
+  user.save();
+})
+
+User.findOne({_id: user_parameter2._id}, function(err, user) { 
+  user.following.push(user_parameter._id);
+  user.description = 'Hey guise Im really cool and like to sell baby products! Come at me bro';
+  user.listedProducts.push(product_parameter._id);
+
+  user.save();
+})
 
 
         Chat.find({}).remove(function() {
@@ -289,6 +304,10 @@ function() {
          },
          {
            productId: product_parameter2._id,
+           userId: user_parameter2._id
+         },
+         {
+           productId: product_parameter._id,
            userId: user_parameter2._id
          },
          function() {

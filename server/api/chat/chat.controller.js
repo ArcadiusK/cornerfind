@@ -3,7 +3,8 @@
 var _ = require('lodash');
 var Chat = require('./chat.model');
 var ObjectId = require('mongoose').Types.ObjectId;
-
+var Firebase = require("firebase");
+var ref = new Firebase('https://cornerfind.firebaseio.com/chats')
 
 // Get list of chats
 exports.index = function(req, res) {
@@ -26,10 +27,13 @@ exports.show = function(req, res) {
 
 // Creates a new chat in the DB.
 exports.create = function(req, res) {
-  Chat.create(req.body, function(err, chat) {
-    if(err) { return handleError(res, err); }
-    return res.json(201, chat);
-  });
+  // Chat.create(req.body, function(err, chat) {
+  //   if(err) { return handleError(res, err); }
+  //   return res.json(201, chat);
+  // });
+  var chatRef = ref.child(req.body.productID);
+  chatRef.push(req.body.newChat);
+  
 };
 
 // Updates an existing chat in the DB.
