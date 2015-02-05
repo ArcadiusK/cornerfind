@@ -3,7 +3,7 @@
 angular.module('cornerfindApp')
     .controller('UsersCtrl', function($scope, products, Auth, User,chat, $stateParams) {
 
-        $scope.followed = false;
+        
         // Get logged in user object
         $scope.currentUser = Auth.getCurrentUser();
 
@@ -12,8 +12,13 @@ angular.module('cornerfindApp')
             username: $stateParams.name
         }, function(user) {
             $scope.user = user;
-            if ($scope.currentUser.following.indexOf(user._id)) {
+            if ($scope.currentUser.following.indexOf($scope.user._id) !== -1) {
                 $scope.followed = true;
+                      console.log('You are already following him!');
+            }
+            else {
+                $scope.followed = false;
+                   console.log('You are not following him yet!');
             }
         })
 
