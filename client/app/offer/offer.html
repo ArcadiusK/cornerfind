@@ -1,14 +1,14 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class='container'>
-	<h3>Your Offers:</h3>
+	<h1>Your Offers:</h1>
 
 	<div class='column'>
 	<div class="section" ng-repeat="offer in offers">
       <table class="striped" >
         <thead>
         	<h3>Seller: {{offer.sellerId.name}} (make link to users page after it's built)</h3>
-        	<h4>Order Total: {{offer.OrderTotal + orderShippingHandling | currency</h4>
+        	<h4>Order Total: {{offer.OrderTotal + orderShippingHandling | currency}}</h4>
         	<h4>Details:</h4>
           <tr class='row'>
               <th class='col l3 m3 s3' data-field="id">Item</th>
@@ -19,7 +19,10 @@
         </thead>
         <tbody>
         	<tr class='row' ng-repeat="item in offer.lineItems">
-        		<td class='col l3 m3 s3' ><img id='our-thumbnail' src="{{item.productId.photoUrls[0]}}"/></td>
+        		<td class='col l3 m3 s3' >
+        			<a href="/products/{{item.productId._id}}"><img id='our-thumbnail' src="{{item.productId.photoUrls[0]}}"/>
+        			</a>
+        		</td>
 	            <td class='col l3 m3 s3'>{{item.name}} - {{item.purchasePrice/100 | currency}}</td>
 	            <td class='col l3 m3 s3'>{{item.qty}}</td>
 	            <td class='col l3 m3 s3'>{{item.purchasePrice/100 | currency}}</td>
