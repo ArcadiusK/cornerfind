@@ -18,6 +18,7 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/easypost/easypost.socket').register(socket);
   require('../api/chat/chat.socket').register(socket);
   require('../api/address/address.socket').register(socket);
   require('../api/condition/condition.socket').register(socket);
