@@ -6,7 +6,9 @@ angular.module('cornerfindApp')
 
     $scope.offers = offer.getBuyersOffers({id:$scope.userId});
     
+    $scope.items =[];
 
+    //backend: populate users and also products for product thumbnail
 
 
 

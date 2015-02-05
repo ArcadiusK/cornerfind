@@ -35,7 +35,23 @@ OrderSchema.pre('save',function(next){
 //need a static to find all of a given users orders with status offer
 
 OrderSchema.statics.getBuyersOffers =function(buyerId){
-  return this.find({buyerId:buyerId}).exec();
+  return this.find(
+      // {buyerId:buyerId, status: 'offer'}
+      {$and:[{buyerId:buyerId},
+            {
+              status: {
+                $in: ["offer","accepted","shipped"]
+              }
+          } 
+      ]}
+      ).populate('sellerId').populate('lineItems.productId').exec();
 };
 
 module.exports = mongoose.model('Order', OrderSchema);
+
+
+
+
+
+
+
