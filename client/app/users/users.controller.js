@@ -29,7 +29,7 @@ angular.module('cornerfindApp')
         $scope.unfollowUser = function() {
             $scope.currentUser.following.splice($scope.currentUser.following.indexOf($scope.user.following.remove), 1)
             User.update($scope.currentUser)
-                .$promise.then(function(user) {
+                .$promise.then(function(user)  {
                 
                 });
             $scope.followed = false;
