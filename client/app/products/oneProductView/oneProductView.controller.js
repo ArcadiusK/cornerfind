@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('OneProductViewCtrl', function ($scope, Auth, products, chat, $stateParams, cart, $cookieStore) {
+  .controller('OneProductViewCtrl', function ($scope, Auth, products, chat, $stateParams, offer, $cookieStore) {
     $scope.currentUser = Auth.getCurrentUser();
 
     products.resource.get({id: $stateParams.id}, function (product) {
@@ -37,7 +37,7 @@ angular.module('cornerfindApp')
         buyerId: $scope.currentUser._id,
         status: 'offer'
       }
-      cart.save(orderForCreation,function(result){
+      offer.save(orderForCreation,function(result){
       },function(err){
         if(err){console.log('Error ',err)};
       })

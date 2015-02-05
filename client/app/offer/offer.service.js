@@ -2,5 +2,6 @@
 
 angular.module('cornerfindApp')
   .factory('offer', function ($resource) {
-    return $resource('/api/orders/:id',{id:'@_id'})
+    return $resource('/api/orders/:id',
+    	{id:'@_id'})
   });
