@@ -11,7 +11,13 @@ angular.module('cornerfindApp')
              console.log('productssssss' ,$scope.user.listedProducts);
         })
 
-        
+        $scope.followUser = function () {
+
+        }
+
+        $scope.loadAbout = function () {
+          
+        }
 
 
 
