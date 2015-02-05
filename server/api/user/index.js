@@ -16,6 +16,6 @@ router.post('/', controller.create);
 
 
 router.post('/:controller', controller.profile);
-router.put('/:id', controller.update);
+router.put('/:id/update', controller.update);
 
 module.exports = router;

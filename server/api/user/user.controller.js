@@ -4,6 +4,7 @@ var User = require('./user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var _ = require('lodash');
 
 var validationError = function(res, err) {
     return res.json(422, err);
@@ -119,7 +120,7 @@ exports.profile = function(req, res, next) {
                 model: 'User'
             }, function(err, user) {
                 if (err) console.log(err);
-               
+
                 res.json(200, user);
             })
         })
@@ -128,24 +129,27 @@ exports.profile = function(req, res, next) {
 
 // Updates an existing User in the DB.
 exports.update = function(req, res) {
-    console.log('is this even hitting?', req.paramns._id);
+    var userObj = req.body; // { without following}
+    var userId = req.body._id;
+    console.log('req.body is..', req.body);
+    console.log('req.body.following is..', req.body.following);
     if (req.body._id) {
         delete req.body._id;
     }
-    User.findById(req.params.id, function(err, user) {
-        if (err) console.log(err);
-        if (!user) {
-            return res.send(404);
-        }
-        var updated = _.merge(user, req.body);
 
-        console.log('updated user is!!!!!', updated);
-        updated.save(function(err) {
+    User.findById(userId, function(err, user) {
+    
+    console.log('!!!',user)
+        _.assign(user, req.body);
+        console.log('!!!!',user)
+        user.save(function(err) {
             if (err) {
-                 if (err) console.log(err);
+                if (err) console.log(err);
             }
+            console.log('updated user is!!!!!', user);
             return res.json(200, user);
         });
+
     });
 };
 
