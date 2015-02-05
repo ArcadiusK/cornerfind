@@ -1,35 +1,28 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('ChatCtrl', function ($scope, $http, chat, $firebase) {
-    $scope.chatlist = [];
+  .controller('ChatCtrl', function ($scope, $http, chat, $firebase, Auth, $stateParams) {
+    // $scope.myDataRef = new Firebase('https://cornerfind.firebaseio.com/');
+    $scope.productID = $stateParams.id;
+    var ref = new Firebase('https://cornerfind.firebaseio.com/chats/' + $scope.productID);
+    var sync = $firebase(ref);
+    $scope.chatList = sync.$asObject();
+    $scope.newChat = {username: "", textLine: "" };
 
-    //$scope.myDataRef = new Firebase('https://cornerfind.firebaseio.com/');
+    $scope.addChat = function(newChatText){
+      $scope.newChat.textLine = newChatText;
+      $scope.newChat.username = Auth.getCurrentUser().username;
 
-var ref = new Firebase('https://cornerfind.firebaseio.com/');
 
-var sync = $firebase(ref);
-
-$scope.chatListt = sync.$asObject();
-
-    chat.getChatList().then(function(data){
-      $scope.chatlist = data;
-    });
-
-    $scope.addChat = function(newChat){
-      console.log('NewChat Variable:', newChat);
-
-      $scope.chatlist.push(newChat);
-      $http.post('/api/things', { name: $scope.newThing });
-      newChat = {};
+      $http.post('/api/chats', {newChat: $scope.newChat, productID: $scope.productID});
     };
 
 
 
-$scope.addChatFire = function(newChatText){
-      console.log('NewChatText Variable:', newChatText);
-sync.$push({name: "Arcadius", text: newChatText});
-    };
+// $scope.addChatFire = function(newChatText){
+//       console.log('NewChatText Variable:', newChatText);
+// sync.$push({name: "Arcadius", text: newChatText});
+//     };
 
 
 
