@@ -21,23 +21,41 @@ var UserSchema = new Schema({
     hashedPassword: String,
     provider: String,
     salt: String,
-    facebook: {type: String},
-    twitter:  {type: String},
-    google:  {type: String},
-    github:  {type: String},
+    facebook: {
+        type: String
+    },
+    twitter: {
+        type: String
+    },
+    google: {
+        type: String
+    },
+    github: {
+        type: String
+    },
     listedProducts: [{
         type: Schema.Types.ObjectId,
         ref: 'Product'
     }],
     location: String,
-    username: {type: String, required:true, unique:true, lowercase:true},  //we have to validate no spaces on front end
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true
+    }, //we have to validate no spaces on front end
     shipAddy: String,
     billAddy: String,
     settings: String, //will need to define later. Nice to have.
     following: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
+    }],
+    followers: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }]
+
 });
 
 /**
