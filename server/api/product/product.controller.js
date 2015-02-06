@@ -6,7 +6,7 @@ var User = require('../user/user.model');
 
 // Get list of products
 exports.index = function(req, res) {
-  Product.find().populate('userId').exec(function(err,products){
+  Product.find().populate('userId').populate('likes').exec(function(err,products){
     if(err) {return handleError(res,err)};
     if(!products){return res.send(404); }
       return res.json(products);

@@ -20,6 +20,29 @@ body {
 	font-weight: 500;
 }
 
+.strike {
+  text-decoration: line-through;
+  font-size: 1.75rem;
+  display: inline-block;
+  text-indent: 1rem;
+}
+
+.price {
+  font-size: 2rem;
+  display: inline-block;
+}
+
+
+.favoriteIcon{
+	display: inline-block;
+	font-size: 2.5rem;
+}
+
+.productFavoriteDisplay{
+	display: inline-block;
+	text-indent: 1rem
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'account/login/login.scss';
