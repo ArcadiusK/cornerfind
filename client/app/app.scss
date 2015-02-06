@@ -20,6 +20,10 @@ body {
 	font-weight: 500;
 }
 
+html {
+  font-size: 12px;
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'account/login/login.scss';

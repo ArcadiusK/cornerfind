@@ -25,18 +25,18 @@ exports.show = function(req, res) {
 // Creates a new easypost in the DB.
 exports.verify = function(req, res) {
 
-    var fromAddress = {
-    name: "EasyPost",
-      street1: "164 Townsend St",
-    street2: "#1",
-    city: "San Francisco",
-    state: "CA",
-    zip: "94107",
-    phone: "415-123-4567"
-  };
+  //   var fromAddress = {
+  //   name: "EasyPost",
+  //     street1: "164 Townsend St",
+  //   street2: "#1",
+  //   city: "San Francisco",
+  //   state: "CA",
+  //   zip: "94107",
+  //   phone: "415-123-4567"
+  // };
 
 // verify address
-  easypost.Address.create(fromAddress, function(err, fromAddress) {
+  easypost.Address.create(req.body.fromAddress, function(err, fromAddress) {
     
     fromAddress.verify(function(err, response) {
       if (err) {
