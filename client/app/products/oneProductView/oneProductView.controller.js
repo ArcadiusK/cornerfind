@@ -1,28 +1,45 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('OneProductViewCtrl', function ($scope, Auth, products, chat, $stateParams) {
-    $scope.message = 'Hello';
-
-    $scope.productID = $stateParams.id;
+  .controller('OneProductViewCtrl', function ($scope, Auth, products, chat, $stateParams, offer, $cookieStore) {
+    $scope.currentUser = Auth.getCurrentUser();
 
     products.resource.get({id: $stateParams.id}, function (product) {
       $scope.product = product;
     });
 
-   chat.getChatList($stateParams.id).then(function(data){
-      console.log('chats in ProductViewCTRL:', data);
+    chat.getChatList($stateParams.id).then(function(data){
       $scope.chatlist = data;
     });
 
-   $scope.isMobile = function(width){
-    if (width <= 992){
-      return
-    }
-    else{
-      return 'pinned';
+    $scope.isMobile = function(width){
+      return width<=992 ? '':'pinned';
     }
 
-   }
+    $scope.isOffering = false;
 
-  });
+    //need to clear the form after the offer is submitted
+    //and put in a confirmation 'Successfully Submitted Offer!'
+
+    $scope.submitOffer = function(offerPrice){
+      // $scope.isOffering=false;
+      var prod = $scope.product;
+      $scope.isOffering = !$scope.isOffering;
+
+      var orderForCreation ={
+        lineItems: [{  
+        //This ONLY handles single items as is, will need to be modified for bundling
+          productId: prod._id,
+          name: prod.name,
+          purchasePrice: offerPrice,
+        }],
+        sellerId: prod.userId,
+        buyerId: $scope.currentUser._id,
+        status: 'offer'
+      }
+      offer.save(orderForCreation,function(result){
+      },function(err){
+        if(err){console.log('Error ',err)};
+      })
+    }
+});

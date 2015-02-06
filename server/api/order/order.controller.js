@@ -54,6 +54,16 @@ exports.destroy = function(req, res) {
   });
 };
 
+//Get all of a user's orders
+exports.getOffers = function(req,res){
+  Order.getBuyersOffers(req.params.id).then(function(offers){
+    console.log('OFFERS ',offers)
+    res.json(offers);
+  }).then(null,function(err){
+    console.log('Error ',err)
+  })
+}
+
 function handleError(res, err) {
   return res.send(500, err);
 }

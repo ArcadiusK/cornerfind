@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth,brand, category) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth,brand, category, $cookieStore) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
@@ -28,4 +28,9 @@ angular.module('cornerfindApp')
     $scope.isActive = function(route) {
       return route === $location.path();
     };
+    
+    $scope.getCartId=function(){
+      return $cookieStore.get('cartId');
+    }
+
   });
