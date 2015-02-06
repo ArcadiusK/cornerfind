@@ -9,7 +9,7 @@ angular.module('cornerfindApp')
     // Public API here
     return {
       getChatList: function (productID) {
-        console.log('productID:', productID);
+        // console.log('productID:', productID);
         var deferred = $q.defer();
 
         $http.get('/api/chats/' + productID)
