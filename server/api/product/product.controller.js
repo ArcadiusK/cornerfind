@@ -63,6 +63,23 @@ exports.destroy = function(req, res) {
   });
 };
 
+//Get all of a user's listings
+exports.getUsersListings = function(req,res){
+  console.log('USERS LISTINGS HIT')
+  Product.find({userId:req.params.id},function(err, products){
+      if(err){return handleError(res,err)}
+      if(!products.length){return res.send(404);}
+      console.log("products", products)
+      res.json(products)
+    }
+  )
+}
+
+
+
+
+
+
 // Searches for producs from a specific brand from the DB
 exports.search = function(req, res) {
     var searchtext = req.body.searchtext;
