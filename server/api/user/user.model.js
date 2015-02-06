@@ -54,7 +54,8 @@ var UserSchema = new Schema({
     followers: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }],
+    phoneNumber: String
 
 });
 
