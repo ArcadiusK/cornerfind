@@ -11,7 +11,6 @@ angular.module('cornerfindApp')
 		    city: "Scotch Plains",
 		    state: "NJ",
 		    zip: "07076",
-		    country: "NJ",
 		    phone: "908-668-8105"}
 		}).success(function(results){
 			$scope.verifyAddyResult = results.address;
