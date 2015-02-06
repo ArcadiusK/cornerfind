@@ -3,8 +3,13 @@
 angular.module('cornerfindApp')
   .config(function ($stateProvider) {
     $stateProvider
+      .state('account',{
+        url: '/account',
+        templateUrl: 'app/account/manageAccount/manageAccount.html',
+        controller: "ManageAccountCtrl"
+      })
       .state('login', {
-        url: '/login',
+        url: '/logins',
         templateUrl: 'app/account/login/login.html',
         controller: 'LoginCtrl'
       })
@@ -15,8 +20,8 @@ angular.module('cornerfindApp')
       })
       .state('settings', {
         url: '/settings',
-        templateUrl: 'app/account/settings/settings.html',
-        controller: 'SettingsCtrl',
+        templateUrl: 'app/account/settings/changePassword.html',
+        controller: 'ChangePasswordCtrl',
         authenticate: true
       });
   });
