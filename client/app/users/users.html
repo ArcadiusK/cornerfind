@@ -37,11 +37,12 @@
                 
                     <div class="section">
 
-                        <a ng-show='!followed'ng-click='followUser()' class="waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-favorite-outline"></i>Follow</a>
+                        <a ng-click='toggleFollow()' class="waves-effect btn blue lighten-2 grey-text text-darken-4">
 
+                            <i class="mdi-action-favorite-outline"></i>{{toggleText}}
 
-                        <a ng-show='followed' ng-click='unfollowUser()' class="waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-favorite-outline"></i>Following<i ng-show='followed' class='mdi-action-done'></i></a>
-                
+                            <i ng-show='followed' class='mdi-action-done'></i></a>
+
 
                     <a ng-click='loadAbout()' class="waves-effect waves-purple btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-face-unlock"></i>About</a>
 

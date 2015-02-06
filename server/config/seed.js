@@ -243,6 +243,7 @@ function() {
 
 User.findOne({_id: user_parameter._id}, function(err, user) { 
   user.following.push(user_parameter2._id);
+    user.followers.push(user_parameter2._id);
   user.listedProducts.push(product_parameter2._id);
     user.description = 'My name is Arcadius and Im good at stopping bank robberies';
 
@@ -251,6 +252,7 @@ User.findOne({_id: user_parameter._id}, function(err, user) {
 
 User.findOne({_id: user_parameter2._id}, function(err, user) { 
   user.following.push(user_parameter._id);
+  user.followers.push(user_parameter._id);
   user.description = 'Hey guise Im really cool and like to sell baby products! Come at me bro';
   user.listedProducts.push(product_parameter._id);
 
