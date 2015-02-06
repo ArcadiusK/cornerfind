@@ -23,8 +23,8 @@ angular.module('cornerfindApp')
         }
 
         $scope.selectedCategory = function(selected) {
-            if ($scope.newProduct.category.indexOf(selected._id) !== -1){
-                var index =$scope.newProduct.category.indexOf(selected._id);
+            if ($scope.newProduct.category.indexOf(selected.name) !== -1){
+                var index =$scope.newProduct.category.indexOf(selected.name);
                 $scope.newProduct.category.splice(index,1);
                 var displayIndex = $scope.newProductDisplay.category.indexOf(selected.name);
                 $scope.newProductDisplay.category.splice(displayIndex,1);
