@@ -7,14 +7,24 @@
 
     <div class='section row'>
         <div class='col s2 m2 l2'>
-            <a ui-sref='account.settings'><button class="btn">Change Password</button></a>
+            <a ><button ng-click = 'go()' class="btn">Change Password</button></a>
             <a ui-sref='account.listings'><button class="btn">My Listings</button></a>
             <a ui-sref='account.offers'><button class="btn">View Offers</button></a>
             <button class="btn">View Public Profile</button>
             <a ui-sref='account.balance'><button class="btn">My Balance</button></a>
         </div>
 
-        <div class='col s8 m8 l8' ui-view></div>
+        <div class='col s8 m8 l8' ui-view></div> 
+
+        <!-- 
+
+    Question
+    Are all templates pre-loaded on the browser in the ui-view? 
+	$scope inheritance?  
+	Do child scopes overwrite parent scopes of same key?
+
+
+    -->
         
     </div>
 

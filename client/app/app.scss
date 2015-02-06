@@ -20,6 +20,14 @@ body {
 	font-weight: 500;
 }
 
+.col{
+	-webkit-transition: all 0.0s !important;
+    -moz-transition: all 0.0s !important;
+    -o-transition: all 0.0s !important;
+    -ms-transition: all 0.0s !important;
+    transition: all 0.0s !important;
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'account/login/login.scss';

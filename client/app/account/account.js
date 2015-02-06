@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('cornerfindApp')
+angular.module('cornerfindApp') //look into $urlrouterprovider otherwise method
   .config(function ($stateProvider) {
     $stateProvider
       .state('account',{
         url: '/account',
         templateUrl: 'app/account/manageAccount/manageAccount.html',
-        controller: "ManageAccountCtrl"
+        controller: 'ManageAccountCtrl'
       })
       .state('account.settings',{
         templateUrl: 'app/account/manageAccount/changePassword.html',
@@ -14,8 +14,12 @@ angular.module('cornerfindApp')
       })
       .state('account.listings',{
         templateUrl: 'app/account/manageAccount/manageListings.html',
-        controller: "ManageListingsCtrl"
+        controller: 'ManageListingsCtrl'
 
+      })
+      .state('account.offers',{
+        templateUrl: 'app/account/manageAccount/manageOffers.html',
+        controller: 'ManageOffersCtrl'
       })
 
 
@@ -31,10 +35,4 @@ angular.module('cornerfindApp')
         templateUrl: 'app/account/signup/signup.html',
         controller: 'SignupCtrl'
       })
-      // .state('settings', {
-      //   url: '/settings',
-      //   templateUrl: 'app/account/settings/changePassword.html',
-      //   controller: 'ChangePasswordCtrl',
-      //   authenticate: true
-      // });
   });

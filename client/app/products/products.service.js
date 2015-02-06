@@ -22,6 +22,13 @@ angular.module('cornerfindApp')
       console.log('USERID ',userId)
       $location.path('/users'+userId+'/add');
       //check why this isnt working, want to add to navbar
+    },
+    getUsersListings: {
+      url: '/api/products/:id/:userId',
+      method: 'GET',
+      params: {
+        userId: '@userId'
+      }
     }
 
   }
