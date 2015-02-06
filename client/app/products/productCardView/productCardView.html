@@ -1,12 +1,18 @@
-<li class="thumbnail product-card-view">
-	<a href="/products/{{product._id}}">
-		<div>
-			<!-- <img src="http://www.project-octo.com/wp-content/uploads/2013/11/Out-of-Stock.jpg" class="width-100" /> -->
-			<img ng-src="{{product.photoUrls[0]}}">
-			<div class='caption'>
-			<h4><b>{{product.name}}</b></h4>
-			<p>{{product.description}}</p>
-			<p class='price'>{{product.price | currency}}</p>
-		</div>
-	</a> 
-</li>
+<div class="row">
+		<a href='products/{{product._id}}'>
+        <div class="col s12 m12 l12">
+          <div class="card">
+            <div class="card-image">
+              <img ng-src="{{product.photoUrls[0]}}">
+              <span class="card-title">{{product.name}}</span>
+            </div>
+            <div class="card-content">
+              <h5>User: {{product.userId}}</h5>
+              <p>{{product.desc}}</p>
+              <p class='price'>{{product.price | currency:undefined:0}}</p>
+              <p class='strike'>{{product.retailPrice | currency:undefined:0}}</p>
+            </div>
+          </div>
+        </div>
+        </a>
+</div>
