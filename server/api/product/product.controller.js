@@ -6,10 +6,11 @@ var User = require('../user/user.model');
 
 // Get list of products
 exports.index = function(req, res) {
-  Product.find(function (err, products) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, products);
-  });
+  Product.find().populate('userId').exec(function(err,products){
+    if(err) {return handleError(res,err)};
+    if(!products){return res.send(404); }
+      return res.json(products);
+  })
 };
 
 // Get a single product

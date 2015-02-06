@@ -7,7 +7,7 @@
               <span class="card-title">{{product.name}}</span>
             </div>
             <div class="card-content">
-              <h5>User: {{product.userId}}</h5>
+              <h5>User: {{product.userId.name}}</h5>
               <p>{{product.desc}}</p>
               <p class='price'>{{product.price | currency:undefined:0}}</p>
               <p class='strike'>{{product.retailPrice | currency:undefined:0}}</p>
