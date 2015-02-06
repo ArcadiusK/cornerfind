@@ -10,7 +10,7 @@
 
         <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
                                             'has-error': form.name.$invalid && submitted }">
-          <label>Name</label>
+          <label>Full Name</label>
 
           <input type="text" name="name" class="form-control" ng-model="user.name"
                  required/>
@@ -18,6 +18,24 @@
             A name is required
           </p>
         </div>
+
+
+
+     <div class="form-group" ng-class="{ 'has-success': form.username.$valid && submitted,
+                                            'has-error': form.username.$invalid && submitted }">
+          <label>Username - showed to others - lowercase and numbers only, no spaces</label>
+
+          <input type="text" name="username" class="form-control" ng-model="user.username"
+                 required/>
+          <p class="help-block" ng-show="form.username.$error.required && submitted">
+            An unique username is required - lowercase and numbers only, no spaces
+          </p>
+          <p class="help-block" ng-show="form.username.$error.mongoose">
+            {{ errors.username }}
+          </p>
+        </div>
+
+
 
         <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
                                             'has-error': form.email.$invalid && submitted }">
