@@ -95,10 +95,7 @@ User.find({}).remove(function() {
             name: 'Mr User',
             email: 'test@test.com',
             password: 'test',
-            role: {
-                type: String,
-                default: 'user'
-            },
+            role: 'user',
             hashedPassword: '',
             provider: 'local',
             salt: String,
@@ -118,10 +115,7 @@ User.find({}).remove(function() {
             name: 'Admin Arcadius',
             email: 'admin@admin.com',
             password: 'admin',
-            role: {
-                type: String,
-                default: 'admin'
-            },
+            role: 'admin',
             hashedPassword: '',
             provider: 'local',
             salt: String,
