@@ -10,7 +10,10 @@ angular.module('cornerfindApp')
 				editProduct: '&'
 			},
 			link: function(scope,element,attrs){
-
+				scope.submitted = false;
+				scope.submitButton = function(){
+					scope.submitted=true;
+				}
 			}
 
 		}

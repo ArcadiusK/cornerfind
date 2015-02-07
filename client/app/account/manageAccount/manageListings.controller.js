@@ -9,8 +9,11 @@ angular.module('cornerfindApp')
 			});
 		
 		$scope.submitProductChanges = function(obj){
-			products.resource.update({id:obj._id},obj)
-			console.log("submitProductChanges fired with: ",obj)
+			products.resource.update({id:obj._id},obj,function(){
+				// console.log("submitProductChanges fired with: ",obj)
+				$scope.submitted = true;
+			})
+
 		}
 
 
