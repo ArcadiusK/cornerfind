@@ -56,7 +56,6 @@ exports.create = function(req, res) {
         console.log("sending SMS", req.body.newChat);
         client.messages.create({
             body: "CornerFind.com comment from " + req.body.newChat.username + ": " + req.body.newChat.textLine,
-            // to: "+16319883287",
             to: auser.phoneNumber,
             from: "+16506845431"
         }, function(err, message) {
