@@ -6,6 +6,12 @@ angular.module('cornerfindApp')
 		products.resource.getUsersListings({id:$scope.currentUser._id},
 			function(res, err){
 				$scope.usersListings = res;
-			})
+			});
+		
+		$scope.submitProductChanges = function(obj){
+			products.resource.update({id:obj._id},obj)
+			console.log("submitProductChanges fired with: ",obj)
+		}
+
 
 	})

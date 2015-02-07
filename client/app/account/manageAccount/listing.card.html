@@ -1,0 +1,29 @@
+<div>{{listing.name}}</div>
+
+<div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{{listing.photoUrls[0]}}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Card Title <i class="mdi-navigation-more-vert right"></i></span>
+          <p><a href="#">This is a link</a></p>
+        </div>
+        
+
+        <!-- hidden stuff -->
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Card Title <i class="mdi-navigation-close right"></i></span> {{listing}}
+          <form ng-submit="editProduct({listing:listing})">Put a form in here
+          	<button class='btn purple accent-3 waves-effect'>Submit Changes</button>
+          	<button type='button' class='btn red accent-4'>Cancel</button>
+
+
+
+          </form>
+          
+        </div>
+      
+
+
+      </div>
+
