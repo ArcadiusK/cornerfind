@@ -24,6 +24,13 @@ angular.module('cornerfindApp')
             id: '@id',
             listings: 'listings'
           }
+        },
+         getOwner: {
+          method: 'GET',
+          params: {
+            id: '@id',
+            listings: 'owner'
+          }
         }
       })
     }
