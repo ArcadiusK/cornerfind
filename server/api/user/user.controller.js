@@ -131,25 +131,25 @@ exports.profile = function(req, res, next) {
 exports.update = function(req, res) {
     var userObj = req.body; // { without following}
     var userId = req.body._id;
-    console.log('req.body is..', req.body);
-    console.log('req.body.following is..', req.body.following);
+    // console.log('req.body is..', req.body);
+    // console.log('req.body.following is..', req.body.following);
     if (req.body._id) {
         delete req.body._id;
+        delete req.body._v;
     }
 
     User.findById(userId, function(err, user) {
-    
-    console.log('!!!',user)
-        _.assign(user, req.body);
-        console.log('!!!!',user)
-        user.save(function(err) {
-            if (err) {
+        var updated = _.assign(user, req.body);
+        updated.markModified('following');
+        console.log('QQQQQQQQ', user);
+
+        updated.save(function(err, updatedUser, numModified) {
+            console.log("updatedUser", updatedUser);
+            console.log('modified?', numModified);
+          
                 if (err) console.log(err);
-            }
-            console.log('updated user is!!!!!', user);
             return res.json(200, user);
         });
-
     });
 };
 
