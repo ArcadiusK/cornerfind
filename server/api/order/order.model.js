@@ -35,7 +35,6 @@ OrderSchema.pre('save',function(next){
 OrderSchema.statics = {
   getBuyersOffers: function(buyerId){
   return this.find(
-      // {buyerId:buyerId, status: 'offer'}
       {$and:[{buyerId:buyerId},
             {
               status: {

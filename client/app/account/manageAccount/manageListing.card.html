@@ -12,7 +12,8 @@
     <!-- hidden stuff -->
     <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">Edit {{listing.name}} <i class="mdi-navigation-close right"></i></span>
-        <div ng-show='submitted'> HOLLLLAAAA
+        <div ng-show='submitted'> 
+        	<h3>Submission Successful</h3>
         </div>
         <div class='input-form' ng-show='!submitted'>
             <form ng-submit="editProduct({listing:listing})">
@@ -30,6 +31,7 @@
                 </div>
                 <button class='btn purple accent-3 waves-effect' ng-click='submitButton()'>Submit Changes</button>
                 <button type='button' class='btn red accent-4'>Cancel</button>
+                <!-- how can i make the cancel button wipe the changes that were made? -->
 
 
 
