@@ -36,15 +36,5 @@ angular.module('cornerfindApp')
              //It reroutes instantly back to the main page
         };
 
-
-        //Leaving for sockets reference
-        // $http.get('/api/things').success(function(awesomeThings) {
-        //   $scope.awesomeThings = awesomeThings;
-        //   socket.syncUpdates('thing', $scope.awesomeThings);
-        // });
-
-        // $scope.$on('$destroy', function () {
-        //   socket.unsyncUpdates('thing');
-        // });
     });
 
