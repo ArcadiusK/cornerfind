@@ -15,7 +15,8 @@ exports.index = function(req, res) {
 
 // Get a single product
 exports.show = function(req, res) {
-  Product.findById(req.params.id, function (err, product) {
+  Product.findById(req.params.id).populate('userId')
+  .exec(function(err,product){
     if(err) { return handleError(res, err); }
     if(!product) { return res.send(404); }
     return res.json(product);
@@ -72,11 +73,6 @@ exports.getUsersListings = function(req,res){
       res.json(products)
     });
 };
-
-
-
-
-
 
 // Searches for producs from a specific brand from the DB
 exports.search = function(req, res) {
