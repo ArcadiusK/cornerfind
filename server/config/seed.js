@@ -174,8 +174,7 @@ User.find({}).remove(function() {
                                 available: true,
                                 price: 12.00,
                                 brand: "Juicy Couture",
-                                retailPrice: 30.00,
-                                likes: [user_parameter._id]
+                                retailPrice: 30.00
                             }, {
                                 userId: user_parameter._id,
                                 category: ["Shoes"], //from categories collection
@@ -188,8 +187,7 @@ User.find({}).remove(function() {
                                 available: true,
                                 price: 18.00,
                                 brand: "CTRCO",
-                                retailPrice: 42.00,
-                                likes: [user_parameter._id]
+                                retailPrice: 42.00
                             }, {
                                 userId: user_parameter._id,
                                 category: ["Clothing"], //from categories collection
@@ -202,8 +200,7 @@ User.find({}).remove(function() {
                                 available: true,
                                 price: 34.00,
                                 brand: "Prada",
-                                retailPrice: 60.00,
-                                likes: [user_parameter._id]
+                                retailPrice: 60.00
                             }, {
                                 userId: user_parameter._id,
                                 category: ["Toys"], //from categories collection
@@ -216,8 +213,7 @@ User.find({}).remove(function() {
                                 available: true,
                                 price: 61.00,
                                 brand: "Uniqlo",
-                                retailPrice: 97.00,
-                                likes: [user_parameter2._id]
+                                retailPrice: 97.00
                             }, {
                                 userId: user_parameter2._id,
                                 category: ["Cribs"], //from categories collection
@@ -230,8 +226,7 @@ User.find({}).remove(function() {
                                 available: true,
                                 price: 45.00,
                                 brand: "Espresso",
-                                retailPrice: 108.00,
-                                likes: [user_parameter2._id]
+                                retailPrice: 108.00
                             },
                             function() {
                                 var queryProduct = Product.where({
@@ -429,3 +424,4 @@ User.find({}).remove(function() {
             });
         });
 });
+
