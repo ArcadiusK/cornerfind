@@ -39,27 +39,15 @@ exports.create = function(req, res) {
 
 // Updates an existing product in the DB.
 exports.update = function(req, res) {
-    var prodObj = req.body; // { without following}
-    var prodId = req.body._id;
-    // console.log('req.body is..', req.body);
-    // console.log('req.body.following is..', req.body.following);
-    if (req.body._id) {
-        delete req.body._id;
-        delete req.body._v;
-    }
-
-    Product.findById(prodId, function(err, product) {
-        var updated = _.assign(product, req.body);
-        updated.markModified('following');
-        console.log('New Updated Product:  ', product);
-
-        updated.save(function(err, updatedUser, numModified) {
-            console.log("updatedProduct", updatedUser);
-            console.log('modified?', numModified);
-          
-                if (err) console.log(err);
-            return res.json(200, product);
-        });
+  console.log('PRODUCT UPDATE API HIT')
+  if(req.body._id) { delete req.body._id; }
+  Product.findById(req.params.id, function (err, product) {
+    if (err) { return handleError(res, err); }
+    if(!product) { return res.send(404); }
+    var updated = _.merge(product, req.body);
+    updated.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, product);
     });
 };
 
@@ -75,6 +63,20 @@ exports.destroy = function(req, res) {
     });
   });
 };
+
+//Get all of a user's listings
+exports.getUsersListings = function(req,res){
+  Product.find({userId:req.params.id},function(err, products){
+      if(err){return handleError(res,err)}
+      if(!products.length){return res.send(404);}
+      res.json(products)
+    });
+};
+
+
+
+
+
 
 // Searches for producs from a specific brand from the DB
 exports.search = function(req, res) {
