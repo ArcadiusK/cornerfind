@@ -160,7 +160,6 @@ function() {
     price: 12.00,
     brand: "Juicy Couture",
     retailPrice: 30.00,
-    likes: [user_parameter._id]
   },
   {
     userId: user_parameter._id,
@@ -175,7 +174,6 @@ function() {
     price: 18.00,
     brand: "CTRCO",
     retailPrice: 42.00,
-    likes: [user_parameter._id]
   },
   {
     userId: user_parameter._id,
@@ -190,7 +188,6 @@ function() {
     price: 34.00,
     brand: "Prada",
     retailPrice: 60.00,
-    likes: [user_parameter._id]
   },
   {
     userId: user_parameter2._id,
@@ -205,7 +202,6 @@ function() {
     price: 61.00,
     brand: "Uniqlo",
     retailPrice: 97.00,
-    likes: [user_parameter2._id]
   },
   {
     userId: user_parameter2._id,
@@ -220,7 +216,6 @@ function() {
     price: 45.00,
     brand: "Espresso",
     retailPrice: 108.00,
-    likes: [user_parameter2._id]
   },
   function() {
     var queryProduct  = Product.where({ name: 'Juicy Couture baby bib, pink' });

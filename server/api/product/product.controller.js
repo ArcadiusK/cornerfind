@@ -39,17 +39,30 @@ exports.create = function(req, res) {
 
 // Updates an existing product in the DB.
 exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
-  Product.findById(req.params.id, function (err, product) {
-    if (err) { return handleError(res, err); }
-    if(!product) { return res.send(404); }
-    var updated = _.merge(product, req.body);
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
-      return res.json(200, product);
+    var prodObj = req.body; // { without following}
+    var prodId = req.body._id;
+    // console.log('req.body is..', req.body);
+    // console.log('req.body.following is..', req.body.following);
+    if (req.body._id) {
+        delete req.body._id;
+        delete req.body._v;
+    }
+
+    Product.findById(prodId, function(err, product) {
+        var updated = _.assign(product, req.body);
+        updated.markModified('following');
+        console.log('New Updated Product:  ', product);
+
+        updated.save(function(err, updatedUser, numModified) {
+            console.log("updatedProduct", updatedUser);
+            console.log('modified?', numModified);
+          
+                if (err) console.log(err);
+            return res.json(200, product);
+        });
     });
-  });
 };
+
 
 // Deletes a product from the DB.
 exports.destroy = function(req, res) {

@@ -1,6 +1,7 @@
 <div class="row">
-		<a href='products/{{product._id}}'>
+		
         <div class="col s12 m12 l12">
+          <a href='products/{{product._id}}'>
           <div class="card">
             <div class="card-image">
               <img ng-src="{{product.photoUrls[0]}}">
@@ -12,17 +13,19 @@
               <p>{{product.desc}}</p>
               <p class='price'>{{product.price | currency:undefined:0}}</p>
               <p class='strike'>{{product.retailPrice | currency:undefined:0}}</p>
-           
+           </div>
+           </a>
+
 	          <div class="card-action">
 	          	<div>
-					<i class='mdi-action-favorite favoriteIcon' ng-class="favoriteColor" ng-click="toggleFavorite()"></i>
+					<a><i class='mdi-action-favorite favoriteIcon' ng-class="{favorited: favorited}" ng-click="toggleFavorite()"></i></a>
 					<p class='productFavoriteDisplay'>{{likeText}}</p>         		
 	            </div>
 
 	          </div>
 
-            </div>
+            
           </div>
         </div>
-        </a>
+        
 </div>
