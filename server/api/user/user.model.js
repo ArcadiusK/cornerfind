@@ -21,23 +21,42 @@ var UserSchema = new Schema({
     hashedPassword: String,
     provider: String,
     salt: String,
-    facebook: {type: String},
-    twitter:  {type: String},
-    google:  {type: String},
-    github:  {type: String},
+    facebook: {
+        type: String
+    },
+    twitter: {
+        type: String
+    },
+    google: {
+        type: String
+    },
+    github: {
+        type: String
+    },
     listedProducts: [{
         type: Schema.Types.ObjectId,
         ref: 'Product'
     }],
     location: String,
-    username: {type: String, required:true, unique:true, lowercase:true},  //we have to validate no spaces on front end
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true
+    }, //we have to validate no spaces on front end
     shipAddy: String,
     billAddy: String,
     settings: String, //will need to define later. Nice to have.
     following: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }],
+    followers: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    phoneNumber: String
+
 });
 
 /**
@@ -78,19 +97,22 @@ UserSchema
  * Validations
  */
 
-// Validate empty email
-UserSchema
-    .path('email')
-    .validate(function(email) {
-        return email.length;
-    }, 'Email cannot be blank');
+// // Validate empty email
+// UserSchema
+//     .path('email')
+//     .validate(function(email) {
+//         return email.length;
+//     }, 'Email cannot be blank');
 
-// Validate empty password
-UserSchema
-    .path('hashedPassword')
-    .validate(function(hashedPassword) {
-        return hashedPassword.length;
-    }, 'Password cannot be blank');
+
+
+
+// // Validate empty password
+// UserSchema
+//     .path('hashedPassword')
+//     .validate(function(hashedPassword) {
+//         return hashedPassword.length;
+//     }, 'Password cannot be blank');
 
 // Validate email is not taken
 UserSchema
@@ -108,6 +130,25 @@ UserSchema
             respond(true);
         });
     }, 'The specified email address is already in use.');
+
+
+// Validate username is not taken
+UserSchema
+    .path('username')
+    .validate(function(value, respond) {
+        var self = this;
+        this.constructor.findOne({
+            email: value
+        }, function(err, user) {
+            if (err) throw err;
+            if (user) {
+                if (self.id === user.id) return respond(true);
+                return respond(false);
+            }
+            respond(true);
+        });
+    }, 'The specified username is already taken. Please choose a different one. You can use numbers.');
+
 
 var validatePresenceOf = function(value) {
     return value && value.length;
