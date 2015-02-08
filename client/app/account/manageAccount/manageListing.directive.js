@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('cornerfindApp')
-	.directive('listingCard',function(){
+	.directive('manageListingCard',function(){
 		return {
-			templateUrl: "/app/account/manageAccount/listing.card.html",
+			templateUrl: "/app/account/manageAccount/manageListing.card.html",
 			restrict: 'EA',
 			scope:{
 				listing: '=info',
