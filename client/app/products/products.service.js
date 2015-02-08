@@ -1,30 +1,32 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .factory('products', function($http, $location, $resource) {
-      return{
+  .factory('products', function($http, $location, $resource) {
+    return{
 
-    resource: $resource('/api/products/:id', { id: '@_id'}, {
-      update: {
-        method: 'PUT'
-      },
-      search : {
-        url: '/api/products/search/:query',
-        isArray: true,
-        method: 'GET'
-      },
-      updateQuantity : {
-        url: '/api/products/qty/:id',
-        method: 'PUT'
-      }
-    }),
-    productRoute: function(userId){
-      console.log('USERID ',userId)
-      $location.path('/users'+userId+'/add');
-      //check why this isnt working, want to add to navbar
+      resource: $resource('/api/products/:id/:listings', { id: '@_id'}, {
+        update: {
+          method: 'PUT'
+        },
+        search : {
+          url: '/api/products/search/:query',
+          isArray: true,
+          method: 'GET'
+        },
+        updateQuantity : {
+          url: '/api/products/qty/:id',
+          method: 'PUT'
+        },
+        getUsersListings: {
+          method: 'GET',
+          isArray: true,
+          params: {
+            id: '@id',
+            listings: 'listings'
+          }
+        }
+      })
     }
+  })
 
-  }
-   
-
-    });
+  

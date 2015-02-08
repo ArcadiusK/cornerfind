@@ -39,6 +39,7 @@ exports.create = function(req, res) {
 
 // Updates an existing product in the DB.
 exports.update = function(req, res) {
+  console.log('PRODUCT UPDATE API HIT')
   if(req.body._id) { delete req.body._id; }
   Product.findById(req.params.id, function (err, product) {
     if (err) { return handleError(res, err); }
@@ -62,6 +63,20 @@ exports.destroy = function(req, res) {
     });
   });
 };
+
+//Get all of a user's listings
+exports.getUsersListings = function(req,res){
+  Product.find({userId:req.params.id},function(err, products){
+      if(err){return handleError(res,err)}
+      if(!products.length){return res.send(404);}
+      res.json(products)
+    });
+};
+
+
+
+
+
 
 // Searches for producs from a specific brand from the DB
 exports.search = function(req, res) {
