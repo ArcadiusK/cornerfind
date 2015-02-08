@@ -9,9 +9,6 @@ angular.module('cornerfindApp')
         $scope.currentUser = Auth.getCurrentUser();
         $scope.loggedin = Auth.isLoggedIn();
 
-
-
-
         $scope.searchSubmit = function(searchText) {
             products.search({
                     searchtext: searchText
