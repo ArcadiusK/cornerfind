@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .controller('OneProductViewCtrl', function($scope, Auth, User, products, chat, $stateParams, offer, $cookieStore, $location) {
+    .controller('OneProductViewCtrl', function($scope, Auth, User, products, chat, $stateParams, offer, $cookieStore, $location, $mdSidenav) {
         $scope.currentUser = Auth.getCurrentUser();
 
 
@@ -30,7 +30,7 @@ angular.module('cornerfindApp')
 
         $scope.submitOffer = function(offerPrice) {
 
-            $location.path('/checkout');
+             $mdSidenav('checkout').toggle();
 
             // // $scope.isOffering=false;
             // var prod = $scope.product;
