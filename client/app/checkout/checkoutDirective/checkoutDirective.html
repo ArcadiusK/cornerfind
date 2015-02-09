@@ -1,27 +1,26 @@
-<div layout="row">
-  <md-sidenav class='col l4 m6 s8' md-component-id='checkout' class="md-sidenav-left">
-     <form name="checkoutForm" ng-submit="checkout()">
-                 
-                    <div class='form-group'>
-                        <h4>Billing Info</h4>
+<div class="card-reveal">
+    <span class="card-title grey-text text-darken-4">Enter your Billing Info: <i class="mdi-navigation-close right"></i></span>
+    <form name="checkoutForm" ng-submit="checkout()">
 
-                    </div>
-                    <div class="form-panel">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <label>Credit Card Number</label>
-                                <input type="text" class="form-control credit" ng-model="ccinfo.number" payments-validate="card" payments-format="card" payments-type-model="type" ng-required="true">
-                                <br/>
-                                <label>CVC</label>
-                                <input type="text" class="form-control cvc" ng-model="ccinfo.cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type" ng-required="true">
-                            <br/>
-                                <label>Expiration</label>
-                                <input type="text" class="form-control" ng-model="ccinfo.expiry" payments-validate="expiry" payments-format="expiry" ng-required="true">
-                            </div>
-                        </div>
-                    </div>
-      Scope.ccinfo is: {{ccinfo}}
-                <!--     <div class="form-group">
+        <div class='form-group'>
+            <h4>Billing Info</h4> Scope.user is: {{user}}
+        </div>
+        <div class="form-panel">
+            <div class="row">
+                <div class="col-md-7">
+                    <label>Credit Card Number</label>
+                    <input type="text" class="form-control credit" ng-model="ccinfo.number" payments-validate="card" payments-format="card" payments-type-model="type" ng-required="true">
+                    <br/>
+                    <label>CVC</label>
+                    <input type="text" class="form-control cvc" ng-model="ccinfo.cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type" ng-required="true">
+                    <br/>
+                    <label>Expiration</label>
+                    <input type="text" class="form-control" ng-model="ccinfo.expiry" payments-validate="expiry" payments-format="expiry" ng-required="true">
+                </div>
+            </div>
+        </div>
+        Scope.ccinfo is: {{ccinfo}}
+        <!--     <div class="form-group">
                         <h4>Shipping Info</h4>
                         <div class="row">
                             <label>Name</label>
@@ -47,83 +46,9 @@
                             </div>
                         </div>
                     </div> -->
-                    <div class="form-group">
-                        <button type="submit"  class='btn btn-primary' ng-disabled="checkoutForm.$invalid">Submit Order</button>
-                    </div>
-                </form>
-  </md-sidenav>
-  <md-content>
-
-
-  </md-content>
+        <div class="form-group">
+            <button type="submit" class='btn btn-primary' ng-disabled="checkoutForm.$invalid">Submit Order</button>
+        </div>
+    </form>
 </div>
-
-
-
-<!-- 
-
-
-<div class="container">
-  
-    <div class="row">
-
-        <div class="col-lg-6">
-            <div class="row add-padding-l add-padding-r">
-               
-            <div class="col-lg-6">
-                <div ng-show="errorMessage">
-                    {{errorMessage}}
-                </div>
-                <form name="checkoutForm" ng-submit="checkout()">
-                      {{ccinfo}}
-                    <div class='form-group'>
-                        <h4>Billing Info</h4>
-
-                    </div>
-                    <div class="form-panel">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <label>Credit Card Number</label>
-                                <input type="text" class="form-control credit" ng-model="ccinfo.number" payments-validate="card" payments-format="card" payments-type-model="type" ng-required="true">
-                                <br/>
-                                <label>CVC</label>
-                                <input type="text" class="form-control cvc" ng-model="ccinfo.cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type" ng-required="true">
-                            <br/>
-                                <label>Expiration</label>
-                                <input type="text" class="form-control" ng-model="ccinfo.expiry" payments-validate="expiry" payments-format="expiry" ng-required="true">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <h4>Shipping Info</h4>
-                        <div class="row">
-                            <label>Name</label>
-                            <input type="text" class="form-control" name="name" ng-model="order.shipping.name" ng-required="true">
-                        <br/>
-                            <label>Address</label>
-                            <input type="text" class="form-control" name="address" ng-model="order.shipping.address" ng-required="true">
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <label>City</label>
-                                    <input type="text" name="city" class="form-control" ng-model="order.shipping.city" ng-required="true">
-                                </div>
-                                <div class="col-md-2">
-                                    <label>State</label>
-                                    <states></states>
-                                </div>
-                                <div class="col-md-3">
-                                    <label>Zip</label>
-                                    <input type="text" name="zipcode" class="form-control" maxlength="5" ng-model="order.shipping.zip" ng-required="true">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit"  class='btn btn-primary' ng-disabled="checkoutForm.$invalid">Submit Order</button>
-                    </div>
-                </form>
-            </div>
-        </div> -->
+</div>
