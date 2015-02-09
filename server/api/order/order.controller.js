@@ -64,6 +64,26 @@ exports.getOffers = function(req,res){
   })
 }
 
+
+//Get all user's accepted offer 
+exports.getAccepted = function(req,res){
+  console.log('getAccepted is hitting..');
+
+  Order.getBuyersOffers(req.params.userId).then(function(offers){
+     console.log('getBuyerOffers is hitting..', offers);
+    offers.forEach( function (offer) {
+      console.log('getBuyersOffers is ...', offer);
+      if (offer.status === 'accepted')
+      {
+        res.json(offer);
+      } 
+    })    
+  }).then(null,function(err){
+    console.log('Error ',err)
+  })
+
+}
+
 exports.manageOffers = function(req,res){
   Order.find(
     {$and:[{sellerId:req.params.userId},
