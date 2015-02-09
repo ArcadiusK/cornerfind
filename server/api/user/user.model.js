@@ -55,7 +55,7 @@ var UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
-    phoneNumber: {type: String, default: '555-555-5555'}
+    phoneNumber: String
 
 });
 
