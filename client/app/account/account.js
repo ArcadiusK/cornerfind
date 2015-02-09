@@ -9,7 +9,6 @@ angular.module('cornerfindApp') //look into $urlrouterprovider otherwise method
         controller: 'ManageAccountCtrl'
       })
       .state('account.profile',{
-        url:'/account/:userId',
         templateUrl: 'app/account/manageAccount/manageProfile.html',
         controller: "ManageProfileCtrl"
       })
@@ -26,9 +25,6 @@ angular.module('cornerfindApp') //look into $urlrouterprovider otherwise method
         templateUrl: 'app/account/manageAccount/manageOffers.html',
         controller: 'ManageOffersCtrl'
       })
-
-
-
 
       .state('login', {
         url: '/logins',

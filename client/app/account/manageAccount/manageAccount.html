@@ -3,7 +3,7 @@
 <div class='container'>
     
 
-    <div class='section row'>
+    <div class='row'>
         <div class='col s2 m2 l2'>
             <a><button ui-sref ='account.profile'class="btn">Account Info</button></a>
             <a><button ui-sref='account.settings' class="btn">Change Password</button></a>
@@ -14,13 +14,6 @@
         
         <div class='col s8 m8 l8 offset-s1 offset-m1 offset-l1' ui-view>{{hello}} {{currentUser.name}}! Manage Account View --- Make the landing page a profile page, picture, email, location, followers, etc</div> 
         <div class="col s1 m1 l1"></div>
-
-        <!-- 
-
-    Question 
-	Do child scopes bind to parent scopes of same key?
-
-    -->
         
     </div>
 
