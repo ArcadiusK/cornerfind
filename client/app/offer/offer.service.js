@@ -14,6 +14,14 @@ angular.module('cornerfindApp')
     				offers: 'offers'
     			}
     		},
+            getAcceptedOffer: {
+                // isArray:true,
+                method: 'GET',
+                params: {
+                    id: '@id',
+                    offers: 'getAccepted'
+                }
+            },
 
             manageOffers: {
                 isArray:true,
