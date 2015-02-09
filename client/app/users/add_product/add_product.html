@@ -20,8 +20,9 @@
                     </div>
                     <div class='col s6 m6 l6'>
 
-
-                            <img ng-src="http://cornerfind.s3-website-us-west-2.amazonaws.com/1423515742853david.jpg">
+                     <div ng-repeat='photo in newProduct.photoUrls'>
+                            <img ng-src="{{photo}}"/>
+                     </div>
                     </div>
                 </div>
 
