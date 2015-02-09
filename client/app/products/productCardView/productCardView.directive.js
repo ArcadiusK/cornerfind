@@ -28,7 +28,6 @@ angular.module('cornerfindApp')
 
           scope.product.likes.forEach(function(el){
             if(el.userId == scope.currentUser._id){
-                  console.log(scope.product.likes);
                   scope.favorited = true;
             }
             else{
