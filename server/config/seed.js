@@ -132,6 +132,27 @@ User.find({}).remove(function() {
             following: [],
             phoneNumber: "+16319883287"
         },
+        {
+            name: 'Arcadius Kazimierski',
+            email: 'arcadiusk@gmail.com',
+            password: 'admin',
+            role: 'admin',
+            hashedPassword: '',
+            provider: 'local',
+            salt: String,
+            facebook: {},
+            twitter: {},
+            google: {},
+            github: {},
+            listedProducts: [],
+            location: 'New York',
+            username: 'arcadius', //we have to validate no spaces on front end
+            shipAddy: 'shipping address',
+            billAddy: 'billing address',
+            settings: {}, //will need to define later. Nice to have.
+            following: [],
+            phoneNumber: "+16319883287"
+        },
         function() {
 
 
