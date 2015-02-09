@@ -8,19 +8,23 @@ angular.module('cornerfindApp')
         var sync = $firebase(ref);
         $scope.chatList = sync.$asObject();
         $scope.newChat = {
-            username: "",
-            textLine: ""
+            username: '',
+            textLine: ''
         };
 
-        $scope.addChat = function(newChatText) {
-            $scope.newChat.textLine = newChatText;
+        $scope.addChat = function(paramNewChatText) {
+
+            $scope.newChat.textLine = paramNewChatText;
             $scope.newChat.username = Auth.getCurrentUser().username;
 
-
+            console.log('hitting function');
             $http.post('/api/chats', {
+
                 newChat: $scope.newChat,
                 productID: $scope.productID
+
             });
+            $scope.newChatText = '';
         };
 
 
