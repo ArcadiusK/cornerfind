@@ -45,70 +45,39 @@ exports.create = function(req, res) {
     var chatRef = ref.child(req.body.productID);
     chatRef.push(req.body.newChat);
 
-    //     var howManyAtSymbols = (req.body.newChat.textLine.match(new RegExp("@", "g")) || []).length;
+    var regexPattern = /\@\w+/gm;
+    var arrayOfUsernames = req.body.newChat.textLine.toLowerCase().match(regexPattern);
+    console.log("arrayOfUsernames: ", arrayOfUsernames);
+
+    if (arrayOfUsernames) {
+        for (var ai2 = 0; ai2 < arrayOfUsernames.length; ai2++) {
+            if (arrayOfUsernames.indexOf(arrayOfUsernames[ai2], ai2+1) === -1) {
+                console.log("quering username: " + arrayOfUsernames[ai2].substring(1, arrayOfUsernames[ai2].length) + " to find user");
+                User.findOne({
+                    username: arrayOfUsernames[ai2].substring(1, arrayOfUsernames[ai2].length)
+                }, function(err, auser) {
+                    if (err) {
+                        return handleError(res, err);
+                    }
 
 
-    //     for (var ai = 0; ai < howManyAtSymbols; ai++) {
+                    if (auser) {
+                         console.log('found in database the following user.email from chat line: ', auser.email);
+                        console.log("sending SMS to: " + auser.phoneNumber + " with the following: ", req.body.newChat);
+                        client.messages.create({
+                            body: "CornerFind.com comment from " + req.body.newChat.username + ": " + req.body.newChat.textLine,
+                            to: auser.phoneNumber,
+                            from: "+16506845431"
+                        }, function(err, message) {
 
-    // var first
-
-    // var usernameFromString = req.body.newChat.textLine(req.body.newChat.textLine.indexOf('@'),)
-    var arrayOfUsernameFirstCharacters = [];
-    var arrayOfUsernameLastCharacters = [];
-    var insideUsernameString = false;
-
-    for (var ai = 0; ai < req.body.newChat.textLine.length; ai++) {
-        if (req.body.newChat.textLine.substring(ai, 1) === "@") {
-            arrayOfUsernameFirstCharacters.push(ai + 1);
-            insideUsernameString = true;
-        }
-        if (insideUsernameString) {
-            if ((req.body.newChat.textLine.substring(ai, 1) === " ") ||
-                (req.body.newChat.textLine.substring(ai, 1) === ",") ||
-                (req.body.newChat.textLine.substring(ai, 1) === ".") ||
-                (req.body.newChat.textLine.substring(ai, 1) === "?") ||
-                (req.body.newChat.textLine.substring(ai, 1) === "!") ||
-                (req.body.newChat.textLine.substring(ai, 1) === "'") ||
-                (req.body.newChat.textLine.substring(ai, 1) === "/")) {
-                arrayOfUsernameLastCharacters.push(ai);
-                insideUsernameString = false;
+                        });
+                    }
+                });
+            } else {
+              console.log("found duplicate username in chat text so doing nothing: ", arrayOfUsernames[ai2], " at location "+arrayOfUsernames.indexOf(arrayOfUsernames[ai2], ai2+1));
             }
         }
     }
-
-console.log("arrayOfUsernameFirstCharacters: ",arrayOfUsernameFirstCharacters);
-console.log("arrayOfUsernameLastCharacters: ",arrayOfUsernameLastCharacters);
-
-    if (arrayOfUsernameFirstCharacters.length === arrayOfUsernameLastCharacters.length) {
-        for (var ai2 = 0; ai2 < arrayOfUsernameFirstCharacters.length; ai2++) {
-
-
-            User.findOne({
-                username: req.body.newChat.textLine.substring(arrayOfUsernameFirstCharacters(ai2), arrayOfUsernameLastCharacters(ai2))
-            }, function(err, auser) {
-                if (err) {
-                    return handleError(res, err);
-                }
-                console.log('found the following user in chat line: ', auser);
-
-                console.log("sending SMS", req.body.newChat);
-                client.messages.create({
-                    body: "CornerFind.com comment from " + req.body.newChat.username + ": " + req.body.newChat.textLine,
-                    to: auser.phoneNumber,
-                    from: "+16506845431"
-                }, function(err, message) {
-                    //process.stdout.write("Message sent, SID: ",message.sid);
-                });
-            });
-
-        }
-    }
-
-
-
-
-
-    //}
 };
 
 // Updates an existing chat in the DB.
