@@ -1,7 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    Product = require('../product/product.model');
 
 var OrderSchema = new Schema({
   lineItems: [
@@ -16,15 +17,21 @@ var OrderSchema = new Schema({
   buyerId: {type: Schema.Types.ObjectId, ref: 'User'},
   orderShippingHandling: {type: Number},
   orderTotal: {type: Number, min: 0},
-  status: {type:String, enum: ['offer','accepted','shipped','received','issues']}
+  status: {type:String, enum: ['declined','offer','accepted','shipped','received','issues']}
 });
 
 
 
 OrderSchema.pre('save',function(next){
   var total=0;
+  var self = this;
   this.lineItems.forEach(function(item){  //Async here?     question
-    total+= item.purchasePrice*item.qty
+    total+= item.purchasePrice*item.qty;
+    console.log('ITEM',item)
+    Product.findByIdAndUpdate(item.productId,
+      {$addToSet: {offers: self._id}},function(){
+        //Not sure why this isn't working without the empty callback?  
+      })
   });
   this.orderTotal = total;
   next();
@@ -43,6 +50,27 @@ OrderSchema.statics = {
           } 
       ]}
       ).populate('sellerId').populate('lineItems.productId').exec();
+  },
+  
+  declineUnacceptedOrders: function(orderId){
+    //find all products associated with offer given
+    //then find all orders that have those products
+    //and set them all = 'declined' except for this one
+    var self = this;
+    this.findById(orderId).select('lineItems').exec(function(err,order){
+      order.lineItems.forEach(function(item){
+        Product.findById(item.productId).select('offers').exec(function(err,orders){
+          orders.offers.forEach(function(offerId){
+            if(offerId.toString() !== orderId){
+              self.findByIdAndUpdate(offerId,{$set:{status:'declined'}},function(){
+              })
+            }
+          })
+        })
+        
+      })
+    })
+    
   }
 };
 
