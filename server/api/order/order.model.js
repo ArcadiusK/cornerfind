@@ -50,14 +50,14 @@ OrderSchema.statics = {
 };
 
 //Stripe stuff
-OrderSchema.methods.createDate = function() {
-  this.date = new Date();
-}
+// OrderSchema.methods.createDate = function() {
+//   this.date = new Date();
+// }
 
-OrderSchema.methods.setChargeId = function(chargeId) {
-  this.billing.chargeId = chargeId;
-  this.markModified('billing');
-}
+// OrderSchema.methods.setChargeId = function(chargeId) {
+//   this.billing.chargeId = chargeId;
+//   this.markModified('billing');
+// }
 
 OrderSchema.statics.createStripeCharge = function(item, res) {
   console.log('createStripeCharge method in model, item is -->..', item)
