@@ -2,7 +2,7 @@
 
 angular.module('cornerfindApp')
     .controller('OneProductViewCtrl', function($scope, Auth, User, products, chat, $stateParams, offer, $cookieStore, $location) {
-        // $scope.currentUser = Auth.getCurrentUser();
+        $scope.currentUser = Auth.getCurrentUser();
 
 
         products.resource.get({
@@ -40,13 +40,14 @@ angular.module('cornerfindApp')
                     name: prod.name,
                     purchasePrice: offerPrice,
                 }],
-                sellerId: prod.userId,
+                sellerId: prod.userId._id,
                 buyerId: $scope.currentUser._id,
                 status: 'offer'
             }
             offer.save(orderForCreation, function(result) {}, function(err) {
                 if (err) {
                     console.log('Error ', err)
+                    console.log(orderForCreation)
                 };
             })
         }
