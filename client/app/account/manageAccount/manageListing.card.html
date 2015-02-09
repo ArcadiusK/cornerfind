@@ -12,9 +12,7 @@
     <!-- hidden stuff -->
     <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">Edit {{listing.name}} <i class="mdi-navigation-close right"></i></span>
-        <div ng-show='submitted'> 
-        	<h3>Submission Successful</h3>
-        </div>
+        <success-confirmation ng-show='submitted' text='edited {{listing.name}}'></success-confirmation ng-show='success'>
         <div class='input-form' ng-show='!submitted'>
             <form ng-submit="editProduct({listing:listing})">
                 
