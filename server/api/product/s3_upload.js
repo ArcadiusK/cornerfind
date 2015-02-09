@@ -5,8 +5,8 @@ var secrets = require('../../config/environment');
 
 var s3 = new AWS.S3();
 AWS.config.update({
-          accessKeyId: 'AKIAIAQHTBTRKCFDEWCA',
-        secretAccessKey: 'FyZyMlLE+E43yPgzLn1cQPtQfvK4ZJcvvHqE3nuD'
+        process.env.AWS_ACCESS_KEY_ID,
+        process.env.AWS_SECRET_ACCESS_KEY
 });
 
 //A sample route to receive
