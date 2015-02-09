@@ -23,7 +23,7 @@
 
      <div class="form-group" ng-class="{ 'has-success': form.username.$valid && submitted,
                                             'has-error': form.username.$invalid && submitted }">
-          <label>Username - showed to others - lowercase and numbers only, no spaces</label>
+          <label>Username - visible to others - lowercase and numbers only, no spaces</label>
 
           <input type="text" name="username" class="form-control" ng-model="user.username"
                  required/>
@@ -76,9 +76,11 @@
           <button class="btn btn-inverse btn-lg btn-login" type="submit">
             Sign up
           </button>
-          <a class="btn btn-default btn-lg btn-register" href="/login">
+         <!--
+         <a class="btn btn-default btn-lg btn-register" href="/login">
             Login
           </a>
+          -->
         </div>
 
         <hr>
