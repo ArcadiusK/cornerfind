@@ -7,6 +7,30 @@ var Firebase = require("firebase");
 var ref = new Firebase('https://cornerfind.firebaseio.com/chats');
 var client = require('twilio')();
 var User = require('../user/user.model');
+var mandrill = require('mandrill-api/mandrill');
+var mandrill_client = new mandrill.Mandrill('VdEEYnce5HV7U_I_U30Qfg');
+
+
+
+var sendEmail = function(arrayOfEmailAddressToSendTo, name) {
+    var mandrillParams = {
+        "message": {
+            "from_name": "CornerFind.com",
+            "from_email": "sayHello@cornerFind.com",
+            "to": arrayOfEmailAddressToSendTo,
+            "subject": "You have been mentioned in chat",
+            "text": "Hi " + name + ", \n You have been mentioned in chat."
+        }
+    };
+
+    mandrill_client.messages.send(mandrillParams, function(res) {
+        console.log("mandrill response: ", res);
+    }, function(err) {
+        console.log("mandrill error: ", err);
+    })
+};
+
+
 
 
 // Get list of chats
@@ -51,7 +75,7 @@ exports.create = function(req, res) {
 
     if (arrayOfUsernames) {
         for (var ai2 = 0; ai2 < arrayOfUsernames.length; ai2++) {
-            if (arrayOfUsernames.indexOf(arrayOfUsernames[ai2], ai2+1) === -1) {
+            if (arrayOfUsernames.indexOf(arrayOfUsernames[ai2], ai2 + 1) === -1) {
                 console.log("quering username: " + arrayOfUsernames[ai2].substring(1, arrayOfUsernames[ai2].length) + " to find user");
                 User.findOne({
                     username: arrayOfUsernames[ai2].substring(1, arrayOfUsernames[ai2].length)
@@ -62,19 +86,27 @@ exports.create = function(req, res) {
 
 
                     if (auser) {
-                         console.log('found in database the following user.email from chat line: ', auser.email);
+                        console.log('found in database the following user from chat line: ', auser.name);
                         console.log("sending SMS to: " + auser.phoneNumber + " with the following: ", req.body.newChat);
+
                         client.messages.create({
                             body: "CornerFind.com comment from " + req.body.newChat.username + ": " + req.body.newChat.textLine,
                             to: auser.phoneNumber,
                             from: "+16506845431"
                         }, function(err, message) {
-
+                            console.log("SMS sent successfully");
                         });
+
+                        console.log("sending email to: ", auser.email);
+                        var arrayOfEmails = [];
+                        arrayOfEmails.push({
+                            "email": auser.email
+                        })
+                        sendEmail(arrayOfEmails, auser.name);
                     }
                 });
             } else {
-              console.log("found duplicate username in chat text so doing nothing: ", arrayOfUsernames[ai2], " at location "+arrayOfUsernames.indexOf(arrayOfUsernames[ai2], ai2+1));
+                console.log("found duplicate username in chat text so doing nothing: ", arrayOfUsernames[ai2], " at location " + arrayOfUsernames.indexOf(arrayOfUsernames[ai2], ai2 + 1));
             }
         }
     }
