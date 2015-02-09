@@ -53,9 +53,7 @@ OrderSchema.statics = {
   },
   
   declineUnacceptedOrders: function(orderId){
-    //find all products associated with offer given
-    //then find all orders that have those products
-    //and set them all = 'declined' except for this one
+    //Callback Magic
     var self = this;
     this.findById(orderId).select('lineItems').exec(function(err,order){
       order.lineItems.forEach(function(item){
