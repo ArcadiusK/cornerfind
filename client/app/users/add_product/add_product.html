@@ -16,9 +16,12 @@
                 <div class="form-group">
                     <label id='labels' class="col s2 m2 l2 control-label">Upload Pictures<i class='mdi-action-star-rate'/></label>
                     <div class="col s4 m4 l4">
-                        <input id="file-upload" type="file" class="form-control flow-text" onchange="angular.element(this).scope().upload()"></input>
+                        <input id="file-upload" type="file" capture='camera' accept="image/*" class="form-control" onchange="angular.element(this).scope().upload()"></input>                  
                     </div>
                     <div class='col s6 m6 l6'>
+
+
+                            <img ng-src="http://cornerfind.s3-website-us-west-2.amazonaws.com/1423515742853david.jpg">
                     </div>
                 </div>
 
