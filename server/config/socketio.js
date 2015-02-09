@@ -18,7 +18,7 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
-  require('../api/chat/chat.socket').register(socket);
+
   require('../api/address/address.socket').register(socket);
   require('../api/condition/condition.socket').register(socket);
   require('../api/category/category.socket').register(socket);

@@ -18,7 +18,8 @@ var OrderSchema = new Schema({
   buyerId: {type: Schema.Types.ObjectId, ref: 'User'},
   orderShippingHandling: {type: Number},
   orderTotal: {type: Number, min: 0},
-  status: {type:String, enum: ['offer','accepted','shipped','received','issues']}
+  status: {type:String, enum: ['offer','accepted','shipped','received','issues']},
+  billing: {}
 });
 
 
@@ -48,32 +49,32 @@ OrderSchema.statics = {
   }
 };
 
-// OrderSchema.statics.createStripeCharge = function(info, res) {
-//   var deferral = Q.defer();
-//   var charge = stripe.charges.create({
-//       amount: info.total*100,
-//       currency: 'usd',
-//       card: info.billing.stripeToken,
-//       description: info.billing.email,
-//       capture: false
-//     }, function(err,charge) {
-//           if(err && err.type === 'StripeCardError') {
-//             return res.send(500, err)
-//           }
-//           deferral.resolve(charge);
-//     });
-//     return deferral.promise;
-// };
+//Stripe stuff
+OrderSchema.methods.createDate = function() {
+  this.date = new Date();
+}
 
+OrderSchema.methods.setChargeId = function(chargeId) {
+  this.billing.chargeId = chargeId;
+  this.markModified('billing');
+}
 
-// OrderSchema.statics.captureStripeCharge = function(chargeId) {
-//   stripe.charges.capture(chargeId, function(err,charge) {
-//         console.log(charge);
-//           if(err && err.type === 'StripeCardError') {
-//             return res.send(500, err)
-//           }
-//     });
-// }
+OrderSchema.statics.createStripeCharge = function(item, res) {
+  console.log('createStripeCharge method in model, item is -->..', item)
+  var deferral = Q.defer();
+  var charge = stripe.charges.create({
+      amount: item.orderTotal,
+      currency: 'usd',
+      card: item.billing.stripeToken,
+      capture: true
+    }, function(err,charge) {
+          if(err && err.type === 'StripeCardError') {
+            return res.send(500, err)
+          }
+          deferral.resolve(charge);
+    });
+    return deferral.promise;
+};
 
 
 module.exports = mongoose.model('Order', OrderSchema);
