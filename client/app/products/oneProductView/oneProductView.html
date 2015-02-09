@@ -27,8 +27,10 @@
                 </div>
 
             </div>
-            <div id='checkoutside'>
-                <checkoutd class='col s4 m4 l4' product='product'></checkoutd>
+
+            <div ng-show='notoken'>
+
+                <checkoutd class='col s4 m4 l4' product='product'  stripe-response-handler='getToken()' user='currentUser'></checkoutd>
             </div>
 
 

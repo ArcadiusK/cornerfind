@@ -1,35 +1,31 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .directive('checkoutd', function(User,$mdSidenav) {
+    .directive('checkoutd', function(User, $location) {
         return {
             templateUrl: 'app/checkout/checkoutDirective/checkoutDirective.html',
             restrict: 'EA',
-            scope: {product:'=',
-              onItemClick: "&",
-              buttonText :'@'
-              },
-            link: function(scope, element, attrs, User) {
+            scope: {
+                product: '=',
+                user: '=',
+                stripeResponseHandler: "&",
+                buttonText: '@'
+            },
+            link: function(scope, element, attrs) {
 
-              Stripe.setPublishableKey('pk_test_HrMktfRjskOsJMw8RBnfca6X');
-
-                console.log('scope.product in checkoutd directive is ...', scope.product.name)
-
-                scope.openLeftMenu = function() {
-                    $mdSidenav('checkout').toggle();
-                };
+                    Stripe.setPublishableKey('pk_test_HrMktfRjskOsJMw8RBnfca6X');
 
                     scope.checkout = function() {
-                        if ((/^\d{5}(?:[-\s]\d{4})?$/).test(scope.order.shipping.zip)) {
-                            var ccArr = scope.ccinfo.expiry.split('/');
-                            scope.ccinfo.exp_month = ccArr[0];
-                            scope.ccinfo.exp_year = ccArr[1];
-                            Stripe.card.createToken(scope.ccinfo, stripeResponseHandler);
-                            console.log('Created token... ccinfo is ', scope.ccinfo);
-                            return true;
-                        } else {
-                            return false;
-                        }
+                        // if ((/^\d{5}(?:[-\s]\d{4})?$/).test(scope.order.shipping.zip)) {
+                        var ccArr = scope.ccinfo.expiry.split('/');
+                        scope.ccinfo.exp_month = ccArr[0];
+                        scope.ccinfo.exp_year = ccArr[1];
+                        Stripe.card.createToken(scope.ccinfo, stripeResponseHandler);
+                        console.log('Created token... ccinfo is ', scope.ccinfo);
+                        return true;
+                        // } else {
+                        // return false;
+                        // }
                     };
 
                     function stripeResponseHandler(status, response) {
@@ -39,9 +35,19 @@ angular.module('cornerfindApp')
                             scope.$apply();
                         } else {
                             // token contains id, last4, and card type
-                            scope.item.billing.stripeToken = response['id'];
-                            scope.item.billing.cardType = response['card']['brand'];
-                            scope.item.billing.last4 = response['card']['last4'];
+
+
+                            scope.user.stripeToken = response['id'];
+                            console.log('scope.user.stripeToken is ..', scope.user.stripeToken);
+
+                            User.update(scope.user)
+                                .$promise.then(function(user) {
+                                    console.log('updated user stripe token is ..', user)
+                                });
+
+
+                            // scope.item.billing.cardType = response['card']['brand'];
+                            // scope.item.billing.last4 = response['card']['last4'];
 
 
                             // angular.forEach($scope.order.lineItems, function(lineItem) {
@@ -50,10 +56,11 @@ angular.module('cornerfindApp')
                             //     lineItem.price = lineItem.item.price;
                             //     Product.updateQuantity(lineItem);
                             // });
-                            Order.save($scope.item, function(order) {
-                                console.log(order);
-                                $location.path('/checkout/complete');
-                            });
+
+                            // Order.save($scope.item, function(order) {
+                            //     console.log(order);
+                            //     $location.path('/checkout/complete');
+                            // });
                         }
                     }
 
