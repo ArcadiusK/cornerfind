@@ -5,25 +5,36 @@ var Chat = require('./chat.model');
 var ObjectId = require('mongoose').Types.ObjectId;
 var Firebase = require("firebase");
 var ref = new Firebase('https://cornerfind.firebaseio.com/chats');
-var client = require('twilio')();
+var twilioClient = require('twilio')();
 var User = require('../user/user.model');
 var mandrill = require('mandrill-api/mandrill');
-var mandrill_client = new mandrill.Mandrill('VdEEYnce5HV7U_I_U30Qfg');
+var mandrillClient = new mandrill.Mandrill(process.env.MANDRILL_API_KEY);
+var async = require('async');
 
 
+var sendSMS = function(paramPhone, paramUsername, paramComment) {
+    twilioClient.messages.create({
+        body: "CornerFind.com comment from " + paramUsername + ": " + paramComment,
+        to: paramPhone,
+        from: "+16506845431"
+    }, function(err, message) {
+        console.log("SMS sent successfully");
+    });
+}
 
-var sendEmail = function(arrayOfEmailAddressToSendTo, nameTo, whoMentioned) {
+var sendEmail = function(arrayOfEmailAddressToSendTo, nameTo, whoMentioned, commentLine) {
     var mandrillParams = {
         "message": {
             "from_name": "CornerFind.com",
-            "from_email": "sayHello@cornerFind.com",
+            "from_email": "sayHello@cornerfind.com",
             "to": arrayOfEmailAddressToSendTo,
-            "subject": "You have been mentioned in chat by "+whoMentioned,
-            "text": "Hi " + nameTo + ",\n \nYou have been mentioned in chat by "+whoMentioned+"."
+            "subject": "You have been mentioned in chat by " + whoMentioned,
+            "text": "Hi " + nameTo + ",\n \nYou have been mentioned in the following comment by " + whoMentioned + ":" +
+                "\n \n" + commentLine + "\n \nBest,\nCornerFind.com Team\nsayHello@CornerFind.com"
         }
     };
 
-    mandrill_client.messages.send(mandrillParams, function(res) {
+    mandrillClient.messages.send(mandrillParams, function(res) {
         console.log("mandrill response: ", res);
     }, function(err) {
         console.log("mandrill error: ", err);
@@ -40,7 +51,7 @@ exports.index = function(req, res) {
         product: new ObjectId(req.params.productid)
     }, function(err, chats) {
         if (err) {
-            return handleError(res, err);
+            return console.log("chat controller exports.index Res, err: ", res, err);
         }
         console.log('chat results backend', chats, req.params.productid);
         return res.json(201, chats);
@@ -51,7 +62,7 @@ exports.index = function(req, res) {
 exports.show = function(req, res) {
     Chat.findById(req.params.id, function(err, chat) {
         if (err) {
-            return handleError(res, err);
+            return console.log("chat controller exports.show Res, err: ", res, err);
         }
         if (!chat) {
             return res.send(404);
@@ -71,46 +82,59 @@ exports.create = function(req, res) {
 
     var regexPattern = /\@\w+/gm;
     var arrayOfUsernames = req.body.newChat.textLine.toLowerCase().match(regexPattern);
-    console.log("arrayOfUsernames: ", arrayOfUsernames);
+    console.log("arrayOfUsernames before de-duplication: ", arrayOfUsernames);
+
+    // this will de-duplicate usernames in the array
+    arrayOfUsernames = arrayOfUsernames.filter(function(name, pos) {
+        return arrayOfUsernames.indexOf(name) === pos;
+    })
+
+    console.log("arrayOfUsernames AFTER de-duplication: ", arrayOfUsernames);
 
     if (arrayOfUsernames) {
-        for (var ai2 = 0; ai2 < arrayOfUsernames.length; ai2++) {
-            if (arrayOfUsernames.indexOf(arrayOfUsernames[ai2], ai2 + 1) === -1) {
-                console.log("quering username: " + arrayOfUsernames[ai2].substring(1, arrayOfUsernames[ai2].length) + " to find user");
-                User.findOne({
-                    username: arrayOfUsernames[ai2].substring(1, arrayOfUsernames[ai2].length)
-                }, function(err, auser) {
-                    if (err) {
-                        return handleError(res, err);
+        async.each(arrayOfUsernames, function(ausername, done) {
+            console.log("quering username: " + ausername.substring(1, ausername.length) + " to find user");
+            User.findOne({
+                username: ausername.substring(1, ausername.length)
+            }, function(err, auser) {
+                if (err) {
+                    return console.log("Error finding user: ", res, err);
+                }
+
+
+                if (auser) {
+                    console.log('found in database the following user from chat line: ', auser.name);
+                    console.log('auser.hasOwnProperty("phoneNumber"): ', auser.hasOwnProperty("phoneNumber"), auser);
+                    console.log("!!auser.phoneNumber: ", !!auser.phoneNumber);
+
+
+                  //  if (auser.hasOwnProperty('phoneNumber')) {
+                    if (!!auser.phoneNumber) {
+                        if (auser.phoneNumber.length >= 10) {
+
+                            console.log("sending SMS to: " + auser.phoneNumber + " with the following: ", req.body.newChat);
+                            sendSMS(auser.phoneNumber, req.body.newChat.username, req.body.newChat.textLine);
+                        } else {
+                            console.log("Username: " + auser.username + " doesn't have a valid phone number.")
+                        }
                     }
 
+                    console.log("sending email to: ", auser.email);
+                    // var arrayOfEmails = [];
+                    // arrayOfEmails.push({
+                    //     "email": auser.email
+                    // })
+                    sendEmail([auser.email], auser.name, req.body.newChat.username, req.body.newChat.textLine);
+                }
 
-                    if (auser) {
-                        console.log('found in database the following user from chat line: ', auser.name);
-                        console.log("sending SMS to: " + auser.phoneNumber + " with the following: ", req.body.newChat);
-
-                        client.messages.create({
-                            body: "CornerFind.com comment from " + req.body.newChat.username + ": " + req.body.newChat.textLine,
-                            to: auser.phoneNumber,
-                            from: "+16506845431"
-                        }, function(err, message) {
-                            console.log("SMS sent successfully");
-                        });
-
-                        console.log("sending email to: ", auser.email);
-                        var arrayOfEmails = [];
-                        arrayOfEmails.push({
-                            "email": auser.email
-                        })
-                        sendEmail(arrayOfEmails, auser.name);
-                    }
-                });
-            } else {
-                console.log("found duplicate username in chat text so doing nothing: ", arrayOfUsernames[ai2], " at location " + arrayOfUsernames.indexOf(arrayOfUsernames[ai2], ai2 + 1));
-            }
-        }
+            });
+        }, function(err) {
+            if (err) return res.status(500, "Error 531288").send()
+            console.log("sending response 201: created")
+            res.send(201, req.body.newChat)
+        })
     }
-};
+}
 
 // Updates an existing chat in the DB.
 exports.update = function(req, res) {
