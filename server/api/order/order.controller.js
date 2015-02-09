@@ -80,6 +80,7 @@ exports.manageOffers = function(req,res){
 }
 
 exports.acceptOffer = function(req, res) {
+
   Order.findByIdAndUpdate(req.params.orderId, {
       $set: {
           status: "accepted"
@@ -88,6 +89,9 @@ exports.acceptOffer = function(req, res) {
       if (err) {
           return handleError(res, err);
       }
+      
+  }).then(function(secondErr,secondRes){ 
+    Order.declineUnacceptedOrders(req.params.orderId);
       res.json(doc)
   })
 }
