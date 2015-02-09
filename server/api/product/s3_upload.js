@@ -17,7 +17,6 @@ module.exports = function(req, res){
     		//configure with your bucket name as a string
         Bucket: 'cornerfind',
         Key: req.query.s3_object_name,
-        Expires: 60,
         ContentType: req.query.s3_object_type,
         ACL: 'public-read'
     };
