@@ -100,6 +100,7 @@ exports.me = function(req, res, next) {
     });
 };
 
+
 /**
  * Get user by name AND populate products they have listed
  */
@@ -114,18 +115,17 @@ exports.profile = function(req, res, next) {
             model: 'Product'
         })
         .exec(function(err, user) {
-
             User.populate(user, {
                 path: 'following',
                 model: 'User'
             }, function(err, user) {
                 if (err) console.log(err);
-
                 res.json(200, user);
             })
         })
-
 };
+
+
 
 // Updates an existing User in the DB.
 exports.update = function(req, res) {
