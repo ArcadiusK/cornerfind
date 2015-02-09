@@ -2,8 +2,10 @@
 
 var express = require('express');
 var controller = require('./product.controller');
-
+var s3_upload = require('./s3_upload');
 var router = express.Router();
+
+router.get('/sign_s3',s3_upload);
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);
