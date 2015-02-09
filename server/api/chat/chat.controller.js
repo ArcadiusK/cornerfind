@@ -12,14 +12,14 @@ var mandrill_client = new mandrill.Mandrill('VdEEYnce5HV7U_I_U30Qfg');
 
 
 
-var sendEmail = function(arrayOfEmailAddressToSendTo, name) {
+var sendEmail = function(arrayOfEmailAddressToSendTo, nameTo, whoMentioned) {
     var mandrillParams = {
         "message": {
             "from_name": "CornerFind.com",
             "from_email": "sayHello@cornerFind.com",
             "to": arrayOfEmailAddressToSendTo,
-            "subject": "You have been mentioned in chat",
-            "text": "Hi " + name + ", \n You have been mentioned in chat."
+            "subject": "You have been mentioned in chat by "+whoMentioned,
+            "text": "Hi " + nameTo + ",\n \nYou have been mentioned in chat by "+whoMentioned+"."
         }
     };
 
