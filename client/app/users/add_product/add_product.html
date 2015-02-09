@@ -14,12 +14,13 @@
             </div>
             <form class="form-horizontal style-form" method="get" ng-submit='addProduct(newProduct)'>
                 <div class="form-group">
-                    <label id='labels' class="col s2 m2 l2 control-label">Upload Pictures<i class='mdi-action-star-rate'/></label>
+                    <label id='labels' class="col s2 m2 l2 control-label ">Upload Pictures<i class='mdi-action-star-rate'/></label>
+                   
                     <div class="col s4 m4 l4">
                         <input id="file-upload" type="file" capture='camera' accept="image/*" class="form-control" onchange="angular.element(this).scope().upload()"></input>                  
                     </div>
-                    <div class='col s6 m6 l6'>
 
+                    <div class='col s6 m6 l6'>
                      <div ng-repeat='photo in newProduct.photoUrls'>
                             <img ng-src="{{photo}}"/>
                      </div>
