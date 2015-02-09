@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Order = require('./order.model');
+// var ObjectId = require('mongoose').Types.ObjectId;
 
 // Get list of orders
 exports.index = function(req, res) {
@@ -56,13 +57,43 @@ exports.destroy = function(req, res) {
 
 //Get all of a user's orders
 exports.getOffers = function(req,res){
-  Order.getBuyersOffers(req.params.id).then(function(offers){
-    console.log('OFFERS ',offers)
+  Order.getBuyersOffers(req.params.userId).then(function(offers){
     res.json(offers);
   }).then(null,function(err){
     console.log('Error ',err)
   })
 }
+
+exports.manageOffers = function(req,res){
+  Order.find(
+    {$and:[{sellerId:req.params.userId},
+      {
+          status:{
+            $in: ["offer","accepted","shipped"]
+          }
+      }
+    ]}
+  ).populate('buyerId').populate('productId').exec(function(err,offers){
+    if(err){return handleError(res,err);}
+    res.json(offers)
+  })
+}
+
+exports.acceptOffer = function(req, res) {
+  Order.findByIdAndUpdate(req.params.orderId, {
+      $set: {
+          status: "accepted"
+      }
+  }, function(err, doc) {
+      if (err) {
+          return handleError(res, err);
+      }
+      res.json(doc)
+  })
+}
+
+
+
 
 function handleError(res, err) {
   return res.send(500, err);

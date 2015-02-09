@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('SettingsCtrl', function ($scope, User, Auth) {
+  .controller('ChangePasswordCtrl', function ($scope, User, Auth) {
     $scope.errors = {};
 
     $scope.changePassword = function(form) {

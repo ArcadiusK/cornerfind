@@ -16,7 +16,6 @@ available: {type: Boolean},
 price: {type: Number},
 brand: {type: String},
 retailPrice: {type: Number},
-likes: [{type: Schema.Types.ObjectId, ref: 'User'}]
 });
 
 ProductSchema.index({name: 'text', brand: 'text', category:'text', desc: 'text' });
