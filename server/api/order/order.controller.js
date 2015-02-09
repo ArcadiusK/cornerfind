@@ -24,10 +24,19 @@ exports.show = function(req, res) {
 // Creates a new order in the DB.
 exports.create = function(req, res) {
   Order.create(req.body, function(err, order) {
-    if(err) { return handleError(res, err); }
+    if(err) console.log(err)
+
+    console.log('backend order control create.. order is -->', order);
     return res.json(201, order);
   });
 };
+exports.charge = function(req, res) {
+
+  console.log('order controller charge req.body is..', req.body, 'END');
+  var newCharge = Order.createStripeCharge(req.body, res);
+  
+};
+
 
 // Updates an existing order in the DB.
 exports.update = function(req, res) {
@@ -81,7 +90,6 @@ exports.getAccepted = function(req,res){
   }).then(null,function(err){
     console.log('Error ',err)
   })
-
 }
 
 exports.manageOffers = function(req,res){

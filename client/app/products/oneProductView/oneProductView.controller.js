@@ -29,27 +29,30 @@ angular.module('cornerfindApp')
         //and put in a confirmation 'Successfully Submitted Offer!'
 
         $scope.submitOffer = function(offerPrice) {
-            // $scope.isOffering=false;
-            var prod = $scope.product;
-            $scope.isOffering = !$scope.isOffering;
 
-            var orderForCreation = {
-                lineItems: [{
-                    //This ONLY handles single items as is, will need to be modified for bundling
-                    productId: prod._id,
-                    name: prod.name,
-                    purchasePrice: offerPrice,
-                }],
-                sellerId: prod.userId._id,
-                buyerId: $scope.currentUser._id,
-                status: 'offer'
-            }
-            offer.save(orderForCreation, function(result) {}, function(err) {
-                if (err) {
-                    console.log('Error ', err)
-                    console.log(orderForCreation)
-                };
-            })
+            $location.path('/checkout');
+
+            // // $scope.isOffering=false;
+            // var prod = $scope.product;
+            // $scope.isOffering = !$scope.isOffering;
+
+            // var orderForCreation = {
+            //     lineItems: [{
+            //         //This ONLY handles single items as is, will need to be modified for bundling
+            //         productId: prod._id,
+            //         name: prod.name,
+            //         purchasePrice: offerPrice,
+            //     }],
+            //     sellerId: prod.userId._id,
+            //     buyerId: $scope.currentUser._id,
+            //     status: 'offer'
+            // }
+            // offer.save(orderForCreation, function(result) {}, function(err) {
+            //     if (err) {
+            //         console.log('Error ', err)
+            //         console.log(orderForCreation)
+            //     };
+            // })
         }
 
         $scope.userRedirect = function() {
