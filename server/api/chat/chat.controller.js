@@ -73,10 +73,7 @@ exports.show = function(req, res) {
 
 // Creates a new chat in the DB.
 exports.create = function(req, res) {
-    // Chat.create(req.body, function(err, chat) {
-    //   if(err) { return handleError(res, err); }
-    //   return res.json(201, chat);
-    // });
+
     var chatRef = ref.child(req.body.productID);
     chatRef.push(req.body.newChat);
 
@@ -85,54 +82,59 @@ exports.create = function(req, res) {
     console.log("arrayOfUsernames before de-duplication: ", arrayOfUsernames);
 
     // this will de-duplicate usernames in the array
-    arrayOfUsernames = arrayOfUsernames.filter(function(name, pos) {
-        return arrayOfUsernames.indexOf(name) === pos;
-    })
+    if (arrayOfUsernames) {
+        arrayOfUsernames = arrayOfUsernames.filter(function(name, pos) {
+            return arrayOfUsernames.indexOf(name) === pos;
+        })
+        console.log("arrayOfUsernames AFTER de-duplication: ", arrayOfUsernames);
+    }
 
-    console.log("arrayOfUsernames AFTER de-duplication: ", arrayOfUsernames);
 
     if (arrayOfUsernames) {
         async.each(arrayOfUsernames, function(ausername, done) {
             console.log("quering username: " + ausername.substring(1, ausername.length) + " to find user");
             User.findOne({
-                username: ausername.substring(1, ausername.length)
-            }, function(err, auser) {
-                if (err) {
-                    return console.log("Error finding user: ", res, err);
-                }
-
-
-                if (auser) {
-                    console.log('found in database the following user from chat line: ', auser.name);
-                    console.log('auser.hasOwnProperty("phoneNumber"): ', auser.hasOwnProperty("phoneNumber"), auser);
-                    console.log("!!auser.phoneNumber: ", !!auser.phoneNumber);
-
-
-                  //  if (auser.hasOwnProperty('phoneNumber')) {
-                    if (!!auser.phoneNumber) {
-                        if (auser.phoneNumber.length >= 10) {
-
-                            console.log("sending SMS to: " + auser.phoneNumber + " with the following: ", req.body.newChat);
-                            sendSMS(auser.phoneNumber, req.body.newChat.username, req.body.newChat.textLine);
-                        } else {
-                            console.log("Username: " + auser.username + " doesn't have a valid phone number.")
-                        }
+                    username: ausername.substring(1, ausername.length)
+                }, function(err, auser) {
+                    if (err) {
+                        return console.log("Error finding user: ", res, err);
                     }
 
-                    console.log("sending email to: ", auser.email);
-                    // var arrayOfEmails = [];
-                    // arrayOfEmails.push({
-                    //     "email": auser.email
-                    // })
-                    sendEmail([auser.email], auser.name, req.body.newChat.username, req.body.newChat.textLine);
-                }
 
-            });
+                    if (auser) {
+                        console.log('found in database the following user from chat line: ', auser.name);
+
+                        if (typeof auser.phoneNumber !== 'undefined') {
+                            if (auser.phoneNumber.length >= 10) {
+
+                                console.log("sending SMS to: " + auser.phoneNumber + " with the following: ", req.body.newChat);
+                                sendSMS(auser.phoneNumber, req.body.newChat.username, req.body.newChat.textLine);
+                            } else {
+                                console.log("Username: " + auser.username + " doesn't have a valid phone number, so doing nothing.")
+                            }
+                        } else {
+                            console.log("Username: " + auser.username + " doesn't have a phone number, so doing nothing.")
+                        }
+
+                        console.log("sending email to: ", auser.email);
+                        var arrayOfEmails = [];
+                        arrayOfEmails.push({
+                            "email": auser.email
+                        })
+                        sendEmail(arrayOfEmails, auser.name, req.body.newChat.username, req.body.newChat.textLine);
+                    }
+
+                    done(); // done() should be called from here
+                })
+                // done() should NOT be called from here
         }, function(err) {
             if (err) return res.status(500, "Error 531288").send()
             console.log("sending response 201: created")
-            res.send(201, req.body.newChat)
+            res.send(201, "created");
         })
+    } else {
+        console.log("sending response 201: no emails no sms sent")
+        res.send(201, "no emails no sms sent");
     }
 }
 
