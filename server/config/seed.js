@@ -110,7 +110,8 @@ User.find({}).remove(function() {
             billAddy: 'billing address',
             settings: {}, //will need to define later. Nice to have.
             following: [],
-            phoneNumber: "+16465804290"
+            phoneNumber: "+16465804290",
+            billing: {stripeToken: null, last4: null, cardType: null}
         }, {
             name: 'Admin Arcadius',
             email: 'admin@admin.com',
@@ -130,7 +131,8 @@ User.find({}).remove(function() {
             billAddy: 'billing address',
             settings: {}, //will need to define later. Nice to have.
             following: [],
-            phoneNumber: "+16319883287"
+            phoneNumber: "+16319883287",
+                billing: {stripeToken: null, last4: null, cardType: null}
         },
         {
             name: 'Arcadius Kazimierski',
@@ -151,7 +153,8 @@ User.find({}).remove(function() {
             billAddy: 'billing address',
             settings: {}, //will need to define later. Nice to have.
             following: [],
-            phoneNumber: "+16319883287"
+            phoneNumber: "+16319883287",
+                billing: {stripeToken: null, last4: null, cardType: null}
         },
         function() {
 

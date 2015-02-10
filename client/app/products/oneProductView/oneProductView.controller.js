@@ -28,7 +28,7 @@ angular.module('cornerfindApp')
         $scope.submitOffer = function(offerPrice) {
 
             //SHOWS CHECKOUT DIRECTIVE IF USER DOES NOT HAVE A TOKEN ALREADY
-            if ($scope.currentUser.stripeToken == null) {
+            if ($scope.currentUser.billing.stripeToken == null) {
                 $scope.notoken = true;
             } 
 
@@ -51,8 +51,6 @@ angular.module('cornerfindApp')
                     console.log('Error ', err)
                     console.log(orderForCreation)
                 };
-
-                console.log('offer created...', result)
             })
 
         }
