@@ -79,7 +79,6 @@ angular.module('cornerfindApp')
             var prod = $scope.product;
             $scope.isOffering = !$scope.isOffering;
            
-
             var orderForCreation = {
                 lineItems: [{
                     //This ONLY handles single items as is, will need to be modified for bundling
@@ -104,7 +103,7 @@ angular.module('cornerfindApp')
                     stripeToken: $scope.currentUser.billing.stripeToken ,
                     orderTotal: $scope.product.price
             }
-            console.log('HERE')
+            
             offer.charge($scope.stripeOrder).$promise.then(function(result){
 
                 if (result.$resolved) {
@@ -112,6 +111,10 @@ angular.module('cornerfindApp')
 
                 }
             })
+
+            
+
+
         }
 
         $scope.userRedirect = function() {
