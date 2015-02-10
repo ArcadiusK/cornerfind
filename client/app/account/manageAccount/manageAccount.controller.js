@@ -7,9 +7,6 @@ angular.module('cornerfindApp')
 
 
 		$scope.isActive = function(inputState){
-			console.log('$state ',$state.current.name)
-			console.log('inputState ',inputState)
-			console.log(inputState === $state.current.name)
 			return inputState === $state.current.name;
 		}
 
