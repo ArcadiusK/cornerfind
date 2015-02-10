@@ -2,10 +2,8 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-
     stripe = require('stripe')('sk_test_kbZLZCeD7MoHX28rIB9Uoavi'),
     Q = require('q'),
-
     Product = require('../product/product.model');
 
 var OrderSchema = new Schema({
@@ -21,10 +19,10 @@ var OrderSchema = new Schema({
   buyerId: {type: Schema.Types.ObjectId, ref: 'User'},
   orderShippingHandling: {type: Number},
   orderTotal: {type: Number, min: 0},
-
+  timeStamp: Number,
   billing: {},
 
-  status: {type:String, enum: ['declined','offer','accepted','shipped','received','issues']}
+  status: {type:String, enum: ['declined','expired','offer','accepted','shipped','received','issues']}
 
 });
 
@@ -33,7 +31,7 @@ var OrderSchema = new Schema({
 OrderSchema.pre('save',function(next){
   var total=0;
   var self = this;
-  this.lineItems.forEach(function(item){  //Async here?     question
+  this.lineItems.forEach(function(item){  
     total+= item.purchasePrice*item.qty;
     console.log('ITEM',item)
     Product.findByIdAndUpdate(item.productId,
@@ -45,7 +43,13 @@ OrderSchema.pre('save',function(next){
   next();
 });
 
-//need a setter for the status enum
+OrderSchema.pre('save',function(next){
+  if(this.isNew){
+    this.timeStamp = Date.now();
+  }
+  next();
+})
+
 
 OrderSchema.statics = {
   getBuyersOffers: function(buyerId){
@@ -63,11 +67,14 @@ OrderSchema.statics = {
   declineUnacceptedOrders: function(orderId){
     //Callback Magic
     var self = this;
-    this.findById(orderId).select('lineItems').exec(function(err,order){
+    this.findById(orderId).select('lineItems').exec(function(err,order){ 
+      //get all items in order
       order.lineItems.forEach(function(item){
         Product.findById(item.productId).select('offers').exec(function(err,orders){
+          //get all offers with those items in them
           orders.offers.forEach(function(offerId){
             if(offerId.toString() !== orderId){
+              //decline those offers since this product is bought
               self.findByIdAndUpdate(offerId,{$set:{status:'declined'}},function(){
               })
             }
@@ -76,11 +83,41 @@ OrderSchema.statics = {
         
       })
     })
+  },
+
+  checkAllTimeStamps: function(){
+    var self = this;
+    this.find({}).select('timeStamp').exec(function(err,result){
+      var msPerDay = 86400000;
+      result.forEach(function(order){
+        if(Date.now() - order.timeStamp > msPerDay){
+          self.findByIdAndUpdate(order._id,{$set: {status: 'expired'}},function(err,res){
+            if(err){console.log('Error Updating Offer Status ',err)}
+          })
+        }
+      })
     
+    }) 
+    console.log('Expired timeStamp Check Ran')
   }
+
 };
 
-//Stripe stuff
+OrderSchema.methods = {
+  checkTimeStamp: function(orderObject){
+    var msPerDay = 86400000;
+    // var test = 10; //working
+    if(Date.now() - this.timeStamp > msPerDay){
+        this.status = 'expired';
+        this.save(function(err,res){
+            console.log('SAVE CALLBACK ',arguments)
+        })
+    }
+    
+  }
+}
+
+//Stripe stuff - please leave for reference
 // OrderSchema.methods.createDate = function() {
 //   this.date = new Date();
 // }
@@ -91,7 +128,7 @@ OrderSchema.statics = {
 // }
 
 OrderSchema.statics.createStripeCharge = function(item, res) {
-  console.log('createStripeCharge method in model, item is -->..', item)
+  // console.log('createStripeCharge method in model, item is -->..', item)
   var deferral = Q.defer();
   var charge = stripe.charges.create({
       amount: parseInt(item.orderTotal)*100,
@@ -103,7 +140,9 @@ OrderSchema.statics.createStripeCharge = function(item, res) {
           if(err && err.type === 'StripeCardError') {
             return res.send(500, err)
           }
+
           console.log('Stripe charged! ..', charge)
+
           deferral.resolve(charge);
           // res.json(200,charge);
     });
