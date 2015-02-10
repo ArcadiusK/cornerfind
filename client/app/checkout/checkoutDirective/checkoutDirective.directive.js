@@ -7,6 +7,7 @@ angular.module('cornerfindApp')
             restrict: 'EA',
             scope: {
                 product: '=',
+                showtoken: '=',
                 notoken: '=',
                 user: '=',
                 stripeResponseHandler: "&",
@@ -23,7 +24,9 @@ angular.module('cornerfindApp')
                         scope.ccinfo.exp_year = ccArr[1];
                         Stripe.card.createToken(scope.ccinfo, stripeResponseHandler);
               
-                        scope.notoken=false;
+                       
+                        
+                        scope.$apply();
                         return true;
                         // } else {
                         // return false;
@@ -34,6 +37,7 @@ angular.module('cornerfindApp')
                         if (response.error) {
                             // show the errors on the form
                             scope.errorMessage = response.error.message;
+
                             scope.$apply();
                         } else {
                             // token contains id, last4, and card type
@@ -41,27 +45,13 @@ angular.module('cornerfindApp')
                             scope.user.billing.last4 = response['card']['last4'];
                             scope.user.billing.stripeToken = response['id'];
                             console.log('scope.useris ..', scope.user.username);
-
+                             scope.showtoken=false;
+                            scope.notoken = false;
                             User.update(scope.user)
                                 .$promise.then(function(user) {
+
                                     console.log('updated user with billing is..', user)
                                 });
-
-
-                           
-
-
-                            // angular.forEach($scope.order.lineItems, function(lineItem) {
-                            //     lineItem.productId = lineItem.item._id;
-                            //     lineItem.productName = lineItem.item.name;
-                            //     lineItem.price = lineItem.item.price;
-                            //     Product.updateQuantity(lineItem);
-                            // });
-
-                            // Order.save($scope.item, function(order) {
-                            //     console.log(order);
-                            //     $location.path('/checkout/complete');
-                            // });
                         }
                     }
 

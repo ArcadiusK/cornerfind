@@ -103,8 +103,9 @@ OrderSchema.statics.createStripeCharge = function(item, res) {
           if(err && err.type === 'StripeCardError') {
             return res.send(500, err)
           }
-           console.log('successfully cgharged!..', charge)
+          console.log('Stripe charged! ..', charge)
           deferral.resolve(charge);
+          // res.json(200,charge);
     });
     return deferral.promise;
 };

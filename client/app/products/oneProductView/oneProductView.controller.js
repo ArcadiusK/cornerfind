@@ -2,7 +2,15 @@
 
 angular.module('cornerfindApp')
     .controller('OneProductViewCtrl', function($scope, Auth, User, products, chat, $stateParams, offer, $cookieStore, $location, $mdSidenav) {
-        $scope.currentUser = Auth.getCurrentUser();
+        Auth.getCurrentUser().$promise.then(function(user) {
+            if (user.billing.stripeToken !==null) {
+                $scope.currentUser = user;
+                $scope.notoken =false;
+            } else {
+                   $scope.currentUser = user;
+                $scope.notoken = true;
+            }
+        });
 
         products.resource.get({
             id: $stateParams.id
@@ -21,6 +29,8 @@ angular.module('cornerfindApp')
         }
 
         $scope.isOffering = false;
+        $scope.boughtItem = false;
+        $scope.showtoken = false;
 
         //need to clear the form after the offer is submitted
         //and put in a confirmation 'Successfully Submitted Offer!'
@@ -29,8 +39,10 @@ angular.module('cornerfindApp')
 
             //SHOWS CHECKOUT DIRECTIVE IF USER DOES NOT HAVE A TOKEN ALREADY
             if ($scope.currentUser.billing.stripeToken == null) {
-                $scope.notoken = true;
-            } 
+                $scope.showtoken = true;
+                alert('No token! create a token below!');
+                return;
+            }
 
             var prod = $scope.product;
             $scope.isOffering = !$scope.isOffering;
@@ -52,6 +64,50 @@ angular.module('cornerfindApp')
                     console.log(orderForCreation)
                 };
             })
+
+        }
+
+        $scope.buyNow = function() {
+            //SHOWS CHECKOUT DIRECTIVE IF USER DOES NOT HAVE A TOKEN ALREADY
+            if ($scope.currentUser.billing.stripeToken == null) {
+                $scope.showtoken = true;
+                return;
+            }
+
+            var prod = $scope.product;
+            $scope.isOffering = !$scope.isOffering;
+           
+
+            var orderForCreation = {
+                lineItems: [{
+                    //This ONLY handles single items as is, will need to be modified for bundling
+                    productId: prod._id,
+                    name: prod.name,
+                    purchasePrice: $scope.product.retailPrice,
+                }],
+                sellerId: prod.userId._id,
+                buyerId: $scope.currentUser._id,
+                status: 'accepted'
+            }
+            offer.save(orderForCreation, function(result) {}, function(err) {
+                if (err) {
+                    console.log('Error ', err)
+                    console.log(orderForCreation)
+                };
+            })
+
+             // Create digestible stripe order
+            $scope.stripeOrder = {
+                    stripeToken: $scope.currentUser.billing.stripeToken ,
+                    orderTotal: $scope.product.retailPrice
+            }
+
+            offer.charge($scope.stripeOrder, function(result) {
+                if (result.captured === true) {
+                    $scope.stripeResult = result;
+                     $scope.boughtItem = true;
+                }
+            });
 
         }
 
