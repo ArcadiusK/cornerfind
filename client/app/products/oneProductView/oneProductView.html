@@ -1,55 +1,63 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 
-<div class="container" ng-controller= "OneProductViewCtrl" resizable>
-  <div class="row">
-    <div class="col s12 l3" ng-class='isMobile(windowWidth)'>
-      <div class="card pink lighten-3 ">
-        
+<div class="container" ng-controller="OneProductViewCtrl" resizable>
+    <div class="row">
+        <div ng-class='isMobile(windowWidth)' class="col s12 l4">
+            <div class="card pink lighten-3 ">
+
+                <div class="card-content white-text">
+
+                    <span class="card-title grey-text text-darken-4"> {{product.name}} </span>
+                    <p>{{product.desc}} </p>
+                    <p>Quantity: {{product.qty}} </p>
+                    <p>offer Price {{offerPrice}}</p>
+
+                    <div class='col s6'>
+                        <button ng-click="submitOffer(offerPrice)" class=" waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Offer</button>
+                        <input type='number' id="text-input" placeholder='1234' ng-model='offerPrice' />
+                    </div>
+                    <div ng-hide="boughtItem" class="section">
+                        <button ng-click="buyNow(offerPrice)" class=" waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Buy Now {{product.price | currency}} </button>
+                
+                    </div>
+
+                    <div ng-show='boughtItem' class='section'>
+                        Item Successfully Purchased!
+                        {{stripeResult}}
+                    </div>
+                </div>
+
+            </div>
+               <div class="card-content white-text">
+                <button ng-click='userRedirect()' class="waves-effect waves-light btn"> Sold by {{product.userId.username}}</button>
+            </div>
+        <br/>
+
+            <div ng-show='showtoken'>
+                <checkoutd class='col s4 m4 l4' product='product' notoken='notoken' showtoken='showtoken' stripe-response-handler='getToken()' user='currentUser'></checkoutd>
+            </div>
 
 
-      <div class="card-content white-text" >
+         
 
-        <span class="card-title grey-text text-darken-4"> {{product.name}} </span>
-        <p>{{product.desc}} </p>
-        <p>Quantity: {{product.qty}} </p>
-        <p>offer Price {{offerPrice}}</p>
 
-        <div class='col s6'>
-          <button  ng-click="submitOffer(offerPrice)" class=" waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Offer</button>
-          <input type='number' id="text-input" placeholder='1234' ng-model='offerPrice'/>
         </div>
-        <div ng-hide="isOffering" class="section"> 
-          <a class="waves-effect waves-purple btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Buy Now {{product.price | currency}} </a>
+
+        <div class="col l7 offset-l5 s12 m12">
+            <div class='row'>
+                <div ng-repeat="onePhotoUrl in product.photoUrls">
+                    <div class='col l6 m12 center'>
+                        <img class="responsive-img" src="{{onePhotoUrl}}">
+                    </div>
+                </div>
+            </div>
+
+            <div ng-controller='OneProductViewCtrl'>
+                <chat chatlist='chatlist' addchat='addChat(newChat)'></chat>
+            </div>
+
         </div>
 
-        <div ng-show='isOffering' class='section'>
-          
-        </div>
-      </div>
-
-
-
-      <div class="card pink lighten-3 hide-on-med-and-down">
-        <div class="card-content white-text" >
-          <span class="card-title grey-text text-darken-4"> More from this seller</span>
-        </div>
-      </div>
     </div>
-
-    <div class="col l7 offset-l5 s12 m12">
-      <div class='row'>
-        <div ng-repeat="onePhotoUrl in product.photoUrls">
-          <div class='col l6 m12'>
-          <img class="responsive-img center-align" src="{{onePhotoUrl}}">
-          </div>
-        </div>
-      </div>
-
-      <div ng-controller='OneProductViewCtrl'>
-        <chat chatlist='chatlist' addchat='addChat(newChat)'></chat>
-      </div>
-
-    </div>
-  </div>
 </div>

@@ -9,7 +9,7 @@
 
                     <span class="card-title grey-text text-darken-4">{{user.username}} </span>
                     <br/>
-                    <h5 class="z-depth-1">About me:</h5>
+                    <h5 >About me:</h5>
                     <p >{{user.description}} </p>
                     <br/>
                     <table>
@@ -37,11 +37,12 @@
                 
                     <div class="section">
 
-                        <a ng-show='!followed'ng-click='followUser()' class="waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-favorite-outline"></i>Follow</a>
+                        <a ng-click='toggleFollow()' class="waves-effect btn blue lighten-2 grey-text text-darken-4">
 
+                            <i class="mdi-action-favorite-outline"></i>{{toggleText}}
 
-                        <a ng-show='followed' ng-click='unfollowUser()' class="waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-favorite-outline"></i>Following<i ng-show='followed' class='mdi-action-done'></i></a>
-                
+                            <i ng-show='followed' class='mdi-action-done'></i></a>
+
 
                     <a ng-click='loadAbout()' class="waves-effect waves-purple btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-face-unlock"></i>About</a>
 
@@ -49,12 +50,21 @@
             </div>
         </div>
 
-        <div class="row">
+         <div class="row">
+    <ul class="col l8 m6 s4 list-unstyled" ng-repeat="product in user.listedProducts">
+      <product-card-view info="product"></product-card-view>
+    </ul>
+  </div>
+</div>
+
+<!--         <div class="row">
             <ul class="col l12 m6 s12 list-unstyled">
-                <product-card-view class="col l8 m8 s12" ng-repeat="product in user.listedProducts" info="product"></product-card-view>
+                <span ng-repeat="product in user.listedProducts" >
+                <product-card-view class="col l8 m8 s12" info="product"></product-card-view>
+            </span>
             </ul>
         </div>
-
+ -->
     </div>
 
 

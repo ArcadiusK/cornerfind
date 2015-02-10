@@ -50,6 +50,12 @@ angular.module('cornerfindApp')
                     controller: 'profile'
                 }
             },
+             getOwner: {
+                method: 'POST',
+                params: {
+                    controller: 'owner'
+                }
+            },
             update: {
                 method: 'PUT',
                 params: {

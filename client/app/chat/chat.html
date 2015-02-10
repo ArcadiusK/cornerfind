@@ -8,7 +8,7 @@
       </div>
 </div>
 
-<div ng-controller="ChatCtrl">
+<div ng-controller="ChatCtrl" ng-show="isLoggedIn()">
  <div class="card-panel blue lighten-4">
   <form ng-submit="addChat(newChatText)">
 
@@ -17,7 +17,7 @@
       <i class="mdi-editor-mode-edit prefix"></i>
       <textarea id="icon_prefix2" class="materialize-textarea" ng-model="newChatText"></textarea>
       <label for="icon_prefix2">New Message</label>
-    
+
       <button type="submit" class="btn btn-primary center-align">Submit</button>
 
     </div>

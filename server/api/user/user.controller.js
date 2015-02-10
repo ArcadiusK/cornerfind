@@ -100,6 +100,7 @@ exports.me = function(req, res, next) {
     });
 };
 
+
 /**
  * Get user by name AND populate products they have listed
  */
@@ -114,42 +115,41 @@ exports.profile = function(req, res, next) {
             model: 'Product'
         })
         .exec(function(err, user) {
-
             User.populate(user, {
                 path: 'following',
                 model: 'User'
             }, function(err, user) {
                 if (err) console.log(err);
-
                 res.json(200, user);
             })
         })
-
 };
+
+
 
 // Updates an existing User in the DB.
 exports.update = function(req, res) {
     var userObj = req.body; // { without following}
     var userId = req.body._id;
-    console.log('req.body is..', req.body);
-    console.log('req.body.following is..', req.body.following);
+    // console.log('req.body is..', req.body);
+    // console.log('req.body.following is..', req.body.following);
     if (req.body._id) {
         delete req.body._id;
+        delete req.body._v;
     }
 
     User.findById(userId, function(err, user) {
-    
-    console.log('!!!',user)
-        _.assign(user, req.body);
-        console.log('!!!!',user)
-        user.save(function(err) {
-            if (err) {
+        var updated = _.assign(user, req.body);
+        updated.markModified('following');
+        updated.markModified('stripeToken');
+      
+        updated.save(function(err, updatedUser, numModified) {
+            console.log("updatedUser", updatedUser);
+            console.log('modified?', numModified);
+          
                 if (err) console.log(err);
-            }
-            console.log('updated user is!!!!!', user);
             return res.json(200, user);
         });
-
     });
 };
 

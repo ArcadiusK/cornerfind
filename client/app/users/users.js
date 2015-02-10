@@ -4,7 +4,7 @@ angular.module('cornerfindApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('user', {
-        url: '/users/{name}',
+        url: '/users/:name',
         templateUrl: 'app/users/users.html',
         controller: 'UsersCtrl'
       })

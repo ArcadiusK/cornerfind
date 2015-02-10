@@ -1,7 +1,9 @@
 'use strict';
 
-var _ = require('lodash');
-var Order = require('./order.model');
+var _ = require('lodash'),
+  Order = require('./order.model'),
+  expiredOffersCheck = require('./cronJob.js');
+
 
 // Get list of orders
 exports.index = function(req, res) {
@@ -23,10 +25,14 @@ exports.show = function(req, res) {
 // Creates a new order in the DB.
 exports.create = function(req, res) {
   Order.create(req.body, function(err, order) {
-    if(err) { return handleError(res, err); }
+    if(err) console.log(err)
     return res.json(201, order);
   });
 };
+exports.charge = function(req, res) {
+  var newCharge = Order.createStripeCharge(req.body, res);
+};
+
 
 // Updates an existing order in the DB.
 exports.update = function(req, res) {
@@ -56,13 +62,67 @@ exports.destroy = function(req, res) {
 
 //Get all of a user's orders
 exports.getOffers = function(req,res){
-  Order.getBuyersOffers(req.params.id).then(function(offers){
-    console.log('OFFERS ',offers)
+  Order.getBuyersOffers(req.params.userId).then(function(offers){
+    offers.forEach(function(offer){
+      if(offer.stats === 'offer'){
+        offer.checkTimeStamp()
+      }
+    }) //forEach is blocking, right? question
     res.json(offers);
   }).then(null,function(err){
     console.log('Error ',err)
   })
 }
+
+
+//Get all user's accepted offer 
+exports.getAccepted = function(req,res){
+  Order.getBuyersOffers(req.params.userId).then(function(offers){
+    offers.forEach( function (offer) {
+      if (offer.status === 'accepted')
+      {
+        res.json(offer);
+      } 
+    })    
+  }).then(null,function(err){
+    console.log('Error ',err)
+  })
+}
+
+exports.manageOffers = function(req,res){
+  Order.find(
+    {$and:[{sellerId:req.params.userId},
+      {
+          status:{
+            $in: ["offer","accepted","shipped"]
+          }
+      }
+    ]}
+  ).populate('buyerId').populate('productId').exec(function(err,offers){
+    if(err){return handleError(res,err);}
+    res.json(offers)
+  })
+}
+
+exports.acceptOffer = function(req, res) {
+
+  Order.findByIdAndUpdate(req.params.orderId, {
+      $set: {
+          status: "accepted"
+      }
+  }, function(err, doc) {
+      if (err) {
+          return handleError(res, err);
+      }
+      
+  }).then(function(secondErr,secondRes){ 
+    Order.declineUnacceptedOrders(req.params.orderId);
+      res.json(doc)
+  })
+}
+
+
+
 
 function handleError(res, err) {
   return res.send(500, err);
