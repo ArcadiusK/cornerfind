@@ -66,7 +66,7 @@ exports.getUserLikes = function(req, res) {
 
 // Gets all the likes from a certain user.
 exports.getProductLikes = function(req, res) {
-  Like.find({productId: new ObjectId(req.params.id)}, function (err, productLikes) {
+  Like.find({productId: new ObjectId(req.params.id)}).populate('userId').exec(function (err, productLikes) {
     if(err) { return handleError(res, err); }
     if(!productLikes) { return res.send(404); }
     return res.json(productLikes);
