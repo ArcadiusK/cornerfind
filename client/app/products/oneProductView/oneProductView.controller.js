@@ -2,15 +2,18 @@
 
 angular.module('cornerfindApp')
     .controller('OneProductViewCtrl', function($scope, Auth, User, products, chat, $stateParams, offer, $cookieStore, $location, $mdSidenav) {
-        Auth.getCurrentUser().$promise.then(function(user) {
-            if (user.billing.stripeToken !==null) {
-                $scope.currentUser = user;
-                $scope.notoken =false;
-            } else {
-                   $scope.currentUser = user;
-                $scope.notoken = true;
-            }
-        });
+        $scope.currentUser = Auth.getCurrentUser();
+        if(typeof $scope.currentUser._id !== 'undefined'){
+            Auth.getCurrentUser().$promise.then(function(user) {
+                if (user.billing.stripeToken !==null) {
+                    $scope.currentUser = user;
+                    $scope.notoken =false;
+                } else {
+                       $scope.currentUser = user;
+                    $scope.notoken = true;
+                }
+            })
+        };
 
         products.resource.get({
             id: $stateParams.id
@@ -83,7 +86,7 @@ angular.module('cornerfindApp')
                     //This ONLY handles single items as is, will need to be modified for bundling
                     productId: prod._id,
                     name: prod.name,
-                    purchasePrice: $scope.product.retailPrice,
+                    purchasePrice: $scope.product.price,
                 }],
                 sellerId: prod.userId._id,
                 buyerId: $scope.currentUser._id,
@@ -100,16 +103,16 @@ angular.module('cornerfindApp')
              // Create digestible stripe order
             $scope.stripeOrder = {
                     stripeToken: $scope.currentUser.billing.stripeToken ,
-                    orderTotal: $scope.product.retailPrice
+                    orderTotal: $scope.product.price
             }
+            console.log('HERE')
+            offer.charge($scope.stripeOrder).$promise.then(function(result){
 
-            offer.charge($scope.stripeOrder, function(result) {
-                if (result.captured === true) {
-                    $scope.stripeResult = result;
+                if (result.$resolved) {
                      $scope.boughtItem = true;
-                }
-            });
 
+                }
+            })
         }
 
         $scope.userRedirect = function() {
