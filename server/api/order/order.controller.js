@@ -64,7 +64,9 @@ exports.destroy = function(req, res) {
 exports.getOffers = function(req,res){
   Order.getBuyersOffers(req.params.userId).then(function(offers){
     offers.forEach(function(offer){
-      offer.checkTimeStamp()
+      if(offer.stats === 'offer'){
+        offer.checkTimeStamp()
+      }
     }) //forEach is blocking, right? question
     res.json(offers);
   }).then(null,function(err){
