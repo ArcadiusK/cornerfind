@@ -1,20 +1,24 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class='container'>
-    
+<div resizable class='container'>
+
 
     <div class='row'>
-        <div class='col s2 m2 l2'>
-            <a><button ui-sref ='account.profile'class="btn">Account Info</button></a>
-            <a><button ui-sref='account.settings' class="btn">Change Password</button></a>
-            <a ui-sref='account.listings'><button class="btn">View Listings</button></a>
-            <a ui-sref='account.offers'><button class="btn">View Offers</button></a>
-            <a ui-sref='account.balance'><button class="btn">View Balance</button></a>
+
+        <div class='col s7 m5 l3'>
+            <a class='col s12' ui-sref-active='active' id='my-collection' ui-sref='account.profile'>Account Info</a>
+            <a class='col s12 ' ng-class="{active: isActive('account.settings')}" id='my-collection' ui-sref="account.settings">Change Password</a>
+            <a class='col s12 ' ng-class="{active: isActive('account.listings')}" id='my-collection' ui-sref="account.listings">View Listings</a>
+            <a class='col s12 ' ng-class="{active: isActive('account.offers')}" id='my-collection' ui-sref="account.offers">View Offers</a>
+            <a class='col s12 ' ng-class="{active: isActive('account.balance')}" id='my-collection' ui-sref="account.balance">View Balance</a>
         </div>
-        
-        <div class='col s8 m8 l8 offset-s1 offset-m1 offset-l1' ui-view>{{hello}} {{currentUser.name}}! Manage Account View --- Make the landing page a profile page, picture, email, location, followers, etc</div> 
-        <div class="col s1 m1 l1"></div>
-        
+        <div class='col s1 m1 l1'></div>
+
+
+
+        <div class='col s8 m6 l8 ' ui-view>{{hello}} {{currentUser.name}}! Manage Account View --- Make the landing page a profile page, picture, email, location, followers, etc</div>
+
+
     </div>
 
 </div>

@@ -6,4 +6,13 @@ angular.module('cornerfindApp')
 		$scope.currentUser = Auth.getCurrentUser();
 
 
+		$scope.isActive = function(inputState){
+			return inputState === $state.current.name;
+		}
+
+		// $scope.isMobile = function(){
+		// 	if($scope.windowWidth<=768){
+		// 		return 's12 m6 l6';
+		// 	} return 's2 m2 l2';
+		// }
 	})
