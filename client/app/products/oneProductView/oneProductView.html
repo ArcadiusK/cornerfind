@@ -17,12 +17,14 @@
                         <button ng-click="submitOffer(offerPrice)" class=" waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Offer</button>
                         <input type='number' id="text-input" placeholder='1234' ng-model='offerPrice' />
                     </div>
-                    <div ng-hide="isOffering" class="section">
-                        <a class="waves-effect waves-purple btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Buy Now {{product.price | currency}} </a>
+                    <div ng-hide="boughtItem" class="section">
+                        <button ng-click="buyNow(offerPrice)" class=" waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Buy Now {{product.price | currency}} </button>
+                
                     </div>
 
-                    <div ng-show='isOffering' class='section'>
-
+                    <div ng-show='boughtItem' class='section'>
+                        Item Successfully Purchased!
+                        {{stripeResult}}
                     </div>
                 </div>
 
@@ -32,8 +34,8 @@
             </div>
         <br/>
 
-            <div ng-show='notoken'>
-                <checkoutd class='col s4 m4 l4' product='product' notoken='notoken' stripe-response-handler='getToken()' user='currentUser'></checkoutd>
+            <div ng-show='showtoken'>
+                <checkoutd class='col s4 m4 l4' product='product' notoken='notoken' showtoken='showtoken' stripe-response-handler='getToken()' user='currentUser'></checkoutd>
             </div>
 
 

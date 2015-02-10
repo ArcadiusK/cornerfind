@@ -131,16 +131,20 @@ OrderSchema.statics.createStripeCharge = function(item, res) {
   // console.log('createStripeCharge method in model, item is -->..', item)
   var deferral = Q.defer();
   var charge = stripe.charges.create({
-      amount: item.orderTotal,
+      amount: parseInt(item.orderTotal)*100,
       currency: 'usd',
-      card: item.billing.stripeToken,
-      capture: true
+      card: item.stripeToken,
+      capture: true,
+      description: 'Charge from Cornerfind.com!'
     }, function(err,charge) {
           if(err && err.type === 'StripeCardError') {
             return res.send(500, err)
           }
-           // console.log('successfully cgharged!..', charge)
+
+          console.log('Stripe charged! ..', charge)
+
           deferral.resolve(charge);
+          // res.json(200,charge);
     });
     return deferral.promise;
 };
