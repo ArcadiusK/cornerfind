@@ -3,8 +3,8 @@
 
 <div class="container" ng-controller="OneProductViewCtrl" resizable>
     <div class="row">
-        <div ng-class='isMobile(windowWidth)' class="col s12 l4" >
-            <div  class="card pink lighten-3 ">
+        <div ng-class='isMobile(windowWidth)' class="col s12 l4">
+            <div class="card pink lighten-3 ">
 
                 <div class="card-content white-text">
 
@@ -27,14 +27,19 @@
                 </div>
 
             </div>
+               <div class="card-content white-text">
+                <button ng-click='userRedirect()' class="waves-effect waves-light btn"> Sold by {{product.userId.username}}</button>
+            </div>
+        <br/>
 
-               
-                    <div class="card-content white-text">
-                        <button ng-click='userRedirect()' class="waves-effect waves-light btn"> Sold by {{product.userId.username}}</button>
-                    </div>
-              
+            <div ng-show='notoken'>
+                <checkoutd class='col s4 m4 l4' product='product' notoken='notoken' stripe-response-handler='getToken()' user='currentUser'></checkoutd>
+            </div>
 
-            
+
+         
+
+
         </div>
 
         <div class="col l7 offset-l5 s12 m12">
@@ -54,4 +59,3 @@
 
     </div>
 </div>
-

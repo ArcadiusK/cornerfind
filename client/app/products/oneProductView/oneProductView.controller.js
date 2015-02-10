@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .controller('OneProductViewCtrl', function($scope, Auth, User, products, chat, $stateParams, offer, $cookieStore, $location) {
+    .controller('OneProductViewCtrl', function($scope, Auth, User, products, chat, $stateParams, offer, $cookieStore, $location, $mdSidenav) {
         $scope.currentUser = Auth.getCurrentUser();
-
 
         products.resource.get({
             id: $stateParams.id
@@ -12,8 +11,6 @@ angular.module('cornerfindApp')
             // Get owner USER OBJECT of current product
             console.log('product is ', $scope.product)
         });
-
-
 
         chat.getChatList($stateParams.id).then(function(data) {
             $scope.chatlist = data;
@@ -29,7 +26,12 @@ angular.module('cornerfindApp')
         //and put in a confirmation 'Successfully Submitted Offer!'
 
         $scope.submitOffer = function(offerPrice) {
-            // $scope.isOffering=false;
+
+            //SHOWS CHECKOUT DIRECTIVE IF USER DOES NOT HAVE A TOKEN ALREADY
+            if ($scope.currentUser.stripeToken == null) {
+                $scope.notoken = true;
+            } 
+
             var prod = $scope.product;
             $scope.isOffering = !$scope.isOffering;
 
@@ -49,7 +51,10 @@ angular.module('cornerfindApp')
                     console.log('Error ', err)
                     console.log(orderForCreation)
                 };
+
+                console.log('offer created...', result)
             })
+
         }
 
         $scope.userRedirect = function() {
