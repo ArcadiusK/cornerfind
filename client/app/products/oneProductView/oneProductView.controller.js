@@ -27,9 +27,33 @@ angular.module('cornerfindApp')
 
         $scope.submitOffer = function(offerPrice) {
 
+            //SHOWS CHECKOUT DIRECTIVE IF USER DOES NOT HAVE A TOKEN ALREADY
             if ($scope.currentUser.stripeToken == null) {
                 $scope.notoken = true;
+            } 
+
+            var prod = $scope.product;
+            $scope.isOffering = !$scope.isOffering;
+
+            var orderForCreation = {
+                lineItems: [{
+                    //This ONLY handles single items as is, will need to be modified for bundling
+                    productId: prod._id,
+                    name: prod.name,
+                    purchasePrice: offerPrice,
+                }],
+                sellerId: prod.userId._id,
+                buyerId: $scope.currentUser._id,
+                status: 'offer'
             }
+            offer.save(orderForCreation, function(result) {}, function(err) {
+                if (err) {
+                    console.log('Error ', err)
+                    console.log(orderForCreation)
+                };
+
+                console.log('offer created...', result)
+            })
 
         }
 

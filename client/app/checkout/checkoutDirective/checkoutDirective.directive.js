@@ -7,6 +7,7 @@ angular.module('cornerfindApp')
             restrict: 'EA',
             scope: {
                 product: '=',
+                notoken: '=',
                 user: '=',
                 stripeResponseHandler: "&",
                 buttonText: '@'
@@ -22,6 +23,7 @@ angular.module('cornerfindApp')
                         scope.ccinfo.exp_year = ccArr[1];
                         Stripe.card.createToken(scope.ccinfo, stripeResponseHandler);
                         console.log('Created token... ccinfo is ', scope.ccinfo);
+                        scope.notoken=false;
                         return true;
                         // } else {
                         // return false;
