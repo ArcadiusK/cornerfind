@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
+var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var UserSchema = new Schema({
     name: {
@@ -21,18 +22,10 @@ var UserSchema = new Schema({
     hashedPassword: String,
     provider: String,
     salt: String,
-    facebook: {
-        type: String
-    },
-    twitter: {
-        type: String
-    },
-    google: {
-        type: String
-    },
-    github: {
-        type: String
-    },
+    facebook: {},
+    twitter: {},
+    google: {},
+    github: {},
     listedProducts: [{
         type: Schema.Types.ObjectId,
         ref: 'Product'
@@ -163,7 +156,7 @@ UserSchema
     .pre('save', function(next) {
         if (!this.isNew) return next();
 
-        if (!validatePresenceOf(this.hashedPassword))
+        if (!validatePresenceOf(this.hashedPassword) && authTypes.indexOf(this.provider) == -1)
             next(new Error('Invalid password'));
         else
             next();

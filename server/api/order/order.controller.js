@@ -1,8 +1,9 @@
 'use strict';
 
-var _ = require('lodash');
-var Order = require('./order.model');
-// var ObjectId = require('mongoose').Types.ObjectId;
+var _ = require('lodash'),
+  Order = require('./order.model'),
+  expiredOffersCheck = require('./cronJob.js');
+
 
 // Get list of orders
 exports.index = function(req, res) {
@@ -25,16 +26,11 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Order.create(req.body, function(err, order) {
     if(err) console.log(err)
-
-    console.log('backend order control create.. order is -->', order);
     return res.json(201, order);
   });
 };
 exports.charge = function(req, res) {
-
-  console.log('order controller charge req.body is..', req.body, 'END');
   var newCharge = Order.createStripeCharge(req.body, res);
-  
 };
 
 
@@ -67,6 +63,11 @@ exports.destroy = function(req, res) {
 //Get all of a user's orders
 exports.getOffers = function(req,res){
   Order.getBuyersOffers(req.params.userId).then(function(offers){
+    offers.forEach(function(offer){
+      if(offer.stats === 'offer'){
+        offer.checkTimeStamp()
+      }
+    }) //forEach is blocking, right? question
     res.json(offers);
   }).then(null,function(err){
     console.log('Error ',err)
@@ -76,12 +77,8 @@ exports.getOffers = function(req,res){
 
 //Get all user's accepted offer 
 exports.getAccepted = function(req,res){
-  console.log('getAccepted is hitting..');
-
   Order.getBuyersOffers(req.params.userId).then(function(offers){
-     console.log('getBuyerOffers is hitting..', offers);
     offers.forEach( function (offer) {
-      console.log('getBuyersOffers is ...', offer);
       if (offer.status === 'accepted')
       {
         res.json(offer);

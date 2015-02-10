@@ -23,14 +23,9 @@ angular.module('cornerfindApp')
                         scope.ccinfo.exp_month = ccArr[0];
                         scope.ccinfo.exp_year = ccArr[1];
                         Stripe.card.createToken(scope.ccinfo, stripeResponseHandler);
-              
-                       
-                        
-                        scope.$apply();
+    
                         return true;
-                        // } else {
-                        // return false;
-                        // }
+                       
                     };
 
                     function stripeResponseHandler(status, response) {
