@@ -30,7 +30,8 @@ exports.create = function(req, res) {
   });
 };
 exports.charge = function(req, res) {
-  var newCharge = Order.createStripeCharge(req.body, res);
+  var newCharge = Order.createStripeCharge(req.body);
+  return res.json(newCharge);
 };
 
 
