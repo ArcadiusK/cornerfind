@@ -7,12 +7,14 @@ angular.module('cornerfindApp')
 			restrict: 'EA',
 			scope:{
 				offer: '=info',
+				stripeResult: '=',
 				acceptOffer: '&'
 			},
 			link: function(scope,element,attrs){
 				// scope.submitted = false;
 				scope.submitButton = function(){
-					console.log("OFFER ",scope.offer)
+						scope.charged = true;
+						
 				}
 			}
 
