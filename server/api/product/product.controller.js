@@ -6,15 +6,17 @@ var User = require('../user/user.model');
 
 // Get list of products
 exports.index = function(req, res) {
-  Product.find(function (err, products) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, products);
-  });
+  Product.find().populate('userId').populate('likes').exec(function(err,products){
+    if(err) {return handleError(res,err)};
+    if(!products){return res.send(404); }
+      return res.json(products);
+  })
 };
 
 // Get a single product
 exports.show = function(req, res) {
-  Product.findById(req.params.id, function (err, product) {
+  Product.findById(req.params.id).populate('userId')
+  .exec(function(err,product){
     if(err) { return handleError(res, err); }
     if(!product) { return res.send(404); }
     return res.json(product);
@@ -38,6 +40,7 @@ exports.create = function(req, res) {
 
 // Updates an existing product in the DB.
 exports.update = function(req, res) {
+  console.log('PRODUCT UPDATE API HIT')
   if(req.body._id) { delete req.body._id; }
   Product.findById(req.params.id, function (err, product) {
     if (err) { return handleError(res, err); }
@@ -50,6 +53,7 @@ exports.update = function(req, res) {
   });
 };
 
+
 // Deletes a product from the DB.
 exports.destroy = function(req, res) {
   Product.findById(req.params.id, function (err, product) {
@@ -60,6 +64,15 @@ exports.destroy = function(req, res) {
       return res.send(204);
     });
   });
+};
+
+//Get all of a user's listings
+exports.getUsersListings = function(req,res){
+  Product.find({userId:req.params.id},function(err, products){
+      if(err){return handleError(res,err)}
+      if(!products.length){return res.send(404);}
+      res.json(products)
+    });
 };
 
 // Searches for producs from a specific brand from the DB

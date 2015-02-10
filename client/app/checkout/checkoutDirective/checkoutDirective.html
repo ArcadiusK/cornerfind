@@ -1,0 +1,30 @@
+<div class="card-reveal">
+    <span class="card-title grey-text text-darken-4"><i class="mdi-navigation-close right"></i>
+    <form name="checkoutForm" ng-submit="checkout()">
+
+        <div class='form-group'>
+          <p>All offers are binding and expire in 24 hours. If the seller accepts, payments will be processed.</p>
+            <h4>Billing Info</h4> 
+        </div>
+        <div class="form-panel">
+            <div class="row">
+                <div class="col-md-7">
+                    <label>Credit Card Number</label>
+                    <input type="text" class="form-control credit" ng-model="ccinfo.number" payments-validate="card" payments-format="card" payments-type-model="type" ng-required="true">
+                    <br/>
+                    <label>CVC</label>
+                    <input type="text" class="form-control cvc" ng-model="ccinfo.cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type" ng-required="true">
+                    <br/>
+                    <label>Expiration</label>
+                    <input type="text" class="form-control" ng-model="ccinfo.expiry" payments-validate="expiry" payments-format="expiry" ng-required="true">
+                </div>
+            </div>
+        </div>
+ 
+        <div class="form-group">
+            <button type="submit" class="waves-effect waves-light btn" ng-disabled="checkoutForm.$invalid">Save Information</button>
+        </div>
+    </form>
+    </span>
+</div>
+</div>
