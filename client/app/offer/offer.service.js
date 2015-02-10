@@ -1,38 +1,52 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .factory('offer', function ($resource) {
-    return $resource('/api/orders/:id/:offers',
-    	{id:'@_id'},
-
-    	{
-    		getBuyersOffers: {
-    			isArray:true,
-    			method: 'GET',
-    			params: {
-    				id: '@id',
-    				offers: 'offers'
-    			}
-    		},
-
-            manageOffers: {
-                isArray:true,
-                method: 'GET',
-                params: {
-                    id: '@id',
-                    offers: 'manageOffers'
-                }
+    .factory('offer', function($resource) {
+        return $resource('/api/orders/:id/:offers', {
+                id: '@_id'
             },
 
-            acceptOffer:{
-                method: 'GET',
-                params:{
-                    id:'@id',
-                    offers: 'acceptOffer'
+            {
+                getBuyersOffers: {
+                    isArray: true,
+                    method: 'GET',
+                    params: {
+                        id: '@id',
+                        offers: 'offers'
+                    }
+                },
+                getAcceptedOffer: {
+                    // isArray:true,
+                    method: 'GET',
+                    params: {
+                        id: '@id',
+                        offers: 'getAccepted'
+                    }
+                },
+                charge: {
+                    method: 'POST',
+                    params: {
+                        controller: 'charge'
+                    }
+                },
+                manageOffers: {
+                    isArray: true,
+                    method: 'GET',
+                    params: {
+                        id: '@id',
+                        offers: 'manageOffers'
+                    }
+                },
+
+                acceptOffer: {
+                    method: 'GET',
+                    params: {
+                        id: '@id',
+                        offers: 'acceptOffer'
+                    }
                 }
             }
-    	}
 
 
-    )
-  });
+        )
+    });
