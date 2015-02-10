@@ -57,7 +57,6 @@ exports.destroy = function(req, res) {
 
 // Gets all the likes from a certain user.
 exports.getUserLikes = function(req, res) {
-  console.log('hit user backend');
   Like.find({userId: new ObjectId(req.params.id)}, function (err, userLikes) {
     if(err) { return handleError(res, err); }
     if(!userLikes) { return res.send(404); }
@@ -67,7 +66,7 @@ exports.getUserLikes = function(req, res) {
 
 // Gets all the likes from a certain user.
 exports.getProductLikes = function(req, res) {
-  Like.find({productId: new ObjectId(req.params.id)}, function (err, productLikes) {
+  Like.find({productId: new ObjectId(req.params.id)}).populate('userId').exec(function (err, productLikes) {
     if(err) { return handleError(res, err); }
     if(!productLikes) { return res.send(404); }
     return res.json(productLikes);
@@ -77,7 +76,6 @@ exports.getProductLikes = function(req, res) {
 
 // Deletes a like
 exports.deleteLike = function(req, res) {
-  console.log('hit');
   Like.findOneAndRemove({productId: new ObjectId(req.body.productid), userId: new ObjectId(req.body.userid)}, function (err, like) {
     if(err) { return handleError(res, err); }
   

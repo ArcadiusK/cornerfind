@@ -12,7 +12,7 @@ angular.module('cornerfindApp')
 			link: function(scope,element,attrs){
 				// scope.submitted = false;
 				scope.submitButton = function(){
-					console.log("BOOM")
+					console.log("OFFER ",scope.offer)
 				}
 			}
 
