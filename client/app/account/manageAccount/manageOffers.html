@@ -1,7 +1,9 @@
 <div class="row">
   <div class="col s12">
 
-  	<h1>OFFERS VIEW {{currentUser.name}}</h1>
+  	Manage Offers on your listings:
+
+  	<div ng-hide="offers.length"><h2>There are no pending offers on your listings</h2></div>
 
   	<manage-offer-view info="offer" accept-offer="acceptOffer(offerId)"ng-repeat='offer in offers'></manage-offer-view>
 
