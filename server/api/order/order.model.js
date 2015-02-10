@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
 
     stripe = require('stripe')('sk_test_kbZLZCeD7MoHX28rIB9Uoavi'),
-    Q = require('q');
+    Q = require('q'),
 
     Product = require('../product/product.model');
 
