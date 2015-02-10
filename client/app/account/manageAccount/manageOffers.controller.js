@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-	.controller('ManageOffersCtrl',function($scope, offer){
+	.controller('ManageOffersCtrl',function($scope, offer, $state){
 		$scope.offers = offer.manageOffers({id:$scope.currentUser._id})
 		
 		// if($scope.offers.length ===0)
@@ -9,5 +9,7 @@ angular.module('cornerfindApp')
 		$scope.acceptOffer = function(orderId){
 			offer.acceptOffer({id:orderId})
 		}
+
+		
 
 	})

@@ -1,5 +1,5 @@
 #my-collection{
-	padding: 5px 0;
+	padding: 5px 5px;
 	/*border-bottom: thin solid #9e9e9e;*/
 	text-decoration: none;
 	font-size: 1.5rem;
@@ -11,4 +11,10 @@
 		background-color: #E2DEDE;
 	}
 
+	&.active {
+		background-color: #26a69a;
+		color: #fff;
+	}
+
 }
+
