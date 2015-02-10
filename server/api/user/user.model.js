@@ -56,7 +56,8 @@ var UserSchema = new Schema({
         ref: 'User'
     }],
     phoneNumber: String,
-    stripeToken: String
+    billing: { stripeToken: String, last4: Number, cardType: String }
+    
 
 });
 
