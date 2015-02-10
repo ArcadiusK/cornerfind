@@ -4,42 +4,48 @@
 <div class="container" ng-controller="OneProductViewCtrl" resizable>
     <div class="row">
         <div ng-class='isMobile(windowWidth)' class="col s12 l4">
-            <div class="card pink lighten-3 ">
+            <div class="card pink lighten-3">
 
-                <div class="card-content white-text">
+                <div class="card-content white-text row">
 
-                    <span class="card-title grey-text text-darken-4"> {{product.name}} </span>
-                    <p>{{product.desc}} </p>
-                    <p>Quantity: {{product.qty}} </p>
-                    <p>offer Price {{offerPrice}}</p>
+                    <span class="col s12 card-title grey-text text-darken-4"> {{product.name}} </span>
+                    <div class="col s12">Seller: {{product.userId.username}}</div>
+                    <div class="col s12">{{product.desc}} </div>
+                    <div class="col s12">Quantity: {{product.qty}} </div>
 
-                    <div class='col s6'>
-                        <button ng-click="submitOffer(offerPrice)" class=" waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Offer</button>
-                        <input type='number' id="text-input" placeholder='1234' ng-model='offerPrice' />
+
+
+                    <div ng-hide='boughtItem' class='col s12'>
+                        <div class='input-field'>
+                            <label class='label'>Your Offer</label>
+                            <input class='col s12' type='number' ng-model='offerPrice'></input>
+                        </div>
+                        <div class='section'>
+                            <button ng-click="submitOffer(offerPrice)" class="col s5 waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Offer</button>
+                            <button class="col s6 offset-s1 btn blue lighten-2 grey-text text-darken-4" ng-click='buyNow()'>
+                                Buyout {{product.price | currency}}
+                            </button>
+
+                        </div>
+
                     </div>
-                    <div ng-hide="boughtItem" class="section">
-                        <button ng-click="buyNow(offerPrice)" class=" waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Buy Now {{product.price | currency}} </button>
-                
-                    </div>
+                    <div ng-show='boughtItem'><h1>SUCCESS MESSAGE {{stripeResult}}
+                    </h1></div>
 
-                    <div ng-show='boughtItem' class='section'>
-                        Item Successfully Purchased!
-                        {{stripeResult}}
-                    </div>
                 </div>
 
             </div>
-               <div class="card-content white-text">
-                <button ng-click='userRedirect()' class="waves-effect waves-light btn"> Sold by {{product.userId.username}}</button>
+            <div class="row card-content white-text">
+                <button ng-click='userRedirect()' class="waves-effect waves-light btn">More from {{product.userId.username}}</button>
             </div>
-        <br/>
+            <br/>
 
-            <div ng-show='showtoken'>
-                <checkoutd class='col s4 m4 l4' product='product' notoken='notoken' showtoken='showtoken' stripe-response-handler='getToken()' user='currentUser'></checkoutd>
+            <div class='col s12' ng-show='showtoken'>
+                <checkoutd product='product' notoken='notoken' showtoken='showtoken' stripe-response-handler='getToken()' user='currentUser'></checkoutd>
             </div>
 
 
-         
+
 
 
         </div>
