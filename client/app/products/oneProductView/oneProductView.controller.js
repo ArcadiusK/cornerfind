@@ -8,8 +8,6 @@ angular.module('cornerfindApp')
             id: $stateParams.id
         }).$promise.then(function(product) {
             $scope.product = product;
-            // Get owner USER OBJECT of current product
-            console.log('product is ', $scope.product)
         });
 
         chat.getChatList($stateParams.id).then(function(data) {
@@ -46,13 +44,14 @@ angular.module('cornerfindApp')
                 buyerId: $scope.currentUser._id,
                 status: 'offer'
             }
-            offer.save(orderForCreation, function(result) {}, function(err) {
+            offer.save(orderForCreation, function(result) {
+                console.log('offer created...', result)
+            }, function(err) {
                 if (err) {
                     console.log('Error ', err)
-                    console.log(orderForCreation)
                 };
 
-                console.log('offer created...', result)
+                
             })
 
         }
