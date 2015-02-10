@@ -12,7 +12,7 @@ router.get('/:orderId/acceptOffer',controller.acceptOffer)
 router.get('/:userId/manageOffers',controller.manageOffers)
 router.get('/:userId/getAccepted',controller.getAccepted)
 router.post('/', controller.create);
-router.post('/', controller.charge);
+router.post('/:offers', controller.charge);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);

@@ -1,19 +1,37 @@
 'use strict';
 
 angular.module('cornerfindApp')
-	.controller('ManageOffersCtrl',function($scope, offer, $state){
-		$scope.offers = offer.manageOffers({id:$scope.currentUser._id})
+    .controller('ManageOffersCtrl', function($scope, offer, $state) {
+        $scope.offers = offer.manageOffers({
+            id: $scope.currentUser._id
+        }, function(offer) {
 
-    // console.log('scope.offers is',$scope.offers[0].orderTotal)
-		
-		// if($scope.offers.length ===0)
+          // Create digestible stripe order
+           
+            $scope.stripeOrder = {
+                    stripeToken: offer[0].buyerId.billing.stripeToken,
+                    orderTotal: offer[0].lineItems[0].purchasePrice
+            }
+             
+        })
 
-		$scope.acceptOffer = function(orderId){
-			offer.acceptOffer({id:orderId});
-      console.log('offers is ..', $scope.offers[0].orderTotal)
-      offer.charge($scope.offers[0]);
-		}
+        $scope.stripeResult = {};
 
-		
+        $scope.acceptOffer = function(orderId) {
+          
+            offer.acceptOffer({
+                id: orderId
+            }, function(result) {
 
-	})
+            });
+            offer.charge($scope.stripeOrder, function(result) {
+            
+                if (result.captured === true) {
+                $scope.stripeResult = result;
+               
+                }
+            });
+        }
+
+
+    })
