@@ -4,7 +4,7 @@
 <div class="container" ng-controller="OneProductViewCtrl" resizable>
     <div class="row">
         <div ng-class='isMobile(windowWidth)' class="col s12 l4">
-            <div class="card pink lighten-3">
+            <div class="card pink lighten-3" ng-hide='showtoken'>
 
                 <div class="card-content white-text row">
 
@@ -29,16 +29,18 @@
                         </div>
 
                     </div>
-                    <div ng-show='boughtItem'><h1>SUCCESS MESSAGE {{stripeResult}}
-                    </h1></div>
+                    <div ng-show='boughtItem'>
+                        <h1>SUCCESS MESSAGE {{stripeResult}}
+                    </h1>
+                    </div>
 
                 </div>
-
+                <a class="col s12 white-text btn-flat center-align" ng-click='userRedirect()'>More From This User</a>
             </div>
-            <div class="row card-content white-text">
+            <!-- <div class="row card-content white-text">
                 <button ng-click='userRedirect()' class="waves-effect waves-light btn">More from {{product.userId.username}}</button>
-            </div>
-            <br/>
+            </div> -->
+            
 
             <div class='col s12' ng-show='showtoken'>
                 <checkoutd product='product' notoken='notoken' showtoken='showtoken' stripe-response-handler='getToken()' user='currentUser'></checkoutd>
