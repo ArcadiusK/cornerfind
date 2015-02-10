@@ -141,8 +141,8 @@ exports.update = function(req, res) {
     User.findById(userId, function(err, user) {
         var updated = _.assign(user, req.body);
         updated.markModified('following');
-        console.log('QQQQQQQQ', user);
-
+        updated.markModified('stripeToken');
+      
         updated.save(function(err, updatedUser, numModified) {
             console.log("updatedUser", updatedUser);
             console.log('modified?', numModified);

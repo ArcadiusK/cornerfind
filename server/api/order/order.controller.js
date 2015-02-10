@@ -24,10 +24,19 @@ exports.show = function(req, res) {
 // Creates a new order in the DB.
 exports.create = function(req, res) {
   Order.create(req.body, function(err, order) {
-    if(err) { return handleError(res, err); }
+    if(err) console.log(err)
+
+    console.log('backend order control create.. order is -->', order);
     return res.json(201, order);
   });
 };
+exports.charge = function(req, res) {
+
+  console.log('order controller charge req.body is..', req.body, 'END');
+  var newCharge = Order.createStripeCharge(req.body, res);
+  
+};
+
 
 // Updates an existing order in the DB.
 exports.update = function(req, res) {
@@ -59,6 +68,25 @@ exports.destroy = function(req, res) {
 exports.getOffers = function(req,res){
   Order.getBuyersOffers(req.params.userId).then(function(offers){
     res.json(offers);
+  }).then(null,function(err){
+    console.log('Error ',err)
+  })
+}
+
+
+//Get all user's accepted offer 
+exports.getAccepted = function(req,res){
+  console.log('getAccepted is hitting..');
+
+  Order.getBuyersOffers(req.params.userId).then(function(offers){
+     console.log('getBuyerOffers is hitting..', offers);
+    offers.forEach( function (offer) {
+      console.log('getBuyersOffers is ...', offer);
+      if (offer.status === 'accepted')
+      {
+        res.json(offer);
+      } 
+    })    
   }).then(null,function(err){
     console.log('Error ',err)
   })

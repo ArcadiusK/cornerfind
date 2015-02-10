@@ -55,7 +55,8 @@ var UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
-    phoneNumber: String
+    phoneNumber: String,
+    stripeToken: String
 
 });
 
