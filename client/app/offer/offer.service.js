@@ -26,7 +26,7 @@ angular.module('cornerfindApp')
                 charge: {
                     method: 'POST',
                     params: {
-                        controller: 'charge'
+                        offers: 'charge'
                     }
                 },
                 manageOffers: {
