@@ -41,7 +41,6 @@ angular.module('cornerfindApp')
             //SHOWS CHECKOUT DIRECTIVE IF USER DOES NOT HAVE A TOKEN ALREADY
             if ($scope.currentUser.billing.stripeToken == null) {
                 $scope.showtoken = true;
-                alert('No token! create a token below!');
                 return;
             }
 
