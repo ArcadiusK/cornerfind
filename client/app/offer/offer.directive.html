@@ -16,10 +16,10 @@
                 <div>Offer Total: {{offer.orderTotal | currency}}</div>
             </div>
             <div class="card-action" id="offer-card-action">
-                    	<button class='col s6 btn' ng-click="isBeingModified=true">Modify Offer</button>
-                    	<button type='button' class=' col s6 btn red darken-2' ng-click="cancelOffer({offerId: offer})">Cancel Offer</button>
-                	
-                
+                <button class='col s6 btn' ng-click="isBeingModified=true">Modify Offer</button>
+                <button type='button' class=' col s6 btn red darken-2' ng-click="cancelOffer({offerId: offer})">Cancel Offer</button>
+
+
             </div>
         </div>
         <!-- End Main Cart Content -->
@@ -37,10 +37,10 @@
                 <hr>
             </div>
             <div class="card-action" id="offer-card-action">
-                <!-- <div class='input-field'> -->
-                	<div class='col s1 offset-s3 white-text'><h3>$</h3></div>
-                    <input id="modify-input" class='col s4' type='number' placeholder ='0.00' ng-model='offer.orderTotal'></input>
-                <!-- </div> -->
+                <div class='col s1 offset-s3 white-text'>$</div>
+                <input id="modify-input" class='col s4' type='number' placeholder='00' ng-model='offer.orderTotal'></input>
+
+
                 <button class='btn col s6' ng-click="modifyOffer({offer: offer}); isBeingModified=false">Submit</button>
                 <button type='button' ng-click="isBeingModified=false" class='btn red darken-2 col s6'>Don't Modify</button>
 
