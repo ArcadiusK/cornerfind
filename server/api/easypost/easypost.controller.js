@@ -59,6 +59,31 @@ exports.verify = function(req, res) {
   // });
 };
 
+// Creates a new label in the DB.
+exports.createLabel = function(req, res) {
+  // set parcel
+  easypost.Parcel.create({
+      predefined_package: "Parcel",
+      weight: 36
+  }, function(err, response) {
+      console.log(err);
+  });
+
+  // create shipment
+  easypost.Shipment.create({
+      to_address: req.body.toAddress,
+      from_address: req.body.fromAddress,
+      parcel: parcel,
+      customs_info: customsInfo
+  }, function(err, shipment) {
+      // buy postage label with one of the rate objects
+      shipment.buy({rate: shipment.lowestRate(['USPS', 'ups'])}, function(err, shipment) {
+          console.log(shipment.tracking_code);
+          console.log(shipment.postage_label.label_url);
+      });
+  });
+}
+
 // Updates an existing easypost in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }

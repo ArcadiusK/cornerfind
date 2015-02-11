@@ -8,6 +8,10 @@ angular.module('cornerfindApp') //look into $urlrouterprovider otherwise method
         templateUrl: 'app/account/manageAccount/manageAccount.html',
         controller: 'ManageAccountCtrl'
       })
+      .state('account.address',{
+        templateUrl: 'app/account/manageAccount/manageAddress.html',
+        controller: "ManageAddressCtrl"
+      })
       .state('account.profile',{
         templateUrl: 'app/account/manageAccount/manageProfile.html',
         controller: "ManageProfileCtrl"
