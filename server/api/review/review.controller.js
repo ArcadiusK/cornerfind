@@ -15,7 +15,7 @@ exports.index = function(req, res) {
 // Get a single review
 exports.show = function(req, res) {
   console.log('hitting show', req.params.id)
-  Review.find({reviewedUserId: req.params.id}).populate('reviewedUserId').exec(function (err, review) {
+  Review.find({reviewedUserId: req.params.id}).populate('reviewingUserId').exec(function (err, review) {
    
     if(err) { return handleError(res, err); }
     if(!review) { return res.send(404); }

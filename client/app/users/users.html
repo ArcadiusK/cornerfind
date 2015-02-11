@@ -30,12 +30,21 @@
                             <i ng-show='followed' class='mdi-action-done'></i>
                         </a>
 
-                        <a ng-click='loadAbout()' class="waves-effect waves-purple btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-face-unlock"></i>About</a>
+                        <a ng-click='showReviews()' class="waves-effect waves-purple btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-face-unlock"></i>Show Seller Feedback</a>
 
                     </div>
                 </div>
             </div>
-            <!-- <div class="col l12">REVIEWS</div> -->
+
+
+              <div ng-show='review' class="card pink lighten-3">
+                <div ng-repeat='review in reviews' class="card-content white-text">
+                    <span class="card-title grey-text text-darken-4"> </span>
+                    <h5>{{review.reviewingUserId.username}}</h5>
+                    <p>{{review.text}} </p>
+                </div>
+            </div>
+
         </div>
         <div class="row col s12 m4 l6 offset-l6">
             <ul class="col l12 m12 s12 list-unstyled" ng-repeat="product in user.listedProducts">
