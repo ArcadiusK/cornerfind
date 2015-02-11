@@ -7,7 +7,7 @@
             <h2>There are no pending offers on your listings</h2>
         </div>
 
-        <manage-offer-view class="col s12 m12 l6" info="offer" accept-offer="acceptOffer(offerId)" ng-repeat='offer in offers' stripe-result='stripeResult'></manage-offer-view>
+        <manage-offer-view class="col s12 m12 l6" currentUser='currentUser' status='status' info="offer" accept-offer="acceptOffer(offerId)" ng-repeat='offer in offers' stripe-result='stripeResult'></manage-offer-view>
 
     
 </div>
