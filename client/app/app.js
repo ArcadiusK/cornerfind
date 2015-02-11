@@ -7,7 +7,6 @@ angular.module('cornerfindApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'ngMaterial',
   'firebase',
   'ui.utils'
 ])

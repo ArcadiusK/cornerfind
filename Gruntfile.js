@@ -223,7 +223,7 @@ module.exports = function (grunt) {
       target: {
         src: '<%= yeoman.client %>/index.html',
         ignorePath: '<%= yeoman.client %>/',
-        exclude: [/materialize/, /materialize.css/,/bootstrap-sass-official/, /bootstrap.js/, '/json3/', '/es5-shim/', /bootstrap.css/, /font-awesome.css/ ]
+        exclude: [/materialize.css/,/bootstrap-sass-official/, /bootstrap.js/, '/json3/', '/es5-shim/', /bootstrap.css/, /font-awesome.css/ ]
       }
     },
 
@@ -311,15 +311,15 @@ module.exports = function (grunt) {
       options: {
         // This should be the name of your apps angular module
         module: 'cornerfindApp',
-        htmlmin: {
-          collapseBooleanAttributes: true,
-          collapseWhitespace: true,
-          removeAttributeQuotes: true,
-          removeEmptyAttributes: true,
-          removeRedundantAttributes: true,
-          removeScriptTypeAttributes: true,
-          removeStyleLinkTypeAttributes: true
-        },
+        // htmlmin: {
+        //   collapseBooleanAttributes: true,
+        //   collapseWhitespace: true,
+        //   removeAttributeQuotes: true,
+        //   removeEmptyAttributes: true,
+        //   removeRedundantAttributes: true,
+        //   removeScriptTypeAttributes: true,
+        //   removeStyleLinkTypeAttributes: true
+        // },
         usemin: 'app/app.js'
       },
       main: {
@@ -658,6 +658,7 @@ module.exports = function (grunt) {
     'rev',
     'usemin'
   ]);
+
 
   grunt.registerTask('default', [
     'newer:jshint',
