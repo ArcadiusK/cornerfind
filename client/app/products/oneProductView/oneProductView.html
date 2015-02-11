@@ -3,8 +3,8 @@
 
 <div class="container" ng-controller="OneProductViewCtrl" resizable>
     <div class="row">
-        <div ng-class='isMobile(windowWidth)' class="col s12 l4">
-            <div class="card pink lighten-3" ng-hide='showtoken'>
+        <!-- <div ng-class='isMobile(windowWidth)' class="col s12 l4 m12"> -->
+            <div class="card pink lighten-3 col l6 m12 s12" ng-hide='showtoken'><!-- start Card -->
 
                 <div class="card-content white-text row">
 
@@ -36,27 +36,17 @@
 
                 </div>
                 <a class="col s12 white-text btn-flat center-align" ng-click='userRedirect()'>More From This User</a>
-            </div>
-            <!-- <div class="row card-content white-text">
-                <button ng-click='userRedirect()' class="waves-effect waves-light btn">More from {{product.userId.username}}</button>
-            </div> -->
-            
+            </div> <!-- end card -->
 
             <div class='col s12' ng-show='showtoken'>
                 <checkoutd product='product' notoken='notoken' showtoken='showtoken' stripe-response-handler='getToken()' user='currentUser'></checkoutd>
             </div>
-
-
-
-
-
-        </div>
-
-        <div class="col l7 offset-l5 s12 m12">
+        <!-- </div> -->
+        <div class="col l6 s12 m12">
             <div class='row'>
                 <div ng-repeat="onePhotoUrl in product.photoUrls">
-                    <div class='col l6 m12 center'>
-                        <img class="responsive-img" src="{{onePhotoUrl}}">
+                    <div class='col l6 m6 s12 center'>
+                        <img class="responsive-img" src="{{onePhotoUrl}}"/>
                     </div>
                 </div>
             </div>
