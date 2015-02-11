@@ -223,7 +223,7 @@ module.exports = function (grunt) {
       target: {
         src: '<%= yeoman.client %>/index.html',
         ignorePath: '<%= yeoman.client %>/',
-        exclude: [/bootstrap-sass-official/, /bootstrap.js/, '/json3/', '/es5-shim/', /bootstrap.css/, /font-awesome.css/ ]
+        exclude: [/materialize.css/,/bootstrap-sass-official/, /bootstrap.js/, '/json3/', '/es5-shim/', /bootstrap.css/, /font-awesome.css/ ]
       }
     },
 
@@ -311,15 +311,15 @@ module.exports = function (grunt) {
       options: {
         // This should be the name of your apps angular module
         module: 'cornerfindApp',
-        htmlmin: {
-          collapseBooleanAttributes: true,
-          collapseWhitespace: true,
-          removeAttributeQuotes: true,
-          removeEmptyAttributes: true,
-          removeRedundantAttributes: true,
-          removeScriptTypeAttributes: true,
-          removeStyleLinkTypeAttributes: true
-        },
+        // htmlmin: {
+        //   collapseBooleanAttributes: true,
+        //   collapseWhitespace: true,
+        //   removeAttributeQuotes: true,
+        //   removeEmptyAttributes: true,
+        //   removeRedundantAttributes: true,
+        //   removeScriptTypeAttributes: true,
+        //   removeStyleLinkTypeAttributes: true
+        // },
         usemin: 'app/app.js'
       },
       main: {
@@ -569,7 +569,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:sass', 
+        'injector:sass',
         'concurrent:server',
         'injector',
         'wiredep',
@@ -581,7 +581,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'env:all',
-      'injector:sass', 
+      'injector:sass',
       'concurrent:server',
       'injector',
       'wiredep',
@@ -611,7 +611,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:sass', 
+        'injector:sass',
         'concurrent:test',
         'injector',
         'autoprefixer',
@@ -624,7 +624,7 @@ module.exports = function (grunt) {
         'clean:server',
         'env:all',
         'env:test',
-        'injector:sass', 
+        'injector:sass',
         'concurrent:test',
         'injector',
         'wiredep',
@@ -642,7 +642,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'injector:sass', 
+    'injector:sass',
     'concurrent:dist',
     'injector',
     'wiredep',
@@ -658,6 +658,7 @@ module.exports = function (grunt) {
     'rev',
     'usemin'
   ]);
+
 
   grunt.registerTask('default', [
     'newer:jshint',

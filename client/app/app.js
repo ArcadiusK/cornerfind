@@ -7,8 +7,8 @@ angular.module('cornerfindApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'ngMaterial',
-  'firebase'
+  'firebase',
+  'ui.utils'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
