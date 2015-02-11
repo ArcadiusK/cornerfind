@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .controller('OneProductViewCtrl', function($scope, Auth, User, products, chat, $stateParams, offer, $cookieStore, $location, $mdSidenav) {
+    .controller('OneProductViewCtrl', function($scope, Auth, User, products, chat, $stateParams, offer, $cookieStore, $location) {
         $scope.currentUser = Auth.getCurrentUser();
         if(typeof $scope.currentUser._id !== 'undefined'){
             Auth.getCurrentUser().$promise.then(function(user) {
