@@ -15,8 +15,26 @@ angular.module('cornerfindApp')
     	})
     }
 
-    $scope.modifyOffer = function(){
-        
+    $scope.modifyOffer = function(obj){
+        // Depopulating the model before sending to backend
+        // otherwise it will error on save
+        //ifs are in case it's modified multiple times in one session
+        if(typeof obj.sellerId === 'object'){
+            obj.sellerId = obj.sellerId._id;
+        };
+
+        for(var i = 0;i<obj.lineItems.length;i++){
+            if(typeof obj.lineItems[i].productId==='object'){
+                obj.lineItems[i].productId = obj.lineItems[i].productId._id;
+            }
+        };
+        //removing version to prevent errors on multiple modifications
+        delete obj.__v; 
+
+        offer.updateOffer({id:obj._id},obj,function(res,err){
+            console.log("modify Success", res);
+            toast('Success!',4000)
+        });
     }
 
   });
