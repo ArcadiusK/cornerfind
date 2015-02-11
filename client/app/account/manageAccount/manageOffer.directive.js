@@ -25,7 +25,7 @@ angular.module('cornerfindApp')
                 }
 
                 scope.newReview = {
-                    reviewedUserId: scope.offer.sellerId,
+                    reviewedUserId: scope.offer.sellerId._id,
                     reviewingUserId: scope.offer.buyerId._id,
                     text: "",
                     rating: 0,

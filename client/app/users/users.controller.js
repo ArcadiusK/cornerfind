@@ -1,13 +1,18 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .controller('UsersCtrl', function($scope, products, Auth, User, chat, $stateParams, $timeout) {
+    .controller('UsersCtrl', function($scope, products, Auth, User, chat, review, $stateParams, $timeout) {
+
 
 
         // Get logged in user object
         $scope.loggedInUser = Auth.getCurrentUser();
 
         $scope.toggleText = 'Following';
+
+
+
+        $scope.review = false;
 
         // Get user of current page
         User.getUserByName({
@@ -17,6 +22,7 @@ angular.module('cornerfindApp')
             console.log('scope.user._id is ...', $scope.user._id);
             // console.log('$scope.loggedInUser.following is ...', $scope.loggedInUser.following);
 
+            $scope.reviews = review.resource.query({id:$scope.user._id});
             if ($scope.loggedInUser.following.indexOf($scope.user._id) !== -1) {
                 $scope.followed = true;
                 $scope.toggleText = 'Following';
@@ -28,6 +34,9 @@ angular.module('cornerfindApp')
             }
         })
 
+        $scope.showReviews = function () {
+            $scope.review = true;
+        }
 
 
         $scope.toggleFollow = function() {
@@ -42,7 +51,7 @@ angular.module('cornerfindApp')
                 $timeout(function() {
                     User.update($scope.loggedInUser)
                         .$promise.then(function(user) {
-                            console.log('User Unfollowed! New logged in user.followed is ..', user)
+                         
                             $scope.followed = false;
                             $scope.toggleText = 'Follow';
                             $scope.$apply;
@@ -54,7 +63,8 @@ angular.module('cornerfindApp')
                     // Update the user of the page's followers array
                 User.update($scope.user)
                     .$promise.then(function(user) {
-                        console.log('Follower removed from users followers array ..', user)
+                        toast('Unfollowed',4000);
+                       
                     });
 
             }
@@ -65,7 +75,7 @@ angular.module('cornerfindApp')
                 $scope.loggedInUser.following.push($scope.user._id)
                 User.update($scope.loggedInUser)
                     .$promise.then(function(user) {
-                        console.log('User Followed! New logged in user.followed is ..', user)
+                          toast('Following',4000);
                         $scope.followed = true;
                         $scope.toggleText = 'Following';
                         $scope.$apply;
