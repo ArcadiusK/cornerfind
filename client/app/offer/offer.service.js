@@ -44,6 +44,12 @@ angular.module('cornerfindApp')
                         id: '@id',
                         offers: 'acceptOffer'
                     }
+                },
+                updateOffer: {
+                    method: 'PUT',
+                    params: {
+                        id: '@id'
+                    }
                 }
             }
 

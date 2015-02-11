@@ -2,6 +2,7 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 $fa-font-path: "/bower_components/font-awesome/fonts";
 
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+@import 'materialize/sass/materialize';
 @import 'font-awesome/scss/font-awesome';
 
 /**
@@ -17,99 +18,6 @@ html{
     background: #ccc;
     color: #000;
     padding: 0.2em 0;
-}
-
-body {
-	font-family: roboto;
-	font-weight: 500;
-  border-top: none;
-}
-
-a{
-  &:hover{
-    text-decoration: none !important;
-  }
-
-}
-
-.productSubtitle{
-  padding-top: 0px !important;
-  padding-bottom: 5px !important;
-  border-top: 0px !important;
-  margin-top: -3px !important;
-
-  h6{
-    color: #9e9e9e !important;
-    margin-bottom: 6px !important;
-  }
-  h3{
-    font-size: 1.1rem !important;
-    color: #333333 !important;
-    margin-top: 0px !important;
-    margin-bottom: 3px !important;
-  }
-}
-
-.productDescInCard{
-  padding-top: 8px !important;
-  padding-bottom: 5px !important;
-  margin-top: 0px !important;
-  margin-bottom: -20px !important;
-  p{
-    line-height: 140% !important;
-    color: #333333 !important;
-    margin-bottom: -3px !important;
-    font-weight: 400 !important;
-  }
-
-  .price {
-    color: #333333 !important;
-    font-size: 1.2rem !important;
-    display: inline-block !important;
-    font-weight: 600 !important;
-    margin-bottom: 5px !important;
-  }
-
-  .strike {
-    display: inline-block !important;
-    text-decoration: line-through !important;
-    font-size: 1.05rem !important;
-    color: #9e9e9e !important;
-    display: inline-block !important;
-    text-indent: 0.5rem !important;
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-  }
-
-}
-
-.productFavInCard{
-  padding-top: 5px !important;
-  padding-bottom: 5px !important;
-  margin-top: 0px !important;
-}
-
-
-
-
-
-
-.favoriteIcon{
-	display: inline-block !important;
-	font-size: 2rem !important;
-  color: #ffcdd2 !important;
-}
-
-
-.productFavoriteDisplay{
-  margin-top: 0px !important;
-  margin-bottom: 0px !important;
-	display: inline-block !important;
-  vertical-align: 25% !important;
-}
-
-.card-image{
-  display:inline-block !important;
 }
 
 .col{
@@ -128,6 +36,7 @@ a{
 @import 'admin/admin.scss';
 @import 'chat/chat.scss';
 @import 'checkout/checkoutDirective/checkoutDirective.scss';
+@import 'easypost/easypost.scss';
 @import 'main/main.scss';
 @import 'offer/offer.scss';
 @import 'products/oneProductView/oneProductView.scss';
