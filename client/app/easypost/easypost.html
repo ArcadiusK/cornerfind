@@ -1,0 +1,60 @@
+
+	<div class="row" ng-controller='EasypostCtrl'>
+	<div class='col s12'>
+	  <form class="col s12" ng-submit='saveAddress(address)'>
+	    <div class="row">
+	      <div class="input-field col s12">
+	        <input id="first_name" type="text" class="validate" ng-model='address.name'>
+	        <label for="first_name">Full Name</label>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="input-field col s12">
+	        <input id="address1" type="text" class="validate" ng-model='address.street1'>
+	        <label for="address1">Address Line 1 (Street address, P.O. box, company name, etc.)</label>
+	      </div>
+	    </div>
+	   	<div class="row">
+	      <div class="input-field col s12">
+	        <input id="address2" type="text" class="validate" ng-model='address.street2'>
+	        <label for="address2">Address Line 2 (Apartment., suite, unit, floor, etc.)</label>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="input-field col s7">
+	        <input id="city" type="text" class="validate" ng-model='address.city'>
+	        <label for="city">City</label>
+	      </div>
+	      <div class="input-field col s2">
+	     	<input id="password" type="text" class="validate" ng-model='address.state'>
+	        <label for="password">State</label>
+	      </div>
+	      <div class="input-field col s3">
+	     	<input id="zipcode" type="text" class="validate" ng-model='address.zip'>
+	        <label for="zipcode">Zip</label>
+	      </div>
+	    </div>
+
+	    <div class="row">
+	      <div class="input-field col s12">
+	        <input id="phone" type="text" class="validate" ng-model='address.phone'>
+	        <label for="phone">Phone Number</label>
+	      </div>
+	    </div>
+
+	    <div class="row">
+	      <div class="input-field col s7">
+			<input id="email" type="email" class="validate" ng-model='address.email'>
+			<label for="email">Email</label>
+	      </div>
+
+	      <div class="input-field col s5">
+		      <button class="btn waves-effect waves-light right" type="submit" name="action">Save
+			    <i class="mdi-content-send right"></i>
+			  </button>
+		  </div>
+	    </div>
+
+	  </form>
+	</div>
+	</div>
