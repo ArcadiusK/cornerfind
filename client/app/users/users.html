@@ -1,20 +1,16 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-
-
 <div class="container" ng-controller="UsersCtrl" resizable>
     <div class="row">
-        <div class="col s12 l3" ng-class='isMobile(windowWidth)'>
-            <div class="card pink lighten-3 ">
+            <div class="card pink lighten-3 col s12 m8 l6 pinned">
                 <div class="card-content white-text">
-
                     <span class="card-title grey-text text-darken-4">{{user.username}} </span>
                     <br/>
-                    <h5 >About me:</h5>
-                    <p >{{user.description}} </p>
+                    <h5>About me:</h5>
+                    <p>{{user.description}} </p>
                     <br/>
                     <table>
-                        <thead >
-                            <tr class="z-depth-2">
+                        <thead>
+                            <tr >
                                 <th data-field="listing">Listings</th>
                                 <th data-field="followers">Followers</th>
                                 <th data-field="following">Following</th>
@@ -23,52 +19,25 @@
                         <tbody>
                             <tr>
                                 <td>{{user.listedProducts.length}}</td>
-                                 <td>{{user.followers.length}}</td>
-                                    <td>{{user.following.length}}</td>
-                            </tr>
-                            <tr>
-                               
-                            </tr>
-                            <tr>
-                             
-                            </tr>
+                                <td>{{user.followers.length}}</td>
+                                <td>{{user.following.length}}</td>
                         </tbody>
                     </table>
-                
                     <div class="section">
-
                         <a ng-click='toggleFollow()' class="waves-effect btn blue lighten-2 grey-text text-darken-4">
-
                             <i class="mdi-action-favorite-outline"></i>{{toggleText}}
+                            <i ng-show='followed' class='mdi-action-done'></i>
+                        </a>
 
-                            <i ng-show='followed' class='mdi-action-done'></i></a>
+                        <a ng-click='loadAbout()' class="waves-effect waves-purple btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-face-unlock"></i>About</a>
 
-
-                    <a ng-click='loadAbout()' class="waves-effect waves-purple btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-face-unlock"></i>About</a>
-
+                    </div>
                 </div>
             </div>
-        </div>
-
-         <div class="row">
-    <ul class="col l8 m6 s4 list-unstyled" ng-repeat="product in user.listedProducts">
-      <product-card-view info="product"></product-card-view>
-    </ul>
-  </div>
-</div>
-
-<!--         <div class="row">
-            <ul class="col l12 m6 s12 list-unstyled">
-                <span ng-repeat="product in user.listedProducts" >
-                <product-card-view class="col l8 m8 s12" info="product"></product-card-view>
-            </span>
-            </ul>
-        </div>
- -->
+            <div class="row col s12 m4 l6">
+                <ul class="col l12 m12 s12 list-unstyled" ng-repeat="product in user.listedProducts">
+                    <product-card-view info="product"></product-card-view>
+                </ul>
+            </div>
     </div>
-
-
-
-</div>
-</div>
 </div>
