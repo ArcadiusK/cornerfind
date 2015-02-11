@@ -27,7 +27,7 @@
                     <div class="form-panel">
                         <div class="row">
                             <div class="col-md-7">
-                                <p>How was your experience with this user?</p>
+                                <p>How was your experience with {{offer.buyerId.name}}?</p>
                                 <input type="text" ng-model="reviewText" ng-required="true">
                                 <br/>
                                 <p>How many stars?</p>
@@ -37,6 +37,9 @@
                             </div>
                         </div>
                     </div>
+
+                <button class='btn' ng-click="submitReview()">Submit</button>
+
                 </form>
 
 
