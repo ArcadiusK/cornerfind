@@ -5,7 +5,6 @@ angular.module('cornerfindApp')
 		$stateProvider
 			.state('offer',{
 				url:'/offers/:userId', 
-				//question for Joe with srefing this from navbar
 				templateUrl: 'app/offer/offer.html',
 				controller: "OfferCtrl"
 			})

@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: CartCtrl', function () {
+describe('Controller: EasypostCtrl', function () {
 
   // load the controller's module
   beforeEach(module('cornerfindApp'));
 
-  var CartCtrl, scope;
+  var EasypostCtrl, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    CartCtrl = $controller('CartCtrl', {
+    EasypostCtrl = $controller('EasypostCtrl', {
       $scope: scope
     });
   }));
