@@ -13,7 +13,6 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
-      <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -56,11 +55,10 @@
       <script src="bower_components/lodash/dist/lodash.compat.js"></script>
       <script src="bower_components/angular-socket-io/socket.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-      <script src="bower_components/angular-animate/angular-animate.js"></script>
-      <script src="bower_components/angular-aria/angular-aria.js"></script>
-      <script src="bower_components/angular-material/angular-material.js"></script>
+      <script src="bower_components/materialize/bin/materialize.js"></script>
       <script src="bower_components/firebase/firebase.js"></script>
       <script src="bower_components/angularfire/dist/angularfire.js"></script>
+      <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
       <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
@@ -76,6 +74,7 @@
           <script src="app/account/login/login.controller.js"></script>
           <script src="app/account/manageAccount/changePassword.controller.js"></script>
           <script src="app/account/manageAccount/manageAccount.controller.js"></script>
+          <script src="app/account/manageAccount/manageAddress.controller.js"></script>
           <script src="app/account/manageAccount/manageListing.directive.js"></script>
           <script src="app/account/manageAccount/manageListings.controller.js"></script>
           <script src="app/account/manageAccount/manageOffer.directive.js"></script>
@@ -94,6 +93,8 @@
           <script src="app/components/Like/Like.service.js"></script>
           <script src="app/components/success.directive.js"></script>
           <script src="app/condition/condition.service.js"></script>
+          <script src="app/easypost/easypost.controller.js"></script>
+          <script src="app/easypost/easypost.directive.js"></script>
           <script src="app/likes/likes.service.js"></script>
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
