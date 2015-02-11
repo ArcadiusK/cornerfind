@@ -100,7 +100,7 @@ exports.manageOffers = function(req,res){
           }
       }
     ]}
-  ).populate('buyerId').populate('productId').exec(function(err,offers){
+  ).populate('buyerId').populate('sellerId').populate('productId').exec(function(err,offers){
     if(err){return handleError(res,err);}
     res.json(offers)
   })
