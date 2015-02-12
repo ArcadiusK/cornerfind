@@ -21,7 +21,7 @@ var OrderSchema = new Schema({
   orderTotal: {type: Number, min: 0},
   timeStamp: Number,
   billing: {},
-
+  reviewed: {type: Boolean, default: false},
   status: {type:String, enum: ['declined','expired','offer','accepted','shipped','received','issues']}
 
 });
@@ -55,6 +55,7 @@ OrderSchema.pre('save',function(next){
 
 OrderSchema.statics = {
   getBuyersOffers: function(buyerId){
+   
   return this.find(
       {$and:[{buyerId:buyerId},
             {
