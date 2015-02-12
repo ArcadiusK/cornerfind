@@ -17,7 +17,6 @@ exports.show = function(req, res) {
   Address.findOne({userId: new ObjectId(req.params.id)}, function (err, address) {
     if(err) { return handleError(res, err); }
     if(!address) { return res.send(404); }
-    console.log(address);
     return res.json(address);
   });
 };
@@ -34,7 +33,7 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
   Address.update({userId: req.params.id},req.body,{upsert: true},(function(err,address){
-    if(err) { return handleError(res, err); }
+    if(err) {return handleError(res, err); }
     if(!address) { return res.send(404); }
     return res.json(200,address);
     })

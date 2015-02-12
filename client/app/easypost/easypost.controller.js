@@ -22,7 +22,6 @@ angular.module('cornerfindApp')
 
 
         $http.post('/api/easyposts/verify',{fromAddress:$scope.address}).success(function(address,status){
-          console.log('easypost',arguments)
 
           if(status !== 200){
             return toast('Invalid Address',4000)
@@ -30,19 +29,20 @@ angular.module('cornerfindApp')
 
           $scope.address ={
           userId: $scope.currentUser._id,
-          name: address.name,
-          street1: address.street1,
-          street2: address.street2,
-          state: address.state,
-          zip: address.zip,
-          city: address.city,
-          phone: address.phone,
-          email: address.email
+          name: address.address.name,
+          street1: address.address.street1,
+          street2: address.address.street2,
+          state: address.address.state,
+          zip: address.address.zip,
+          city: address.address.city,
+          phone: address.address.phone,
+          email: address.address.email
 
         }
 
         Address.updateAddress({id:$scope.currentUser._id},$scope.address,null,function(results){
      		toast('Success!', 5000)
+        console.log("results ",results)
         })
 
       })
