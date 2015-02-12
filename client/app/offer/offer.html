@@ -2,47 +2,10 @@
 
 <div class='container'>
 	<h1>Your Offers:</h1>
+  <div class='row'>
+ 
+      <your-offer-view class="col s12 m12 l6" offer="offer" modify-offer="modifyOffer(offer)" cancel-offer='cancelOffer(offerId)' toggle-form="toggleCard()" ng-repeat='offer in offers'></your-offer-view>
 
-	
-	<div class="row section" ng-repeat="offer in offers">
-      <table class="centered striped col l9 m10 s10">
-        <thead>
-        	<h3>Seller: <a href="/users/{{offer.sellerId.name}}">{{offer.sellerId.name}}
-        	</a></h3>
-        	<h4>Order Total: {{(offer.orderTotal + orderShippingHandling)/100 | currency}}</h4>
-        	<h4>Details:</h4>
-          <tr class='row'>
-              <th class='col l2 m2 s2' data-field="id">Item</th>
-              <th class='col l2 m2 s2' data-field="id">Name</th>
-              <th class='col l2 m2 s2' data-field="price">Quantity</th>
-              <th class='col l2 m2 s2' data-field="price">Price</th>
-          </tr>
-        </thead>
-        <tbody>
-        	<tr class='row' ng-repeat="item in offer.lineItems">
-        		<td class='col l2 m2 s2' >
-        			<a href="/products/{{item.productId._id}}"><img id='our-thumbnail' src="{{item.productId.photoUrls[0]}}"/>
-        			</a>
-        		</td>
-	            <td class='col l2 m2 s2'>{{item.name}}: {{item.purchasePrice/100 | currency}}</td>
-	            <td class='col l2 m2 s2'>{{item.qty}}</td>
-	            <td class='col l2 m2 s2'>{{item.purchasePrice/100 | currency}}</td>
-      			<td class='col l4 m4 s4'>
-      					
-      				
-      				<i ng-click="removeOffer(offer)" class='mdi-navigation-cancel medium right' id="remove"></i></td>
-      			
-         	</tr>
-          
-        </tbody>
-      </table>
-      <div class ="col l3 m2 s0">
-      </div>
-
-    </div>
-
-
-
-
+  </div>
 
 </div>

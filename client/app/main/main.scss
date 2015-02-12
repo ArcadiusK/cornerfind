@@ -1,22 +1,19 @@
 .thing-form {
     margin: 20px 0;
 }
-
 #banner {
     border-bottom: none;
     margin-top: -20px;
-    height:800px;
+    height: 800px;
     background-image: url("http://cornerfind.s3-website-us-west-2.amazonaws.com/1423524630845LOGO_CORNERFIND.jpg");
-background-attachment: fixed;
-  //  background-repeat: repeat;
+    background-attachment: fixed;
+    //  background-repeat: repeat;
 }
-
 #banner h1 {
     font-size: 60px;
     line-height: 1;
     letter-spacing: -1px;
 }
-
 .hero-unit {
     position: relative;
     padding: 30px 15px;
@@ -25,14 +22,14 @@ background-attachment: fixed;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
     background: #fff;
 }
-
 .footer {
     text-align: center;
     padding: 30px 0;
     margin-top: 70px;
     border-top: 1px solid #E5E5E5;
 }
+.star-color {
+    color: #FCDC3B;
+}
 
-
- //color: #F5F5F5;
-
+//color: #F5F5F5;

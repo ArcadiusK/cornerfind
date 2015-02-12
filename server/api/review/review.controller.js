@@ -5,6 +5,7 @@ var Review = require('./review.model');
 
 // Get list of reviews
 exports.index = function(req, res) {
+  console.log('hitting index');
   Review.find(function (err, reviews) {
     if(err) { return handleError(res, err); }
     return res.json(200, reviews);
@@ -13,16 +14,22 @@ exports.index = function(req, res) {
 
 // Get a single review
 exports.show = function(req, res) {
-  Review.findById(req.params.id, function (err, review) {
+  console.log('hitting show', req.params.id)
+  Review.find({reviewedUserId: req.params.id}).populate('reviewingUserId').exec(function (err, review) {
+   
     if(err) { return handleError(res, err); }
     if(!review) { return res.send(404); }
-    return res.json(review);
-  });
+    return res.json(review); 
+  })
+
+
 };
 
 // Creates a new review in the DB.
 exports.create = function(req, res) {
+
   Review.create(req.body, function(err, review) {
+
     if(err) { return handleError(res, err); }
     return res.json(201, review);
   });
