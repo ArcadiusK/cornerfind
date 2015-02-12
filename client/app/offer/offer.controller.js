@@ -2,11 +2,11 @@
 
 angular.module('cornerfindApp')
   .controller('OfferCtrl', function ($scope, $stateParams, offer, Auth) {
-    $scope.userId = $stateParams.userId;	//User Id is stored here
 
+    $scope.user = Auth.getCurrentUser().$promise.then(function (user) {
+    $scope.offers = offer.getBuyersOffers({id: user._id});
+    });
 
-
-    $scope.offers = offer.getBuyersOffers({id:Auth.getCurrentUser()._id});
     
     $scope.cancelOffer = function(param){
     	offer.delete({id:param._id},function(res,err){
@@ -32,8 +32,8 @@ angular.module('cornerfindApp')
         delete obj.__v; 
 
         offer.updateOffer({id:obj._id},obj,function(res,err){
-            console.log("modify Success", res);
-            toast('Success!',4000)
+         
+      
         });
     }
 
