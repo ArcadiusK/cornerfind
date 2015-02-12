@@ -1,58 +1,54 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('EasypostCtrl', function ($scope, $http, Auth ) {
+  .controller('EasypostCtrl', function ($scope, $http, Auth, Address ) {
     $scope.verifyAddyResult;
   	$scope.false = true;
     $scope.buttonText = 'Submit';
     $scope.buttonColor = '';
     $scope.currentUser = Auth.getCurrentUser();
-    $scope.address={};
+    
+    $scope.address = Address.get({id:$scope.currentUser._id});
+    //question how to fix focus thing
+    $("#street1").focus();
+    $("#street2").focus();
+    $("#state").focus();
+    $("#zip").focus();
+    $("#city").focus();
 
-
-    $http.get('/api/address/'+$scope.currentUser._id).success(function(results){
-        $scope.address = results;
-       
-        $("#city").focus()
-        $("#street1").focus()
-        $("#street2").focus()
-        $("#state").focus()
-        $("#zip").focus()
-        $("#city").focus()
-    });
-
-   $scope.saveAddress = function(address){
-   		$scope.addyConfirm = true;
-     
+   $scope.saveAddress = function(){
+    toast('Confirming Address ...',3000)
       if($scope.buttonText == 'Submit'){
-     		toast('We found a match! Please review, modify and save', 5000) // 4000 is the duration of the toast
-        $http.post('/api/easyposts/verify', {fromAddress: address}).success(function(results){
-  			
-        $scope.address.userId = $scope.currentUser._id;
-        $scope.address.street1 = results.address.street1;
-        $scope.address.street2 = results.address.street2;
-        $scope.address.state = results.address.state;
-        $scope.address.zip = results.address.zip;
-        $scope.address.city = results.address.city;
 
-        $scope.buttonColor = 'light-green light-green darken-4';
-        $scope.buttonText = 'Save'
-        });
-      }
-      else{
-        //logic to save address Schema
-        console.log('scope addy before saving', $scope.address);
 
-        $http.post('/api/address/add', $scope.address).success(function(results){
-          console.log('wht was added to the database', results);
-        });
+        $http.post('/api/easyposts/verify',{fromAddress:$scope.address}).success(function(address,status){
+          console.log('easypost',arguments)
 
-        $scope.buttonText = 'Submit';
-        $scope.buttonColor = '';
+          if(status !== 200){
+            return toast('Invalid Address',4000)
+          }
 
-        toast('Saved!', 5000)
-      }
-   }
+          $scope.address ={
+          userId: $scope.currentUser._id,
+          name: address.name,
+          street1: address.street1,
+          street2: address.street2,
+          state: address.state,
+          zip: address.zip,
+          city: address.city,
+          phone: address.phone,
+          email: address.email
+
+        }
+
+        Address.updateAddress({id:$scope.currentUser._id},$scope.address,null,function(results){
+     		toast('Success!', 5000)
+        })
+
+      })
+    }
+  }
+
 
    $scope.createLabel = function(buyerAddress, sellerAddress){
  	   	console.log(buyerAddress, SellerAddress);
