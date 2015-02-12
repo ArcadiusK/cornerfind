@@ -1,80 +1,99 @@
-<!-- <div ng-include="'components/navbar/navbar.html'"></div> -->
+<div ng-include="'components/navbar/navbar.html'"></div>
 <!-- need to workout conflicts with this and sidenavs -->
+
+<script>
+$(document).ready(function(){
+    $('ul.tabs').tabs();
+  });
+        
+</script>
+
 
 <div class="container">
     <div class="form-panel">
+
         <div class='row'>
-            <div >
+            <div>
                 <h2><i class="mdi-action-loyalty"></i> Add a Product</h2>
                 <h4><i class='mdi-action-star-rate'/> = Required Field</h4>
             </div>
-            <div>Dev Div
+           <!--  <div>Dev Div
                 <h4>newProductDisplay: {{newProductDisplay}}</h4>
                 <h4>newProduct: {{newProduct}}</h4>
-            </div>
+            </div> -->
             <form class="form-horizontal style-form" method="get" ng-submit='addProduct(newProduct)'>
                 <div class="form-group">
-                    <label id='labels' class="col s2 m2 l2 control-label ">Upload Pictures<i class='mdi-action-star-rate'/></label>
-                   
+                    <label id='labels' class="col s2 m2 l2 control-label ">Upload Pictures<i class='mdi-action-star-rate' />
+                    </label>
+
                     <div class="col s4 m4 l4">
-                        <input id="file-upload" type="file" capture='camera' accept="image/*" class="form-control" onchange="angular.element(this).scope().upload()"></input>                  
+                        <input id="file-upload" type="file" capture='camera' accept="image/*" class="form-control" onchange="angular.element(this).scope().upload()"></input>
                     </div>
 
                     <div class='col s6 m6 l6'>
-                     <div ng-repeat='photo in newProduct.photoUrls'>
-                            <img ng-src="{{photo}}"/>
-                     </div>
+                        <div ng-repeat='photo in newProduct.photoUrls'>
+                            <img ng-src="{{photo}}" />
+                        </div>
                     </div>
                 </div>
 
-
                 <div class="form-group row">
-                    <label id='labels' class="col s2 m2 l2 control-label">Product Name<i class='mdi-action-star-rate'/></label>
+                    <label id='labels' class="col s2 m2 l2 control-label">Product Name<i class='mdi-action-star-rate' />
+                    </label>
                     <div class="col s10 m10 l10">
                         <input id='text-input' type="text" class="form-control" ng-model="newProduct.name">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label id='labels' class="col s2 m2 l2 control-label">Describe it!<i class='mdi-action-star-rate'/></label>
+                    <label id='labels' class="col s2 m2 l2 control-label">Describe it!<i class='mdi-action-star-rate' />
+                    </label>
                     <div class="col s10 m10 l10">
                         <textarea id='text-input' class="form-control" ng-model="newProduct.description"></textarea>
                     </div>
                 </div>
-                
 
-                <!--             SIDENAVS                 -->
+
+
+           
                 <div class="row form-group">
-                        <label id='labels' class=" col s4 m2 l2 control-label">Brand</label>
-                    <brandsidenav class='col s4 m4 l4' selection='availableBrands' sidebarid='brands' on-item-click="selectedBrand(selection)" button-text='Brands'></brandsidenav> <!--maybe make the buttons go all the way across, could look better? -->
-                    <div class='col s4 m4 l6'>{{newProductDisplay.brand}}
-                    </div>
-                    <div class='col s0 m2 l0'>
-                    </div>
-                </div>
-                
-                
-                <div class="row form-group">
-                    <label id='labels' class="col s4 m2 l2 control-label">Category<i class='mdi-action-star-rate'/></label>
-                   <categorysidenav class='col s4 m4 l4' selection='availableCategories' active-categories='newProductDisplay.category' sidebarid='categories' on-item-click="selectedCategory(selection)" button-text='Categories'></categorysidenav>
-                   <div class='col s4 m4 l6 pull-left'>{{newProductDisplay.category}}
-                   </div>
-                   <div class='col s0 m2 l0'>
-                    </div>
+                    <label id='labels' class=" col s4 m2 l2 control-label">Brand</label>
+                    <button ng-click='chooseBrand()' class='btn btn-primary'>{{brandButton}}</button>
+                        <div ng-show='showBrands' class="row">
+                            <div class="col s6 m6 l6">
+                                <ul ng-repeat='brand in availableBrands' class="tabs">
+                                    <li class="tab col s3"><a ng-click='selectBrand(brand.name)'>{{brand.name}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                 </div>
 
-                
+
                 <div class="row form-group">
-                    
-                        <label id='labels' class="col s4 m2 l2 control-label">Condition<i class='mdi-action-star-rate'/></label>
-                    
-                    <conditionsidenav class='col s4 m4 l4' selection='availableConditions' sidebarid='conditions' on-item-click="selectedCondition(selection)" button-text='Conditions'></conditionsidenav>
-                    <div class='col s4 m4 l6'>{{newProductDisplay.condition}}
-                    </div>
-                    <div class='col s0 m2 l0'>
-                    </div>
+                    <label id='labels' class=" col s4 m2 l2 control-label">Category</label>
+                    <button ng-click='chooseCategory()' class='btn btn-primary'>{{categoryButton}}</button>
+                        <div ng-show='showCategories' class="row">
+                            <div class="col s6 m6 l6">
+                                <ul ng-repeat='category in availableCategories' class="tabs">
+                                    <li class="tab col s3"><a ng-click='selectCategory(category.name)'>{{category.name}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                 </div>
 
-                <!--        END SIDENAVS                 -->
+                 <div class="row form-group">
+                    <label id='labels' class=" col s4 m2 l2 control-label">Condition</label>
+                    <button ng-click='chooseCondition()' class='btn btn-primary'>{{conditionButton}}</button>
+                        <div ng-show='showConditions' class="row">
+                            <div class="col s6 m6 l6">
+                                <ul ng-repeat='condition in availableConditions' class="tabs">
+                                    <li class="tab col s3"><a ng-click='selectCondition(condition.name)'>{{condition.name}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                </div>
 
 
                 <div class="form-group">
@@ -86,14 +105,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label id='labels' class="col s2 control-label">Listing Price<i class='mdi-action-star-rate'/></label>
+                    <label id='labels' class="col s2 control-label">Listing Price<i class='mdi-action-star-rate' />
+                    </label>
                     <div class="col s2">
                         <input id='text-input' class="form-control" type="number" placeholder="$100" ng-model="newProduct.price">
                     </div class='col s8'>
                     <div>
                     </div>
                 </div>
-                 <!-- <div class="form-group">
+                <!-- <div class="form-group">
                     <label class="col-sm-2 col-sm-2 control-label">Your earnings (when sold)</label>
                     <div class="col-sm-10"> 
                     </div>
