@@ -37,19 +37,18 @@ angular.module('cornerfindApp')
         $scope.isOffering = false;
         $scope.boughtItem = false;
         $scope.showtoken = false;
+        $scope.confirmationMenu = true;
+        $scope.buyerAddy = 'buyerAddy';
 
         //need to clear the form after the offer is submitted
         //and put in a confirmation 'Successfully Submitted Offer!'
 
         $scope.submitOffer = function(offerPrice) {
-            console.log('FIRED',offerPrice)
             //SHOWS CHECKOUT DIRECTIVE IF USER DOES NOT HAVE A TOKEN ALREADY
             if ($scope.currentUser.billing.stripeToken == null) {
                 $scope.showtoken = true;
                 return;
             }
-
-            console.log('HERE')
             var prod = $scope.product;
             $scope.isOffering = !$scope.isOffering;
 
@@ -65,7 +64,7 @@ angular.module('cornerfindApp')
                 status: 'offer'
             }
             offer.save(orderForCreation, function(result) {
-                toast('Offer Successfuly Submitted!')
+                toast('Offer Successfuly Submitted!',4000)
             }, function(err) {
                 if (err) {
                     console.log('Error ', err)
@@ -99,7 +98,6 @@ angular.module('cornerfindApp')
             offer.save(orderForCreation, function(result) {}, function(err) {
                 if (err) {
                     console.log('Error ', err)
-                    console.log(orderForCreation)
                 };
 
             })
