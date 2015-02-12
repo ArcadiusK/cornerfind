@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Address = require('./address.model');
+var ObjectId = require('mongoose').Types.ObjectId; 
 
 // Get list of addresss
 exports.index = function(req, res) {
@@ -13,7 +14,7 @@ exports.index = function(req, res) {
 
 // Get a single address
 exports.show = function(req, res) {
-  Address.findById(req.params.id, function (err, address) {
+  Address.findOne({userId: new ObjectId(req.params.id)}, function (err, address) {
     if(err) { return handleError(res, err); }
     if(!address) { return res.send(404); }
     return res.json(address);
@@ -23,7 +24,7 @@ exports.show = function(req, res) {
 // Creates a new address in the DB.
 exports.create = function(req, res) {
   Address.create(req.body, function(err, address) {
-    if(err) { return handleError(res, err); }
+    if(err) {return handleError(res, err); }
     return res.json(201, address);
   });
 };
@@ -31,15 +32,12 @@ exports.create = function(req, res) {
 // Updates an existing address in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  Address.findById(req.params.id, function (err, address) {
-    if (err) { return handleError(res, err); }
+  Address.update({userId: req.params.id},req.body,{upsert: true},(function(err,address){
+    if(err) {return handleError(res, err); }
     if(!address) { return res.send(404); }
-    var updated = _.merge(address, req.body);
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
-      return res.json(200, address);
-    });
-  });
+    return res.json(200,address);
+    })
+  )
 };
 
 // Deletes a address from the DB.
