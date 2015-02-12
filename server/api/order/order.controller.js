@@ -37,13 +37,14 @@ exports.charge = function(req, res) {
 
 // Updates an existing order in the DB.
 exports.update = function(req, res) {
+  console.log('REQ BODY ',req.body)
   if(req.body._id) { delete req.body._id; }
   Order.findById(req.params.id, function (err, order) {
-    if (err) { return handleError(res, err); }
+    if (err) { console.log('FIND ERR ',err); return handleError(res, err); }
     if(!order) { return res.send(404); }
     var updated = _.merge(order, req.body);
     updated.save(function (err) {
-      if (err) { return handleError(res, err); }
+      if (err) { console.log("SAVE ERR" ,err) ; return handleError(res, err); }
       return res.json(200, order);
     });
   });
@@ -64,8 +65,9 @@ exports.destroy = function(req, res) {
 //Get all of a user's orders
 exports.getOffers = function(req,res){
   Order.getBuyersOffers(req.params.userId).then(function(offers){
+
     offers.forEach(function(offer){
-      if(offer.stats === 'offer'){
+      if(offer.status === 'offer'){
         offer.checkTimeStamp()
       }
     }) //forEach is blocking, right? question
@@ -99,7 +101,7 @@ exports.manageOffers = function(req,res){
           }
       }
     ]}
-  ).populate('buyerId').populate('productId').exec(function(err,offers){
+  ).populate('buyerId').populate('sellerId').populate('productId').exec(function(err,offers){
     if(err){return handleError(res,err);}
     res.json(offers)
   })

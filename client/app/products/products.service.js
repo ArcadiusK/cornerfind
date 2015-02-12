@@ -4,14 +4,18 @@ angular.module('cornerfindApp')
   .factory('products', function($http, $location, $resource) {
     return{
 
-      resource: $resource('/api/products/:id/:listings', { id: '@_id'}, {
+      resource: $resource('/api/products/:id/:controller', { id: '@_id'}, {
         update: {
           method: 'PUT'
         },
         search : {
-          url: '/api/products/search/:query',
+         // url: '/api/products/search/:query',
           isArray: true,
-          method: 'GET'
+          method: 'GET',
+          params: {
+            id: '@searchtext',
+            controller: 'search'
+          }
         },
         updateQuantity : {
           url: '/api/products/qty/:id',
@@ -22,7 +26,7 @@ angular.module('cornerfindApp')
           isArray: true,
           params: {
             id: '@id',
-            listings: 'listings'
+            controller: 'listings'
           }
         },
          getOwner: {
@@ -36,4 +40,4 @@ angular.module('cornerfindApp')
     }
   })
 
-  
+

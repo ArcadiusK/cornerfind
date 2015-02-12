@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth,brand, category, $cookieStore) {
+  .controller('NavbarCtrl', function ($state ,$scope, $location, Auth,brand, category, $cookieStore) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
@@ -15,6 +15,7 @@ angular.module('cornerfindApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
+    
 
     $scope.smallerThan768 = function(){ //768 is the twitter navbar breakpoint
       return $scope.windowWidth < 768 ? true:false;
@@ -32,5 +33,10 @@ angular.module('cornerfindApp')
     $scope.getCartId=function(){
       return $cookieStore.get('cartId');
     }
+
+    // $scope.yourOffers = function(){
+    //   var currentUser=Auth.getCurrentUser().$promise
+    //   $state.go('offer.'+currentUser._id)
+    // }
 
   });
