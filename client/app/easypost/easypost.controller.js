@@ -57,4 +57,9 @@ angular.module('cornerfindApp')
 		});
    }
 
+   $scope.resetAddy = function(){
+    $scope.address = {};
+
+   }
+
   });

@@ -5,7 +5,9 @@ angular.module('cornerfindApp')
     return {
       templateUrl: 'app/easypost/easypost.html',
       restrict: 'EA',
-      scope: {},
+      scope: {
+      	context: '@'
+      },
       link: function (scope, element, attrs) {
       }
     };
