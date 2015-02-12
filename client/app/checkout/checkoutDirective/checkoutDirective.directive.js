@@ -11,7 +11,9 @@ angular.module('cornerfindApp')
                 notoken: '=',
                 user: '=',
                 stripeResponseHandler: "&",
-                buttonText: '@'
+                buttonText: '@',
+                saveOrder: '&',
+                offerPrice: '='
             },
             link: function(scope, element, attrs) {
 
@@ -23,9 +25,9 @@ angular.module('cornerfindApp')
                         scope.ccinfo.exp_month = ccArr[0];
                         scope.ccinfo.exp_year = ccArr[1];
                         Stripe.card.createToken(scope.ccinfo, stripeResponseHandler);
-    
+
                         return true;
-                       
+
                     };
 
                     function stripeResponseHandler(status, response) {
@@ -36,16 +38,15 @@ angular.module('cornerfindApp')
                             scope.$apply();
                         } else {
                             // token contains id, last4, and card type
-                             scope.user.billing.cardType = response['card']['brand'];
+                            scope.user.billing.cardType = response['card']['brand'];
                             scope.user.billing.last4 = response['card']['last4'];
                             scope.user.billing.stripeToken = response['id'];
-                            console.log('scope.useris ..', scope.user.username);
-                             scope.showtoken=false;
+
+                            scope.showtoken = false;
                             scope.notoken = false;
                             User.update(scope.user)
                                 .$promise.then(function(user) {
-
-                                    console.log('updated user with billing is..', user)
+                                    scope.saveOrder({offerPrice:scope.offerPrice})
                                 });
                         }
                     }

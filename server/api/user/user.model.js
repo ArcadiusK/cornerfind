@@ -37,8 +37,6 @@ var UserSchema = new Schema({
         unique: true,
         lowercase: true
     }, //we have to validate no spaces on front end
-    shipAddy: String,
-    billAddy: String,
     settings: String, //will need to define later. Nice to have.
     following: [{
         type: Schema.Types.ObjectId,

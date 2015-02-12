@@ -24,34 +24,23 @@ exports.show = function(req, res) {
 
 // Creates a new easypost in the DB.
 exports.verify = function(req, res) {
-
-  //   var fromAddress = {
-  //   name: "EasyPost",
-  //     street1: "164 Townsend St",
-  //   street2: "#1",
-  //   city: "San Francisco",
-  //   state: "CA",
-  //   zip: "94107",
-  //   phone: "415-123-4567"
-  // };
-
-// verify address
+  // verify address
   easypost.Address.create(req.body.fromAddress, function(err, fromAddress) {
-    
-    fromAddress.verify(function(err, response) {
-      if (err) {
-        console.log('Address is invalid.');
-        var verifiedAddress = 'Address is invalid'
-      } else if (response.message !== undefined && response.message !== null) {
-        console.log('Address is valid but has an issue: ', response.message);
-        var verifiedAddress = response.address;
-      } else {
-        var verifiedAddress = response;
-      }
-      console.log(verifiedAddress.address);
-      return res.send(verifiedAddress);
-    })   
-});
+      
+      fromAddress.verify(function(err, response) {
+        if (err) {
+          console.log('Address is invalid.');
+          var verifiedAddress = 'Address is invalid'
+        } else if (response.message !== undefined && response.message !== null) {
+          console.log('Address is valid but has an issue: ', response.message);
+          var verifiedAddress = response.address;
+        } else {
+          var verifiedAddress = response;
+        }
+        console.log(verifiedAddress.address);
+        return res.send(verifiedAddress);
+      })   
+  });
 
   // Easypost.create(req.body, function(err, easypost) {
   //   if(err) { return handleError(res, err); }

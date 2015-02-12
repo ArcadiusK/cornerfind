@@ -5,13 +5,16 @@ var mongoose = require('mongoose'),
 
 var AddressSchema = new Schema({
   userId: {type: Schema.Types.ObjectId, ref: 'User', index:true},
-  billingTrueOrShippingFalse: {type: Boolean},
-  streetAddresLine1: {type: String},
-  streetAddresLine2: {type: String},
+  name: String, //added in to make dealing with easypost easier
+  phone: String, //added in to make dealing with easypost easier
+  billing: {type: Boolean,default:false},
+  street1: {type: String},
+  street2: {type: String},
   city: {type: String},
-  stateOrRegion: {type: String},
-  zipCodeOrPostalCode: {type: String},
-  country: {type: String}
+  state: {type: String},
+  zip: {type: String},
+  country: {type: String},
+  email: {type: String}
 });
 
 module.exports = mongoose.model('Address', AddressSchema);
