@@ -7,7 +7,8 @@ angular.module('cornerfindApp')
       restrict: 'EA',
       scope: {
       	product: '=info',
-        currentUser: '=currentUser',
+      //  currentUser: '=currentUser',
+        currentUser: '=',
       },
       link: function (scope, element, attrs) {
 
