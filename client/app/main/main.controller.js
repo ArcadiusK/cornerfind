@@ -10,14 +10,19 @@ angular.module('cornerfindApp')
         $scope.loggedin = Auth.isLoggedIn();
 
         $scope.searchSubmit = function(searchText) {
-            products.search({
-                    searchtext: searchText
+          console.log('inside searchSubmit');
+            products.resource.search({
+                   //searchtext: searchText
+                   id: searchText
                 }).$promise
                 .then(function(results) {
                     $scope.results = results;
-                    if ($scope.results.data.length === 1) {
+                    console.log("results: ", results);
+                    //if ($scope.results.data.length === 1) {
+                      if ($scope.results.length === 1) {
                         console.log('There was only one object found..');
-                    } else if ($scope.results.data.length > 1) {
+                 //   } else if ($scope.results.data.length > 1) {
+                     } else if ($scope.results.length > 1) {
                         console.log('There was more than one object found!');
                     }
                 })
