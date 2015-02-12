@@ -26,7 +26,12 @@ angular.module('cornerfindApp')
         });
 
         $scope.isMobile = function(width) {
-            return width <= 992 ? '' : 'pinned';
+            return width <= 992;
+        }
+
+        $scope.showAddressForm = false;
+        $scope.isPinned = function(width){
+            if(!$scope.isMobile(width) && !$scope.showAddressForm) return 'pinned';
         }
 
         $scope.isOffering = false;
