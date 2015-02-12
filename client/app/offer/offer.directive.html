@@ -7,20 +7,42 @@
             <div class="card-content white-text">
                 <span class="card-title">Seller: {{::offer.sellerId.name}}</span>
                 <ul>
-                    <h3>Items in this offer:</h3>
+                    <h5>Items in this offer:</h5>
                     <li ng-repeat='product in offer.lineItems'>
                         {{product.name}} - Listed Price: {{product.purchasePrice | currency}}
                     </li>
                 </ul>
                 <hr>
                 <div>Offer Total: {{offer.orderTotal | currency}}</div>
+                <div>Offer Status: {{offer.status}}</div>
             </div>
-            <div class="card-action" id="offer-card-action">
+  
+            <div ng-hide='statusCheck.status.indexOf(offer.status) > -1' class="card-action" id="offer-card-action">
                 <button class='col s6 btn' ng-click="isBeingModified=true">Modify Offer</button>
                 <button type='button' class=' col s6 btn red darken-2' ng-click="cancelOffer({offerId: offer})">Cancel Offer</button>
-
-
             </div>
+
+                <button ng-show="statusCheck.status.indexOf(offer.status) > -1 && !offer.reviewed &&!finished" class='btn' ng-click="review()">Leave a Review!</button>
+                <form ng-show='showReview && !offer.reviewed && !finished' ng-submit="submitReview()">
+                    <div class="form-panel">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <p>How was your experience with {{offer.buyerId.name}}?</p>
+                                <input type="text" ng-model="reviewText" ng-required="true">
+                                <br/>
+                                <p>How many stars?</p>
+                                <span ng-repeat='star in starClasses track by $index'>
+                            <span class="glyphicon glyphicon-star" ng-class="star" ng-click="setStars($index+1)"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type='submit' class='btn'>Submit</button>
+                </form>
+
+
+
         </div>
         <!-- End Main Cart Content -->
 

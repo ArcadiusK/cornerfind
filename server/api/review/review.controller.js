@@ -27,7 +27,9 @@ exports.show = function(req, res) {
 
 // Creates a new review in the DB.
 exports.create = function(req, res) {
+
   Review.create(req.body, function(err, review) {
+
     if(err) { return handleError(res, err); }
     return res.json(201, review);
   });
