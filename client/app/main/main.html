@@ -26,8 +26,8 @@
 </form>
 <h2> Search Results: </h1>
    <div class="row">
-        <ul class="col m3 l3 s4 list-unstyled" ng-repeat="product in results.data">
-            <product-card-view info="product"></product-card-view>
+        <ul class="col m3 l3 s4 list-unstyled" ng-repeat="product in results">
+            <product-card-view current-user="currentUser" info="product"></product-card-view>
         </ul>
     </div>
 <!-- {{results}} -->

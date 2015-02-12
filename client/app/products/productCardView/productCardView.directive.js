@@ -7,14 +7,15 @@ angular.module('cornerfindApp')
       restrict: 'EA',
       scope: {
       	product: '=info',
-        currentUser: '=currentUser',
+      //  currentUser: '=currentUser',
+        currentUser: '=',
       },
       link: function (scope, element, attrs) {
 
         scope.textGenerate = function(){
 
           likes.resource.getProductLikes({id: scope.product._id}).$promise.then(function(data){
-            
+
             scope.product.likes = data;
 
             if(scope.product.likes.length === 1){
@@ -31,6 +32,8 @@ angular.module('cornerfindApp')
               scope.likeText ='';
             }
 
+// console.log("scope.product.likes", scope.product.likes, "scope.product: ", scope.product)
+//             if (typeof scope.product.likes !== 'undefined')
             scope.product.likes.forEach(function(el){
               if(el.userId._id == scope.currentUser._id){
                     scope.favorited = true;
@@ -39,29 +42,29 @@ angular.module('cornerfindApp')
                   scope.favorited = false;
               }
             })
-     
-          
+
+
             likes.resource.getUserLikes({id: scope.currentUser._id}).$promise.then(function(data){
                 scope.currentUser.likes = data;
             });
 
           });
         }
-      
+
         scope.textGenerate();
-        //toggle favorite function to update backend. 
+        //toggle favorite function to update backend.
         scope.toggleFavorite = function(){
           var likeObject = {productId: scope.product._id, userId: scope.currentUser._id};
-          
+
           // If already favorited do this
           if (scope.favorited) {
-             
+
             var userLikeIndex = scope.currentUser.likes.map(function(e) { return e.productId; }).indexOf(scope.product._id);
             scope.currentUser.likes.splice(userLikeIndex, 1);
 
             var productLikeIndex = scope.product.likes.map(function(e) { return e.userId._id; }).indexOf(scope.currentUser._id);
             scope.product.likes.splice(productLikeIndex, 1);
-            
+
             likes.resource.deleteLike({productid: scope.product._id, userid: scope.currentUser._id});
             scope.favorited = false;
 
@@ -75,7 +78,7 @@ angular.module('cornerfindApp')
             scope.favorited = true;
             scope.textGenerate();
           }
-          
+
 
       }
     }
