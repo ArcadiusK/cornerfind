@@ -26,7 +26,12 @@ angular.module('cornerfindApp')
         });
 
         $scope.isMobile = function(width) {
-            return width <= 992 ? '' : 'pinned';
+            return width <= 992;
+        }
+
+        $scope.showAddressForm = false;
+        $scope.isPinned = function(width){
+            if(!$scope.isMobile(width) && !$scope.showAddressForm) return 'pinned';
         }
 
         $scope.isOffering = false;
@@ -37,13 +42,14 @@ angular.module('cornerfindApp')
         //and put in a confirmation 'Successfully Submitted Offer!'
 
         $scope.submitOffer = function(offerPrice) {
-
+            console.log('FIRED',offerPrice)
             //SHOWS CHECKOUT DIRECTIVE IF USER DOES NOT HAVE A TOKEN ALREADY
             if ($scope.currentUser.billing.stripeToken == null) {
                 $scope.showtoken = true;
                 return;
             }
 
+            console.log('HERE')
             var prod = $scope.product;
             $scope.isOffering = !$scope.isOffering;
 
@@ -59,7 +65,7 @@ angular.module('cornerfindApp')
                 status: 'offer'
             }
             offer.save(orderForCreation, function(result) {
-                console.log('offer created...', result)
+                toast('Offer Successfuly Submitted!')
             }, function(err) {
                 if (err) {
                     console.log('Error ', err)
