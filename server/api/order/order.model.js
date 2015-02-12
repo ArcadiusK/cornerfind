@@ -29,17 +29,19 @@ var OrderSchema = new Schema({
 
 
 OrderSchema.pre('save',function(next){
-  var total=0;
-  var self = this;
-  this.lineItems.forEach(function(item){  
-    total+= item.purchasePrice*item.qty;
-    console.log('ITEM',item)
-    Product.findByIdAndUpdate(item.productId,
-      {$addToSet: {offers: self._id}},function(){
-        //Not sure why this isn't working without the empty callback?  
-      })
-  });
-  this.orderTotal = total;
+  if(this.isNew){
+    var total=0;
+    var self = this;
+    this.lineItems.forEach(function(item){  
+      total+= item.purchasePrice*item.qty;
+      console.log('ITEM',item)
+      Product.findByIdAndUpdate(item.productId,
+        {$addToSet: {offers: self._id}},function(){
+          //Not sure why this isn't working without the empty callback?  
+        })
+    });
+    this.orderTotal = total;
+  }
   next();
 });
 
