@@ -5,7 +5,9 @@ var mongoose = require('mongoose'),
 
 var AddressSchema = new Schema({
   userId: {type: Schema.Types.ObjectId, ref: 'User', index:true},
-  billingTrueOrShippingFalse: {type: Boolean},
+  name: String, //added in to make dealing with easypost easier
+  phone: String, //added in to make dealing with easypost easier
+  billing: {type: Boolean,default:false},
   street1: {type: String},
   street2: {type: String},
   city: {type: String},
@@ -16,4 +18,3 @@ var AddressSchema = new Schema({
 });
 
 module.exports = mongoose.model('Address', AddressSchema);
-
