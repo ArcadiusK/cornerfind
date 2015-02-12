@@ -1,7 +1,7 @@
 
 	<div class="row" ng-controller='EasypostCtrl'>
 	<div class='col s12'>
-	  <form class="col s12" ng-submit='saveAddress(address)'>
+	  <form class="col s12" ng-submit='saveAddress(address)' ng-model='address'>
 	    <div class="row">
 	      <div class="input-field col s12">
 	        <input id="first_name" type="text" class="validate" ng-model='address.name'>
@@ -41,15 +41,19 @@
 	        <label for="phone">Phone Number</label>
 	      </div>
 	    </div>
-
+	    
 	    <div class="row">
-	      <div class="input-field col s7">
+	      <div class="input-field col s5">
 			<input id="email" type="email" class="validate" ng-model='address.email'>
 			<label for="email">Email</label>
 	      </div>
 
-	      <div class="input-field col s5">
-		      <button class="btn waves-effect waves-light right" type="submit" name="action">Save
+	      <div class="input-field col s3">
+		      <button class="btn waves-effect waves-light red right" type="button" name="action" ng-class='buttonColor' ng-click='resetAddy()'>New
+			  </button>
+		  </div>
+		  <div class="input-field col s3">
+		      <button class="btn waves-effect waves-light right" type="submit" name="action" ng-class='buttonColor'>Confirm
 			    <i class="mdi-content-send right"></i>
 			  </button>
 		  </div>
