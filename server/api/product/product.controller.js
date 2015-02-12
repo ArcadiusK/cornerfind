@@ -77,7 +77,8 @@ exports.getUsersListings = function(req,res){
 
 // Searches for producs from a specific brand from the DB
 exports.search = function(req, res) {
-    var searchtext = req.body.searchtext;
+    var searchtext = req.params.query;
+    console.log("req.params: ",req.params);
     console.log('.......Backend searchtext is', searchtext)
 
     Product.find({
@@ -98,9 +99,10 @@ exports.search = function(req, res) {
             if (err) console.log(err);
             if (!results) return res.send(440);
             console.log('backend search results are...', results)
-            var obj = {};
-            obj.data = results;
-            res.json(obj);
+            // var obj = {};
+            // obj.data = results;
+            // res.json(obj);
+            res.json(results);
         })
 }
 
