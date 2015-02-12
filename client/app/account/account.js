@@ -10,7 +10,7 @@ angular.module('cornerfindApp') //look into $urlrouterprovider otherwise method
       })
       .state('account.address',{
         templateUrl: 'app/account/manageAccount/manageAddress.html',
-        controller: "ManageAddressCtrl"
+        controller: "EasypostCtrl"
       })
       .state('account.profile',{
         templateUrl: 'app/account/manageAccount/manageProfile.html',
