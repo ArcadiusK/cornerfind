@@ -25,8 +25,8 @@ angular.module('cornerfindApp')
                 }
 
                 scope.newReview = {
-                    reviewedUserId: scope.offer.sellerId._id,
-                    reviewingUserId: scope.offer.buyerId._id,
+                    reviewedUserId: scope.offer.buyerId._id,
+                    reviewingUserId: scope.offer.sellerId._id,
                     text: "",
                     rating: 0,
                     date: new Date(),
@@ -42,13 +42,12 @@ angular.module('cornerfindApp')
                     for (var i = num; i < 5; i++) {
                         scope.starClasses[i] = "";
                     }
-                    console.log('set Stars clicked!-->', scope.newReview);
+                    
                 }
                 scope.submitReview = function () {
                 	
                 	   scope.newReview.text = scope.reviewText;
                     review.resource.save(scope.newReview, function (result) {
-
                     	toast('Review submitted!', 4000);
                     });
                 }

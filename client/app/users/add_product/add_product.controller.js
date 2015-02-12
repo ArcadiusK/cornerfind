@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .controller('AddProductCtrl', function($scope,brand,condition, category, $q, products, $mdSidenav, Auth) {
+    .controller('AddProductCtrl', function($scope, brand, condition, category, $q, products, Auth) {
 
         //GET all Brands and Categories
         $scope.availableBrands = brand.query();
@@ -9,36 +9,51 @@ angular.module('cornerfindApp')
         $scope.availableConditions = condition.query();
         $scope.userId = Auth.getCurrentUser()._id;
 
-
         //Add a new product
-        $scope.newProduct = {userId: $scope.userId, category: [], photoUrls: []};
-        $scope.newProductDisplay ={category: []};
+        $scope.newProduct = {
+            userId: $scope.userId,
+            category: [],
+            photoUrls: []
+        };
+        $scope.newProductDisplay = {
+            category: []
+        };
 
         $scope.showBrands = false;
         $scope.showCategories = false;
+        $scope.brandButton = 'Choose a Brand';
+        $scope.categoryButton = 'Choose a Category';
+        $scope.conditionButton = 'Choose a Condition';
 
-        $scope.selectedBrand = function(selected) {
-            $scope.newProduct.brand = selected.name;
-            $scope.newProductDisplay.brand = selected.name;
+        $scope.chooseBrand = function() {
+            $scope.showBrands = true;
         }
 
-        $scope.selectedCategory = function(selected) {
-            if ($scope.newProduct.category.indexOf(selected.name) !== -1){
-                var index =$scope.newProduct.category.indexOf(selected.name);
-                $scope.newProduct.category.splice(index,1);
-                var displayIndex = $scope.newProductDisplay.category.indexOf(selected.name);
-                $scope.newProductDisplay.category.splice(displayIndex,1);
-                return;
-            }
-            $scope.newProduct.category.push(selected.name);
-            $scope.newProductDisplay.category.push(selected.name);
+        $scope.selectBrand = function(selected) {
+            $scope.newProduct.brand = selected;
+            $scope.showBrands = false;
+            $scope.brandButton = selected;
         }
 
-        $scope.selectedCondition = function(selected) {
-            $scope.newProduct.condition = selected.name;
-            $scope.newProductDisplay.condition=selected.name;
+        $scope.chooseCategory = function() {
+            $scope.showCategories = true;
         }
-     
+
+        $scope.selectCategory = function(selected) {
+            $scope.newProduct.category = selected;
+            $scope.showCategories = false;
+            $scope.categoryButton = selected;
+        }
+
+         $scope.chooseCondition = function() {
+            $scope.showConditions = true;
+        }
+
+        $scope.selectCondition = function(selected) {
+            $scope.newProduct.condition = selected;
+            $scope.showConditions = false;
+            $scope.conditionButton = selected;
+        }
 
         $scope.addProduct=function(newProduct){
             products.resource.save(newProduct,function(){
@@ -46,16 +61,17 @@ angular.module('cornerfindApp')
             });
         }
 
+
         //Run this function when the input is changed
-        $scope.upload = function(thing){
+        $scope.upload = function(thing) {
             //Lines 7 and 8 are reliable ways to pull out the file name so it's saved in a friendly manner in the bucket.
             var file_name = angular.element('#file-upload').val().split('\\');
-                file_name = file_name[file_name.length-1];
+            file_name = file_name[file_name.length - 1];
 
             console.log(file_name);
 
             //S3 Upload is a separate client side library I'll attach
-              var s3upload = new S3Upload({
+            var s3upload = new S3Upload({
                 //The file input
                 file_dom_selector: 'file-upload',
                 //The name from above
