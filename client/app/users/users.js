@@ -13,9 +13,9 @@ angular.module('cornerfindApp')
         templateUrl: 'app/users/add_product/add_product.html',
         controller: 'AddProductCtrl'
       })
-      .state('edit_product', {
-        url: '/users/{name}/edit/{product}',
-        templateUrl: 'app/users/edit_product/edit_product.html',
-        controller: 'EditProductCtrl'
+      .state('edit_profile', {
+        url: '/users/{name}/edit',
+        templateUrl: 'app/users/edit_profile/edit_profile.html',
+        controller: 'EditProfileCtrl'
       })
   });
