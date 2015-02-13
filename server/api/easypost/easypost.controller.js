@@ -34,6 +34,7 @@ exports.verify = function(req, res) {
         } else if (response.message !== undefined && response.message !== null) {
           console.log('Address is valid but has an issue: ', response.message);
           var verifiedAddress = response.address;
+          return res.send(response.message);
         } else {
           var verifiedAddress = response;
         }
