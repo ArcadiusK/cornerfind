@@ -16,7 +16,7 @@ exports.index = function(req, res) {
 
 // Get a single product
 exports.show = function(req, res) {
-
+console.log('lololololollo')
   Product.findById(req.params.id).populate('userId')
   .exec(function(err,product){
     if(err) { return handleError(res, err); }
