@@ -1,6 +1,9 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <!--put in amazon style horizontal nav/tracker-->
-<a ui-sref='products.stripeInfo'>Stripe</a>
-<a ui-sref='products.addressForm'>address</a>
-<a ui-sref='products.confirmOrder'>confirm order</a>
-<div class='container' ui-view ></div>
+
+<div class='container'>
+	<a ui-sref='products.stripeInfo'>Stripe</a>
+	<a ui-sref='products.addressForm'>Address</a>
+	<a ui-sref='products.confirmOrder'>confirm order</a>
+	<div ui-view></div>
+</div>

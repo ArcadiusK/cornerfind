@@ -60,6 +60,7 @@ angular.module('cornerfindApp')
                 status: 'offer'
             }
             
+            console.log('CREATED ORDER ',orderForCreation)
             offer.setOrder(orderForCreation);
             if ($scope.currentUser.billing.stripeToken === null) {
                 // $scope.showtoken = true;
