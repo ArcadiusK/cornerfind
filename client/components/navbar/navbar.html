@@ -23,7 +23,7 @@
                 Categories <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu"  ng-mouseleave='toggleCategories($event)'>
-                <li  ng-repeat='category in categoryList'><a>{{category.name}}</a></li>
+                <li  ng-repeat='category in categoryList'><a ng-click='filterCategory(category.name)'>{{category.name}}</a></li>
               </ul>
             </div>
 
