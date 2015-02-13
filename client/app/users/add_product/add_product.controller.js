@@ -58,6 +58,7 @@ angular.module('cornerfindApp')
         $scope.addProduct=function(newProduct){
             products.resource.save(newProduct,function(){
                 console.log('Save Callback ',arguments)
+                toast('Succesffuly added!', 4000);
             });
         }
 

@@ -19,7 +19,7 @@ $(document).ready(function() {
             </div> -->
         <br></br>
         <div class="row">
-          <form class="col l8 m 8 s12">
+          <form name='addProductForm' class="col l8 m 8 s12">
 
             <div class="row">
                 <div class="col l12 m12 s12">
@@ -40,15 +40,22 @@ $(document).ready(function() {
 
             <div class="row">
               <div class="input-field col l12 m12 s12">
-                <input id="productName" type="text" class="validate" ng-model='newProduct.name'>
+                <input id="productName" name='name' type="text" class="validate" ng-model='newProduct.name' ng-required="true">
                 <label for="productName">Product Name *</label>
+
+                <span ng-show='addProductForm.name.$error.required && addProductForm.name.$touched'>Requires product name</span>
+
               </div>
             </div>
             
             <div class="row">  
               <div class="input-field col l12 m12 s12">
-                <textarea id="description" type="text" class="materialize-textarea" ng-model="newProduct.description"></textarea>
-                <label for="description">Desciption *</label>
+                <input id="description" name='desc' type="text" class="validate" ng-model="newProduct.description" ng-required='true'ui-validate="'$value.length > 10'">
+                <label for="description" >Desciption *</label>
+
+                 <span ng-show='addProductForm.desc.$error.required && addProductFor.desc.$touched'>Requires product description</span>
+                 <span ng-show='addProductForm.desc.$invalid && addProductForm.desc.$touched'>Description needs to be longer than 10 characters</span>
+
               </div>
             </div>
             
@@ -68,7 +75,7 @@ $(document).ready(function() {
 
             <div class="row">
                 <div class="input-field col l12 m12 s12">
-                    <button ng-click='chooseCategory()' class='col s12 m12 l12 btn btn-primary purple lighten-1'>{{categoryButton}}</button>
+                    <button ng-click='chooseCategory()' class='col s12 m12 l12 btn btn-primary purple lighten-1'>{{categoryButton}} </button>
                     <div ng-show='showCategories' class="row">
                         <div class="col s12">
                             <ul ng-repeat='category in availableCategories' class="tabs">
@@ -96,18 +103,24 @@ $(document).ready(function() {
 
             <div class="row">  
               <div class="input-field col l6 m6 s6">
-                <input id="retailPrice" type="text" class="validate" ng-model="newProduct.retailPrice">
+                <input id="retailPrice" name='retailPrice' type="tel" class="validate" ng-model="newProduct.retailPrice" ng-required="true" ng-pattern="/^[1-9]\d*$/">
                 <label for="retailPrice">Retail Price ($) *</label>
+                <span ng-show='addProductForm.retailPrice.$error.pattern'>Prices must be a positive number</span> 
+                <span ng-show='addProductForm.retailPrice.$error.required && addProductForm.retailPrice.$touched'>Requires retail price</span>
               </div>
 
               <div class="input-field col l6 m6 s6">
-                <input id="price" type="text" class="validate" ng-model="newProduct.price">
+                <input id="price"name='price' type="tel" class="validate" ng-model="newProduct.price" ng-required="true" ng-pattern="/^[1-9]\d*$/">
                 <label for="price">Selling Price ($) *</label>
+
+                <span ng-show='addProductForm.price.$error.pattern && addProductForm.price.$touched'>Prices must be a positive number</span> 
+                <span ng-show='addProductForm.price.$error.required && addProductForm.price.$touched'>Requires retail price</span>
+
               </div>
             </div>
 
             <div class="col s12">
-               <button ng-click='addProduct(newProduct)' class='btn btn-primary'>Add Product</button>
+               <button ng-click='addProduct(newProduct)' class='btn btn-primary' ng-disabled="addProductForm.$invalid">Add Product</button>
             </div>
           </form>
         </div>
