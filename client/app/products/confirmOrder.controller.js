@@ -1,13 +1,16 @@
 'use strict';
 
 angular.module('cornerfindApp')
-	.controller('ConfirmOrderCtrl',function($scope,$state,offer,Auth, Address){
+	.controller('ConfirmOrderCtrl',function($scope,$state,offer,Auth, Address, $cookieStore){
 
-		$scope.worked='HOORAY'
-		$scope.order = offer.getOrder();
+		$scope.confirmOrder = offer.getOrder();
+		//if get order returns things, add the cookie
+		//otherwise pull the cookie that's already there
 
-
-
-
-
+		if($scope.confirmOrder.hasOwnProperty('lineItems')){
+			$cookieStore.put('order',$scope.confirmOrder)
+		} else {
+			$scope.confirmOrder = $cookieStore.get('order')
+		}
+		
 	})
