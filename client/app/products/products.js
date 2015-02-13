@@ -13,12 +13,12 @@ angular.module('cornerfindApp')
         controller: 'OneProductViewCtrl'
      })
       .state('products.stripeInfo',{
-        // url: '/cardInfo',
+        url: '/:id',
         templateUrl: 'app/products/stripeForm.html',
         controller: 'StripeFormCtrl'
       })
       .state('products.addressForm',{
-        // url: '/address',
+        url: '/:id',
         templateUrl: 'app/easypost/easypost.html',
         controller: 'EasypostCtrl'
       })
@@ -26,5 +26,4 @@ angular.module('cornerfindApp')
         templateUrl: 'app/products/confirmOrder.html',
         controller: 'ConfirmOrderCtrl'
       })
-     
   });

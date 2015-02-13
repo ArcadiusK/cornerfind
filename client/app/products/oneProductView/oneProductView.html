@@ -1,84 +1,22 @@
 <div class="row" resizable>
     <div ng-class='isPinned(windowWidth)' class="col s12 l4 m12">
-        <!-- start Card -->
         <div class="card pink lighten-3" ng-hide='showtoken'>
-
-
             <div class="card-content white-text row" ng-hide='confirmationMenu'>
-                <!--card content-->
-                
-
                 <span class="col s12 card-title grey-text text-darken-4"> {{product.name}} </span>
                 <div class="col s12">Seller: {{product.userId.username}}</div>
                 <div class="col s12">{{product.desc}} </div>
                 <div class="col s12">Quantity: {{product.qty}} </div>
-
-
-
                 <div ng-hide='boughtItem' class='col s12'>
                     <div class='input-field'>
                         <label class='label'>Your Offer</label>
                         <input class='col s12' type='number' ng-model='offerPrice'></input>
                     </div>
-                    <div class='section'>
-                        <button ng-click="submitOffer(offerPrice)" class="col s5 waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Offer</button>
-                        <button class="col s6 offset-s1 btn blue lighten-2 grey-text text-darken-4" ng-click='buyNow()'>
-                            Buyout {{product.price | currency}}
-                        </button>
-
-                    </div>
 
                 </div>
-               <!--  <div ng-show='boughtItem'>
-                    <h1>SUCCESS MESSAGE {{stripeResult}}
-                    </h1>
-                </div> -->
-
             </div>
+            <button ng-click="submitOffer(offerPrice)" class="col s8 offset-s2 waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Offer</button>
             <a class="col s12 white-text btn-flat center-align" ng-click='userRedirect()'>More From This User</a>
-            <!--card content-->
-
-
-          <!--   <div class="card-content white-text row" ng-show='confirmationMenu && !showAddressMenu'>
-                <span class="col s12 card-title grey-text text-darken-4">Is this the payment method you would like to use?</span>
-
-                <div class='col s4'>
-                    Card Info:{{currentUser.billing.cardType}}
-                </div>
-                <div class='col s8'>
-                    Last 4 Digits:{{currentUser.billing.last4}}
-                </div>
-
-                <div class='section'>
-                    <button ng-click="showAddressMenu = true" class="col s5 waves-effect btn blue lighten-2 grey-text text-darken-4">Yes</button>
-                    <button class="col s6 offset-s1 btn blue lighten-2 grey-text text-darken-4" ng-click='buyNow()'>
-                        New Payment
-                    </button>
-                </div>
-
-            </div> -->
-
-
-
-
         </div>
-        <!-- end card -->
-
-
-
-
-        
-
-        <!--Address Form -->
-        <!-- <div ng-show='showAddressMenu'>
-            <h4>Please confirm your shipping address </h4>
-            <easypost context='buyerAddy'></easypost>
-        </div> -->
-
-
-
-
-
     </div>
     <div class="col l6 offset-l6 s12 m12">
         <div class='row'>
