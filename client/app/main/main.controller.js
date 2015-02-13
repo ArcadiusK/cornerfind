@@ -16,8 +16,9 @@ angular.module('cornerfindApp')
                    id: searchText
                 }).$promise
                 .then(function(results) {
-                    $scope.results = results;
-                    console.log("results: ", results);
+                   //$scope.results = results;
+                   $scope.productList = results;
+                    console.log('results: ', results);
                     //if ($scope.results.data.length === 1) {
                       if ($scope.results.length === 1) {
                         console.log('There was only one object found..');
