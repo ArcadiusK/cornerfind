@@ -10,7 +10,7 @@ router.get('/sign_s3',s3_upload);
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.get('/:id/listings',controller.getUsersListings)
-
+router.post('/filtered',controller.filtered)
 router.post('/', controller.create);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);

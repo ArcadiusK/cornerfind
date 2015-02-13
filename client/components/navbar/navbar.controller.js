@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('NavbarCtrl', function ($state ,$scope, $location, Auth,brand, category, $cookieStore) {
+  .controller('NavbarCtrl', function ($state ,$scope, $location, Auth,brand, category,products, $cookieStore, eventEmitter) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
@@ -16,7 +16,6 @@ angular.module('cornerfindApp')
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
     
-
     $scope.smallerThan768 = function(){ //768 is the twitter navbar breakpoint
       return $scope.windowWidth < 768 ? true:false;
     }
@@ -34,9 +33,15 @@ angular.module('cornerfindApp')
       return $cookieStore.get('cartId');
     }
 
-    // $scope.yourOffers = function(){
-    //   var currentUser=Auth.getCurrentUser().$promise
-    //   $state.go('offer.'+currentUser._id)
-    // }
+    // EVENT EMITTER CODE
+
+    $scope.categoryEmit = function (selected) {
+
+      eventEmitter.emitEvent(selected, 'category');
+    };
+
+     $scope.brandEmit = function (selected) {
+      eventEmitter.emitEvent(selected, 'brand');
+    };
 
   });
