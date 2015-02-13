@@ -391,39 +391,40 @@ User.find({}).remove(function() {
                                                     Address.find({}).remove(function() {
                                                         Address.create({
                                                                 userId: user_parameter._id,
-                                                                billingTrueOrShippingFalse: true,
-                                                                streetAddresLine1: "123 East 56th Street",
-                                                                streetAddresLine2: "Apt 5G",
+                                                                billing: true,
+                                                                street1: "123 East 56th Street",
+                                                                street2: "Apt 5G",
                                                                 city: "New York",
-                                                                stateOrRegion: "NY",
-                                                                zipCodeOrPostalCode: "10025",
+                                                                state: "NY",
+                                                                zip: "10025",
                                                                 country: "USA"
                                                             }, {
                                                                 userId: user_parameter._id,
-                                                                billingTrueOrShippingFalse: false,
-                                                                streetAddresLine1: "55 Forest Rd",
-                                                                streetAddresLine2: "",
-                                                                city: "Ronkonkoma",
-                                                                stateOrRegion: "WA",
-                                                                zipCodeOrPostalCode: "54367",
-                                                                country: "USA"
-                                                            }, {
-                                                                userId: user_parameter2._id,
-                                                                billingTrueOrShippingFalse: true,
-                                                                streetAddresLine1: "675 W 13th Street",
-                                                                streetAddresLine2: "Apt 4B",
+                                                                name: 'Justin Cohen',
+                                                                billing: false,
+                                                                street1: "165 W 91 St",
+                                                                street2: "",
                                                                 city: "New York",
-                                                                stateOrRegion: "NY",
-                                                                zipCodeOrPostalCode: "10010",
+                                                                state: "NY",
+                                                                zip: "10024",
                                                                 country: "USA"
                                                             }, {
                                                                 userId: user_parameter2._id,
-                                                                billingTrueOrShippingFalse: false,
-                                                                streetAddresLine1: "60 ABC Place",
-                                                                streetAddresLine2: "cul-de-sac",
+                                                                billing: true,
+                                                                street1: "675 W 13th Street",
+                                                                street2: "Apt 4B",
+                                                                city: "New York",
+                                                                state: "NY",
+                                                                zip: "10010",
+                                                                country: "USA"
+                                                            }, {
+                                                                userId: user_parameter2._id,
+                                                                billing: false,
+                                                                street1: "60 ABC Place",
+                                                                street2: "cul-de-sac",
                                                                 city: "San Francisco",
-                                                                stateOrRegion: "CA",
-                                                                zipCodeOrPostalCode: "99888",
+                                                                state: "CA",
+                                                                zip: "99888",
                                                                 country: "USA"
                                                             },
                                                             function() {

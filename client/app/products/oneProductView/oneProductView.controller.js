@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .controller('OneProductViewCtrl', function($scope, Auth, User, products, chat, $stateParams, offer, $cookieStore, $location, $state) {
+    .controller('OneProductViewCtrl', function($scope, Auth, User, Address, products, chat, $stateParams, offer, $cookieStore, $location, $state) {
         $scope.currentUser = Auth.getCurrentUser();
         if(typeof $scope.currentUser._id !== 'undefined'){
             Auth.getCurrentUser().$promise.then(function(user) {
@@ -60,23 +60,21 @@ angular.module('cornerfindApp')
                 status: 'offer'
             }
             
-            console.log('CREATED ORDER ',orderForCreation)
             offer.setOrder(orderForCreation);
             if ($scope.currentUser.billing.stripeToken === null) {
                 // $scope.showtoken = true;
                 // return;
-
                 return $state.go('products.stripeInfo');
+            } else {
+                offer.addToOrder($scope.currentUser.billing);
+                //Now need to check if they have a listed address too
+                //to see which state to go to
+                Address.getUserAddresses({id:$scope.currentUser._id},function(res,err){
+                    console.log('Res ',res[0])
+                    console.log('ERR ',err)
+                    
+                })
             }
-
-            // offer.save(orderForCreation, function(result) {
-            //     toast('Offer Successfuly Submitted!',4000)
-            // }, function(err) {
-            //     if (err) {
-            //         console.log('Error ', err)
-            //     };
-            // })
-
         }
 
 
