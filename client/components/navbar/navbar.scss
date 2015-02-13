@@ -5,21 +5,26 @@
     text-decoration: none;
 }
 .navbar-brand{
-	color:#fff;
+//	color:#fff;
+color:#f68eb1;
 }
 
 .whiten{
-	color:#fff;
+  color:#f68eb1;
+	//color:#fff;
 	font-size: 17px;
 	&:hover,&:focus{
-		color:#fff;
-	};
+	//	color:#fff;
+	color:#f68eb1;
+  };
 
 }
 
 #whiten{
-	color:#fff;
+  color:#f68eb1;
+	//color:#fff;
 	&:hover,&:focus{
-		color:#fff;
+	//	color:#fff;
+  color:#f68eb1;
 	}
 }
