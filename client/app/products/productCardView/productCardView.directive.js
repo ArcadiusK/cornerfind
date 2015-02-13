@@ -6,9 +6,10 @@ angular.module('cornerfindApp')
             templateUrl: 'app/products/productCardView/productCardView.html',
             restrict: 'EA',
             scope: {
-                product: '=info'
-                //  currentUser: '=currentUser',
-                // currentUser: '='
+
+                product: '=info',
+                currentUser: '='
+
             },
             link: function(scope, element, attrs) {
 
