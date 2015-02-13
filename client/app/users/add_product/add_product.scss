@@ -10,3 +10,17 @@ form > div > label {
 #labels {
 	text-align: left;
 }
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.uploadWidth {
+
+	width: 100%;
+
+}
