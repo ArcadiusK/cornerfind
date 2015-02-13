@@ -24,7 +24,9 @@ angular.module('cornerfindApp')
                  //   } else if ($scope.results.data.length > 1) {
                      } else if ($scope.results.length > 1) {
                         console.log('There was more than one object found!');
+
                     }
+                    toast('Search complete', 2000);
                 })
                 .catch(function(err) {
                     console.log('There was an error in search', err);

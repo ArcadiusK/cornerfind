@@ -58,6 +58,7 @@ angular.module('cornerfindApp')
         $scope.addProduct=function(newProduct){
             products.resource.save(newProduct,function(){
                 console.log('Save Callback ',arguments)
+                toast('Succesffuly added!', 4000);
             });
         }
 
@@ -68,7 +69,7 @@ angular.module('cornerfindApp')
             var file_name = angular.element('#file-upload').val().split('\\');
             file_name = file_name[file_name.length - 1];
 
-            console.log(file_name);
+            console.log('filename',file_name);
 
             //S3 Upload is a separate client side library I'll attach
             var s3upload = new S3Upload({
