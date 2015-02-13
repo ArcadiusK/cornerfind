@@ -27,17 +27,16 @@ angular.module('cornerfindApp')
             return toast('Invalid Address',4000)
           }
 
-          $scope.address ={
-          userId: $scope.currentUser._id,
-          name: address.address.name,
-          street1: address.address.street1,
-          street2: address.address.street2,
-          state: address.address.state,
-          zip: address.address.zip,
-          city: address.address.city,
-          phone: address.address.phone,
-          email: address.address.email
-
+        $scope.address ={
+            userId: $scope.currentUser._id,
+            name: address.address.name,
+            street1: address.address.street1,
+            street2: address.address.street2,
+            state: address.address.state,
+            zip: address.address.zip,
+            city: address.address.city,
+            phone: address.address.phone,
+            email: address.address.email
         }
 
         Address.updateAddress({id:$scope.currentUser._id},$scope.address,null,function(results){
