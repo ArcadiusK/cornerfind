@@ -8,7 +8,8 @@ angular.module('cornerfindApp', [
   'ui.router',
   'ui.bootstrap',
   'firebase',
-  'ui.utils'
+  'ui.utils',
+  'ngTouch'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
