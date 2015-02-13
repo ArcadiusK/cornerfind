@@ -2,10 +2,8 @@
 
 angular.module('cornerfindApp')
     .factory('offer', function($resource) {
-
         var order = {};
-        //Question on page refresh this wipes?
-        //only persists through state changes?
+        
         return {
 
             setOrder: function(orderObject) {
