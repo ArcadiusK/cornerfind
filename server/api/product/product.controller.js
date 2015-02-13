@@ -6,6 +6,7 @@ var User = require('../user/user.model');
 
 // Get list of products
 exports.index = function(req, res) {
+
   Product.find().populate('userId').populate('likes').exec(function(err,products){
     if(err) {return handleError(res,err)};
     if(!products){return res.send(404); }
@@ -15,6 +16,7 @@ exports.index = function(req, res) {
 
 // Get a single product
 exports.show = function(req, res) {
+
   Product.findById(req.params.id).populate('userId')
   .exec(function(err,product){
     if(err) { return handleError(res, err); }
@@ -22,6 +24,21 @@ exports.show = function(req, res) {
     return res.json(product);
   });
 };
+
+// Get filtered products
+exports.filtered = function(req, res) {
+  console.log('hitting dissssss...', req.body);
+  var type = req.body.type;
+  var name = req.body.name;
+  Product.find().where(type,name).populate('userId')
+  .exec(function(err,product){
+    if(err) { return handleError(res, err); }
+    if(!product) { return res.send(404); }
+    return res.json(product);
+  });
+};
+
+
 
 // Creates a new product in the DB.
 exports.create = function(req, res) {

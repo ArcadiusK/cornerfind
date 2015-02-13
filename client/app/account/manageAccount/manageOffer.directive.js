@@ -13,12 +13,15 @@ angular.module('cornerfindApp')
                 acceptOffer: '&'
             },
             link: function(scope, element, attrs) {
+                scope.accepted = false;
 
                 scope.submitButton = function() {
                     scope.charged = true;
+                     scope.accepted = true;
                 }
 
                 scope.showReview = false;
+          
 
                 scope.review = function() {
                     scope.showReview = true;
