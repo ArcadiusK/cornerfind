@@ -2,6 +2,8 @@
 
 angular.module('cornerfindApp')
     .controller('ManageOffersCtrl', function($scope, offer, $state) {
+
+
         $scope.offers = offer.manageOffers({
             id: $scope.currentUser._id
         }, function(offers) {
