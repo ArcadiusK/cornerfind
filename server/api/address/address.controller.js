@@ -52,6 +52,16 @@ exports.destroy = function(req, res) {
   });
 };
 
+// Get all of a user's addresses
+exports.userShippingAddresses = function(req, res) {
+  Address.find({userId: new ObjectId(req.params.id), billing: false}, function (err, address) {
+    if(err) { return handleError(res, err); }
+    if(!address) { return res.send(404); }
+    res.json(address);
+  });
+};
+
+
 function handleError(res, err) {
   return res.send(500, err);
 }
