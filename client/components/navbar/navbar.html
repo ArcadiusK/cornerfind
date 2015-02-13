@@ -17,6 +17,8 @@
         -->
 
         <!--dropdowns-->
+
+        <!-- CATEGORY DROPDOWN -->
         <li ng-controller='DropdownCtrl'>
           <div ng-if="!smallerThan768()" class="btn-group" dropdown is-open="status.openCategories">
               <a  class ="whiten" id='custom-dropdown' ng-mouseover='toggleCategories($event)' ng-mouseleave='toggleCategories($event)' dropdown-toggle ng-disabled="disabled"> 
@@ -37,6 +39,9 @@
             </div>
 
         </li>
+
+
+        <!-- BRAND DROPDOWN -->
         <li ng-controller='DropdownCtrl'>
           <div ng-if='!smallerThan768()' class="btn-group" dropdown is-open="status.openBrands">
             <a  class='whiten' id='custom-dropdown' ng-mouseover='toggleBrands($event)' ng-mouseleave='toggleBrands($event)' dropdown-toggle ng-disabled="disabled"> 
