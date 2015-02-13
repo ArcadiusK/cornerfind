@@ -23,7 +23,7 @@
                 Categories <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu"  ng-mouseleave='toggleCategories($event)'>
-                <li  ng-repeat='category in categoryList'><a ng-click='categoryEmit(category.name)'>{{category.name}}</a></li>
+                <li  ng-repeat='category in categoryList'><a ng-touch='categoryEmit(category.name)' ng-click='categoryEmit(category.name)'>{{category.name}}</a></li>
               </ul>
             </div>
 
@@ -32,7 +32,7 @@
                 Categories <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
-                <li  ng-repeat='category in categoryList'><a id='whiten'>{{category.name}}</a></li>
+                <li  ng-repeat='category in categoryList'><a ng-touch='categoryEmit(category.name)'>{{category.name}}</a></li>
               </ul>
             </div>
 
@@ -52,10 +52,11 @@
               Brands <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-              <li  ng-repeat='brand in brandList'><a id='whiten'>{{brand.name}}</a></li>
+              <li  ng-repeat='brand in brandList'><a ng-click='brandEmit(brand.name)'>{{brand.name}}</a></li>
             </ul>
           </div>
         </li>
+
 
         <!--end dropdowns-->
 
