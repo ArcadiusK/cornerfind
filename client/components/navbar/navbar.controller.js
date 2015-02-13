@@ -1,12 +1,11 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('NavbarCtrl', function ($state ,$scope, $location, Auth,brand, category,products, $cookieStore) {
+  .controller('NavbarCtrl', function ($state ,$scope, $location, Auth,brand, category,products, $cookieStore, eventEmitter) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
     }];
-
 
 
     $scope.brandList = brand.query();
@@ -34,14 +33,15 @@ angular.module('cornerfindApp')
       return $cookieStore.get('cartId');
     }
 
-    $scope.filterCategory = function (categoryname) {
-      console.log('HITTING BRO', categoryname);
-            $scope.productList = products.resource.query({category: categoryname});
-    }
+    // EVENT EMITTER CODE
 
-    // $scope.yourOffers = function(){
-    //   var currentUser=Auth.getCurrentUser().$promise
-    //   $state.go('offer.'+currentUser._id)
-    // }
+    $scope.categoryEmit = function (selected) {
+
+      eventEmitter.emitEvent(selected, 'category');
+    };
+
+     $scope.brandEmit = function (selected) {
+      eventEmitter.emitEvent(selected, 'brand');
+    };
 
   });

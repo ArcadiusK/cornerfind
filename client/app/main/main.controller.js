@@ -2,7 +2,7 @@
 
 angular.module('cornerfindApp')
 
-    .controller('MainCtrl', function($scope, Auth, $location, $http, socket, products, brand, category, $window) {
+    .controller('MainCtrl', function($scope, Auth, $location, $http, socket, products, brand, category, $window, eventEmitter) {
         $scope.productList = products.resource.query();
         $scope.brandList = brand.query();
         $scope.categoryList = category.query();
@@ -33,10 +33,18 @@ angular.module('cornerfindApp')
 
         $scope.addProduct = function (userId) {
              $location.path('/users/' + $scope.currentUser._id+'/add');
-             // products.productRoute(userId)
-             //Why doesn't it work when it's in a factory?
-             //It reroutes instantly back to the main page
         };
+
+        // EventEmitter code
+        eventEmitter.subscribeEvent('category', function (selected) {
+             console.log('selected filter is', selected);
+             $scope.productList = products.resource.getFiltered({type:'category',name: selected});
+        });
+
+         eventEmitter.subscribeEvent('brand', function (selected) {
+             console.log('selected filter is', selected);
+             $scope.productList = products.resource.getFiltered({type:'brand' ,name: selected});
+        });
 
     });
 

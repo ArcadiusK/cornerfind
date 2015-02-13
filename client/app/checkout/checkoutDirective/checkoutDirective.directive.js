@@ -40,9 +40,7 @@ angular.module('cornerfindApp')
                             scope.user.billing.cardType = response['card']['brand'];
                             scope.user.billing.last4 = response['card']['last4'];
                             scope.user.billing.stripeToken = response['id'];
-
                             scope.showtoken = false;
-                            // scope.notoken = false;
                             User.update(scope.user)
                                 .$promise.then(function(user) {
                                     scope.saveOrder({offerPrice:scope.offerPrice})
