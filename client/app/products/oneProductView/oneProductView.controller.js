@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .controller('OneProductViewCtrl', function($scope, Auth, User, products, chat, $stateParams, offer, $cookieStore, $location) {
+    .controller('OneProductViewCtrl', function($scope, Auth, User, products, chat, $stateParams, offer, $cookieStore, $location, $state) {
         $scope.currentUser = Auth.getCurrentUser();
         if(typeof $scope.currentUser._id !== 'undefined'){
             Auth.getCurrentUser().$promise.then(function(user) {
@@ -37,7 +37,7 @@ angular.module('cornerfindApp')
         $scope.isOffering = false;
         $scope.boughtItem = false;
         $scope.showtoken = false;
-        $scope.confirmationMenu = true;
+        // $scope.confirmationMenu = true;
         $scope.buyerAddy = 'buyerAddy';
 
         //need to clear the form after the offer is submitted
@@ -45,13 +45,9 @@ angular.module('cornerfindApp')
 
         $scope.submitOffer = function(offerPrice) {
             //SHOWS CHECKOUT DIRECTIVE IF USER DOES NOT HAVE A TOKEN ALREADY
-            if ($scope.currentUser.billing.stripeToken == null) {
-                $scope.showtoken = true;
-                return;
-            }
+
             var prod = $scope.product;
             $scope.isOffering = !$scope.isOffering;
-
             var orderForCreation = {
                 lineItems: [{
                     //This ONLY handles single items as is, will need to be modified for bundling
@@ -63,13 +59,22 @@ angular.module('cornerfindApp')
                 buyerId: $scope.currentUser._id,
                 status: 'offer'
             }
-            offer.save(orderForCreation, function(result) {
-                toast('Offer Successfuly Submitted!',4000)
-            }, function(err) {
-                if (err) {
-                    console.log('Error ', err)
-                };
-            })
+            
+            offer.setOrder(orderForCreation);
+            if ($scope.currentUser.billing.stripeToken === null) {
+                // $scope.showtoken = true;
+                // return;
+
+                return $state.go('products.stripeInfo');
+            }
+
+            // offer.save(orderForCreation, function(result) {
+            //     toast('Offer Successfuly Submitted!',4000)
+            // }, function(err) {
+            //     if (err) {
+            //         console.log('Error ', err)
+            //     };
+            // })
 
         }
 

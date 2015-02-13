@@ -3,7 +3,7 @@
         <div class="col s12 m12 l12">
             <div class="card">
 
-                <a ng-href='products/{{product._id}}'>
+                <a ui-sref='products.oneProductView({id:product._id})'
                     <div class="card-image">
                         <img ng-src="{{product.photoUrls[0]}}">
                     </div>

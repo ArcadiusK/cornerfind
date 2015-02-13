@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('EasypostCtrl', function ($scope, $http, Auth, Address ) {
+  .controller('EasypostCtrl', function ($scope, $http, Auth, Address, $state ) {
     $scope.verifyAddyResult;
   	$scope.false = true;
     $scope.buttonText = 'Submit';
@@ -41,8 +41,10 @@ angular.module('cornerfindApp')
         }
 
         Address.updateAddress({id:$scope.currentUser._id},$scope.address,null,function(results){
-     		toast('Success!', 5000)
-        console.log("results ",results)
+     		// toast('Success!', 5000)
+       //  console.log("results ",results)
+
+            $state.go('products.confirmOrder');
         })
 
       })

@@ -1,3 +1,6 @@
-<div class="col-md-12">
-This is the products view.
-</div>
+<div ng-include="'components/navbar/navbar.html'"></div>
+<!--put in amazon style horizontal nav/tracker-->
+<a ui-sref='products.stripeInfo'>Stripe</a>
+<a ui-sref='products.addressForm'>address</a>
+<a ui-sref='products.confirmOrder'>confirm order</a>
+<div class='container' ui-view ></div>

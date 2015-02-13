@@ -3,7 +3,7 @@
 angular.module('cornerfindApp')
   .factory('products', function($http, $location, $resource) {
     return{
-
+      
       resource: $resource('/api/products/:id/:controller', { id: '@_id'}, {
         update: {
           method: 'PUT'
