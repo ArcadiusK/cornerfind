@@ -4,13 +4,13 @@
 #banner {
     border-bottom: none;
     margin-top: -20px;
-    height: 800px;
+    height: 500px;
     background-image: url("http://cornerfind.s3-website-us-west-2.amazonaws.com/1423524630845LOGO_CORNERFIND.jpg");
     background-attachment: fixed;
     //  background-repeat: repeat;
 }
 #banner h1 {
-    font-size: 60px;
+    font-size: 5rem;
     line-height: 1;
     letter-spacing: -1px;
 }
@@ -32,4 +32,15 @@
     color: #FCDC3B;
 }
 
+.fixed-action-btn{
+  position: fixed;
+    bottom: 0px;
+    right: 0px; 
+    z-index: 1000;
+}
+
+.parallax-container {
+      height: 500px;
+      margin-top: -20px;
+}
 //color: #F5F5F5;
