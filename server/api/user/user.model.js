@@ -18,6 +18,8 @@ var UserSchema = new Schema({
         type: String,
         default: 'user'
     },
+    picture: String,
+    blog: String,
     description: String,
     hashedPassword: String,
     provider: String,
