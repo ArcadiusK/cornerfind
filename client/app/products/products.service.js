@@ -35,6 +35,13 @@ angular.module('cornerfindApp')
             id: '@id',
             listings: 'owner'
           }
+        },
+         getFiltered: {
+          method: 'POST',
+           isArray: true,
+          params: {
+            controller: 'filtered'
+          }
         }
       })
     }
