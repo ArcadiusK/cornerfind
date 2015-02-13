@@ -3,11 +3,11 @@
 <header class="hero-unit" id="banner">
 
   <div class="container">
-    <h1>Welcome to CornerFind.com</h1>
+    <h1>Welcome to CornerFind</h1>
 
     <p class="lead">
     <h2>
-    Marketplace for all baby products (e.g. clothes, toys, cribs, strollers etc.)
+    Marketplace for all baby products 
    </h2>
     </p>
 
@@ -15,71 +15,65 @@
 
 </header>
 
-  <a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="mdi-navigation-arrow-drop-down right"></i></a>
-                    </li>
-                    <ul id='dropdown1' class='dropdown-content'>
-                        <li><a href="#!">First</a>
-                        </li>
-                        <li><a href="#!">Second</a>
-                        </li>
-                        <li><a href="#!">Third</a>
-                        </li>
-                        <li><a href="#!">Fourth</a>
-                        </li>
-                    </ul>
 
-
-<h3>Search:</h3>
-<form class="form" role="form" ng-submit='searchSubmit(searchText)'>
-    <div class="form-group">
-        <input type="text" ng-model="searchText" class="form-control btn-block" id="searchbox" placeholder="Enter term">
-    </div>
-</form>
-<h2> Search Results: </h1>
-   <div class="row">
-        <ul class="col m3 l3 s4 list-unstyled" ng-repeat="product in results">
-            <product-card-view current-user="currentUser" info="product"></product-card-view>
-        </ul>
-    </div>
-<!-- {{results}} -->
+<a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="mdi-navigation-arrow-drop-down right"></i></a>
+</li>
+<ul id='dropdown1' class='dropdown-content'>
+    <li><a href="#!">First</a>
+    </li>
+    <li><a href="#!">Second</a>
+    </li>
+    <li><a href="#!">Third</a>
+    </li>
+    <li><a href="#!">Fourth</a>
+    </li>
+</ul>
 
 <div ng-show="loggedin">
-    <h4> Currently logged in as {{currentUser.name}}</h4>
-    <button class="btn btn-primary" ng-click="addProduct()">Make a Listing!</button>
+      <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+          <a class="btn-floating btn-large red" ng-click="addProduct()">
+              <i class="large mdi-content-add"></i>
+          </a>
+      </div>
+</div>
 
-    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-        <a class="btn-floating btn-large red" ng-click="addProduct()">
-            <i class="large mdi-content-add"></i>
-        </a>
+<div class="container">
+    <div class="input-field col l8 m9 s12">
+        <form class="form" role="form" ng-submit='searchSubmit(searchText)'>
+            <i class="mdi-action-search prefix"></i>
+            <input type="text" ng-model="searchText" class="form-control btn-block" id="searchbox">
+            <label for="icon_prefix">Enter search</label>
+        </form>
     </div>
 
+    <div class='col s12' ng-show='results.length>0'>
+        <div ng-repeat="product in results">
+            <div ng-switch='' on='$index % 3'>
+                <div class="row" ng-switch-when="0">
+                    <product-card-view info="productList[$index+0]" ng-show="productList[$index+0]" class="col l4 m6 s12 list-unstyled" current-user='currentUser'></product-card-view>
+
+                    <product-card-view info="productList[$index+1]" ng-show="productList[$index+1]" class="col l4 m6 s12 list-unstyled" current-user='currentUser'></product-card-view>
+
+                    <product-card-view info="productList[$index+2]" ng-show="productList[$index+2]" class="col l4 m6 s12 list-unstyled" current-user='currentUser'></product-card-view>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
 
 
-<div class="container">
+<div class="container" ng-hide='results.length>0'>
+    <div ng-repeat="product in productList">
+        <div ng-switch='' on='$index % 3'>
+            <div class="row" ng-switch-when="0">
+                <product-card-view info="productList[$index+0]" ng-show="productList[$index+0]" class="col l4 m6 s12 list-unstyled" current-user='currentUser'></product-card-view>
 
-    <div class="col l12 m12 s12 page-header ">
+                <product-card-view info="productList[$index+1]" ng-show="productList[$index+1]" class="col l4 m6 s12 list-unstyled" current-user='currentUser'></product-card-view>
 
-
-
-
-      <div class="col s12">
-        <h2>TOP SELLERS</h2>
-      </div>
-    </div>
-
-     <div ng-repeat="product in productList">
-      <div ng-switch='' on='$index % 3'>
-        <div class="row" ng-switch-when="0">
-
-          <product-card-view info="productList[$index+0]"  ng-show="productList[$index+0]" class="col l4 m6 s12 list-unstyled" current-user='currentUser' ></product-card-view>
-
-          <product-card-view info="productList[$index+1]"  ng-show="productList[$index+1]" class="col l4 m6 s12 list-unstyled" current-user='currentUser' ></product-card-view>
-
-          <product-card-view info="productList[$index+2]"  ng-show="productList[$index+2]" class="col l4 m6 s12 list-unstyled" current-user='currentUser' ></product-card-view>
+                <product-card-view info="productList[$index+2]" ng-show="productList[$index+2]" class="col l4 m6 s12 list-unstyled" current-user='currentUser'></product-card-view>
+            </div>
         </div>
-
-      </div>
     </div>
 </div>
 
