@@ -94,6 +94,8 @@
                 </div>
             </div>
 
+            <button ng-click="userRedirect()" class="col s12 waves-effect btn blue lighten-2 grey-text text-darken-4">More from {{product.userId.username}}<i class="mdi-action-shopping-cart left"></i></button>
+
             <div ng-controller='OneProductViewCtrl'>
                 <chat chatlist='chatlist' addchat='addChat(newChat)'></chat>
             </div>

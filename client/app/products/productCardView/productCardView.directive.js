@@ -6,11 +6,13 @@ angular.module('cornerfindApp')
             templateUrl: 'app/products/productCardView/productCardView.html',
             restrict: 'EA',
             scope: {
-                product: '=info',
+                product: '=info'
                 //  currentUser: '=currentUser',
-                currentUser: '=',
+                // currentUser: '='
             },
             link: function(scope, element, attrs) {
+
+                scope.currentUser = Auth.getCurrentUser();
 
                 scope.textGenerate = function() {
 
@@ -44,6 +46,7 @@ angular.module('cornerfindApp')
 
                         scope.loggedin = Auth.isLoggedIn();
                         if (scope.loggedin) {
+                            console.log('scope.user._id is ...', scope.currentUser._id);
                             likes.resource.getUserLikes({
                                 id: scope.currentUser._id
                             }).$promise.then(function(data) {
