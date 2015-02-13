@@ -8,14 +8,14 @@
         Item: {{order.lineItems[0].name}}
         Price: {{order.lineItems[0].purchasePrice}}
 
-        <button class='btn red darken-2'>Modify</button>
+        <button ui-sref ='products.oneProductView({id: prodId})' class='btn red darken-2'>Modify</button>
     </div>
 
     <div class="col s12 m12 l12">
         <h4>Payment Information</h4>
         <h6>Card Type: {{cardInfo.cardType}}</h6>
         <h6>Last Four Digits: {{cardInfo.last4}}</h6>
-        <button class='btn red darken-2'>Modify</button>
+        <button ui-sref='products.stripeInfo({id: prodId})' class='btn red darken-2'>Modify</button>
 
     </div>
 
