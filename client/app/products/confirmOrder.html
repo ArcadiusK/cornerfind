@@ -1,24 +1,20 @@
 <div class="row center-align" ui-view>
     <div>
-        <h2>Confirm Your Order</h2>{{keys}}
+        <h2>Confirm Your Order</h2>
     </div>
-
-
 
     <div class="col s12 m12 l12">
         <h4>Order Information</h4>
-        Item: {{confirmOrder.lineItems[0].name}}
-        Price: {{confirmOrder.lineItems[0].purchasePrice}}
-
-
+        Item: {{order.lineItems[0].name}}
+        Price: {{order.lineItems[0].purchasePrice}}
 
         <button class='btn red darken-2'>Modify</button>
     </div>
 
     <div class="col s12 m12 l12">
         <h4>Payment Information</h4>
-        <h6>Card Type: {{confirmOrder.cardType}}</h6>
-        <h6>Last Four Digits: {{confirmOrder.last4}}</h6>
+        <h6>Card Type: {{cardInfo.cardType}}</h6>
+        <h6>Last Four Digits: {{cardInfo.last4}}</h6>
         <button class='btn red darken-2'>Modify</button>
 
     </div>
@@ -26,15 +22,16 @@
     <div class="col s12 m12 l12">
         <h4>Shipping Address</h4>
         <div> <!--Needs formatting-->
-        	{{confirmOrder.name}}
-        	{{confirmOrder.street1}}
-        	{{confirmOrder.street2}}
-        	{{confirmOrder.city}}
-        	{{confirmOrder.state}}
-        	{{confirmOrder.zip}}
+        	{{shippingAddress.name}}
+        	{{shippingAddress.street1}}
+        	{{shippingAddress.street2}}
+        	{{shippingAddress.city}}
+        	{{shippingAddress.state}}
+        	{{shippingAddress.zip}}
+            
         </div>
 
-        <button class='btn red darken-2'>Modify</button>
+        <button ui-sref='products.addressForm' class='btn red darken-2'>Modify</button>
     </div>
 
     <button ng-disabled="submitted" ng-click="submitOrder()" class='btn purple darken-1'>Submit Order</button>
