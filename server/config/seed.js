@@ -42,7 +42,7 @@ Brand.find({}).remove(function() {
     Brand.create({
         name: "Gucci"
     }, {
-        name: "Juicy Coulture"
+        name: "Juicy Couture"
     }, {
         name: "Gap"
     }, {
@@ -53,6 +53,8 @@ Brand.find({}).remove(function() {
         name: "Prada"
     }, {
         name: "Espresso"
+    }, {
+        name: "CTRCO"
     }, {
         name: "Other"
     });
