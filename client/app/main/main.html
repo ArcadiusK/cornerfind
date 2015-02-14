@@ -1,14 +1,37 @@
 
 <div ng-include="'components/navbar/navbar.html'" class="pink"></div>
-<script>
-$(document).ready(function(){
-      $('.parallax').parallax();
-});
-</script>
 
-<div class="parallax-container">
-      <div class="parallax"><img src="http://cornerfind.s3-website-us-west-2.amazonaws.com/1423524630845LOGO_CORNERFIND.jpg"></div>
-</div>
+
+  <div class="slider">
+    <ul class="slides">
+      <li>
+        <img src="assets/images/front5500.jpg"> <!-- random image -->
+        <div class="caption center-align">
+          <h3>Welcome to CornerFind.com</h3>
+          <h5 class="light grey-text text-lighten-3">Marketplace for all baby products</h5>
+        </div>
+      </li>
+      <li>
+        <img src="assets/images/front3100.jpg"> <!-- random image -->
+        <div class="caption left-align">
+          <h3>Welcome to CornerFind.com</h3>
+          <h5 class="light grey-text text-lighten-3">Marketplace for all baby products</h5>
+        </div>
+      </li>
+      <li>
+        <img src="assets/images/front4200.jpg"> <!-- random image -->
+        <div class="caption right-align">
+          <h3>Welcome to CornerFind.com</h3>
+          <h5 class="light grey-text text-lighten-3">Marketplace for all baby products</h5>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+
+
+
+
 
 <div ng-show="loggedin">
       <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
