@@ -6,7 +6,7 @@ angular.module('cornerfindApp')
 
 
         // Get logged in user object
-        $scope.loggedInUser = Auth.getCurrentUser();
+        $scope.currentUser = Auth.getCurrentUser();
 
         $scope.toggleText = 'Following';
 
@@ -19,18 +19,18 @@ angular.module('cornerfindApp')
             username: $stateParams.name
         }, function(user) {
             $scope.user = user;
-            console.log('scope.user._id is ...', $scope.user._id);
-            // console.log('$scope.loggedInUser.following is ...', $scope.loggedInUser.following);
+            
+            // console.log('$scope.currentUser.following is ...', $scope.currentUser.following);
 
             $scope.reviews = review.resource.query({id:$scope.user._id});
-            if ($scope.loggedInUser.following.indexOf($scope.user._id) !== -1) {
+            if ($scope.currentUser.following.indexOf($scope.user._id) !== -1) {
                 $scope.followed = true;
                 $scope.toggleText = 'Following';
-                console.log('You are already following him!', $scope.user._id);
+           
             } else {
                 $scope.followed = false;
                 $scope.toggleText = 'Follow';
-                console.log('You are not following him yet!');
+            
             }
         })
 
@@ -46,10 +46,10 @@ angular.module('cornerfindApp')
                 // Update logged in user's following Array
 
 
-                $scope.loggedInUser.following.splice($scope.loggedInUser.following.indexOf($scope.user._id), 1)
+                $scope.currentUser.following.splice($scope.currentUser.following.indexOf($scope.user._id), 1)
                 
                 $timeout(function() {
-                    User.update($scope.loggedInUser)
+                    User.update($scope.currentUser)
                         .$promise.then(function(user) {
                          
                             $scope.followed = false;
@@ -59,7 +59,7 @@ angular.module('cornerfindApp')
                 }, 1000);
 
 
-                $scope.user.followers.splice($scope.user.followers.indexOf($scope.loggedInUser._id), 1)
+                $scope.user.followers.splice($scope.user.followers.indexOf($scope.currentUser._id), 1)
                     // Update the user of the page's followers array
                 User.update($scope.user)
                     .$promise.then(function(user) {
@@ -72,8 +72,8 @@ angular.module('cornerfindApp')
             else {
 
                 // Update logged in user's following Array
-                $scope.loggedInUser.following.push($scope.user._id)
-                User.update($scope.loggedInUser)
+                $scope.currentUser.following.push($scope.user._id)
+                User.update($scope.currentUser)
                     .$promise.then(function(user) {
                           toast('Following',4000);
                         $scope.followed = true;
@@ -82,7 +82,7 @@ angular.module('cornerfindApp')
                     });
 
                 // Update the user of the page's followers array
-                $scope.user.followers.push($scope.loggedInUser._id)
+                $scope.user.followers.push($scope.currentUser._id)
                 User.update($scope.user)
                     .$promise.then(function(user) {
                         console.log('Follower pushed to users followers array ..', user)
@@ -92,8 +92,8 @@ angular.module('cornerfindApp')
         }
 
         // $scope.followUser = function() {
-        //     $scope.loggedInUser.following.push($scope.user._id)
-        //     User.update($scope.loggedInUser)
+        //     $scope.currentUser.following.push($scope.user._id)
+        //     User.update($scope.currentUser)
         //         .$promise.then(function(user) {
 
         //         });
@@ -101,8 +101,8 @@ angular.module('cornerfindApp')
         // }
 
         // $scope.unfollowUser = function() {
-        //     $scope.loggedInUser.following.splice($scope.loggedInUser.following.indexOf($scope.user.following.remove), 1)
-        //     User.update($scope.loggedInUser)
+        //     $scope.currentUser.following.splice($scope.currentUser.following.indexOf($scope.user.following.remove), 1)
+        //     User.update($scope.currentUser)
         //         .$promise.then(function(user) {
 
         //         });
