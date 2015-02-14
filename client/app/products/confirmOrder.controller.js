@@ -10,7 +10,10 @@ angular.module('cornerfindApp')
         $scope.shippingAddress = $cookieStore.get('shippingAddress');
         $scope.cardInfo = $cookieStore.get('cardInfo')
         $scope.prodId = $scope.order.lineItems[0].productId;
-        console.log($scope.shippingAddress)
+
+        $scope.emitter = function(){
+            $scope.$emit('checkout',{id: $scope.prodId, state:$state.current.name})
+        };
 
         $scope.submitOrder = function() {
             $scope.submitted = true;
@@ -34,14 +37,7 @@ angular.module('cornerfindApp')
                 zip: shipping.zip
             }
 
-            // offer.resource.save(orderForCreation,function(result){
-            // 	toast('Successfully Submitted!',4000);
-            // 	$cookieStore.remove('order');
-            // 	offer.setOrder({});
-            // },function(err){
-            // 	if(err) {console.log('Error ',err)}
-            // })
-
+         
 
             var orderDeferral = $q.defer();
             var addressDeferral = $q.defer();

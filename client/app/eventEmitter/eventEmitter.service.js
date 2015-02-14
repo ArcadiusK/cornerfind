@@ -11,7 +11,7 @@ angular.module('cornerfindApp')
       },
 
       subscribeEvent: function(event, callback) {
-        console.log('event in factory is..', event)
+        // console.log('event in factory is..', event)
         radio(event).subscribe(callback);
       }
 
