@@ -9,6 +9,10 @@ angular.module('cornerfindApp')
         $scope.currentUser = Auth.getCurrentUser();
         $scope.loggedin = Auth.isLoggedIn();
 
+  $(document).ready(function(){
+      $('.slider').slider({full_width: false});
+    });
+
         $scope.searchSubmit = function(searchText) {
             if(searchText == ''){
                 $scope.productList = products.resource.query();
