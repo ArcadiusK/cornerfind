@@ -31,7 +31,11 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ui-view=""></div>
+
+    <div ui-view="" class="page-wrap"></div>
+
+
+    <div ng-include="'components/footer/footer.html'"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -72,6 +76,7 @@
     <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
     <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
     <script src="bower_components/radio/radio.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
     <!-- endbower -->
     <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -131,7 +136,7 @@
           <script src="app/sidenav/conditionSidenav.directive.js"></script>
           <script src="app/sidenav/userSidenav.directive.js"></script>
           <script src="app/users/add_product/add_product.controller.js"></script>
-          <script src="app/users/edit_product/edit_product.controller.js"></script>
+          <script src="app/users/edit_profile/edit_profile.controller.js"></script>
           <script src="app/users/users.controller.js"></script>
           <script src="app/users/users.js"></script>
           <script src="components/auth/auth.service.js"></script>
@@ -145,39 +150,5 @@
           <!-- endinjector -->
         <!-- endbuild -->
 </body>
-<footer class="page-footer pink lighten-3">
-    <div class="container">
-        <div class="row">
-            <div class="col l4 s12">
-                <h5 class="white-text">Contact Us</h5>
-                <p class="grey-text text-lighten-4">sayHello@cornerfind.com</p>
-            </div>
-
-            <div class="col l4 s12">
-                <h5 class="white-text">Login</h5>
-                <ul>
-                    <li><a class="grey-text text-lighten-3" href="/logins">Login</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col l4 s12">
-                <h5 class="white-text">Sign Up</h5>
-                <ul>
-                    <li><a class="grey-text text-lighten-3" href="/signup">Sign Up</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container">
-            © 2015 CornerFind.com All rights reserved.
-            <a class="grey-text text-lighten-4 right" href="#!"></a>
-            <br>
-            <br>
-        </div>
-    </div>
-</footer>
 
 </html>

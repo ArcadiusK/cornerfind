@@ -3,13 +3,13 @@
         <div class="col s12 m12 l12">
             <div class="card">
 
-                <a ui-sref='products.oneProductView({id:product._id})'
+                <a ng-href='products/{{product._id}}'>
                     <div class="card-image">
                         <img ng-src="{{product.photoUrls[0]}}">
                     </div>
 
                     <div class="card-action" id="productSubtitle">
-                        <h6 class="username">by {{product.userId.username}}</h6>
+                        <h6 class="username"><a href='/users/{{product.userId.username}}'>by {{product.userId.username}}</a></h6>
                         <h3 class="productName">{{product.name}}</h3>
                     </div>
 

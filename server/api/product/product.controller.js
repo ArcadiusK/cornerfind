@@ -27,7 +27,7 @@ exports.show = function(req, res) {
 
 // Get filtered products
 exports.filtered = function(req, res) {
-  console.log('hitting dissssss...', req.body);
+
   var type = req.body.type;
   var name = req.body.name;
   Product.find().where(type,name).populate('userId')
