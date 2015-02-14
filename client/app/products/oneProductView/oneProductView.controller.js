@@ -1,11 +1,8 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .controller('OneProductViewCtrl', function($scope, Auth, User, Address, products, chat, $stateParams, offer, $cookieStore, $location, $state) {
-        if(!Auth.isLoggedIn()){
-            return $state.go('login');
-        }
-        
+    .controller('OneProductViewCtrl', function($rootScope,$scope, Auth, User, Address, products, chat, $stateParams, offer, $cookieStore, $location, $state) {
+
         $scope.currentUser = Auth.getCurrentUser();
         if (typeof $scope.currentUser._id !== 'undefined') {
             Auth.getCurrentUser().$promise.then(function(user) {
@@ -56,6 +53,7 @@ angular.module('cornerfindApp')
             $cookieStore.put("order",orderForCreation);
             
             if ($scope.currentUser.billing.stripeToken === null) {
+                $scope.$emit('EVENT',$stateParams.id);
                 return $state.go('products.stripeInfo', {id: $stateParams.id});
             } else {
                 // offer.addToOrder($scope.currentUser.billing);
@@ -72,13 +70,9 @@ angular.module('cornerfindApp')
                         //Currently hardcoded for one address
                         //this could cause problems with editing addresses
                         //if we fetch the wrong one
-                        
-                        // offer.addToOrder(res[0]);
-                   
-                        // console.log('OneProd Addresses ',res)
                         $cookieStore.put('shippingAddress',res[0])
-
-                        $state.go("products.confirmOrder")
+                        $scope.$emit('checkout',{id: $stateParams.id, state:$state.current.name})
+                        $state.go("products.confirmOrder",{id: $stateParams.id})
                     }, function(err) {
                         console.log("ERR", err)
                     }
