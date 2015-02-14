@@ -10,6 +10,9 @@ angular.module('cornerfindApp')
         $scope.loggedin = Auth.isLoggedIn();
 
         $scope.searchSubmit = function(searchText) {
+            if(searchText == ''){
+                $scope.productList = products.resource.query();
+            }
           console.log('inside searchSubmit');
             products.resource.search({
                    //searchtext: searchText
