@@ -40,7 +40,8 @@ angular.module('cornerfindApp')
                     .$promise.then(function(user) {
                     	console.log('updated User ',user)
                         $cookieStore.put('cardInfo',$scope.currentUser.billing);
-                    	$state.go('products.addressForm')
+                        $scope.$emit('checkout',{id: $stateParams.id, state:$state.current.name})
+                    	$state.go('products.addressForm',{id: $stateParams.id})
                     });
             }
         }

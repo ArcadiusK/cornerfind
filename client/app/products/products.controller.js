@@ -1,6 +1,14 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('ProductsCtrl', function ($scope) {
-    $scope.message = 'Hello';
+  .controller('ProductsCtrl', function ($state, $scope, Auth, $stateParams) {
+    if(!Auth.isLoggedIn()){
+        return $state.go('login')
+    }
+
+    $scope.$on('checkout',function(event,data){
+    	$scope.prodId = data.id;
+    	$scope.stateName = data.state;
+    })
+
   });

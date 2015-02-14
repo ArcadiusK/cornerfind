@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .controller('EasypostCtrl', function($scope, $http, $cookieStore, Auth, Address, $state, offer) {
+    .controller('EasypostCtrl', function($scope, $http, $cookieStore, Auth, Address, $state,$stateParams, offer) {
         $scope.verifyAddyResult;
         $scope.false = true;
         $scope.buttonText = 'Submit';
@@ -46,8 +46,9 @@ angular.module('cornerfindApp')
                         console.log('ARGS ', arguments)
                         // offer.addToOrder($scope.address)
                         $cookieStore.put('shippingAddress',$scope.address)
-
-                        $state.go('products.confirmOrder');
+                        
+                        $scope.$emit('checkout',{id: $stateParams.id, state:$state.current.name})
+                        $state.go('products.confirmOrder',{id: $stateParams.id});
                     })
 
                 })

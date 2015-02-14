@@ -5,7 +5,8 @@ angular.module('cornerfindApp')
     $stateProvider
       .state('products',{
         url: '/products',
-        templateUrl: 'app/products/products.html'
+        templateUrl: 'app/products/products.html',
+        controller: 'ProductsCtrl'
       })
       .state('products.oneProductView', {
         url: '/:id',
@@ -23,6 +24,7 @@ angular.module('cornerfindApp')
         controller: 'EasypostCtrl'
       })
       .state('products.confirmOrder',{
+        url: '/:id',
         templateUrl: 'app/products/confirmOrder.html',
         controller: 'ConfirmOrderCtrl'
       })
