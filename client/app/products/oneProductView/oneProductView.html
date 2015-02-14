@@ -5,10 +5,10 @@
                 <span class="col s12 card-title grey-text text-darken-4"> {{product.name}} </span>
                 <div class="col s12">Seller: {{product.userId.username}}</div>
                 <div class="col s12">{{product.desc}} </div>
-                <div class="col s12">Quantity: {{product.qty}} </div>
+                <div class="col s12">Listed Price: ${{product.price}} </div>
                 <div ng-hide='boughtItem' class='col s12'>
                     <div class='input-field'>
-                        <label class='label'>Your Offer</label>
+                        <label class='label active'>Your Offer</label>
                         <input class='col s12' type='number' ng-model='offerPrice'></input>
                     </div>
 
@@ -26,11 +26,8 @@
                 </div>
             </div>
         </div>
-
         <div ng-controller='OneProductViewCtrl'>
             <chat chatlist='chatlist' addchat='addChat(newChat)'></chat>
         </div>
-
     </div>
-
 </div>

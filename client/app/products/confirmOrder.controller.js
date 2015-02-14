@@ -10,7 +10,7 @@ angular.module('cornerfindApp')
         $scope.shippingAddress = $cookieStore.get('shippingAddress');
         $scope.cardInfo = $cookieStore.get('cardInfo')
         $scope.prodId = $scope.order.lineItems[0].productId;
-
+        console.log($scope.shippingAddress)
 
         $scope.submitOrder = function() {
             $scope.submitted = true;

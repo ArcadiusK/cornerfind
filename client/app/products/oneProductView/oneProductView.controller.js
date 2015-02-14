@@ -71,7 +71,8 @@ angular.module('cornerfindApp')
                         
                         // offer.addToOrder(res[0]);
                    
-                        console.log('OneProd Addresses ',res)
+                        // console.log('OneProd Addresses ',res)
+                        $cookieStore.put('shippingAddress',res[0])
 
                         $state.go("products.confirmOrder")
                     }, function(err) {
