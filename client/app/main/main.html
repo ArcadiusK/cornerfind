@@ -22,7 +22,7 @@ $(document).ready(function(){
     <div class="input-field col l8 m9 s12">
         <form class="form" role="form" ng-submit='searchSubmit(searchText)'>
             <i class="mdi-action-search prefix"></i>
-            <input type="text" ng-model="searchText" class="form-control btn-block" id="searchbox">
+            <input type="text" ng-model="searchText" class="form-control btn-block" id="searchbox" ng-change="searchSubmit(searchText)" ng-model-options="{debounce:500}">
             <label for="icon_prefix">Search</label>
         </form>
     </div>
