@@ -52,9 +52,11 @@ angular.module('cornerfindApp')
             $cookieStore.put("order",orderForCreation);
             
             if ($scope.currentUser.billing.stripeToken === null) {
-                return $state.go('products.stripeInfo');
+                return $state.go('products.stripeInfo', {id: $stateParams.id});
             } else {
                 // offer.addToOrder($scope.currentUser.billing);
+
+
                 $cookieStore.put("cardInfo",$scope.currentUser.billing);
 
                 //Now need to check if they have a listed address too
@@ -69,7 +71,8 @@ angular.module('cornerfindApp')
                         
                         // offer.addToOrder(res[0]);
                    
-
+                        // console.log('OneProd Addresses ',res)
+                        $cookieStore.put('shippingAddress',res[0])
 
                         $state.go("products.confirmOrder")
                     }, function(err) {
