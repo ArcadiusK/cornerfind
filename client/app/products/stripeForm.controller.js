@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .controller('StripeFormCtrl', function($scope, Auth,User,offer, $state, $cookieStore) {
+    .controller('StripeFormCtrl', function($stateParams, $scope, Auth,User,offer, $state, $cookieStore) {
     	$scope.currentUser = Auth.getCurrentUser();
         Stripe.setPublishableKey('pk_test_HrMktfRjskOsJMw8RBnfca6X');
+        $scope.prodId = $stateParams.id;
+
 
         $scope.cancel = function(){
             $state.go('products')  //get the ID from state param
@@ -36,7 +38,7 @@ angular.module('cornerfindApp')
 
                 User.update($scope.currentUser)
                     .$promise.then(function(user) {
-                    	// console.log('updated User ',user)
+                    	console.log('updated User ',user)
                         $cookieStore.put('cardInfo',$scope.currentUser.billing);
                     	$state.go('products.addressForm')
                     });

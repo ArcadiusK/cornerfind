@@ -1,84 +1,29 @@
-<div class="row" resizable>
+<div class="row oneProductView" resizable>
     <div ng-class='isPinned(windowWidth)' class="col s12 l4 m12">
-        <!-- start Card -->
         <div class="card pink lighten-3" ng-hide='showtoken'>
-
-
             <div class="card-content white-text row" ng-hide='confirmationMenu'>
-                <!--card content-->
-                
-
                 <span class="col s12 card-title grey-text text-darken-4"> {{product.name}} </span>
-                <div class="col s12">Seller: {{product.userId.username}}</div>
+                <!-- <div class="col s12">Seller: {{product.userId.username}}</div> -->
                 <div class="col s12">{{product.desc}} </div>
-                <div class="col s12">Quantity: {{product.qty}} </div>
-
-
-
+                <div class="col s12">Retail Price: ${{product.retailPrice}} </div>
+                <div class="col s12">Listed Price: ${{product.price}} </div>
                 <div ng-hide='boughtItem' class='col s12'>
-                    <div class='input-field'>
-                        <label class='label'>Your Offer</label>
-                        <input class='col s12' type='number' ng-model='offerPrice'></input>
-                    </div>
-                    <div class='section'>
-                        <button ng-click="submitOffer(offerPrice)" class="col s5 waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Offer</button>
-                        <button class="col s6 offset-s1 btn blue lighten-2 grey-text text-darken-4" ng-click='buyNow()'>
-                            Buyout {{product.price | currency}}
-                        </button>
-
-                    </div>
-
+                    <form name='offerForm'>
+                        <div class='input-field col s12'>
+                            <i class='mdi-editor-attach-money prefix'></i>
+                            <input type='text' name='offer' class='validate' ng-model='offerPrice' placeholder='Your Offer Here' ui-validate="'$value <= product.price && $value > 0 && $value %1 === 0'"></input>
+                        </div>
+                        <div ng-show="offerForm.$invalid && offerForm.offer.$touched"class="col s12 center-align">Offers must be whole dollar values less than or equal to the listed price.</div>
                 </div>
-               <!--  <div ng-show='boughtItem'>
-                    <h1>SUCCESS MESSAGE {{stripeResult}}
-                    </h1>
-                </div> -->
-
             </div>
-            <a class="col s12 white-text btn-flat center-align" ng-click='userRedirect()'>More From This User</a>
-            <!--card content-->
-
-
-          <!--   <div class="card-content white-text row" ng-show='confirmationMenu && !showAddressMenu'>
-                <span class="col s12 card-title grey-text text-darken-4">Is this the payment method you would like to use?</span>
-
-                <div class='col s4'>
-                    Card Info:{{currentUser.billing.cardType}}
-                </div>
-                <div class='col s8'>
-                    Last 4 Digits:{{currentUser.billing.last4}}
-                </div>
-
-                <div class='section'>
-                    <button ng-click="showAddressMenu = true" class="col s5 waves-effect btn blue lighten-2 grey-text text-darken-4">Yes</button>
-                    <button class="col s6 offset-s1 btn blue lighten-2 grey-text text-darken-4" ng-click='buyNow()'>
-                        New Payment
-                    </button>
-                </div>
-
-            </div> -->
-
-
-
-
+            <button ng-disabled='!offerForm.$valid' ng-click="submitOffer(offerPrice)" class="col s8 offset-s2 waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart left"></i>Offer</button>
+            <form>
+                <a class="col s12 white-text btn-flat center-align" ng-click='userRedirect()'>More From {{product.userId.username}}</a>
         </div>
-        <!-- end card -->
 
 
-
-
-        
-
-        <!--Address Form -->
-        <!-- <div ng-show='showAddressMenu'>
-            <h4>Please confirm your shipping address </h4>
-            <easypost context='buyerAddy'></easypost>
-        </div> -->
-
-
-            <button ng-click="userRedirect()" class="col s12 waves-effect btn blue lighten-2 grey-text text-darken-4">More from {{product.userId.username}}<i class="mdi-action-shopping-cart left"></i></button>
-
-      
+        <!-- <button ng-click="userRedirect()" class="col s12 waves-effect btn blue lighten-2 grey-text text-darken-4">More from {{product.userId.username}}
+        </button> -->
 
 
 
@@ -92,11 +37,8 @@
 
             </div>
         </div>
-
         <div ng-controller='OneProductViewCtrl'>
             <chat chatlist='chatlist' addchat='addChat(newChat)'></chat>
         </div>
-
     </div>
-
 </div>
