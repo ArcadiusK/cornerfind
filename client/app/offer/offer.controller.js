@@ -4,7 +4,7 @@ angular.module('cornerfindApp')
   .controller('OfferCtrl', function ($scope, $stateParams, offer, Auth) {
 
     $scope.user = Auth.getCurrentUser().$promise.then(function (user) {
-    $scope.offers = offer.getBuyersOffers({id: user._id});
+    $scope.offers = offer.resource.getBuyersOffers({id: user._id});
     });
 
     
