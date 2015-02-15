@@ -20,20 +20,21 @@ angular.module('cornerfindApp')
                     likes.resource.getProductLikes({
                         id: scope.product._id
                     }).$promise.then(function(data) {
-
                         scope.product.likes = data;
 
+                   
                         if (scope.product.likes.length === 1) {
                             scope.likeText = scope.product.likes[0].userId.username + " likes this";
                             if (scope.likeText.length > 40)
                                 scope.likeText = scope.likeText.slice(0, 37) + "..."
                         } else if (scope.product.likes.length > 1) {
-                            scope.likeText = scope.product.likes[0].userId.username + " and " + scope.product.likes.length + " others like this";
+                            scope.likeText = scope.product.likes[0].userId.username + " and " + (scope.product.likes.length - 1) + " others like this";
                             if (scope.likeText.length > 40)
                                 scope.likeText = scope.likeText.slice(0, 37) + "..."
                         } else {
                             scope.likeText = '';
                         }
+                        
 
                         // console.log("scope.product.likes", scope.product.likes, "scope.product: ", scope.product)
                         //             if (typeof scope.product.likes !== 'undefined')
@@ -45,9 +46,7 @@ angular.module('cornerfindApp')
                             }
                         });
 
-                        scope.loggedin = Auth.isLoggedIn();
-                        if (scope.loggedin) {
-                            console.log('scope.user._id is ...', scope.currentUser._id);
+                        if (scope.currentUser._id) {
                             likes.resource.getUserLikes({
                                 id: scope.currentUser._id
                             }).$promise.then(function(data) {
@@ -87,7 +86,7 @@ angular.module('cornerfindApp')
                         scope.textGenerate();
                     }
                     // If not favorited do this
-                    else {
+                    else if (scope.currentUser._id) {
                         scope.currentUser.likes.push({
                             productId: scope.product._id,
                             userId: scope.currentUser._id
