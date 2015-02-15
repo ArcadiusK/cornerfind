@@ -32,7 +32,7 @@ angular.module('cornerfindApp')
                 city: shipping.city,
                 state: shipping.state,
                 zip: shipping.zip,
-                phone: '555-555-5555',
+                phone: shipping.phone,
                 country: 'US'
             }
 

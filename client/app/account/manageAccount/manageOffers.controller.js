@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .controller('ManageOffersCtrl', function($scope, offer, $state, Address,$http) {
+    .controller('ManageOffersCtrl', function($scope, offer, $state, Address, $http) {
 
 
         $scope.offers = offer.resource.manageOffers({
@@ -38,7 +38,7 @@ angular.module('cornerfindApp')
 
 
 
-        $scope.acceptOffer = function(orderId,orderObj) {
+        $scope.acceptOffer = function(orderId, orderObj) {
             var buyerAddress = orderObj.buyerAddress;
             // console.log($scope.stripeOrder)
             offer.resource.charge($scope.stripeOrder, function(result) {
@@ -51,8 +51,8 @@ angular.module('cornerfindApp')
                                 id: $scope.currentUser._id
                             })
                             .$promise.then(function(data) {
-                                console.log('ADDRESS response', data)
-                                
+                                // console.log('ADDRESS response', data)
+
                                 var sellerAddress = {
                                     name: data[0].name,
                                     street1: data[0].street1,
@@ -64,43 +64,27 @@ angular.module('cornerfindApp')
                                     phone: data[0].phone
                                 };
 
-                                console.log('SEller add',sellerAddress)
+                                // console.log('SEller add', sellerAddress)
                                 $http.post('/api/easyposts/createLabel', {
                                     toAddress: buyerAddress,
                                     fromAddress: sellerAddress
                                 }).success(function(results) {
-                                    
-                                    console.log('URL RES ',results)
-                                    $scope.labelURL = results;
 
-                                    // offer.resource.acceptOffer({
-                                    //     id: orderId
-                                    // }, function(result) {});
+                                    // console.log('URL RES ',results)
+                                    var labelUrl = results.postage_label.label_url;
+                                    // console.log("Label URL ", labelUrl)
+                                    offer.resource.acceptOffer({
+                                        id: orderId,
+                                        url: labelUrl
+                                    }, function(res, error) {
+                                        console.log('AcceptOffer Callback ', res)
+                                    })
 
 
                                 });
-
-
-
-
-
                             })
-
-
-
-
-
                     }
-
-
                 }
-
-
             );
         }
-
-
-
-
-
     })
