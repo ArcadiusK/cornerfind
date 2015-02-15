@@ -6,7 +6,7 @@
                 <div class="card-content white-text ">
                     <span class="card-title grey-text text-darken-4">{{user.username}}
                     </span>
-                   <div class='profile' style='margin-left: 40%'>
+                   <div class='profile'>
                         <img class="responsive-img profile" src="{{user.picture}}" >
                     </div> 
                     
@@ -45,7 +45,9 @@
                 <div ng-repeat='review in reviews' class="card-content white-text">
                     <span class="card-title grey-text text-darken-4"> </span>
                     <h5>{{review.reviewingUserId.username}}</h5>
+                       <div class='profile' style:'height:50px'>
                      <img class="responsive-img profile" src="{{review.reviewingUserId.picture}}" >
+                 </div>
                     <p>{{review.text}} </p>
                 </div>
             </div>
