@@ -58,35 +58,66 @@ exports.verify = function(req, res) {
 // Creates a new label in the DB.
 exports.createLabel = function(req, res) {
     // set parcel
-    easypost.Parcel.create({
-        predefined_package: "Parcel",
-        weight: 36
-    }, function(err, response) {
-        // console.log('PARCEL ', response)
-        console.log(err);
+    // easypost.Parcel.create({
+    //     predefined_package: "FlatRateEnvelope",
+    //     weight: 10
+    // }, function(err, response) {
+    //     // console.log('PARCEL ', response)
+    //     console.log(err);
+    //     });
+    var parcel = {
+        length: 10.2,
+        width: 7.8,
+        height: 4.3,
+        weight: 21.2
+    };
+    console.log('REQ BODY ',req.body)
 
-        var parcel = response;
-        // create shipment
-        easypost.Shipment.create({
-            to_address: req.body.toAddress,
-            from_address: req.body.fromAddress,
-            parcel: parcel
-            // customs_info: customsInfo
+    
+////REFERENCE DO NOT DELETE
+    // var toAddress = {
+    //     name: "Justin Cohen",
+    //     street1: "165 W 91 St",
+    //     street2: 'Apt 3H',
+    //     city: "New York",
+    //     state: "NY",
+    //     zip: "10024",
+    //     country: "US",
+    //     phone: "780-123-4567"
+    // };
+    // var fromAddress = {
+    //     name: "David Chang",
+    //     street1: "980 FOX HILL LN",
+    //     city: "SCOTCH PLAINS",
+    //     state: "NJ",
+    //     zip: "07076",
+    //     phone: "415-123-4567"
+    // };
+
+
+    // create shipment
+    easypost.Shipment.create({
+        to_address: req.body.toAddress,
+        from_address: req.body.fromAddress,
+        // to_address:toAddress,
+        // from_address: fromAddress,
+        parcel: parcel
+        // customs_info: customsInfo
+    }, function(err, shipment) {
+        // buy postage label with one of the rate objects
+        shipment.buy({
+            rate: shipment.lowestRate(['USPS'])
         }, function(err, shipment) {
-            // buy postage label with one of the rate objects
-            shipment.buy({
-                rate: shipment.lowestRate(['USPS', 'ups'])
-            }, function(err, shipment) {
-                
-              console.log('ERR ',err)
-              console.log('Shipment ',shipment)
 
-                // console.log(shipment.tracking_code);
-                // console.log(shipment.postage_label.label_url);
-                return res.json(200,shipment);
-            });
+            console.log('ERR ', err)
+            console.log('Shipment ', shipment)
+
+            // console.log(shipment.tracking_code);
+            // console.log(shipment.postage_label.label_url);
+            return res.json(200, shipment);
         });
     });
+
 }
 
 // Updates an existing easypost in the DB.

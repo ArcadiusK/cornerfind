@@ -32,7 +32,8 @@ angular.module('cornerfindApp')
                 city: shipping.city,
                 state: shipping.state,
                 zip: shipping.zip,
-                phone: shipping.phone
+                phone: '555-555-5555',
+                country: 'US'
             }
 
             var order = $scope.order;

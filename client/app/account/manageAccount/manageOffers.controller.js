@@ -52,12 +52,19 @@ angular.module('cornerfindApp')
                             })
                             .$promise.then(function(data) {
                                 console.log('ADDRESS response', data)
-                                delete data.__v;
-                                delete data.billing;
-                                delete data.userId;
-                                delete data._id;
-                                var sellerAddress = data;
+                                
+                                var sellerAddress = {
+                                    name: data[0].name,
+                                    street1: data[0].street1,
+                                    street2: data[0].street2 || '',
+                                    city: data[0].city,
+                                    state: data[0].state,
+                                    zip: data[0].zip,
+                                    country: data[0].country,
+                                    phone: data[0].phone
+                                };
 
+                                console.log('SEller add',sellerAddress)
                                 $http.post('/api/easyposts/createLabel', {
                                     toAddress: buyerAddress,
                                     fromAddress: sellerAddress
