@@ -49,7 +49,11 @@ var UserSchema = new Schema({
         ref: 'User'
     }],
     phoneNumber: String,
-    billing: { stripeToken: String, last4: Number, cardType: String }
+    billing: { 
+        stripeToken: {type: String, default:null},
+        last4: {type: Number, default:null},
+        cardType: {type: String, default:null}
+    }
     
 
 });

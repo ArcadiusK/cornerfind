@@ -8,7 +8,7 @@ var router = express.Router();
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.get('/:userId/offers',controller.getOffers)	
-router.get('/:orderId/acceptOffer',controller.acceptOffer)	
+router.get('/:orderId/acceptOffer?',controller.acceptOffer)	
 router.get('/:userId/manageOffers',controller.manageOffers)
 router.get('/:userId/getAccepted',controller.getAccepted)
 router.post('/', controller.create);

@@ -20,7 +20,7 @@ angular.module('cornerfindApp')
                 }
             },
 
-            resource: $resource('/api/orders/:id/:offers', {
+            resource: $resource('/api/orders/:id/:trackingUrl/:offers', {
                     id: '@_id'
                 },
 
@@ -53,6 +53,7 @@ angular.module('cornerfindApp')
                         params: {
                             id: '@id',
                             offers: 'manageOffers'
+
                         }
                     },
 
@@ -60,6 +61,7 @@ angular.module('cornerfindApp')
                         method: 'GET',
                         params: {
                             id: '@id',
+                            trackingUrl: '@url',
                             offers: 'acceptOffer'
                         }
                     },
