@@ -71,7 +71,7 @@ exports.createLabel = function(req, res) {
         height: 4.3,
         weight: 21.2
     };
-    console.log('REQ BODY ',req.body)
+
 
     
 ////REFERENCE DO NOT DELETE
@@ -109,8 +109,8 @@ exports.createLabel = function(req, res) {
             rate: shipment.lowestRate(['USPS'])
         }, function(err, shipment) {
 
-            console.log('ERR ', err)
-            console.log('Shipment ', shipment)
+            console.log('Easypost ERR ', err)
+            // console.log('Shipment ', shipment)
 
             // console.log(shipment.tracking_code);
             // console.log(shipment.postage_label.label_url);

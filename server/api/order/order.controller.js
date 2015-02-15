@@ -112,24 +112,22 @@ exports.manageOffers = function(req,res){
 }
 
 exports.acceptOffer = function(req, res) {
-
+  // console.log('REQ PARAMS ',req.params)
+  // console.log("QUERY ",req.query)
   Order.findByIdAndUpdate(req.params.orderId, {
       $set: {
-          status: "accepted"
+          status: "accepted",
+          shippingLabelUrl: req.query.url
       }
   }, function(err, doc) {
       if (err) {
           return handleError(res, err);
       }
-      
-  }).then(function(secondErr,secondRes){ 
-    Order.declineUnacceptedOrders(req.params.orderId);
-      res.json(doc)
+      // console.log('DOC ',doc)
+      Order.declineUnacceptedOrders(req.params.orderId);
+      return res.json(doc);  
   })
 }
-
-
-
 
 function handleError(res, err) {
   return res.send(500, err);
