@@ -1,5 +1,7 @@
 .productCard{
 
+
+
   #productDescInCard{
     padding-top: 8px;
     padding-bottom: 5px;
@@ -67,6 +69,11 @@
     display: inline-block ;
     font-size: 1.8rem ;
     color: #ffcdd2 ;
+
+    .favorited{
+    color: red;
+    }
+
   }
 
 
