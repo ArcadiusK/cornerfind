@@ -85,11 +85,12 @@ exports.destroy = function(req, res) {
 
 //Get all of a user's listings
 exports.getUsersListings = function(req,res){
-  Product.find({userId:req.params.id},function(err, products){
-      if(err){return handleError(res,err)}
-      if(!products.length){return res.send(404);}
-      res.json(products)
-    });
+  Product.find({userId:req.params.id}).populate('userId')
+  .exec(function(err,product){
+    if(err) { return handleError(res, err); }
+    if(!product) { return res.send(404); }
+    return res.json(product);
+  });
 };
 
 // Searches for producs from a specific brand from the DB
