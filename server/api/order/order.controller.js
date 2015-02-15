@@ -2,7 +2,8 @@
 
 var _ = require('lodash'),
   Order = require('./order.model'),
-  expiredOffersCheck = require('./cronJob.js');
+  expiredOffersCheck = require('./cronJob.js'),
+  q = require('q');
 
 
 // Get list of orders
@@ -31,8 +32,10 @@ exports.create = function(req, res) {
   });
 };
 exports.charge = function(req, res) {
-  var newCharge = Order.createStripeCharge(req.body);
-  return res.json(newCharge);
+  Order.createStripeCharge(req.body).then(function(result){
+    return res.json(result);
+  });
+  
 };
 
 
