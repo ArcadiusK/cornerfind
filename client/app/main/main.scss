@@ -1,14 +1,16 @@
 .thing-form {
     margin: 20px 0;
 }
-#banner {
-    border-bottom: none;
-    margin-top: -20px;
-    height: 500px;
-    background-image: url("http://cornerfind.s3-website-us-west-2.amazonaws.com/1423524630845LOGO_CORNERFIND.jpg");
-    background-attachment: fixed;
-    //  background-repeat: repeat;
-}
+
+// #banner {
+//     border-bottom: none;
+//     margin-top: -20px;
+//     height: 500px;
+//     background-image: url("http://cornerfind.s3-website-us-west-2.amazonaws.com/1423524630845LOGO_CORNERFIND.jpg");
+//     background-attachment: fixed;
+//     //  background-repeat: repeat;
+// }
+
 #banner h1 {
     font-size: 5rem;
     line-height: 1;
@@ -37,6 +39,10 @@
     bottom: 0px;
     right: 0px;
     z-index: 1000;
+}
+
+.slider {
+  margin-top: -20px;
 }
 
 
