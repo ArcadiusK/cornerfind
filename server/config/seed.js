@@ -99,7 +99,7 @@ User.find({}).remove(function() {
             email: 'arcadiusk@gmail.com',
             password: 'ttt',
             hashedPassword: '',
-            role: 'admin',
+            role: 'user',
             picture: 'assets/images/photo_arcadius.jpg',
             blog: '',
             description: 'Dad with 2 kids',
@@ -171,7 +171,7 @@ User.find({}).remove(function() {
             password: 'ttt',
             hashedPassword: '',
             role: 'user',
-            picture: 'assets/images/photo_mitsu.jpg',
+            picture: 'http://cornerfind.s3-website-us-west-2.amazonaws.com/1423956989831photo_mitsu.png',
             blog: '',
             description: 'Dad with 5 kids',
             provider: 'local',
@@ -181,11 +181,11 @@ User.find({}).remove(function() {
             google: {},
             github: {},
             listedProducts: [],
-            location: 'New York',
+            location: 'New Jersey',
             settings: '', //will need to define later. Nice to have.
             following: [],
             followers: [],
-            phoneNumber: '+16465804290',
+            phoneNumber: '+12016605762',
             billing: {}
         },
         function() {
@@ -266,7 +266,7 @@ User.find({}).remove(function() {
                                         qty: 1,
                                         name: "Boy Jacket",
                                         desc: "Description of Boy Jacket",
-                                        photoUrls: ["assets/images/boy_jacket.jpg"],
+                                        photoUrls: ['http://cornerfind.s3-website-us-west-2.amazonaws.com/1423959302691boy_jack.jpg'],
                                         condition: "Like New", //from conditions collection
                                         available: true,
                                         price: 34.00,
@@ -470,13 +470,13 @@ User.find({}).remove(function() {
                                                                     }, {
                                                                         userId: user_parameter4._id,
                                                                         name: 'Mitsuaki Uchimoto', //added in to make dealing with easypost easier
-                                                                        phone: '+6465804290', //added in to make dealing with easypost easier
+                                                                        phone: '+12016605762', //added in to make dealing with easypost easier
                                                                         billing: true,
-                                                                        street1: 'PO BOX 7323',
-                                                                        street2: 'JAF Station',
-                                                                        city: 'New York',
-                                                                        state: 'NY',
-                                                                        zip: '10116',
+                                                                        street1: '60 Crest Drive North',
+                                                                        street2: '',
+                                                                        city: 'Cresskill',
+                                                                        state: 'NJ',
+                                                                        zip: '07626',
                                                                         country: 'USA',
                                                                         email: 'muchimoto@gmail.com'
                                                                     },
