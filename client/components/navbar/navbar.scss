@@ -4,9 +4,6 @@
     position: relative;
     text-decoration: none;
 }
-.navbar-brand{
-	color:#fff;
-}
 
 .whiten{
   color:#fff;
@@ -26,4 +23,11 @@
 
 .grey.darken-3 {
   background: #f68eb1 !important;
+}
+
+.navbar-brand {
+   color:#fff;
+   margin-top: -9px;
+   margin-bottom: 15px;
+
 }
