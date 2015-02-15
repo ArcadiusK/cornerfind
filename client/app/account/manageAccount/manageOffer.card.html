@@ -18,7 +18,7 @@
                 <div>Offer Total: {{offer.orderTotal | currency}}</div>
             </div>
             <div class="card-action">
-                <form ng-hide="status.status.indexOf(offer.status) > -1 " ng-submit="acceptOffer({offerId: offer._id})">
+                <form ng-hide="status.status.indexOf(offer.status) > -1 " ng-submit="acceptOffer({offerId: offer._id, orderObj:offer})">
                     <button ng-hide='accepted' class='btn' ng-click="submitButton()">Accept Offer</button>
                     <button ng-hide='accepted' type='button' class='btn'>Reject button?</button>
 

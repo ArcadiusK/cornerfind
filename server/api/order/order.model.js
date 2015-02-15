@@ -18,6 +18,9 @@ var OrderSchema = new Schema({
   sellerId: {type: Schema.Types.ObjectId, ref: 'User'},
   buyerId: {type: Schema.Types.ObjectId, ref: 'User'},
   orderShippingHandling: {type: Number},
+  buyerAddress: Object,
+  sellerAddress: Object,
+  shippingLabelUrl: String,
   orderTotal: {type: Number, min: 0},
   timeStamp: Number,
   billing: {},
@@ -144,10 +147,11 @@ OrderSchema.statics.createStripeCharge = function(item, res) {
             return res.send(500, err)
           }
 
-          console.log('Stripe charged! ..', charge)
+          // console.log('Stripe charged! ..', charge)
+          // console.log('Stripe Err ',err)
 
           deferral.resolve(charge);
-          // res.json(200,charge);
+          
     });
     return deferral.promise;
 };
