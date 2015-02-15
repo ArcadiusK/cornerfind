@@ -15,6 +15,7 @@ var Like = require('../api/like/like.model');
 var Address = require('../api/address/address.model');
 var Chat = require('../api/chat/chat.model');
 var auth = require('../auth/auth.service');
+var Review = require('../api/review/review.model');
 
 Thing.find({}).remove(function() {
     Thing.create({
@@ -420,6 +421,38 @@ User.find({}).remove(function() {
                                                                     }, {
                                                                         productId: product_parameter._id,
                                                                         userId: user_parameter2._id
+                                                                    },
+                                                                    function() {
+
+                                                                    });
+                                                            });
+
+                                                            Review.find({}).remove(function() {
+                                                                Review.create({
+                                                                        reviewingUserId: user_parameter1._id,
+                                                                        reviewedUserId: user_parameter2._id,
+                                                                        text: 'The seller was very responsive to any questions I had.  Would definitely buy from this seller again!',
+                                                                        rating: 5,
+                                                                        date: new Date()
+                                                                    }, {
+                                                                        reviewingUserId: user_parameter1._id,
+                                                                        reviewedUserId: user_parameter2._id,
+                                                                        text: 'The product was slightly damaged from heavy use but still useable.  Saved tons of money buying from this seller.',
+                                                                        rating: 3,
+                                                                        date: new Date()
+                                                                    }, {
+                                                                        reviewingUserId: user_parameter2._id,
+                                                                        reviewedUserId: user_parameter1._id,
+                                                                        text: 'This buyer was very easy to work with, the transaction went smoothly with no hitches.',
+                                                                        rating: 4,
+                                                                        date: new Date()
+                                                                    },
+                                                                    {
+                                                                        reviewingUserId: user_parameter2._id,
+                                                                        reviewedUserId: user_parameter1._id,
+                                                                        text: 'Great buyer, A++.',
+                                                                        rating: 3,
+                                                                        date: new Date()
                                                                     },
                                                                     function() {
 
