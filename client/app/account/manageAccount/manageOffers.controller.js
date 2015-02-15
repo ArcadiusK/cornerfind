@@ -22,24 +22,11 @@ angular.module('cornerfindApp')
 
 
         $scope.stripeResult = {};
-        // $scope.acceptOffer = function(orderId) {
-        //     offer.resource.acceptOffer({
-        //         id: orderId
-        //     }, function(result) {
-        //     });
-        //     offer.resource.charge($scope.stripeOrder, function(result) {
-        //         if (result.captured === true) {
-        //             $scope.stripeResult = result;
-        //         }
-
-
-        //     });
-        // }
-
-
-
+     
         $scope.acceptOffer = function(orderId, orderObj) {
             var buyerAddress = orderObj.buyerAddress;
+            console.log('orderID',orderId,'orderObj',orderObj)
+            console.log('userid',$scope.currentUser._id)
             // console.log($scope.stripeOrder)
             offer.resource.charge($scope.stripeOrder, function(result) {
 
@@ -51,7 +38,8 @@ angular.module('cornerfindApp')
                                 id: $scope.currentUser._id
                             })
                             .$promise.then(function(data) {
-                                // console.log('ADDRESS response', data)
+                                console.log('ADDRESS response', data)
+                                console.log('ADDRESS arguments', arguments)
 
                                 var sellerAddress = {
                                     name: data[0].name,
@@ -70,9 +58,7 @@ angular.module('cornerfindApp')
                                     fromAddress: sellerAddress
                                 }).success(function(results) {
 
-                                    // console.log('URL RES ',results)
                                     var labelUrl = results.postage_label.label_url;
-                                    // console.log("Label URL ", labelUrl)
                                     offer.resource.acceptOffer({
                                         id: orderId,
                                         url: labelUrl

@@ -6,6 +6,7 @@ angular.module('cornerfindApp')
         $scope.currentUser = Auth.getCurrentUser();
         if (typeof $scope.currentUser._id !== 'undefined') {
             Auth.getCurrentUser().$promise.then(function(user) {
+                console.log('USER ',user)
                 if (user.billing.stripeToken !== null) {
                     $scope.currentUser = user;
                 } else {
