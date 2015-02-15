@@ -53,7 +53,7 @@ angular.module('cornerfindApp')
             $cookieStore.put("order",orderForCreation);
             
             if ($scope.currentUser.billing.stripeToken === null) {
-                $scope.$emit('EVENT',$stateParams.id);
+                $scope.$emit('checkout',{id: $stateParams.id, state:$state.current.name});
                 return $state.go('products.stripeInfo', {id: $stateParams.id});
             } else {
                 // offer.addToOrder($scope.currentUser.billing);

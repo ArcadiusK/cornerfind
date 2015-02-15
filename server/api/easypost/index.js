@@ -7,7 +7,7 @@ var router = express.Router();
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);
-// router.post('/', controller.create);
+router.post('/createLabel', controller.createLabel);
 router.post('/verify', controller.verify);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);

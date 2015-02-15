@@ -11,19 +11,16 @@ angular.module('cornerfindApp')
         $scope.cardInfo = $cookieStore.get('cardInfo')
         $scope.prodId = $scope.order.lineItems[0].productId;
 
-        $scope.emitter = function(){
-            $scope.$emit('checkout',{id: $scope.prodId, state:$state.current.name})
+        $scope.emitter = function() {
+            $scope.$emit('checkout', {
+                id: $scope.prodId,
+                state: $state.current.name
+            })
         };
 
         $scope.submitOrder = function() {
             $scope.submitted = true;
-            var order = $scope.order;
-            var orderForCreation = {
-                lineItems: order.lineItems,
-                sellerId: order.sellerId,
-                buyerId: order.buyerId,
-                status: 'offer'
-            };
+
 
             var shipping = $scope.shippingAddress;
             var shippingAddress = {
@@ -34,10 +31,24 @@ angular.module('cornerfindApp')
                 street2: shipping.street2,
                 city: shipping.city,
                 state: shipping.state,
-                zip: shipping.zip
+                zip: shipping.zip,
+                phone: shipping.phone
             }
 
-         
+            var order = $scope.order;
+
+            //deleting for easypost
+            delete shippingAddress.billing;
+            delete shippingAddress.userId;
+            var orderForCreation = {
+                lineItems: order.lineItems,
+                sellerId: order.sellerId,
+                buyerId: order.buyerId,
+                status: 'offer',
+                buyerAddress: shippingAddress
+            };
+
+
 
             var orderDeferral = $q.defer();
             var addressDeferral = $q.defer();
@@ -53,8 +64,8 @@ angular.module('cornerfindApp')
             Address.updateAddress({
                 id: $scope.currentUser._id
             }, shippingAddress, null, function(results) {
-            	addressDeferral.resolve(results)
-            	console.log('APROMISE ',addressDeferral)
+                addressDeferral.resolve(results)
+                console.log('APROMISE ', addressDeferral)
             })
 
             $q.all([orderDeferral.promise, addressDeferral.promise]).then(function(results) {
@@ -62,7 +73,7 @@ angular.module('cornerfindApp')
                 $cookieStore.remove('cardInfo');
                 $cookieStore.remove('shippingAddress');
 
-                toast('Success!',4000)
+                toast('Success!', 4000)
             }, function(err) {
                 console.log("ERROR ", err)
             })
