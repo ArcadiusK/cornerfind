@@ -28,7 +28,7 @@ angular.module('cornerfindApp')
                             if (scope.likeText.length > 40)
                                 scope.likeText = scope.likeText.slice(0, 37) + "..."
                         } else if (scope.product.likes.length > 1) {
-                            scope.likeText = scope.product.likes[0].userId.username + " and " + scope.product.likes.length + " others like this";
+                            scope.likeText = scope.product.likes[0].userId.username + " and " + (scope.product.likes.length - 1) + " others like this";
                             if (scope.likeText.length > 40)
                                 scope.likeText = scope.likeText.slice(0, 37) + "..."
                         } else {
