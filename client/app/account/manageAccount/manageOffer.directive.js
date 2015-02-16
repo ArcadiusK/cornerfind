@@ -11,6 +11,7 @@ angular.module('cornerfindApp')
                 status: '=',
                 stripeResult: '=',
                 acceptOffer: '&'
+                // submitReview: '&'
             },
             link: function(scope, element, attrs) {
                 scope.accepted = false;
@@ -32,7 +33,7 @@ angular.module('cornerfindApp')
                     reviewingUserId: scope.offer.sellerId._id,
                     text: "",
                     rating: 0,
-                    date: new Date(),
+                    date: new Date()
                 }
                 scope.maxStars = [1, 2, 3, 4, 5];
 
@@ -48,10 +49,11 @@ angular.module('cornerfindApp')
                     
                 }
                 scope.submitReview = function () {
-                	
-                	   scope.newReview.text = scope.reviewText;
-                    review.resource.save(scope.newReview, function (result) {
-                    	toast('Review submitted!', 4000);
+                	// console.log('FIRED')
+                	scope.newReview.text = scope.reviewText;
+                    review.resource.save(scope.newReview, function (res,err) {
+                    // console.log("REVIEW CLLBACK",res,err)
+                    toast('Review submitted!', 3000);
                     });
                 }
             }

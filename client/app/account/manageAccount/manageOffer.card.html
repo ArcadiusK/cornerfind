@@ -1,14 +1,10 @@
 <div class="row">
     <div class="col s12 m12 l12">
-
-        <div class="card deep-purple lighten-2">
-
-
-            <div class="card-content white-text">
-                <span class="card-title">Buyer: {{offer.buyerId.name}} </span>
+        <div class="card blue lighten-3">
+            <div class="card-content black-text"><!-- remove inline styles -->
+                <a ui-sref='user({name: offer.buyerId.username})' style="text-decoration:none; font-size: 1.5rem; "><span class="card-title black-text" >Buyer: {{offer.buyerId.name}} </span></a>
                 <ul>
                     Offer Status: {{offer.status}}
-
                     <h3>Items in this offer:</h3>
                     <hr>
                     <li ng-repeat='product in offer.lineItems'>
@@ -21,9 +17,7 @@
                 <form ng-hide="status.status.indexOf(offer.status) > -1 " ng-submit="acceptOffer({offerId: offer._id, orderObj:offer})">
                     <button ng-hide='accepted' class='btn' ng-click="submitButton()">Accept Offer</button>
                     <!-- <button ng-hide='accepted' type='button' class='btn'>Reject button?</button> -->
-
                 </form>
-
                 <button ng-show="status.status.indexOf(offer.status) > -1 || accepted" class='btn' ng-click="review()">Leave a Review!</button>
                 <form ng-show='showReview' ng-submit="submitReview()">
                     <div class="form-panel">
@@ -39,15 +33,8 @@
                             </div>
                         </div>
                     </div>
-
                     <button class='btn'>Submit</button>
-
                 </form>
-
-
-                <div ng-show='charged'>
-                    <h3>Success!</h3>
-                </div>
             </div>
         </div>
     </div>
