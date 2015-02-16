@@ -13,6 +13,10 @@ angular.module('cornerfindApp')
             },
             link: function(scope, element, attrs) {
 
+                scope.$watch('product', function(){
+                     scope.textGenerate();
+                });
+
                 scope.currentUser = Auth.getCurrentUser();
 
                 scope.textGenerate = function() {
@@ -54,9 +58,9 @@ angular.module('cornerfindApp')
                             });
                         }
                     });
-
+                    scope.$apply();
                 };
-                scope.textGenerate();
+               
                 //toggle favorite function to update backend.
                 scope.toggleFavorite = function() {
                     var likeObject = {
