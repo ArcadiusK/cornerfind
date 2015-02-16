@@ -11,7 +11,7 @@ angular.module('cornerfindApp')
 
         $scope.review = false;
 
-        $scope.buttonText = 'Show Seller Feedback'
+        $scope.buttonText = 'Show Feedback'
 
         // Get user of current page
         User.getUserByName({
@@ -45,10 +45,10 @@ angular.module('cornerfindApp')
             $scope.review = !$scope.review;
 
             if ($scope.review) {
-                $scope.buttonText = 'Hide Seller Feedback'
+                $scope.buttonText = 'Hide Feedback'
             }
             else if (!$scope.review) {
-                $scope.buttonText = 'Show Seller Feedback'
+                $scope.buttonText = 'Show Feedback'
             }
         }
 
