@@ -19,7 +19,7 @@ angular.module('cornerfindApp')
         };
 
         $scope.submitOrder = function() {
-            $scope.submitted = true;
+
 
 
             var shipping = $scope.shippingAddress;
@@ -51,33 +51,55 @@ angular.module('cornerfindApp')
 
 
 
-            var orderDeferral = $q.defer();
-            var addressDeferral = $q.defer();
-
-            offer.resource.save(orderForCreation, function(result) {
-                orderDeferral.resolve(result);
-            }, function(err) {
-                if (err) {
-                    console.log('Error ', err)
-                }
+            offer.resource.save(orderForCreation, function(orderResult) {
+                Address.updateAddress({
+                    id: $scope.currentUser._id
+                }, shippingAddress, null, function(addressResult) {
+                    // console.log('SUCCESS ', orderResult, addressResults);
+                    $cookieStore.remove('order');
+                    $cookieStore.remove('cardInfo');
+                    $cookieStore.remove('shippingAddress');
+                    $scope.orderId = orderResult._id;
+                    $scope.$emit('submitted');
+                    $scope.submitted = true;
+                })
             })
 
-            Address.updateAddress({
-                id: $scope.currentUser._id
-            }, shippingAddress, null, function(results) {
-                addressDeferral.resolve(results)
-                console.log('APROMISE ', addressDeferral)
-            })
 
-            $q.all([orderDeferral.promise, addressDeferral.promise]).then(function(results) {
-                $cookieStore.remove('order');
-                $cookieStore.remove('cardInfo');
-                $cookieStore.remove('shippingAddress');
 
-                toast('Success!', 4000)
-            }, function(err) {
-                console.log("ERROR ", err)
-            })
+            //This setup isn't writing to DB, no time to troubleshoot
+            //Doing it via callbacks for now
+            // var orderDeferral = $q.defer();
+            // var addressDeferral = $q.defer();
+
+            // offer.resource.save(orderForCreation, function(result) {
+            //     orderDeferral.resolve(result);
+            // }, function(err) {
+            //     if (err) {
+            //         console.log('Error ', err)
+            //     }
+            // })
+
+            // Address.updateAddress({
+            //     id: $scope.currentUser._id
+            // }, shippingAddress, null, function(results) {
+            //     addressDeferral.resolve(results)
+            //     console.log('APROMISE ', addressDeferral)
+            // })
+
+            // $q.all([orderDeferral.promise, addressDeferral.promise]).then(function(results) {
+            //     $cookieStore.remove('order');
+            //     $cookieStore.remove('cardInfo');
+            //     $cookieStore.remove('shippingAddress');
+
+            //     $scope.orderId = results[0]._id;
+
+            //     // toast('Success!', 4000)
+            //     $scope.$emit('submitted');
+            //     $scope.submitted = true;
+            // }, function(err) {
+            //     console.log("ERROR ", err)
+            // })
         }
 
     })
