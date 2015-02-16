@@ -59,7 +59,6 @@ angular.module('cornerfindApp')
                                 });
                         }
                     });
-                    scope.$apply();
                 };
                
                 //toggle favorite function to update backend.
