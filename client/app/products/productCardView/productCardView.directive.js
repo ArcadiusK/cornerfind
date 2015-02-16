@@ -13,20 +13,19 @@ angular.module('cornerfindApp')
             },
             link: function(scope, element, attrs) {
 
-                scope.$watch('product', function(){
-                     scope.textGenerate();
-                });
+                // scope.$watch('product', function(){
+                //      scope.textGenerate();
+                // });
 
-                scope.currentUser = Auth.getCurrentUser();
+                
+                
 
                 scope.textGenerate = function() {
-
                     likes.resource.getProductLikes({
                         id: scope.product._id
                     }).$promise.then(function(data) {
                         scope.product.likes = data;
-
-                   
+                        scope.currentUser = Auth.getCurrentUser();
                         if (scope.product.likes.length === 1) {
                             scope.likeText = scope.product.likes[0].userId.username + " likes this";
                             if (scope.likeText.length > 40)
@@ -38,15 +37,16 @@ angular.module('cornerfindApp')
                         } else {
                             scope.likeText = '';
                         }
-                        
-
+                     }).then(function(){
                         // console.log("scope.product.likes", scope.product.likes, "scope.product: ", scope.product)
                         //             if (typeof scope.product.likes !== 'undefined')
                         scope.product.likes.forEach(function(el) {
                             if (el.userId._id == scope.currentUser._id) {
                                 scope.favorited = true;
+                                console.log('hit');
                                 return;
                             } else {
+                                console.log('declines');
                                 scope.favorited = false;
                             }
                         });
@@ -57,9 +57,11 @@ angular.module('cornerfindApp')
                             }).$promise.then(function(data) {
                                 scope.currentUser.likes = data;
                             });
-                        };
-                    });
+                        }
+                    });   
                 };
+
+                scope.textGenerate();
                
                 //toggle favorite function to update backend.
                 scope.toggleFavorite = function() {
@@ -74,6 +76,7 @@ angular.module('cornerfindApp')
                         var userLikeIndex = scope.currentUser.likes.map(function(e) {
                             return e.productId;
                         }).indexOf(scope.product._id);
+
                         scope.currentUser.likes.splice(userLikeIndex, 1);
 
                         var productLikeIndex = scope.product.likes.map(function(e) {
