@@ -11,4 +11,8 @@ angular.module('cornerfindApp')
     	$scope.stateName = data.state;
     })
 
+    $scope.$on('submitted',function(){
+    	$scope.submitted = true;
+    })
+
   });
