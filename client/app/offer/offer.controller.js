@@ -31,8 +31,8 @@ angular.module('cornerfindApp')
         //removing version to prevent errors on multiple modifications
         delete obj.__v; 
 
-        offer.updateOffer({id:obj._id},obj,function(res,err){
-         
+        offer.resource.updateOffer({id:obj._id},obj,function(res,err){
+            // console.log('RES ',res, err)
       
         });
     }
