@@ -53,7 +53,7 @@ exports.index = function(req, res) {
         if (err) {
             return console.log("chat controller exports.index Res, err: ", res, err);
         }
-        console.log('chat results backend', chats, req.params.productid);
+        // console.log('chat results backend', chats, req.params.productid);
         return res.json(201, chats);
     });
 };
