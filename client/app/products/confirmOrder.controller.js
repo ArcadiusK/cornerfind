@@ -55,7 +55,7 @@ angular.module('cornerfindApp')
                 Address.updateAddress({
                     id: $scope.currentUser._id
                 }, shippingAddress, null, function(addressResult) {
-                    // console.log('SUCCESS ', orderResult, addressResults);
+                    console.log('SUCCESS ', orderResult, addressResult);
                     $cookieStore.remove('order');
                     $cookieStore.remove('cardInfo');
                     $cookieStore.remove('shippingAddress');
