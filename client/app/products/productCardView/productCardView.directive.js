@@ -51,13 +51,13 @@ angular.module('cornerfindApp')
                             }
                         });
 
-                            if (scope.currentUser._id) {
-                                likes.resource.getUserLikes({
-                                    id: scope.currentUser._id
-                                }).$promise.then(function(data) {
-                                    scope.currentUser.likes = data;
-                                });
-                        }
+                        if (scope.currentUser._id) {
+                            likes.resource.getUserLikes({
+                                id: scope.currentUser._id
+                            }).$promise.then(function(data) {
+                                scope.currentUser.likes = data;
+                            });
+                        };
                     });
                 };
                
