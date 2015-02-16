@@ -8,13 +8,15 @@ angular.module('cornerfindApp')
     }];
 
 
+
+
     $scope.brandList = brand.query();
     $scope.categoryList=category.query();
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
-    $scope.getCurrentUser = Auth.getCurrentUser;
+    $scope.currentUser = Auth.getCurrentUser();
     
     $scope.smallerThan768 = function(){ //768 is the twitter navbar breakpoint
       return $scope.windowWidth < 768 ? true:false;
