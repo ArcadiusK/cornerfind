@@ -57,6 +57,8 @@ Brand.find({}).remove(function() {
     }, {
         name: "CTRCO"
     }, {
+        name: "Book"
+    }, {
         name: "Other"
     });
 });
@@ -68,6 +70,8 @@ Category.find({}).remove(function() {
         name: "Clothing"
     }, {
         name: "Toys"
+    }, {
+        name: "Children Books"
     }, {
         name: "Cribs"
     }, {
@@ -172,7 +176,7 @@ User.find({}).remove(function() {
             password: 'ttt',
             hashedPassword: '',
             role: 'user',
-            picture: 'http://cornerfind.s3-website-us-west-2.amazonaws.com/1423956989831photo_mitsu.png',
+            picture: 'assets/images/photo_mitsu.jpg',
             blog: '',
             description: 'Dad with 5 kids',
             provider: 'local',
@@ -235,7 +239,24 @@ User.find({}).remove(function() {
                                         category: ["Clothing"], //from categories collection
                                         gender: "Girl",
                                         qty: 1,
-                                        name: "Juicy Couture baby bib, pink",
+                                        name: "Pink sweater",
+                                        desc: "Pink sweater, hat, gloves and socks!!!",
+                                        photoUrls: ["http://cornerfind.s3-website-us-west-2.amazonaws.com/1424051153442sweater_pink.jpg",
+                                            "http://cornerfind.s3-website-us-west-2.amazonaws.com/1424054549045pink_gloves11.jpg",
+                                            "http://cornerfind.s3-website-us-west-2.amazonaws.com/1424054586559pink_set_22.jpg",
+                                            "http://cornerfind.s3-website-us-west-2.amazonaws.com/1424054608811pink_set11.jpg"
+                                        ],
+                                        condition: "Like New", //from conditions collection
+                                        available: true,
+                                        price: 72.00,
+                                        brand: "Uniqlo",
+                                        retailPrice: 98.00
+                                    },{
+                                        userId: user_parameter1._id,
+                                        category: ["Clothing"], //from categories collection
+                                        gender: "Girl",
+                                        qty: 1,
+                                        name: "Juicy Couture baby bib",
                                         desc: "Heavily used but clean Juicy Couture baby bib, must have!!!",
                                         photoUrls: ["http://media-cache-ec0.pinimg.com/736x/b8/e3/9c/b8e39c4f517f8c1bb9d6e31b5e5c75dd.jpg",
                                             "http://1.bp.blogspot.com/-Dv6PvxySNIk/UIFzzqkLJaI/AAAAAAAAEeo/F1kWbvrtJ3E/s1600/nomeatathelete.jpg",
@@ -299,10 +320,23 @@ User.find({}).remove(function() {
                                         price: 45.00,
                                         brand: "Espresso",
                                         retailPrice: 108.00
+                                    },  {
+                                        userId: user_parameter3._id,
+                                        category: ["Children Books"], //from categories collection
+                                        gender: "Neutral",
+                                        qty: 1,
+                                        name: "Goodnight Moon",
+                                        desc: "Goodnight Moon is a short poem of goodnight wishes from a young rabbit",
+                                        photoUrls: ["http://cornerfind.s3-website-us-west-2.amazonaws.com/1424054637548Goodnightmoon640.jpg"],
+                                        condition: "Acceptable", //from conditions collection
+                                        available: true,
+                                        price: 5.00,
+                                        brand: "Book",
+                                        retailPrice: 10.00
                                     },
                                     function() {
                                         var queryProduct = Product.where({
-                                            name: 'Juicy Couture baby bib, pink'
+                                            name: 'Juicy Couture baby bib'
                                         });
                                         queryProduct.findOne(function(err, product_parameter) {
                                             if (err) {
