@@ -24,7 +24,7 @@ angular.module('cornerfindApp')
 
     $scope.logout = function() {
       Auth.logout();
-      $location.path('/login');
+      // $location.path('/login');
     };
 
     $scope.isActive = function(route) {
