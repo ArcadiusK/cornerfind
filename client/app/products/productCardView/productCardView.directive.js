@@ -16,10 +16,6 @@ angular.module('cornerfindApp')
                 // scope.$watch('product', function(){
                 //      scope.textGenerate();
                 // });
-
-                
-                
-
                 scope.textGenerate = function() {
                     likes.resource.getProductLikes({
                         id: scope.product._id
@@ -43,10 +39,8 @@ angular.module('cornerfindApp')
                         scope.product.likes.forEach(function(el) {
                             if (el.userId._id == scope.currentUser._id) {
                                 scope.favorited = true;
-                                console.log('hit');
                                 return;
                             } else {
-                                console.log('declines');
                                 scope.favorited = false;
                             }
                         });
