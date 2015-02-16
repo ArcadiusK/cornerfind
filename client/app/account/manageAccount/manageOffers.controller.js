@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .controller('ManageOffersCtrl', function($scope, offer, $state, Address, $http) {
+    .controller('ManageOffersCtrl', function($scope,review, offer, $state, Address, $http) {
 
 
         $scope.offers = offer.resource.manageOffers({
@@ -38,8 +38,8 @@ angular.module('cornerfindApp')
                                 id: $scope.currentUser._id
                             })
                             .$promise.then(function(data) {
-                                console.log('ADDRESS response', data)
-                                console.log('ADDRESS arguments', arguments)
+                                // console.log('ADDRESS response', data)
+                                // console.log('ADDRESS arguments', arguments)
 
                                 var sellerAddress = {
                                     name: data[0].name,
@@ -64,6 +64,7 @@ angular.module('cornerfindApp')
                                         url: labelUrl
                                     }, function(res, error) {
                                         console.log('AcceptOffer Callback ', res)
+                                        toast('Success!',4000)
                                     })
 
 
@@ -72,5 +73,12 @@ angular.module('cornerfindApp')
                     }
                 }
             );
+        }
+
+        $scope.submitReview = function(reviewObj){
+            console.log('REVIEW OBJ ',reviewObj)
+            review.resource.save(reviewObj,function(res,err){
+                console.log('Review Callback ',res,err)
+            })
         }
     })

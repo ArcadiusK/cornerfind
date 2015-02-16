@@ -4,8 +4,8 @@
         <div class="card deep-purple lighten-2">
 
 
-            <div class="card-content white-text">
-                <span class="card-title">Buyer: {{offer.buyerId.name}} </span>
+            <div class="card-content white-text"><!-- remove inline styles -->
+                <a ui-sref='user({name: offer.buyerId.username})' style="text-decoration:none; font-size: 1.5rem;"><span class="card-title" >Buyer: {{offer.buyerId.name}} </span></a>
                 <ul>
                     Offer Status: {{offer.status}}
 
@@ -45,9 +45,9 @@
                 </form>
 
 
-                <div ng-show='charged'>
+<!--                 <div ng-show='charged'>
                     <h3>Success!</h3>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
