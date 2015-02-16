@@ -45,17 +45,18 @@ angular.module('cornerfindApp')
                         scope.product.likes.forEach(function(el) {
                             if (el.userId._id == scope.currentUser._id) {
                                 scope.favorited = true;
+                                return;
                             } else {
                                 scope.favorited = false;
                             }
                         });
 
-                        if (scope.currentUser._id) {
-                            likes.resource.getUserLikes({
-                                id: scope.currentUser._id
-                            }).$promise.then(function(data) {
-                                scope.currentUser.likes = data;
-                            });
+                            if (scope.currentUser._id) {
+                                likes.resource.getUserLikes({
+                                    id: scope.currentUser._id
+                                }).$promise.then(function(data) {
+                                    scope.currentUser.likes = data;
+                                });
                         }
                     });
                     scope.$apply();
