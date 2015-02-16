@@ -13,6 +13,9 @@
                     <h5>About me:</h5>
                     <p>{{user.description}} </p>
                     <br/>
+                     <h6>Blog:</h6>
+                    <p>{{user.blog}} </p>
+                    <br/>
                     <table>
                         <thead>
                             <tr>
@@ -24,8 +27,8 @@
                         <tbody>
                             <tr>
                                 <td>{{user.listedProducts.length}}</td>
-                                <td>{{user.followers.length}}</td>
-                                <td>{{user.following.length}}</td>
+                                <td><a href='/users/{{user.username}}/followers'>{{user.followers.length}}</a></td>
+                                <td><a href='/users/{{user.username}}/following'>{{user.following.length}}</a></td>
                         </tbody>
                     </table>
                     <div class="section">
@@ -34,7 +37,7 @@
                             <i ng-show='followed' class='mdi-action-done'></i>
                         </a>
 
-                        <a ng-click='showReviews()' class="waves-effect waves-purple btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-face-unlock"></i>Show Seller Feedback</a>
+                        <a ng-click='showReviews()' class="waves-effect waves-purple btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-face-unlock"></i>{{buttonText}}</a>
 
                     </div>
                 </div>
