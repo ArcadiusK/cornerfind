@@ -22,7 +22,7 @@
 
     function S3Upload(options) {
       if (options == null) options = {};
-      for (option in options) {
+      for (var option in options) {
         this[option] = options[option];
       }
       this.handleFileSelect(document.getElementById(this.file_dom_selector));
