@@ -6,9 +6,14 @@ angular.module('cornerfindApp')
         return $state.go('login')
     }
 
+    
     $scope.$on('checkout',function(event,data){
     	$scope.prodId = data.id;
     	$scope.stateName = data.state;
+    })
+
+    $scope.$on('submitted',function(){
+    	$scope.submitted = true;
     })
 
   });
