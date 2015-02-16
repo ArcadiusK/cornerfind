@@ -49,7 +49,7 @@ angular.module('cornerfindApp')
                     
                 }
                 scope.submitReview = function () {
-                	
+                	// console.log('FIRED')
                 	scope.newReview.text = scope.reviewText;
                     review.resource.save(scope.newReview, function (res,err) {
                     // console.log("REVIEW CLLBACK",res,err)

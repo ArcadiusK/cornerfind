@@ -64,6 +64,7 @@ angular.module('cornerfindApp')
                                         url: labelUrl
                                     }, function(res, error) {
                                         console.log('AcceptOffer Callback ', res)
+                                        $scope.offerAccepted = true;
                                         toast('Success!',4000)
                                     })
 
