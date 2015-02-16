@@ -3,14 +3,11 @@
 angular.module('cornerfindApp')
     .controller('UsersCtrl', function($scope, products, Auth, User, chat, review, $stateParams, $timeout) {
 
-
-
         // Get logged in user object
         $scope.currentUser = Auth.getCurrentUser();
 
+        // Set booleans for follow button text and showing review panel
         $scope.toggleText = 'Following';
-
-
 
         $scope.review = false;
 
@@ -19,7 +16,15 @@ angular.module('cornerfindApp')
             username: $stateParams.name
         }, function(user) {
             $scope.user = user;
-            
+
+             // Get products listed by user
+            products.resource.getUsersListings({id:$scope.user._id},
+            function(res, err){
+                
+                $scope.productList = res;
+                console.log('productList is..', $scope.productList)
+            });
+
             // console.log('$scope.currentUser.following is ...', $scope.currentUser.following);
 
             $scope.reviews = review.resource.query({id:$scope.user._id});
@@ -43,9 +48,9 @@ angular.module('cornerfindApp')
 
             // If already following do this
             if ($scope.followed) {
+
+
                 // Update logged in user's following Array
-
-
                 $scope.currentUser.following.splice($scope.currentUser.following.indexOf($scope.user._id), 1)
                 
                 $timeout(function() {
@@ -64,7 +69,6 @@ angular.module('cornerfindApp')
                 User.update($scope.user)
                     .$promise.then(function(user) {
                         toast('Unfollowed',4000);
-                       
                     });
 
             }
@@ -91,34 +95,14 @@ angular.module('cornerfindApp')
             }
         }
 
-        // $scope.followUser = function() {
-        //     $scope.currentUser.following.push($scope.user._id)
-        //     User.update($scope.currentUser)
-        //         .$promise.then(function(user) {
+        //Responsiveness functions
+        $scope.isMobile = function(width) {
+            return width <= 992;
+        }
 
-        //         });
-        //     $scope.followed = true;
-        // }
-
-        // $scope.unfollowUser = function() {
-        //     $scope.currentUser.following.splice($scope.currentUser.following.indexOf($scope.user.following.remove), 1)
-        //     User.update($scope.currentUser)
-        //         .$promise.then(function(user) {
-
-        //         });
-        //     $scope.followed = false;
-        // }
-
-        // $scope.loadAbout = function() {
-
-        // }
-
-
-
-
-
-
-
+         $scope.isPinned = function(width) {
+            if (!$scope.isMobile(width) && !$scope.showAddressForm) return 'pinned';
+        }
 
 
     });
