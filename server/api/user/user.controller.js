@@ -114,6 +114,14 @@ exports.profile = function(req, res, next) {
             path: 'listedProducts',
             model: 'Product'
         })
+        .populate({
+            path: 'followers',
+            model: 'User'
+        })
+         .populate({
+            path: 'following',
+            model: 'User'
+        })
         .exec(function(err, user) {
             User.populate(user, {
                 path: 'following',
@@ -132,7 +140,7 @@ exports.update = function(req, res) {
     var userObj = req.body; // { without following}
     var userId = req.body._id;
     // console.log('req.body is..', req.body);
-    // console.log('req.body.following is..', req.body.following);
+    console.log('req.body.following is..', req.body.following);
     if (req.body._id) {
         delete req.body._id;
         delete req.body._v;
@@ -141,6 +149,7 @@ exports.update = function(req, res) {
     User.findById(userId, function(err, user) {
         var updated = _.assign(user, req.body);
         updated.markModified('following');
+        updated.markModified('followers');
         updated.markModified('stripeToken');
       
         updated.save(function(err, updatedUser, numModified) {
