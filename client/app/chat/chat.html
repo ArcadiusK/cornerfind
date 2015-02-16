@@ -1,9 +1,9 @@
 
-<div class="row section">
+<div class="row chat section">
       <div class="col l12 s12" ng-controller="ChatCtrl">
           <div class="card-panel pink lighten-5"  ng-repeat="chat in chatList">
-            <h3>{{chat.username}}</h3>
-            <h4 class="flow-text">{{chat.textLine}}</h4>
+            <h3 id='chatUsername'>{{chat.username}}</h3>
+            <h4 id="chatText">{{chat.textLine}}</h4>
         </div>
       </div>
 </div>
