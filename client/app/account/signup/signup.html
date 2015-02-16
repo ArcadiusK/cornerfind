@@ -17,7 +17,7 @@
           
           <div class="input-field col s12">
             <input name='name' type="text" class="validate" ng-model="user.name" required/>
-            <label for="first_name">First Name</label>
+            <label for='name' class='active'>Name</label>
           </div>
           <p class="help-block" ng-show="form.name.$error.required && submitted">
             A name is required
@@ -30,7 +30,7 @@
                                             'has-error': form.username.$invalid && submitted }">
           <div class="input-field col s12">
             <input name='username' type="text" class="validate" ng-model="user.username" required/>
-            <label for="first_name">Username (lowercase and numbers only, no spaces)</label>
+            <label for="username" class='active'>Username (lowercase and numbers only)</label>
           </div>
           <p class="help-block" ng-show="form.username.$error.required && submitted">
             A username is required - lowercase and numbers only, no spaces
@@ -46,8 +46,8 @@
                                             'has-error': form.email.$invalid && submitted }">
           
           <div class="input-field col s12">
-            <input name='Email' type="text" class="validate" ng-model="user.email" required mongoose-error/>
-            <label for="first_name">Email</label>
+            <input name='email' type="email" class="validate" ng-model="user.email" required mongoose-error/>
+            <label for="email" class='active'>Email</label>
           </div>                                   
 
           <p class="help-block" ng-show="form.email.$error.email && submitted">
@@ -64,10 +64,10 @@
         <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
                                             'has-error': form.password.$invalid && submitted }">
           <div class="input-field col s12">
-            <input name='password' type="text" class="validate" ng-model="user.password" ng-minlength="3"
+            <input name='password' type="password" class="validate" ng-model="user.password" ng-minlength="3"
                  required
                  mongoose-error>
-            <label for="first_name">Password</label>
+            <label for="password" class='active'>Password</label>
           </div>     
 
           <p class="help-block"
