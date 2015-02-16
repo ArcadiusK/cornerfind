@@ -30,6 +30,21 @@
 	    line-height: 130%;
 	    font-weight: 400;
 	    margin-top: 8px;
+
+	}
+	
+	#aboutMeBlog{
+		line-height: 150%;
+	    font-size: 1.0rem;
+	    line-height: 130%;
+	    font-weight: 400;
+	    margin-top: 25px;
+
+	    a{
+			color: #1e88e5;
+			text-decoration: none;
+			font-weight: 650;
+		}
     }
 
     .tableTitle{
@@ -44,10 +59,18 @@
 
     .tableData{
 		text-align: center;
-		font-weight: 650;
-		font-size: 1.1rem;
+		font-weight: 700;
+		font-size: 1.2rem;
 		color: #1e88e5;
 		padding-top: 5px;
+
+		a{
+			text-align: center;
+			color: #1e88e5;
+			text-decoration: none;
+			font-weight: 700;
+			font-size: 1.2rem;
+		}
 
     }
 
@@ -62,5 +85,13 @@
     .followingButtons{
     	margin-bottom: 0px;
     	padding-bottom: 0px;
+    }
+
+    #reviewText{
+		line-height: 150%;
+	    font-size: 1.2rem;
+	    line-height: 130%;
+	    font-weight: 400;
+	    margin-top: 15px;    	
     }
 }

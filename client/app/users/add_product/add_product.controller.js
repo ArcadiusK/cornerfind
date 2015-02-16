@@ -1,7 +1,12 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .controller('AddProductCtrl', function($scope, brand, condition, category, $q, products, Auth) {
+    .controller('AddProductCtrl', function($scope, brand, condition, category, $q, products, Auth, $state) {
+
+        if(!Auth.isLoggedIn()){
+            return $state.go('login')
+        }
+
 
         //GET all Brands and Categories
         $scope.availableBrands = brand.query();

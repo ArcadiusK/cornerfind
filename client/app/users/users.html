@@ -14,6 +14,7 @@
 
                     <p id='aboutMeTitle'>About me:</p>
                     <p id='aboutMeText'>{{user.description}} </p>
+                    <p id='aboutMeBlog'>Blog: <a href='{{user.blog}}'> {{user.blog}}</a> </p>
                     <br/>
 
                         <table id='tableStats'>
@@ -26,9 +27,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class='tableData' >{{user.listedProducts.length}}</td>
-                                    <td class='tableData'>{{user.followers.length}}</td>
-                                    <td class='tableData'>{{user.following.length}}</td>
+                                    <td class='tableData'>{{user.listedProducts.length}}</td>
+                                    <td class='tableData'><a href='/users/{{user.username}}/followers'>{{user.followers.length}}</a></td>
+                                    <td class='tableData'><a href='/users/{{user.username}}/following'>{{user.following.length}}</a></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -42,26 +43,24 @@
 
                         <a ng-click='showReviews()' class="waves-effect waves-purple btn blue lighten-2 grey-text text-darken-4 sellerFeedback"><i class="mdi-action-face-unlock"></i> &nbsp Show Seller Feedback</a>
 
+
                     </div>
                 </div>
             </div>
 
 
             <div ng-show='review' class="card pink lighten-3">
-                <div ng-repeat='review in reviews' class="card-content white-text">
-                    <span class="card-title grey-text text-darken-4"> </span>
-                    <h5>{{review.reviewingUserId.username}}</h5>
-                    <div class='profile' style: 'height:50px'>
-                        <img class="responsive-img profile" src="{{review.reviewingUserId.picture}}">
-                    </div>
-                    <p>{{review.text}} </p>
+                <div ng-repeat='review in reviews' class="card-content grey-text text-darken-4">
+                    <img class="responsive-img profile circle" src="{{review.reviewingUserId.picture}}">
+                    <p class="card-title grey-text text-darken-4" id="username">{{review.reviewingUserId.username}}</p>
+                    <p id='reviewText'>{{review.text}} </p>
                 </div>
             </div>
         </div>
 
         <div class="row col s12 m6 l6 offset-l6">
             <ul class="col l12 m12 s12 list-unstyled" ng-repeat="product in productList">
-                <product-card-view info="product"></product-card-view>
+                <product-card-view info="product" current-user='currentUser'></product-card-view>
             </ul>
         </div>
     </div>
