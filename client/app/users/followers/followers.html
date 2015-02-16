@@ -1,0 +1,47 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container" ng-controller="UsersCtrl" resizable>
+     <div class="card-panel pink lighten-3">
+ <h3 class='white-text text-darken-2'>{{user.name}}'s Followers</h3>
+</div>
+    <div class="row">
+        <div class="col s12 l6 m6">
+            <div ng-repeat='user in user.followers' class="card pink lighten-3">
+                <div class="card-content white-text ">
+                    <span class="card-title grey-text text-darken-4">{{user.username}}
+                    </span>
+                    <div class='profile'>
+                        <img class="responsive-img profile" src="{{user.picture}}">
+                    </div>
+
+                    <h5>About me:</h5>
+                    <p>{{user.description}} </p>
+                    <br/>
+
+                     <h5>Blog:</h5>
+                    <p>{{user.blog}} </p>
+                    <br/>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th data-field="listing">Listings</th>
+                                <th data-field="followers">Followers</th>
+                                <th data-field="following">Following</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{user.listedProducts.length}}</td>
+                                <td><a href='/users/{{user.username}}/followers'>{{user.followers.length}}</a>
+                                </td>
+                                <td><a href='/users/{{user.username}}/following'>{{user.following.length}}</a></td>
+                        </tbody>
+                    </table>
+                    <div class="section">
+                      
+
+                        <a ng-click='showReviews()' class="waves-effect waves-purple btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-face-unlock"></i>{{buttonText}}</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
