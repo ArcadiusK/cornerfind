@@ -106,7 +106,7 @@ User.find({}).remove(function() {
             hashedPassword: '',
             role: 'user',
             picture: 'http://cornerfind.s3-website-us-west-2.amazonaws.com/1424061553095photo_arcadius_400.jpg',
-            blog: '',
+            blog: 'linkedin.com/in/arcadiusk',
             description: 'Dad with 2 kids',
             provider: 'local',
             salt: '',
@@ -131,7 +131,7 @@ User.find({}).remove(function() {
             hashedPassword: '',
             role: 'user',
             picture: 'http://cornerfind.s3-website-us-west-2.amazonaws.com/1424061972553photo_david.jpg',
-            blog: '',
+            blog: 'www.linkin.com/in/davidjchang',
             description: 'Dad with 3 kids',
             provider: 'local',
             salt: '',
@@ -154,7 +154,7 @@ User.find({}).remove(function() {
             hashedPassword: '',
             role: 'user',
             picture: 'http://cornerfind.s3-website-us-west-2.amazonaws.com/1424062000450photo_justin.jpg',
-            blog: '',
+            blog: 'www.linkedin.com/in/',
             description: 'Dad with 4 kids',
             provider: 'local',
             salt: '',
@@ -177,7 +177,7 @@ User.find({}).remove(function() {
             hashedPassword: '',
             role: 'user',
             picture: 'http://cornerfind.s3-website-us-west-2.amazonaws.com/1424062016133photo_mitsu.jpg',
-            blog: '',
+            blog: 'www.codekarma.io',
             description: 'Dad with 5 kids',
             provider: 'local',
             salt: '',
@@ -295,7 +295,7 @@ User.find({}).remove(function() {
                                         brand: "Prada",
                                         retailPrice: 60.00
                                     }, {
-                                        userId: user_parameter1._id,
+                                        userId: user_parameter4._id,
                                         category: ["Toys"], //from categories collection
                                         gender: "Girl",
                                         qty: 1,
@@ -387,8 +387,8 @@ User.find({}).remove(function() {
                                                             User.findOne({
                                                                 _id: user_parameter1._id
                                                             }, function(err, user) {
-                                                                user.following.push(user_parameter2._id);
-                                                                user.followers.push(user_parameter2._id);
+                                                                user.following.push(user_parameter2._id, user_parameter3._id, user_parameter4._id);
+                                                                user.followers.push(user_parameter2._id,user_parameter3._id, user_parameter4._id);
                                                                 user.listedProducts.push(product_parameter._id);
                                                                 user.listedProducts.push(product_parameter2._id);
                                                                 user.listedProducts.push(product_parameter3._id);
@@ -399,8 +399,26 @@ User.find({}).remove(function() {
                                                             User.findOne({
                                                                 _id: user_parameter2._id
                                                             }, function(err, user) {
-                                                                user.following.push(user_parameter1._id);
-                                                                user.followers.push(user_parameter1._id);
+                                                                user.following.push(user_parameter1._id, user_parameter3._id, user_parameter4._id);
+                                                                user.followers.push(user_parameter1._id, user_parameter3._id, user_parameter4._id );
+                                                                user.listedProducts.push(product_parameter5._id);
+                                                                user.save();
+                                                            })
+
+                                                              User.findOne({
+                                                                _id: user_parameter3._id
+                                                            }, function(err, user) {
+                                                                user.following.push(user_parameter1._id, user_parameter3._id, user_parameter2._id);
+                                                                user.followers.push(user_parameter1._id, user_parameter3._id, user_parameter2._id );
+                                                                user.listedProducts.push(product_parameter5._id);
+                                                                user.save();
+                                                            })
+
+                                                              User.findOne({
+                                                                _id: user_parameter4._id
+                                                            }, function(err, user) {
+                                                                user.following.push(user_parameter1._id, user_parameter3._id, user_parameter2._id);
+                                                                user.followers.push(user_parameter1._id, user_parameter3._id, user_parameter2._id );
                                                                 user.listedProducts.push(product_parameter5._id);
                                                                 user.save();
                                                             })
@@ -469,14 +487,14 @@ User.find({}).remove(function() {
                                                                         rating: 5,
                                                                         date: new Date()
                                                                     }, {
-                                                                        reviewingUserId: user_parameter1._id,
-                                                                        reviewedUserId: user_parameter2._id,
+                                                                        reviewingUserId: user_parameter3._id,
+                                                                        reviewedUserId: user_parameter4._id,
                                                                         text: 'The product was slightly damaged from heavy use but still useable.  Saved tons of money buying from this seller.',
                                                                         rating: 3,
                                                                         date: new Date()
                                                                     }, {
-                                                                        reviewingUserId: user_parameter2._id,
-                                                                        reviewedUserId: user_parameter1._id,
+                                                                        reviewingUserId: user_parameter4._id,
+                                                                        reviewedUserId: user_parameter3._id,
                                                                         text: 'This buyer was very easy to work with, the transaction went smoothly with no hitches.',
                                                                         rating: 4,
                                                                         date: new Date()
