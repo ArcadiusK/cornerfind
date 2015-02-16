@@ -3,7 +3,7 @@
 angular.module('cornerfindApp')
     .directive('yourOfferView', function(review, offer) {
             return {
-                templateUrl: "/app/offer/offer.directive.html",
+                templateUrl: "app/offer/offer.directive.html",
                 restrict: 'EA',
                 scope: {
                     offer: '=',
