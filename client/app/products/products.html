@@ -2,7 +2,7 @@
 
 <div class='container'>
 	<!-- <div ng-show="stateName" class='center-align'> -->
-		<div  class='center-align'>
+		<div  ng-hide='submitted' class='center-align'>
 		Step 1: <a ui-sref='products.stripeInfo({id: prodId})'>Payment Info</a> --
 		Step 2: <a ui-sref='products.addressForm({id: prodId})'>Shipping Address</a> --
 		Step 3: <a ui-sref='products.confirmOrder({id: prodId})'>Confirm Offer</a>

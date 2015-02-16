@@ -19,7 +19,7 @@ angular.module('cornerfindApp')
         };
 
         $scope.submitOrder = function() {
-            $scope.submitted = true;
+            
 
 
             var shipping = $scope.shippingAddress;
@@ -73,8 +73,12 @@ angular.module('cornerfindApp')
                 $cookieStore.remove('order');
                 $cookieStore.remove('cardInfo');
                 $cookieStore.remove('shippingAddress');
+                
+                $scope.orderId = results[0]._id;
 
-                toast('Success!', 4000)
+                // toast('Success!', 4000)
+                $scope.$emit('submitted');
+                $scope.submitted = true;
             }, function(err) {
                 console.log("ERROR ", err)
             })
