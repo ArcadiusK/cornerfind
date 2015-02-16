@@ -1,41 +1,62 @@
-<div class="row center-align" ui-view>
-    <div>
-        <h2>Confirm Your Order</h2>
-    </div>
-
-    <div class="col s12 m12 l12">
-        <h4>Order Information</h4>
-        Item: {{order.lineItems[0].name}}
-        Price: {{order.lineItems[0].purchasePrice}}
-
-
-        <button ng-click="emitter()"ui-sref ='products.oneProductView({id: prodId})' class='btn red darken-2'>Modify</button>
-    </div>
-
-    <div class="col s12 m12 l12">
-        <h4>Payment Information</h4>
-        <h6>Card Type: {{cardInfo.cardType}}</h6>
-        <h6>Last Four Digits: {{cardInfo.last4}}</h6>
-        <button ng-click="emitter()" ui-sref='products.stripeInfo({id: prodId})' class='btn red darken-2'>Modify</button>
-
-    </div>
-
-    <div class="col s12 m12 l12">
-        <h4>Shipping Address</h4>
-        <div> <!--Needs formatting-->
-        	{{shippingAddress.name}}
-        	{{shippingAddress.street1}}
-        	{{shippingAddress.street2}}
-        	{{shippingAddress.city}}
-        	{{shippingAddress.state}}
-        	{{shippingAddress.zip}}
-            
+<div class="container confirm-order">
+    <div ng-hide='submitted' class="row center-align">
+        <div>
+            <h3>Confirm Your Offer</h3>
         </div>
 
-        <button ng-click="emitter()" ui-sref='products.addressForm({id:prodId})' class='btn red darken-2'>Modify</button>
+        <div class="col s12 m12 l12">
+
+            <div class="col s12 center-align">
+                <h5>Product Information</h5>
+            </div>
+            <div class="col s12 center-align">
+                <div class="col s12 center-align">{{order.lineItems[0].name}}</div>
+
+                <div class="col s12 center-align">Offer: {{order.lineItems[0].purchasePrice | currency}}</div>
+
+
+
+            </div>
+            <button ng-click="emitter()" ui-sref='products.oneProductView({id: prodId})' class='btn red darken-2 col s12 center-align '>Modify</button>
+            <hr class='col s12'>
+
+
+            <div class="col s12 center-align">
+                <h5>Payment Information</h5>
+            </div>
+            <div class="col s12 center-align">
+                <div class="col s12 center-align">Card Type: {{cardInfo.cardType}} </div>
+                <div class="col s12 center-align">Last Four Digits: {{cardInfo.last4}}</div>
+
+
+            </div>
+            <button ng-click="emitter()" ui-sref='products.stripeInfo({id: prodId})' class='btn red darken-2 col s12 center-align'>Modify</button>
+            <hr class='col s12'>
+
+            <div class="col s12 center-align">
+                <h5>Shipping Address</h5>
+            </div>
+            <div class="col s12 center-align">
+                <div class="col s12 center-align">{{shippingAddress.name}} </div>
+                <div class="col s12 center-align">{{shippingAddress.street1}} {{shippingAddress.street2}} </div>
+                <div class="col s12 center-align">{{shippingAddress.city}} {{shippingAddress.state}} {{shippingAddress.zip}}</div>
+
+
+
+            </div>
+            <button ng-click="emitter()" ui-sref='products.addressForm({id:prodId})' class='btn red darken-2 col s12 center-align'>Modify</button>
+            <hr class='col s12'>
+
+
+            <button id='submit' ng-disabled="submitted" ng-click="submitOrder()" class='col s12 center-align btn purple darken-1 '>Submit Offer</button>
+
+        </div>
+
     </div>
 
-    <button ng-disabled="submitted" ng-click="submitOrder()" class='btn purple darken-1'>Submit Offer</button>
-    
-
+    <div class="row" ng-show='submitted'>
+        <div class="col s12">
+            <h5>Sucess! Your offer has been submitted, and the seller now has 24 hours to respond. If your offer is accepted, your card will be charged {{order.lineItems[0].purchasePrice | currency}} and you will receive a confirmation email. Good luck!</h5> <!-- {{orderId}} -->
+        </div>
+    </div>
 </div>
