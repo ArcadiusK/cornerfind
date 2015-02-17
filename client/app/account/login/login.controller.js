@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-  .controller('LoginCtrl', function ($scope, Auth, $location, $window) {
+  .controller('LoginCtrl', function ($scope, Auth, $location, $window, $state) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -14,8 +14,10 @@ angular.module('cornerfindApp')
           password: $scope.user.password
         })
         .then( function() {
-          // Logged in, redirect to home
-          $location.path('/');
+          //// Logged in, redirect to home
+          //$location.path('/');
+          console.log('changing state');
+          $state.go('main');
         })
         .catch( function(err) {
           $scope.errors.other = err.message;

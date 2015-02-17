@@ -9,6 +9,8 @@ angular.module('cornerfindApp')
         $scope.currentUser = Auth.getCurrentUser();
         $scope.loggedin = Auth.isLoggedIn();
 
+        console.log($scope.loggedin);
+
   $(document).ready(function(){
       $('.slider').slider({full_width: false});
     });
