@@ -27,7 +27,9 @@ angular.module('cornerfindApp')
         success(function(data) {
           $cookieStore.put('token', data.token);
           currentUser = User.get();
-          deferred.resolve(data);
+          currentUser.$promise.then(function () {
+            deferred.resolve(data);
+          });
           return cb();
         }).
         error(function(err) {
