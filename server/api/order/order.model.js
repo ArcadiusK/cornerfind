@@ -11,6 +11,7 @@ var OrderSchema = new Schema({
     { productId: {type: Schema.Types.ObjectId, ref: 'Product'},
       name: {type: String},
       purchasePrice: {type: Number, required: true,min: 0},
+      originalPrice: {type: Number, required: true,min: 0},
       qty: {type: Number, min: 1, default:1},
       shippingHandling: {type: Number, default:499}}
     ],
