@@ -17,10 +17,10 @@ angular.module('cornerfindApp')
                 state: $state.current.name
             })
         };
-
+        
         $scope.submitOrder = function() {
 
-
+            $scope.clicked = true;
 
             var shipping = $scope.shippingAddress;
             var shippingAddress = {
@@ -49,7 +49,7 @@ angular.module('cornerfindApp')
                 buyerAddress: shippingAddress
             };
 
-
+            
 
             offer.resource.save(orderForCreation, function(orderResult) {
                 Address.updateAddress({
@@ -62,6 +62,7 @@ angular.module('cornerfindApp')
                     $scope.orderId = orderResult._id;
                     $scope.$emit('submitted');
                     $scope.submitted = true;
+                    
                 })
             })
 
