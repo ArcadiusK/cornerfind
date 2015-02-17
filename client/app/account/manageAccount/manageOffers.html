@@ -1,7 +1,6 @@
 <div ng-hide="offers.length">
-    <h2>There are no pending offers on your listings</h2>
+    <h4>There are no pending offers on your listings</h4>
 </div>
-<hr>
 
 
 <manage-offer-view currentUser='currentUser' status='status' info="offer" accept-offer="acceptOffer(offerId,orderObj)" ng-repeat='offer in offers' stripe-result='stripeResult'></manage-offer-view>
