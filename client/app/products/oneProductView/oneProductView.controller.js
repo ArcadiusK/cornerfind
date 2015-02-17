@@ -44,6 +44,7 @@ angular.module('cornerfindApp')
                     productId: prod._id,
                     name: prod.name,
                     purchasePrice: offerPrice,
+                    originalPrice: prod.price
                 }],
                 sellerId: prod.userId._id,
                 buyerId: $scope.currentUser._id,
@@ -82,52 +83,52 @@ angular.module('cornerfindApp')
         }
 
 
-        $scope.buyNow = function() {
-            //SHOWS CHECKOUT DIRECTIVE IF USER DOES NOT HAVE A TOKEN ALREADY
-            if ($scope.currentUser.billing.stripeToken == null) {
-                $scope.showtoken = true;
-                return;
-            }
+        // $scope.buyNow = function() {
+        //     //SHOWS CHECKOUT DIRECTIVE IF USER DOES NOT HAVE A TOKEN ALREADY
+        //     if ($scope.currentUser.billing.stripeToken == null) {
+        //         $scope.showtoken = true;
+        //         return;
+        //     }
 
-            var prod = $scope.product;
-            $scope.isOffering = !$scope.isOffering;
+        //     var prod = $scope.product;
+        //     $scope.isOffering = !$scope.isOffering;
 
-            var orderForCreation = {
-                lineItems: [{
-                    //This ONLY handles single items as is, will need to be modified for bundling
-                    productId: prod._id,
-                    name: prod.name,
-                    purchasePrice: $scope.product.price,
-                }],
-                sellerId: prod.userId._id,
-                buyerId: $scope.currentUser._id,
-                status: 'accepted'
-            }
-            offer.save(orderForCreation, function(result) {}, function(err) {
-                if (err) {
-                    console.log('Error ', err)
-                };
+        //     var orderForCreation = {
+        //         lineItems: [{
+        //             //This ONLY handles single items as is, will need to be modified for bundling
+        //             productId: prod._id,
+        //             name: prod.name,
+        //             purchasePrice: $scope.product.price,
+        //         }],
+        //         sellerId: prod.userId._id,
+        //         buyerId: $scope.currentUser._id,
+        //         status: 'accepted'
+        //     }
+        //     offer.save(orderForCreation, function(result) {}, function(err) {
+        //         if (err) {
+        //             console.log('Error ', err)
+        //         };
 
-            })
+        //     })
 
-            // Create digestible stripe order
-            $scope.stripeOrder = {
-                stripeToken: $scope.currentUser.billing.stripeToken,
-                orderTotal: $scope.product.price
-            }
+        //     // Create digestible stripe order
+        //     $scope.stripeOrder = {
+        //         stripeToken: $scope.currentUser.billing.stripeToken,
+        //         orderTotal: $scope.product.price
+        //     }
 
-            offer.charge($scope.stripeOrder).$promise.then(function(result) {
+        //     offer.charge($scope.stripeOrder).$promise.then(function(result) {
 
-                if (result.$resolved) {
-                    $scope.boughtItem = true;
+        //         if (result.$resolved) {
+        //             $scope.boughtItem = true;
 
-                }
-            })
-
-
+        //         }
+        //     })
 
 
-        }
+
+
+        // }
 
         $scope.userRedirect = function() {
             $location.path('/users/' + $scope.product.userId.username);
