@@ -7,7 +7,6 @@
                     <p class='offerStatus'>Offer Status: {{offer.status}}</p>
                     <h5 class='offerTitle'>Items in this offer:</h5>
                     <li ng-repeat='product in offer.lineItems' class='offerItems'>
-
                         {{product.name}} - Listed Price: {{product.originalPrice | currency}}
                     </li>
                 </ul>
