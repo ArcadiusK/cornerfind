@@ -18,7 +18,7 @@
                     <button ng-hide='accepted' class='btn' ng-click="submitButton()">Accept Offer</button>
                     <!-- <button ng-hide='accepted' type='button' class='btn'>Reject button?</button> -->
                 </form>
-                <button ng-show="status.status.indexOf(offer.status) > -1 || accepted" class='btn' ng-click="review()">Leave a Review!</button>
+                <button ng-show="reviewable" class='btn' ng-click="review()">Leave a Review!</button>
                 <form ng-show='showReview' ng-submit="submitReview()">
                     <div class="form-panel">
                         <div class="row">
