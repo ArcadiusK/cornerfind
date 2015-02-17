@@ -1,5 +1,5 @@
 <div class="row oneProductView" resizable>
-    <div ng-class='isPinned(windowWidth)' class="col s12 l4 m12">
+    <div ng-class='isPinned(windowWidth)' class="col s12 l3 m12">
         <div class="card #ea80fc purple accent-1" ng-hide='showtoken'>
             <div class="card-content grey-text text-darken-4 row" ng-hide='confirmationMenu'>
                 <span class="col s12 productName grey-text text-darken-4"> {{product.name}} </span>
@@ -17,12 +17,12 @@
                         </div>
                         <div ng-show="offerForm.$invalid && offerForm.offer.$touched"class="col s12 center-align">Offers must be whole dollar values less than or equal to the listed price.</div>
                 </div>
-               
+
                 <button ng-disabled='!offerForm.$valid' ng-click="submitOffer(offerPrice)" class="offerButton col s8 offset-s2 waves-effect btn blue lighten-2 grey-text text-darken-4"><i class="mdi-action-shopping-cart"></i> &nbsp Offer</button>
                 <form>
 
                 <a class="col s12 userLink blue-grey-text darken-4 btn-flat center-align" ng-click='userRedirect()'>More From {{product.userId.username}}</a>
-            
+
              </div>
         </div>
 
