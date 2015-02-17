@@ -56,6 +56,11 @@ angular.module('cornerfindApp')
                     toast('Review submitted!', 3000);
                     });
                 }
+                scope.$on("success",function(){
+                    console.log('Success LISTENER')
+                    toast('Success!',3000);
+                    scope.reviewable=true;
+                })
             }
 
         }
