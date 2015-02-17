@@ -5,7 +5,7 @@
 
     <div class='row'>
 
-        <div class='col s7 m5 l3'>
+        <div class='col s12 m3 l3'>
             <a class='col s12' ui-sref-active='active' id='my-collection' ui-sref='account.profile'>Account Info</a>
              <a class='col s12' ui-sref-active='active' id='my-collection' ui-sref='account.address'>Manage Address</a>
             <a class='col s12 ' ng-class="{active: isActive('account.settings')}" id='my-collection' ui-sref="account.settings">Change Password</a>
@@ -17,7 +17,7 @@
 
 
 
-        <div class='col s8 m6 l8 ' ui-view>{{hello}} {{currentUser.name}}! Manage your account via the tabs on the left.</div>
+        <div class='col s12 m8 l8 ' ui-view>{{hello}} {{currentUser.name}}! Manage your account via the tabs on the left.</div>
 
 
     </div>
