@@ -64,16 +64,16 @@
 
         <!-- Gender DROPDOWN -->
         <li ng-controller='DropdownCtrl'>
-          <div ng-if='!smallerThan768()' class="btn-group" dropdown>
-            <a  class='whiten' id='custom-dropdown' dropdown-toggle ng-disabled="disabled">
+          <div ng-if='!smallerThan768()' class="btn-group" dropdown is-open="status.openGenders">
+            <a  class='whiten' id='custom-dropdown' ng-mouseover='toggleGenders($event)' ng-mouseleave='toggleGenders($event)' dropdown-toggle ng-disabled="disabled">
               Gender <span class="caret"></span>
             </a>
-            <ul class="dropdown-menu" role="menu">
+            <ul class="dropdown-menu" role="menu" ng-mouseleave='toggleGenders($event)'>
               <li ng-repeat='gender in genderList'><a ng-click='genderEmit(gender)'>{{gender}}</a></li>
             </ul>
           </div>
 
-          <div ng-if="smallerThan768()" class="btn-group" dropdown >
+          <div ng-if="smallerThan768()" class="btn-group" ng-click='toggleGenders()' dropdown is-open="status.openGenders">
             <a  class ="whiten" id='custom-dropdown'  dropdown-toggle ng-disabled="disabled">
               Gender <span class="caret"></span>
             </a>

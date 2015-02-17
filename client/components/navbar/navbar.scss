@@ -3,13 +3,16 @@
     padding: 15px 15px;
     position: relative;
     text-decoration: none;
+    &:hover,&:focus{
+    color:'#8e24aa';
+  };
 }
 
 .whiten{
   color:#fff;
 	font-size: 17px;
 	&:hover,&:focus{
-		color:#fff;
+		color:'#8e24aa';
   };
 
 }
@@ -17,7 +20,7 @@
 #whiten{
   color:#fff;
 	&:hover,&:focus{
-  color: #fff;
+  color: '#9c27b0';
 	}
 }
 
@@ -29,6 +32,9 @@
    color:#fff;
    margin-top: -9px;
    margin-bottom: 18px;
+   &:hover,&:focus{
+  color: '#9c27b0';
+  }
 
 }
 
