@@ -1,18 +1,17 @@
-<div class="row">
-    <div class="col s12 m12 l12">
+<div class="row" id='manageOfferCard'>
+    <div class="col s12 m11 l10 offset-l1 offset-m1">
         <div class="card blue lighten-3">
             <div class="card-content black-text"><!-- remove inline styles -->
-                <a ui-sref='user({name: offer.buyerId.username})' style="text-decoration:none; font-size: 1.5rem; "><span class="card-title black-text" >Buyer: {{offer.buyerId.name}} </span></a>
+                <a ui-sref='user({name: offer.buyerId.username})' style="text-decoration:none; font-size: 1.5rem; "><span class="card-title black-text buyerName" >Buyer: {{offer.buyerId.name}} </span></a>
                 <ul>
-                    Offer Status: {{offer.status}}
-                    <h5>Items in this offer:</h5>
-                    <hr>
-                    <li ng-repeat='product in offer.lineItems'>
+                    <p class='offerStatus'>Offer Status: {{offer.status}}</p>
+                    <h5 class='offerTitle'>Items in this offer:</h5>
+                    <li ng-repeat='product in offer.lineItems' class='offerItems'>
 
                         {{product.name}} - Listed Price: {{product.originalPrice | currency}}
                     </li>
                 </ul>
-                <div>Offer Total: {{offer.orderTotal | currency}}</div>
+                <div class='total'>Offer Total: {{offer.orderTotal | currency}}</div>
             </div>
             <div class="card-action">
                 <form ng-hide="status.status.indexOf(offer.status) > -1 " ng-submit="acceptOffer({offerId: offer._id, orderObj:offer})">
