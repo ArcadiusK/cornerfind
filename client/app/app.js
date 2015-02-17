@@ -10,7 +10,8 @@ angular.module('cornerfindApp', [
   'firebase',
   'ui.utils',
   'ngTouch',
-  'ngAnimate'
+  'ngAnimate',
+  'ngDialog'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

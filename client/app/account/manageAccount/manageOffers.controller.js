@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .controller('ManageOffersCtrl', function($scope,review, offer, $state, Address, $http) {
+    .controller('ManageOffersCtrl', function($scope,review, offer, $state, Address, $http, ngDialog) {
 
 
         $scope.offers = offer.resource.manageOffers({
@@ -18,18 +18,19 @@ angular.module('cornerfindApp')
             }
         })
 
-
-
+        
 
         $scope.stripeResult = {};
      
         $scope.acceptOffer = function(orderId, orderObj) {
-            var buyerAddress = orderObj.buyerAddress;
-            // console.log('orderID',orderId,'orderObj',orderObj)
-            // console.log('userid',$scope.currentUser._id)
-            // console.log($scope.stripeOrder)
-            offer.resource.charge($scope.stripeOrder, function(result) {
+            
+            ngDialog.open({
+                template: 'templateId'
+            });
 
+            var buyerAddress = orderObj.buyerAddress;
+            offer.resource.charge($scope.stripeOrder, function(result) {
+                // console.log('FIRST')
                     if (result.captured === true) {
                         $scope.stripeResult = result;
                         // console.log('FIRED')
@@ -38,8 +39,6 @@ angular.module('cornerfindApp')
                                 id: $scope.currentUser._id
                             })
                             .$promise.then(function(data) {
-                                // console.log('ADDRESS response', data)
-                                // console.log('ADDRESS arguments', arguments)
 
                                 var sellerAddress = {
                                     name: data[0].name,
@@ -52,12 +51,11 @@ angular.module('cornerfindApp')
                                     phone: data[0].phone
                                 };
 
-                                // console.log('SEller add', sellerAddress)
                                 $http.post('/api/easyposts/createLabel', {
                                     toAddress: buyerAddress,
                                     fromAddress: sellerAddress
                                 }).success(function(results) {
-
+                                    // console.log('third')
                                     var labelUrl = results.postage_label.label_url;
                                     offer.resource.acceptOffer({
                                         id: orderId,
@@ -65,6 +63,9 @@ angular.module('cornerfindApp')
                                     }, function(res, error) {
                                         console.log('AcceptOffer Callback ', res)
                                         // $scope.offerAccepted = true;
+                                        ngDialog.close({
+                                            template: 'templateId'
+                                        });
                                         $scope.$broadcast('success');
                                         // toast('Success!',4000)
                                     })
