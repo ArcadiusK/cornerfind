@@ -38,6 +38,7 @@ html{
 
 // Component styles are injected through grunt
 // injector
+@import 'about/about.scss';
 @import 'account/login/login.scss';
 @import 'account/manageAccount/manageAccount.scss';
 @import 'admin/admin.scss';
