@@ -25,8 +25,8 @@ angular.module('cornerfindApp')
      
         $scope.acceptOffer = function(orderId, orderObj) {
             var buyerAddress = orderObj.buyerAddress;
-            console.log('orderID',orderId,'orderObj',orderObj)
-            console.log('userid',$scope.currentUser._id)
+            // console.log('orderID',orderId,'orderObj',orderObj)
+            // console.log('userid',$scope.currentUser._id)
             // console.log($scope.stripeOrder)
             offer.resource.charge($scope.stripeOrder, function(result) {
 
@@ -64,8 +64,9 @@ angular.module('cornerfindApp')
                                         url: labelUrl
                                     }, function(res, error) {
                                         console.log('AcceptOffer Callback ', res)
-                                        $scope.offerAccepted = true;
-                                        toast('Success!',4000)
+                                        // $scope.offerAccepted = true;
+                                        $scope.$broadcast('success');
+                                        // toast('Success!',4000)
                                     })
 
 
@@ -77,9 +78,9 @@ angular.module('cornerfindApp')
         }
 
         $scope.submitReview = function(reviewObj){
-            console.log('REVIEW OBJ ',reviewObj)
+            // console.log('REVIEW OBJ ',reviewObj)
             review.resource.save(reviewObj,function(res,err){
-                console.log('Review Callback ',res,err)
+                // console.log('Review Callback ',res,err)
             })
         }
     })
