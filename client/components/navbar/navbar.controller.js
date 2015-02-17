@@ -17,6 +17,8 @@ angular.module('cornerfindApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.currentUser = Auth.getCurrentUser();
+
+    $scope.genderList = ['Boy', 'Girl'];
     
     $scope.smallerThan768 = function(){ //768 is the twitter navbar breakpoint
       return $scope.windowWidth < 768 ? true:false;
@@ -38,12 +40,15 @@ angular.module('cornerfindApp')
     // EVENT EMITTER CODE
 
     $scope.categoryEmit = function (selected) {
-
       eventEmitter.emitEvent(selected, 'category');
     };
 
      $scope.brandEmit = function (selected) {
       eventEmitter.emitEvent(selected, 'brand');
+    };
+
+    $scope.genderEmit = function (selected) {
+      eventEmitter.emitEvent(selected, 'gender');
     };
 
   });
