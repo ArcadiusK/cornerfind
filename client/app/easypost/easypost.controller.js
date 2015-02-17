@@ -13,7 +13,7 @@ angular.module('cornerfindApp')
         });
 
         $scope.saveAddress = function() {
-            toast('Confirming Address ...', 3000)
+            toast('Confirming Address ...', 1500)
             if ($scope.buttonText == 'Submit') {
 
 

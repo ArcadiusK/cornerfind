@@ -1,4 +1,4 @@
-<div resizable class="navbar navbar-default navbar-static-top grey darken-3"  ng-controller="NavbarCtrl">
+<div resizable class="navbar navbar-default navbar-static-top #ea80fc purple accent-1"  ng-controller="NavbarCtrl">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
@@ -58,6 +58,27 @@
             </a>
             <ul class="dropdown-menu" role="menu">
               <li  ng-repeat='brand in brandList'><a ng-click='brandEmit(brand.name)'>{{brand.name}}</a></li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Gender DROPDOWN -->
+        <li ng-controller='DropdownCtrl'>
+          <div ng-if='!smallerThan768()' class="btn-group" dropdown>
+            <a  class='whiten' id='custom-dropdown' dropdown-toggle ng-disabled="disabled">
+              Gender <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li ng-repeat='gender in genderList'><a ng-click='genderEmit(gender)'>{{gender}}</a></li>
+            </ul>
+          </div>
+
+          <div ng-if="smallerThan768()" class="btn-group" dropdown >
+            <a  class ="whiten" id='custom-dropdown'  dropdown-toggle ng-disabled="disabled">
+              Gender <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li  ng-repeat='gender in genderList'><a ng-click='genderEmit(gender)'>{{gender}}</a></li>
             </ul>
           </div>
         </li>
