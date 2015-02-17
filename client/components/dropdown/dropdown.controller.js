@@ -11,6 +11,7 @@ angular.module('cornerfindApp')
   $scope.status = {
     openBrands: false,
     openCategories:false,
+    openGenders:false
   };
 
   $scope.toggled = function(open) {
@@ -22,9 +23,16 @@ angular.module('cornerfindApp')
     // $event.stopPropagation();
     $scope.status.openBrands= !$scope.status.openBrands;
   };
+  
   $scope.toggleCategories = function($event) {
     // $event.preventDefault();
     $event.stopPropagation(); //Why does this line break the mobile dropdown?
     $scope.status.openCategories= !$scope.status.openCategories;
+  };
+
+    $scope.toggleGenders = function($event) {
+    // $event.preventDefault();
+    $event.stopPropagation(); //Why does this line break the mobile dropdown?
+    $scope.status.openGenders = !$scope.status.openGenders;
   };
 })
