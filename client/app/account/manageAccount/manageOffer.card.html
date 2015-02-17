@@ -5,10 +5,11 @@
                 <a ui-sref='user({name: offer.buyerId.username})' style="text-decoration:none; font-size: 1.5rem; "><span class="card-title black-text" >Buyer: {{offer.buyerId.name}} </span></a>
                 <ul>
                     Offer Status: {{offer.status}}
-                    <h3>Items in this offer:</h3>
+                    <h5>Items in this offer:</h5>
                     <hr>
                     <li ng-repeat='product in offer.lineItems'>
-                        {{product.name}} - Listed Price: {{product.purchasePrice | currency}}
+
+                        {{product.name}} - Listed Price: {{product.originalPrice | currency}}
                     </li>
                 </ul>
                 <div>Offer Total: {{offer.orderTotal | currency}}</div>

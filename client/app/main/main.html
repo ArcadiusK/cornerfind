@@ -53,14 +53,14 @@
 </div>
 
 
-    <div ng-repeat="product in productList" ng-cloak>
+    <div ng-repeat="product in productList">
         <div ng-switch='' on='$index % 3'>
             <div class="row" ng-switch-when="0">
-                <product-card-view info="productList[$index+0]" ng-show="productList[$index+0]" class="col l4 m6 s12 list-unstyled" current-user='currentUser'></product-card-view>
+                <product-card-view info="productList[$index+0]" ng-show="productList[$index+0]" class="col l4 m6 s12 list-unstyled"></product-card-view>
 
-                <product-card-view info="productList[$index+1]" ng-show="productList[$index+1]" class="col l4 m6 s12 list-unstyled" current-user='currentUser'></product-card-view>
+                <product-card-view info="productList[$index+1]" ng-show="productList[$index+1]" class="col l4 m6 s12 list-unstyled"></product-card-view>
 
-                <product-card-view info="productList[$index+2]" ng-show="productList[$index+2]" class="col l4 m6 s12 list-unstyled" current-user='currentUser'></product-card-view>
+                <product-card-view info="productList[$index+2]" ng-show="productList[$index+2]" class="col l4 m6 s12 list-unstyled"></product-card-view>
             </div>
         </div>
     </div>
