@@ -56,5 +56,10 @@ angular.module('cornerfindApp')
              $scope.productList = products.resource.getFiltered({type:'brand' ,name: selected});
         });
 
+         eventEmitter.subscribeEvent('gender', function (selected) {
+             console.log('selected filter is', selected);
+             $scope.productList = products.resource.getFiltered({type:'gender' ,name: selected});
+        });
+
     });
 
