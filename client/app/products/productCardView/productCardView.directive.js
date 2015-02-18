@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cornerfindApp')
-    .directive('productCardView', function(Auth, products, likes) {
+    .directive('productCardView', function(Auth, products, likes, $filter) {
         return {
             templateUrl: 'app/products/productCardView/productCardView.html',
             restrict: 'EA',
@@ -9,7 +9,7 @@ angular.module('cornerfindApp')
                 product: '=info',
             },
             link: function(scope, element, attrs) {
-                
+
                 //initialize get productlikes, currentuser and currentuserlikes
                 var unbindWatcher = scope.$watch('product',function(){
                     likes.resource.getProductLikes({
@@ -26,23 +26,30 @@ angular.module('cornerfindApp')
                             });
                         }
                     }).then(function(){
-                        for(var i = 0; i < scope.product.likes.length; i++){
-                            // console.log('currentUser', scope.currentUser._id );
-                            if (scope.product.likes[i].userId._id == scope.currentUser._id) {
-                                scope.favorited = true;
-                                break;
-                            } else {
-                                scope.favorited = false;
+                        
+                        var match = scope.product.likes.filter(function(el){
+                            if(el.userId._id == scope.currentUser._id){
+                                return el;
                             }
+                        });
+
+                        if (match.length > 0){
+                            scope.favorited = true;
                         }
+                        else{
+                            scope.favorited = false;
+                        }
+                        
                     });
                          
                     unbindWatcher();
                 });
 
-
                 scope.$watch('product.likes', function() {
-                    scope.textGenerate();
+                    if(scope.product.likes){
+                       scope.textGenerate();
+                    }
+                    
                 }, true);
 
                 scope.textGenerate = function() {
