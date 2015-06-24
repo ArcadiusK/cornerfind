@@ -510,73 +510,7 @@ User.find({}).remove(function() {
 
                                                                     });
                                                             });
-
-
-
-
-
-                                                            Address.find({}).remove(function() {
-                                                                Address.create({
-                                                                        userId: user_parameter1._id,
-                                                                        name: 'Arcadius Kazimierski', //added in to make dealing with easypost easier
-                                                                        phone: '6319883287', //added in to make dealing with easypost easier
-                                                                        billing: false,
-                                                                        street1: '305 W 16th Street Apt 3A',
-                                                                        street2: '',
-                                                                        city: 'New York',
-                                                                        state: 'NY',
-                                                                        zip: '10011',
-                                                                        country: 'USA',
-                                                                        email: 'arcadiusk@gmail.com'
-                                                                    }, {
-                                                                        userId: user_parameter2._id,
-                                                                        name: 'David Chang', //added in to make dealing with easypost easier
-                                                                        phone: '6466444312', //added in to make dealing with easypost easier
-                                                                        billing: false,
-                                                                        street1: '980 Fox Hill Ln',
-                                                                        street2: '',
-                                                                        city: 'Scotch Plains',
-                                                                        state: 'NJ',
-                                                                        zip: '07076',
-                                                                        country: 'USA',
-                                                                        email: 'arcadiusk@gmail.com'
-                                                                    }, {
-                                                                        userId: user_parameter3._id,
-                                                                        name: 'Justin Cohen',
-                                                                        phone: '9145890035',
-                                                                        billing: false,
-                                                                        street1: "165 W 91 St",
-                                                                        street2: "",
-                                                                        city: "New York",
-                                                                        state: "NY",
-                                                                        zip: "10024",
-                                                                        country: "USA",
-                                                                        email: 'justincoh@gmail.com'
-                                                                    }, {
-                                                                        userId: user_parameter4._id,
-                                                                        name: 'Mitsuaki Uchimoto', //added in to make dealing with easypost easier
-                                                                        phone: '2016605762', //added in to make dealing with easypost easier
-                                                                        billing: false,
-                                                                        street1: '60 Crest Drive North',
-                                                                        street2: '',
-                                                                        city: 'Cresskill',
-                                                                        state: 'NJ',
-                                                                        zip: '07626',
-                                                                        country: 'USA',
-                                                                        email: 'muchimoto@gmail.com'
-                                                                    },
-                                                                    function() {
-                                                                        console.log("finished seeding all: addresses")
-                                                                    });
-                                                            });
-
-
-
-
                                                         });
-
-
-
                                                     });
                                                 });
                                             });
